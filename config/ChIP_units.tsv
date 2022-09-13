@@ -1,0 +1,85 @@
+sample_name	unit_name	fq1	fq2	sra	read_format	call_peaks	input	peak_type	sample_group
+S2-Zld_aZld_input_rep1	S2-Zld_aZld_input_rep1	../data/2020-07_CHIPseq/raw_reads/TG3_S65_L002_R1_001.fastq.gz	../data/2020-07_CHIPseq/raw_reads/TG3_S65_L002_R2_001.fastq.gz		PE	FALSE			S2-Zld_aZld_input
+S2-Zld_aZld_IP_rep1	S2-Zld_aZld_IP_rep1	../data/2020-07_CHIPseq/raw_reads/TG4_S66_L002_R1_001.fastq.gz	../data/2020-07_CHIPseq/raw_reads/TG4_S66_L002_R2_001.fastq.gz		PE	TRUE	S2_Zld_aIgG_IP_rep1	narrow	S2-Zld_aZld_IP
+S2-Grh_aGrh_input_rep1	S2-Grh_aGrh_input_rep1	../data/2020-07_CHIPseq/raw_reads/TG5_S67_L002_R1_001.fastq.gz	../data/2020-07_CHIPseq/raw_reads/TG5_S67_L002_R2_001.fastq.gz		PE	FALSE			S2-Grh_aGrh_input
+S2-Grh_aGrh_IP_rep1	S2-Grh_aGrh_IP_rep1	../data/2020-07_CHIPseq/raw_reads/TG6_S68_L002_R1_001.fastq.gz	../data/2020-07_CHIPseq/raw_reads/TG6_S68_L002_R2_001.fastq.gz		PE	TRUE	S2_Grh_aIgG_IP_rep1	narrow	S2-Grh_aGrh_IP
+S2-Grh_aGrh_input_rep2	S2-Grh_aGrh_input_rep2	../data/2020-07_CHIPseq/raw_reads/TG7_S69_L002_R1_001.fastq.gz	../data/2020-07_CHIPseq/raw_reads/TG7_S69_L002_R2_001.fastq.gz		PE	FALSE			S2-Grh_aGrh_input
+S2-Grh_aGrh_IP_rep2	S2-Grh_aGrh_IP_rep2	../data/2020-07_CHIPseq/raw_reads/TG8_S70_L002_R1_001.fastq.gz	../data/2020-07_CHIPseq/raw_reads/TG8_S70_L002_R2_001.fastq.gz		PE	TRUE	S2_Grh_aIgG_IP_rep1	narrow	S2-Grh_aGrh_IP
+S2-WT_aZld_IP_rep1	S2-WT_aZld_IP_rep1	../data/2020-09_CHIPseq/raw_reads/S2_TG1_S6_L001_R1_001.fastq.gz	../data/2020-09_CHIPseq/raw_reads/S2_TG1_S6_L001_R2_001.fastq.gz		PE	TRUE	S2_Zld_aIgG_IP_rep1	narrow	S2-WT_aZld_IP
+S2-WT_aZld_IP_rep2	S2-WT_aZld_IP_rep2	../data/2020-09_CHIPseq/raw_reads/S2_TG2_S8_L001_R1_001.fastq.gz	../data/2020-09_CHIPseq/raw_reads/S2_TG2_S8_L001_R2_001.fastq.gz		PE	TRUE	S2_Zld_aIgG_IP_rep1	narrow	S2-WT_aZld_IP
+S2-WT_aGrh_IP_rep1	S2-WT_aGrh_IP_rep1	../data/2020-09_CHIPseq/raw_reads/S2_TG3_S9_L001_R1_001.fastq.gz	../data/2020-09_CHIPseq/raw_reads/S2_TG3_S9_L001_R2_001.fastq.gz		PE	TRUE	S2_Grh_aIgG_IP_rep1	narrow	S2-WT_aGrh_IP
+S2-WT_aGrh_IP_rep2	S2-WT_aGrh_IP_rep2	../data/2020-09_CHIPseq/raw_reads/S2_TG4_S10_L001_R1_001.fastq.gz	../data/2020-09_CHIPseq/raw_reads/S2_TG4_S10_L001_R2_001.fastq.gz		PE	TRUE	S2_Grh_aIgG_IP_rep1	narrow	S2-WT_aGrh_IP
+S2-Zld_aZld_IP_rep2	S2-Zld_aZld_IP_rep2	../data/2020-09_CHIPseq/raw_reads/S2_TG7_S11_L001_R1_001.fastq.gz	../data/2020-09_CHIPseq/raw_reads/S2_TG7_S11_L001_R2_001.fastq.gz		PE	TRUE	S2_Zld_aIgG_IP_rep1	narrow	S2-Zld_aZld_IP
+S2-WT_aZld_input_rep1	S2-WT_aZld_input_rep1	../data/2020-09_CHIPseq/raw_reads/S2_TG8_S12_L001_R1_001.fastq.gz	../data/2020-09_CHIPseq/raw_reads/S2_TG8_S12_L001_R2_001.fastq.gz		PE	FALSE			S2-WT_aZld_input
+S2-WT_aZld_input_rep2	S2-WT_aZld_input_rep2	../data/2020-09_CHIPseq/raw_reads/S2_TG9_S13_L001_R1_001.fastq.gz	../data/2020-09_CHIPseq/raw_reads/S2_TG9_S13_L001_R2_001.fastq.gz		PE	FALSE			S2-WT_aZld_input
+S2_Zld_aIgG_input_rep1	S2_Zld_aIgG_input_rep1	../data/2020-09_CHIPseq/raw_reads/S2_TG12_CATGAGCAAT-GATCTTGCAC_S4_L001_R1_001.fastq.gz	../data/2020-09_CHIPseq/raw_reads/S2_TG12_CATGAGCAAT-GATCTTGCAC_S4_L001_R2_001.fastq.gz		PE	FALSE			S2_Zld_aIgG_input
+S2_Grh_aIgG_input_rep1	S2_Grh_aIgG_input_rep1	../data/2020-09_CHIPseq/raw_reads/S2_TG13_CTTAGGACAT-CTTCACTGAC_S5_L001_R1_001.fastq.gz	../data/2020-09_CHIPseq/raw_reads/S2_TG13_CTTAGGACAT-CTTCACTGAC_S5_L001_R2_001.fastq.gz		PE	FALSE			S2_Grh_aIgG_input
+S2-Zld_aZld_input_rep2	S2-Zld_aZld_input_rep2	../data/2020-09_CHIPseq/raw_reads/S2_TG14_S7_L001_R1_001.fastq.gz	../data/2020-09_CHIPseq/raw_reads/S2_TG14_S7_L001_R2_001.fastq.gz		PE	FALSE			S2-Zld_aZld_input
+S2_Zld_aIgG_IP_rep1	S2_Zld_aIgG_IP_rep1_1	../data/2020-11_CHIPseq/raw_reads/TGCHIP_5_S3_L001_R1_001.fastq.gz	../data/2020-11_CHIPseq/raw_reads/TGCHIP_5_S3_L001_R2_001.fastq.gz		PE	FALSE	S2_Zld_aIgG_input_rep1	narrow	S2_Zld_aIgG_IP
+S2_Zld_aIgG_IP_rep1	S2_Zld_aIgG_IP_rep1_2	../data/2020-11_CHIPseq/raw_reads/TGCHIP_5_S106_L002_R1_001.fastq.gz	../data/2020-11_CHIPseq/raw_reads/TGCHIP_5_S106_L002_R2_001.fastq.gz		PE	FALSE	S2_Zld_aIgG_input_rep1	narrow	S2_Zld_aIgG_IP
+S2_Grh_aIgG_IP_rep1	S2_Grh_aIgG_IP_rep1_1	../data/2020-11_CHIPseq/raw_reads/TGCHIP_6_S4_L001_R1_001.fastq.gz	../data/2020-11_CHIPseq/raw_reads/TGCHIP_6_S4_L001_R2_001.fastq.gz		PE	FALSE	S2_Grh_aIgG_input_rep1	narrow	S2_Grh_aIgG_IP
+S2_Grh_aIgG_IP_rep1	S2_Grh_aIgG_IP_rep1_2	../data/2020-11_CHIPseq/raw_reads/TGCHIP_6_S107_L002_R1_001.fastq.gz	../data/2020-11_CHIPseq/raw_reads/TGCHIP_6_S107_L002_R2_001.fastq.gz		PE	FALSE	S2_Grh_aIgG_input_rep1	narrow	S2_Grh_aIgG_IP
+S2-WT_aGrh_input_rep1	S2-WT_aGrh_input_rep1_1	../data/2020-11_CHIPseq/raw_reads/TGCHIP_12_S1_L001_R1_001.fastq.gz	../data/2020-11_CHIPseq/raw_reads/TGCHIP_12_S1_L001_R2_001.fastq.gz		PE	FALSE			S2-WT_aGrh_input
+S2-WT_aGrh_input_rep1	S2-WT_aGrh_input_rep1_2	../data/2020-11_CHIPseq/raw_reads/TGCHIP_12_S92_L001_R1_001.fastq.gz	../data/2020-11_CHIPseq/raw_reads/TGCHIP_12_S92_L001_R2_001.fastq.gz		PE	FALSE			S2-WT_aGrh_input
+S2-WT_aGrh_input_rep2	S2-WT_aGrh_input_rep2_1	../data/2020-11_CHIPseq/raw_reads/TGCHIP_13_S2_L001_R1_001.fastq.gz	../data/2020-11_CHIPseq/raw_reads/TGCHIP_13_S2_L001_R2_001.fastq.gz		PE	FALSE			S2-WT_aGrh_input
+S2-WT_aGrh_input_rep2	S2-WT_aGrh_input_rep2_2	../data/2020-11_CHIPseq/raw_reads/TGCHIP_13_S93_L001_R1_001.fastq.gz	../data/2020-11_CHIPseq/raw_reads/TGCHIP_13_S93_L001_R2_001.fastq.gz		PE	FALSE			S2-WT_aGrh_input
+S2-Twi_aTwi_input_rep1	S2-Twi_aTwi_input_rep1	../data/2022-01_CHIP/raw_reads/TGL092_S5_R1_001.fastq.gz			SE	FALSE			S2-Twi_aTwi_input
+S2-Twi_aTwi_input_rep2	S2-Twi_aTwi_input_rep2	../data/2022-01_CHIP/raw_reads/TGL093_S6_R1_001.fastq.gz			SE	FALSE			S2-Twi_aTwi_input
+S2-Zld-DBD_aZld_input_rep1	S2-Zld-DBD_aZld_input_rep1	../data/2022-01_CHIP/raw_reads/TGL094_S7_R1_001.fastq.gz			SE	FALSE			S2-Zld-DBD_aZld_input
+S2-Zld-DBD_aZld_input_rep2	S2-Zld-DBD_aZld_input_rep2	../data/2022-01_CHIP/raw_reads/TGL095_S8_R1_001.fastq.gz			SE	FALSE			S2-Zld-DBD_aZld_input
+S2-Grh-DBD_aGrh_input_rep1	S2-Grh-DBD_aGrh_input_rep1	../data/2022-01_CHIP/raw_reads/TGL096_S9_R1_001.fastq.gz			SE	FALSE			S2-Grh-DBD_aGrh_input
+S2-Grh-DBD_aGrh_input_rep2	S2-Grh-DBD_aGrh_input_rep2	../data/2022-01_CHIP/raw_reads/TGL097_S10_R1_001.fastq.gz			SE	FALSE			S2-Grh-DBD_aGrh_input
+S2-Twi_aTwi_IP_rep1	S2-Twi_aTwi_IP_rep1	../data/2022-01_CHIP/raw_reads/TGL098_S11_R1_001.fastq.gz			SE	TRUE	S2-Twi_aTwi_input_rep1	narrow	S2-Twi_aTwi_IP
+S2-Twi_aTwi_IP_rep2	S2-Twi_aTwi_IP_rep2	../data/2022-01_CHIP/raw_reads/TGL099_S12_R1_001.fastq.gz			SE	TRUE	S2-Twi_aTwi_input_rep2	narrow	S2-Twi_aTwi_IP
+S2-Zld-DBD_aZld_IP_rep1	S2-Zld-DBD_aZld_IP_rep1	../data/2022-01_CHIP/raw_reads/TGL100_S13_R1_001.fastq.gz			SE	TRUE	S2_Zld_aIgG_IP_rep1	narrow	S2-Zld-DBD_aZld_IP
+S2-Zld-DBD_aZld_IP_rep2	S2-Zld-DBD_aZld_IP_rep2	../data/2022-01_CHIP/raw_reads/TGL101_S14_R1_001.fastq.gz			SE	TRUE	S2_Zld_aIgG_IP_rep1	narrow	S2-Zld-DBD_aZld_IP
+S2-Grh-DBD_aGrh_IP_rep1	S2-Grh-DBD_aGrh_IP_rep1	../data/2022-01_CHIP/raw_reads/TGL102_S15_R1_001.fastq.gz			SE	TRUE	S2_Grh_aIgG_IP_rep1	narrow	S2-Grh-DBD_aGrh_IP
+S2-Grh-DBD_aGrh_IP_rep2	S2-Grh-DBD_aGrh_IP_rep2	../data/2022-01_CHIP/raw_reads/TGL103_S16_R1_001.fastq.gz			SE	TRUE	S2_Grh_aIgG_IP_rep1	narrow	S2-Grh-DBD_aGrh_IP
+S2-HA-Twi-0uM_input_rep1	S2-HA-Twi-0uM_input_rep1	../data/2022-08_ChIP/run1/TGL116_S1_R1_001.fastq.gz			SE	FALSE			S2-HA-Twi-0uM_input
+S2-HA-Twi-10uM_input_rep1	S2-HA-Twi-10uM_input_rep1	../data/2022-08_ChIP/run1/TGL117_S2_R1_001.fastq.gz			SE	FALSE			S2-HA-Twi-10uM_input
+S2-HA-Twi-40uM_input_rep1	S2-HA-Twi-40uM_input_rep1	../data/2022-08_ChIP/run1/TGL118_S3_R1_001.fastq.gz			SE	FALSE			S2-HA-Twi-40uM_input
+S2-HA-Twi-160uM_input_rep1	S2-HA-Twi-160uM_input_rep1	../data/2022-08_ChIP/run1/TGL119_S4_R1_001.fastq.gz			SE	FALSE			S2-HA-Twi-160uM_input
+S2-Zld-0uM_aZld_IP_rep1	S2-Zld-0uM_aZld_IP_rep1	../data/2022-08_ChIP/run1/TGL120_S5_R1_001.fastq.gz			SE	TRUE	S2-Zld-0uM_input_rep1	narrow	S2-Zld-0uM_aZld_IP
+S2-Zld-500uM_aZld_IP_rep1	S2-Zld-500uM_aZld_IP_rep1	../data/2022-08_ChIP/run1/TGL121_S6_R1_001.fastq.gz			SE	TRUE	S2-Zld-500uM_input_rep1	narrow	S2-Zld-500uM_aZld_IP
+S2-Zld-1000uM_aZld_IP_rep1	S2-Zld-1000uM_aZld_IP_rep1	../data/2022-08_ChIP/run1/TGL122_S7_R1_001.fastq.gz			SE	TRUE	S2-Zld-1000uM_input_rep1	narrow	S2-Zld-1000uM_aZld_IP
+S2-Zld-1500uM_aZld_IP_rep1	S2-Zld-1500uM_aZld_IP_rep1	../data/2022-08_ChIP/run1/TGL123_S8_R1_001.fastq.gz			SE	TRUE	S2-Zld-1500uM_input_rep1	narrow	S2-Zld-1500uM_aZld_IP
+S2-Grh-0uM_aGrh_IP_rep1	S2-Grh-0uM_aGrh_IP_rep1	../data/2022-08_ChIP/run1/TGL124_S9_R1_001.fastq.gz			SE	TRUE	S2-Grh-0uM_input_rep1	narrow	S2-Grh-0uM_aGrh_IP
+S2-Grh-25uM_aGrh_IP_rep1	S2-Grh-25uM_aGrh_IP_rep1	../data/2022-08_ChIP/run1/TGL125_S10_R1_001.fastq.gz			SE	TRUE	S2-Grh-25uM_input_rep1	narrow	S2-Grh-25uM_aGrh_IP
+S2-Grh-100uM_aGrh_IP_rep1	S2-Grh-100uM_aGrh_IP_rep1	../data/2022-08_ChIP/run1/TGL126_S11_R1_001.fastq.gz			SE	TRUE	S2-Grh-100uM_input_rep1	narrow	S2-Grh-100uM_aGrh_IP
+S2-Grh-400uM_aGrh_IP_rep1	S2-Grh-400uM_aGrh_IP_rep1	../data/2022-08_ChIP/run1/TGL127_S12_R1_001.fastq.gz			SE	TRUE	S2-Grh-400uM_input_rep1	narrow	S2-Grh-400uM_aGrh_IP
+S2-HA-Twi-0uM_aHA_IP_rep1	S2-HA-Twi-0uM_aHA_IP_rep1	../data/2022-08_ChIP/run1/TGL128_S13_R1_001.fastq.gz			SE	TRUE	S2-HA-Twi-0uM_input_rep1	narrow	S2-HA-Twi-0uM_aHA_IP
+S2-HA-Twi-10uM_aHA_IP_rep1	S2-HA-Twi-10uM_aHA_IP_rep1	../data/2022-08_ChIP/run1/TGL129_S14_R1_001.fastq.gz			SE	TRUE	S2-HA-Twi-10uM_input_rep1	narrow	S2-HA-Twi-10uM_aHA_IP
+S2-HA-Twi-40uM_aHA_IP_rep1	S2-HA-Twi-40uM_aHA_IP_rep1	../data/2022-08_ChIP/run1/TGL130_S15_R1_001.fastq.gz			SE	TRUE	S2-HA-Twi-40uM_input_rep1	narrow	S2-HA-Twi-40uM_aHA_IP
+S2-HA-Twi-160uM_aHA_IP_rep1	S2-HA-Twi-160uM_aHA_IP_rep1	../data/2022-08_ChIP/run1/TGL131_S16_R1_001.fastq.gz			SE	TRUE	S2-HA-Twi-160uM_input_rep1	narrow	S2-HA-Twi-160uM_aHA_IP
+S2-Zld-0uM_input_rep1	S2-Zld-0uM_input_rep1	../data/2022-08_ChIP/run2/lane1/TGL108_S1_R1_001.fastq.gz			SE	FALSE			S2-Zld-0uM_input
+S2-Zld-500uM_input_rep1	S2-Zld-500uM_input_rep1	../data/2022-08_ChIP/run2/lane1/TGL109_S2_R1_001.fastq.gz			SE	FALSE			S2-Zld-500uM_input
+S2-Zld-1000uM_input_rep1	S2-Zld-1000uM_input_rep1	../data/2022-08_ChIP/run2/lane1/TGL110_S3_R1_001.fastq.gz			SE	FALSE			S2-Zld-1000uM_input
+S2-Zld-1500uM_input_rep1	S2-Zld-1500uM_input_rep1	../data/2022-08_ChIP/run2/lane1/TGL111_S4_R1_001.fastq.gz			SE	FALSE			S2-Zld-1500uM_input
+S2-Grh-0uM_input_rep1	S2-Grh-0uM_input_rep1	../data/2022-08_ChIP/run2/lane1/TGL112_S5_R1_001.fastq.gz			SE	FALSE			S2-Grh-0uM_input
+S2-Grh-25uM_input_rep1	S2-Grh-25uM_input_rep1	../data/2022-08_ChIP/run2/lane1/TGL113_S6_R1_001.fastq.gz			SE	FALSE			S2-Grh-25uM_input
+S2-Grh-100uM_input_rep1	S2-Grh-100uM_input_rep1	../data/2022-08_ChIP/run2/lane1/TGL114_S7_R1_001.fastq.gz			SE	FALSE			S2-Grh-100uM_input
+S2-Grh-400uM_input_rep1	S2-Grh-400uM_input_rep1	../data/2022-08_ChIP/run2/lane1/TGL115_S8_R1_001.fastq.gz			SE	FALSE			S2-Grh-400uM_input
+S2-Grh-0uM_aGrh_IP_rep2	S2-Grh-0uM_aGrh_IP_rep2	../data/2022-08_ChIP/run2/lane1/TGL172_S9_R1_001.fastq.gz			SE	TRUE	S2-Grh-0uM_input_rep2	narrow	S2-Grh-0uM_aGrh_IP
+S2-Grh-25uM_aGrh_IP_rep2	S2-Grh-25uM_aGrh_IP_rep2	../data/2022-08_ChIP/run2/lane1/TGL173_S10_R1_001.fastq.gz			SE	TRUE	S2-Grh-25uM_input_rep2	narrow	S2-Grh-25uM_aGrh_IP
+S2-Grh-100uM_aGrh_IP_rep2	S2-Grh-100uM_aGrh_IP_rep2	../data/2022-08_ChIP/run2/lane1/TGL174_S11_R1_001.fastq.gz			SE	TRUE	S2-Grh-100uM_input_rep2	narrow	S2-Grh-100uM_aGrh_IP
+S2-Grh-400uM_aGrh_IP_rep2	S2-Grh-400uM_aGrh_IP_rep2	../data/2022-08_ChIP/run2/lane1/TGL175_S12_R1_001.fastq.gz			SE	TRUE	S2-Grh-400uM_input_rep2	narrow	S2-Grh-400uM_aGrh_IP
+S2-HA-Twi-0uM_aHA_IP_rep2	S2-HA-Twi-0uM_aHA_IP_rep2	../data/2022-08_ChIP/run2/lane1/TGL176_S13_R1_001.fastq.gz			SE	TRUE	S2-HA-Twi-0uM_input_rep2	narrow	S2-HA-Twi-0uM_aHA_IP
+S2-HA-Twi-10uM_aHA_IP_rep2	S2-HA-Twi-10uM_aHA_IP_rep2	../data/2022-08_ChIP/run2/lane1/TGL177_S14_R1_001.fastq.gz			SE	TRUE	S2-HA-Twi-10uM_input_rep2	narrow	S2-HA-Twi-10uM_aHA_IP
+S2-HA-Twi-40uM_aHA_IP_rep2	S2-HA-Twi-40uM_aHA_IP_rep2	../data/2022-08_ChIP/run2/lane1/TGL178_S15_R1_001.fastq.gz			SE	TRUE	S2-HA-Twi-40uM_input_rep2	narrow	S2-HA-Twi-40uM_aHA_IP
+S2-HA-Twi-160uM_aHA_IP_rep2	S2-HA-Twi-160uM_aHA_IP_rep2	../data/2022-08_ChIP/run2/lane1/TGL179_S16_R1_001.fastq.gz			SE	TRUE	S2-HA-Twi-160uM_input_rep2	narrow	S2-HA-Twi-160uM_aHA_IP
+S2-Zld-0uM_input_rep2	S2-Zld-0uM_input_rep2	../data/2022-08_ChIP/run2/lane2/TGL156_S17_R1_001.fastq.gz			SE	FALSE			S2-Zld-0uM_input
+S2-Zld-500uM_input_rep2	S2-Zld-500uM_input_rep2	../data/2022-08_ChIP/run2/lane2/TGL157_S18_R1_001.fastq.gz			SE	FALSE			S2-Zld-500uM_input
+S2-Zld-1000uM_input_rep2	S2-Zld-1000uM_input_rep2	../data/2022-08_ChIP/run2/lane2/TGL158_S19_R1_001.fastq.gz			SE	FALSE			S2-Zld-1000uM_input
+S2-Zld-1500uM_input_rep2	S2-Zld-1500uM_input_rep2	../data/2022-08_ChIP/run2/lane2/TGL159_S20_R1_001.fastq.gz			SE	FALSE			S2-Zld-1500uM_input
+S2-Grh-0uM_input_rep2	S2-Grh-0uM_input_rep2	../data/2022-08_ChIP/run2/lane2/TGL160_S21_R1_001.fastq.gz			SE	FALSE			S2-Grh-0uM_input
+S2-Grh-25uM_input_rep2	S2-Grh-25uM_input_rep2	../data/2022-08_ChIP/run2/lane2/TGL161_S22_R1_001.fastq.gz			SE	FALSE			S2-Grh-25uM_input
+S2-Grh-100uM_input_rep2	S2-Grh-100uM_input_rep2	../data/2022-08_ChIP/run2/lane2/TGL162_S23_R1_001.fastq.gz			SE	FALSE			S2-Grh-100uM_input
+S2-Grh-400uM_input_rep2	S2-Grh-400uM_input_rep2	../data/2022-08_ChIP/run2/lane2/TGL163_S24_R1_001.fastq.gz			SE	FALSE			S2-Grh-400uM_input
+S2-HA-Twi-0uM_input_rep2	S2-HA-Twi-0uM_input_rep2	../data/2022-08_ChIP/run2/lane2/TGL164_S25_R1_001.fastq.gz			SE	FALSE			S2-HA-Twi-0uM_input
+S2-HA-Twi-10uM_input_rep2	S2-HA-Twi-10uM_input_rep2	../data/2022-08_ChIP/run2/lane2/TGL165_S26_R1_001.fastq.gz			SE	FALSE			S2-HA-Twi-10uM_input
+S2-HA-Twi-40uM_input_rep2	S2-HA-Twi-40uM_input_rep2	../data/2022-08_ChIP/run2/lane2/TGL166_S27_R1_001.fastq.gz			SE	FALSE			S2-HA-Twi-40uM_input
+S2-HA-Twi-160uM_input_rep2	S2-HA-Twi-160uM_input_rep2	../data/2022-08_ChIP/run2/lane2/TGL167_S28_R1_001.fastq.gz			SE	FALSE			S2-HA-Twi-160uM_input
+S2-Zld-0uM_aZld_IP_rep2	S2-Zld-0uM_aZld_IP_rep2	../data/2022-08_ChIP/run2/lane2/TGL168_S29_R1_001.fastq.gz			SE	TRUE	S2-Zld-0uM_input_rep2	narrow	S2-Zld-0uM_aZld_IP
+S2-Zld-500uM_aZld_IP_rep2	S2-Zld-500uM_aZld_IP_rep2	../data/2022-08_ChIP/run2/lane2/TGL169_S30_R1_001.fastq.gz			SE	TRUE	S2-Zld-500uM_input_rep2	narrow	S2-Zld-500uM_aZld_IP
+S2-Zld-1000uM_aZld_IP_rep2	S2-Zld-1000uM_aZld_IP_rep2	../data/2022-08_ChIP/run2/lane2/TGL170_S31_R1_001.fastq.gz			SE	TRUE	S2-Zld-1000uM_input_rep2	narrow	S2-Zld-1000uM_aZld_IP
+S2-Zld-1500uM_aZld_IP_rep2	S2-Zld-1500uM_aZld_IP_rep2	../data/2022-08_ChIP/run2/lane2/TGL171_S32_R1_001.fastq.gz			SE	TRUE	S2-Zld-1500uM_input_rep2	narrow	S2-Zld-1500uM_aZld_IP

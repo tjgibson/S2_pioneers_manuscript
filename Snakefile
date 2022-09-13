@@ -1,0 +1,299 @@
+from snakemake.utils import min_version
+
+##### set minimum snakemake version #####
+min_version("6.0")
+
+##### specify config file #####
+configfile: 'config/config.yaml'
+
+# process ChIP-seq data from this study
+module ChIPseq:
+    snakefile: "https://github.com/tjgibson/NGS-workflow-chipseq/raw/main/workflow/Snakefile"
+#     snakefile: "../../NGS_workflows/NGS-workflow-chipseq/workflow/Snakefile"
+	config: config["ChIPseq"]
+	prefix: "ChIPseq"
+use rule * from ChIPseq as ChIPseq_*
+
+# additional rules for processing ChIP-seq peaks
+# rule regions_to_exclude:
+# 	input:
+# 		"ChIPseq/results/peaks/filtered/S2-WT_aZld_IP.narrowPeak",
+# 		"ChIPseq/results/peaks/filtered/S2-WT_aGrh_IP.narrowPeak",
+# 	output:
+# 		"resources/zld_regions_to_exclude.bed",
+# 		"resources/grh_regions_to_exclude.bed",
+# 		"resources/twi_regions_to_exclude.bed",
+# 	params:
+# 		"config/zld_artifacts.bed",
+# 		"config/grh_artifacts.bed",
+# 		"config/twi_artifacts.bed",
+# 	shell:
+# 		"""
+# 		cat {input[0]} {params[0]} | cut -f 1,2,3 > {output[0]}
+# 		cat {input[1]} {params[1]} | cut -f 1,2,3 > {output[1]}
+# 		cat {params[2]} | cut -f 1,2,3 > {output[2]}
+# 		"""
+rule regions_to_exclude:
+	input:
+		"ChIPseq/results/peaks/filtered/S2-WT_aZld_IP.narrowPeak",
+		"ChIPseq/results/peaks/filtered/S2-WT_aGrh_IP.narrowPeak",
+	output:
+		"resources/zld_regions_to_exclude.bed",
+		"resources/grh_regions_to_exclude.bed",
+		"resources/twi_regions_to_exclude.bed",
+	params:
+		"config/zld_artifacts.bed",
+		"config/grh_artifacts.bed",
+		"config/twi_artifacts.bed",
+	shell:
+		"""
+		cat {params[0]} | cut -f 1,2,3 > {output[0]}
+		cat {params[1]} | cut -f 1,2,3 > {output[1]}
+		cat {params[2]} | cut -f 1,2,3 > {output[2]}
+		"""
+
+
+rule process_ChIP_peaks:
+	input:
+		"ChIPseq/results/peaks/filtered/{sample}.narrowPeak",
+		rules.regions_to_exclude.output
+	output:
+		"ChIPseq/results/peaks/final/{sample}.narrowPeak",
+		"ChIPseq/results/peaks/final/{sample}.bed"
+	conda:
+		"workflow/envs/r_process_bed.yaml"
+	params:
+		extend_width=201
+	script:
+		"workflow/scripts/process_peaks.R"
+
+rule annotate_ChIP_peaks:
+	input:
+		"ChIPseq/results/peaks/final/{sample}.bed"
+	output:
+		"ChIPseq/results/peaks/final/{sample}_peak_annotations.tsv"
+# 	conda:
+# 		"workflow/envs/r_ChIPseeker.yaml"
+	params:
+		promoter_upstream= -500,
+		promoter_downstream= 100
+	script:
+		"workflow/scripts/annotate_peaks_ChIPseeker.R"
+		
+# process previously published ChIP-seq data for chromatin proteins
+module published_ChIPseq:
+    snakefile: "https://github.com/tjgibson/NGS-workflow-chipseq/raw/main/workflow/Snakefile"
+# 	snakefile: "../../NGS_workflows/NGS-workflow-chipseq/workflow/Snakefile"    	
+	config: config["published_ChIPseq"]
+	prefix: "published_ChIPseq"
+use rule * from published_ChIPseq as published_ChIPseq_*
+
+
+# process RNA-seq data
+module RNAseq:
+    snakefile:
+        "https://github.com/tjgibson/NGS-workflow-RNAseq/raw/main/workflow/Snakefile"
+#         "../../NGS_workflows/NGS-workflow-RNAseq/workflow/Snakefile"
+		config: config["RNAseq"]
+		prefix: "RNAseq"
+use rule * from RNAseq as RNAseq_*
+
+# additional rules for processing RNA-seq data
+# - Call differential expression, incorporating controls as covariates
+# - Exclude any problem regions as needed (Zld, Grh, Twi, MtnA etc.)
+# - Annotate genes with ChIP data
+
+
+# process ATAC-seq data
+module ATACseq:
+	snakefile: "https://github.com/tjgibson/NGS-workflow-ATACseq/raw/main/workflow/Snakefile"
+# 	snakefile: "../../NGS_workflows/NGS-workflow-ATACseq/workflow/Snakefile"
+	config: config["ATACseq"]
+	prefix: "ATACseq"
+use rule * from ATACseq as ATACseq_*
+
+# additional rules for ATAC-seq data
+# - Exclude any problem regions as needed (Zld, Grh, Twi, MtnA etc.)
+# - Annotate peaks with ChIP data
+
+rule filter_ATAC_results:
+	input:
+		"ATACseq/results/DEseq2/{experiment}_{contrast}_results.tsv"
+	output:
+		"ATACseq/results/DEseq2_results_filtered/{experiment}_{contrast}_results.tsv",
+	conda:
+		"workflow/envs/r_process_bed.yaml"
+	script:
+		"workflow/scripts/filter_ATAC_results.R"
+
+# Annotate ChIP classes
+# - Use output of above modules to annotate ChIP peaks as class I, II, or III
+# - Annotate with additional information 
+#     - Diff expression of proximal gene, FC, padj
+#     - Diff accessibility, FC, padj
+#     - Promoter/distal
+#     - etc.
+
+def get_ChIP_class_input(wildcards):
+	return {
+	"ChIP_peaks":config["annotate_ChIP_classes"][wildcards.factor]["ChIP_peaks"],
+	"WT_ATAC_peaks":config["annotate_ChIP_classes"][wildcards.factor]["WT_ATAC_peaks"],
+	"ATAC_results":config["annotate_ChIP_classes"][wildcards.factor]["ATAC_results"],
+	"RNAseq_results":config["annotate_ChIP_classes"][wildcards.factor]["RNAseq_results"],
+	"ChIP_feature_annotation":config["annotate_ChIP_classes"][wildcards.factor]["ChIP_feature_annotation"]
+	}
+rule annotate_ChIP_classes:
+	input:
+		unpack(get_ChIP_class_input),
+		gtf_genome_annotation=rules.RNAseq_get_genome_annotation.output
+	output:
+		"results/ChIP_peak_classes/{factor}_ChIP_classes.tsv"
+	params:
+		r_source= "workflow/scripts/utils.R",
+	script:
+		"workflow/scripts/annotate_ChIP_classes.R"
+
+rule split_ChIP_classes:
+	input:
+		"results/ChIP_peak_classes/{factor}_ChIP_classes.tsv"
+	output:
+		"results/ChIP_peak_classes/{factor}_class_I.bed",
+		"results/ChIP_peak_classes/{factor}_class_II.bed",
+		"results/ChIP_peak_classes/{factor}_class_III.bed",
+		"results/ChIP_peak_classes/{factor}_class_II_and_III.bed",
+		"results/ChIP_peak_classes/{factor}_class_I.fasta",
+		"results/ChIP_peak_classes/{factor}_class_II.fasta",
+		"results/ChIP_peak_classes/{factor}_class_III.fasta",
+		"results/ChIP_peak_classes/{factor}_class_II_and_III.fasta"
+	script:
+		"workflow/scripts/split_ChIP_classes.R"
+
+rule define_nonspecific_sites:
+	input:
+		"results/ChIP_peak_classes/zld_class_I.bed",
+		"results/ChIP_peak_classes/grh_class_I.bed",
+		"results/ChIP_peak_classes/twi_class_I.bed",
+	output:
+		"results/ChIP_peak_classes/nonspecific_sites/nonspecific_sites.fasta",
+		"results/ChIP_peak_classes/nonspecific_sites/nonspecific_sites.bed",
+	params:
+		r_source= "workflow/scripts/utils.R",
+	script:
+		"workflow/scripts/get_nonspecific_peaks.R"
+
+rule filter_ChIP_classes:
+	input:
+		"results/ChIP_peak_classes/{factor}_ChIP_classes.tsv",
+		"results/ChIP_peak_classes/nonspecific_sites/nonspecific_sites.bed",
+	output:
+		"results/ChIP_peak_classes_filtered/{factor}_ChIP_classes.tsv",
+		"results/ChIP_peak_classes_filtered/{factor}_ChIP_classes.bed",
+	params:
+		r_source= "workflow/scripts/utils.R",
+	conda:
+		"workflow/envs/r_process_bed.yaml"
+	script:
+		"workflow/scripts/filter_ChIP_classes.R"
+
+rule split_ChIP_classes_filtered:
+	input:
+		"results/ChIP_peak_classes_filtered/{factor}_ChIP_classes.tsv"
+	output:
+		"results/ChIP_peak_classes_filtered/{factor}_class_I.bed",
+		"results/ChIP_peak_classes_filtered/{factor}_class_II.bed",
+		"results/ChIP_peak_classes_filtered/{factor}_class_III.bed",
+		"results/ChIP_peak_classes_filtered/{factor}_class_II_and_III.bed",
+		"results/ChIP_peak_classes_filtered/{factor}_class_I.fasta",
+		"results/ChIP_peak_classes_filtered/{factor}_class_II.fasta",
+		"results/ChIP_peak_classes_filtered/{factor}_class_III.fasta",
+		"results/ChIP_peak_classes_filtered/{factor}_class_II_and_III.fasta"
+	script:
+		"workflow/scripts/split_ChIP_classes.R"
+
+
+rule get_motif_instances:
+	output:
+		"results/motif_instances/{factor}_motifs.bed"
+	params:
+		motif= lambda wildcards: config["annotate_motif_classes"][wildcards.factor]["motif"]
+	script:
+		"workflow/scripts/get_motif_instances.R"
+
+rule annotate_motif_classes:
+	input:
+		all_peaks = lambda wildcards: config["annotate_motif_classes"][wildcards.factor]["ChIP_peaks"],
+		class_I_peaks = lambda wildcards: config["annotate_motif_classes"][wildcards.factor]["class_I_peaks"],
+		class_II_peaks = lambda wildcards: config["annotate_motif_classes"][wildcards.factor]["class_II_peaks"],
+		class_III_peaks = lambda wildcards: config["annotate_motif_classes"][wildcards.factor]["class_III_peaks"],
+		motifs = lambda wildcards: config["annotate_motif_classes"][wildcards.factor]["motif_instances"],
+		other_tissue_peaks = lambda wildcards: config["annotate_motif_classes"][wildcards.factor]["other_tissue"],
+		H3K27me3_peaks = "published_ChIPseq/results/peaks/individual/broad/GSE151983_S2_aH3K27me3_IP_peaks.broadPeak",
+		H3K9me3_peaks = "published_ChIPseq/results/peaks/filtered/GSE160855_aH3K9me3.broadPeak",
+		keep_chroms = "config/keep_chroms.txt",
+		nonspecific_sites = "results/ChIP_peak_classes/nonspecific_sites/nonspecific_sites.bed",
+	params:
+		bichrom_window_size=config["bichrom_params"]["window_size"],
+	output:
+		"results/ChIP_motif_classes/{factor}_motif_classes.tsv",
+	script:
+		"workflow/scripts/get_motif_classes.R"
+
+# run bichrom
+include: "bichrom/workflow/rules/bichrom.smk"
+
+# module process_CUTandRUN:
+#     snakefile:
+#         "https://github.com/tjgibson/NGS-workflow-chipseq/raw/main/workflow/Snakefile"
+# 		config: config["process_CUTandRUN"]
+# 		prefix: "process_CUTandRUN"
+# use rule * from process_CUTandRUN as CUTandRUN_*
+
+# rules to generate final figures
+rule figure_1:
+	input:
+		Zld_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw",
+		Zld_WT_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/S2-WT_1000uM_small.bw",
+		Zld_Zld_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/S2-Zld_1000uM_small.bw",
+		Zld_WT_RNAseq_bw = "RNAseq/results/bigwigs/zscore_normalized/merged/S2-WT_1000uM.bw",
+		Zld_Zld_RNAseq_bw = "RNAseq/results/bigwigs/zscore_normalized/merged/S2-Zld_1000mM.bw",
+		Grh_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw",
+		Grh_WT_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/FL_ATAC_S2-WT_100uM_small.bw",
+		Grh_Grh_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/S2-Grh_100uM_small.bw",
+		Grh_WT_RNAseq_bw = "RNAseq/results/bigwigs/zscore_normalized/merged/S2-WT_100uM.bw",
+		Grh_Grh_RNAseq_bw = "RNAseq/results/bigwigs/zscore_normalized/merged/S2-Grh_100mM.bw",
+		zld_ChIP_classes = "results/ChIP_peak_classes/zld_ChIP_classes.tsv",
+		grh_ChIP_classes = "results/ChIP_peak_classes/grh_ChIP_classes.tsv"
+	output:
+		"manuscript/figures/fig1.pdf"
+	script:
+		"workflow/scripts/fig1.R"
+
+rule figure_2:
+	input:
+		Twi_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw",
+		Twi_WT_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/Twi_ATAC_S2-WT_40uM_small.bw",
+		Twi_Twi_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/S2-Twi_40uM_small.bw",
+		Zld_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw",
+		Grh_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw",
+		twi_ChIP_classes = "results/ChIP_peak_classes/twi_ChIP_classes.tsv",
+		zld_ChIP_classes = "results/ChIP_peak_classes/zld_ChIP_classes.tsv",
+		grh_ChIP_classes = "results/ChIP_peak_classes/grh_ChIP_classes.tsv",
+		twi_RNAseq_results = "RNAseq/results/DEseq2/S2-Twi_RNAseq_S2-Twi-vs-S2-WT_results.tsv",
+		zld_RNAseq_results = "RNAseq/results/DEseq2/S2-Zld_RNAseq_S2-Zld-vs-S2-WT_results.tsv",
+		grh_RNAseq_results = "RNAseq/results/DEseq2/S2-Grh_RNAseq_S2-Grh-vs-S2-WT_results.tsv"
+	output:
+		"manuscript/figures/fig2.pdf"
+	script:
+		"workflow/scripts/fig2.R"
+
+##### target rules #####
+rule all:
+    input:
+    	rules.ChIPseq_all.input,
+        rules.published_ChIPseq_all.input,
+        rules.RNAseq_all.input,
+        rules.ATACseq_all.input,
+        "manuscript/figures/fig1.pdf",
+        "manuscript/figures/fig2.pdf",
+#         "manuscript/figures/fig4.pdf",
+    default_target: True

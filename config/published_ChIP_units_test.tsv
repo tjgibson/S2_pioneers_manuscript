@@ -1,0 +1,3 @@
+sample_name	unit_name	fq1	fq2	sra	read_format	call_peaks	input	peak_type	sample_group	GSE_accession	notes	lab	GSM_accession
+GSE37865_aH4K16ac	SRR495376			SRR495376	SE	TRUE	GSE37865_input	narrow	GSE37865_aH4K16ac	GSE37865		Becker	
+GSE37865_input	SRR495379			SRR495379	SE	FALSE			GSE37865_input	GSE37865		Becker	

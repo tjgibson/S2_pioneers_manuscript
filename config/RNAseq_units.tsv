@@ -1,0 +1,19 @@
+sample_name	unit_name	fq1	fq2	sra	read_format	sample_group
+S2-WT_1000uM_rep1	S2-WT_1000uM_rep1	../data/2019-11_RNAseq/raw_reads/S2_1000mM_1_S3_R1_001.fastq.gz			SE	S2-WT_1000uM
+S2-WT_1000uM_rep2	S2-WT_1000uM_rep2	../data/2019-11_RNAseq/raw_reads/S2_1000mM_2_S4_R1_001.fastq.gz			SE	S2-WT_1000uM
+S2-WT_100uM_rep1	S2-WT_100uM_rep1	../data/2019-11_RNAseq/raw_reads/S2_100mM_1_S13_R1_001.fastq.gz			SE	S2-WT_100uM
+S2-WT_100uM_rep2	S2-WT_100uM_rep2	../data/2019-11_RNAseq/raw_reads/S2_100mM_2_S14_R1_001.fastq.gz			SE	S2-WT_100uM
+S2-WT_noCuSO4_rep1	S2-WT_noCuSO4_rep1	../data/2019-11_RNAseq/raw_reads/S2_noCuSO4_1_S1_R1_001.fastq.gz			SE	S2-WT_noCuSO4
+S2-WT_noCuSO4_rep2	S2-WT_noCuSO4_rep2	../data/2019-11_RNAseq/raw_reads/S2_noCuSO4_2_S2_R1_001.fastq.gz			SE	S2-WT_noCuSO4
+S2-Zld_1000mM_rep1	S2-Zld_1000mM_rep1	../data/2019-11_RNAseq/raw_reads/TG2A_1000mM_1_S7_R1_001.fastq.gz			SE	S2-Zld_1000mM
+S2-Zld_1000mM_rep2	S2-Zld_1000mM_rep2	../data/2019-11_RNAseq/raw_reads/TG2A_1000mM_2_S8_R1_001.fastq.gz			SE	S2-Zld_1000mM
+S2-Zld_noCuSO4_rep1	S2-Zld_noCuSO4_rep1	../data/2019-11_RNAseq/raw_reads/TG2A_noCuSO4_1_S5_R1_001.fastq.gz			SE	S2-Zld_noCuSO4
+S2-Zld_noCuSO4_rep2	S2-Zld_noCuSO4_rep2	../data/2019-11_RNAseq/raw_reads/TG2A_noCuSO4_2_S6_R1_001.fastq.gz			SE	S2-Zld_noCuSO4
+S2-Grh_100mM_rep1	S2-Grh_100mM_rep1	../data/2019-11_RNAseq/raw_reads/TG3A_100mM_1_S11_R1_001.fastq.gz			SE	S2-Grh_100mM
+S2-Grh_100mM_rep2	S2-Grh_100mM_rep2	../data/2019-11_RNAseq/raw_reads/TG3A_100mM_2_S12_R1_001.fastq.gz			SE	S2-Grh_100mM
+S2-Grh_noCuSO4_rep1	S2-Grh_noCuSO4_rep1	../data/2019-11_RNAseq/raw_reads/TG3A_noCuSO4_1_S9_R1_001.fastq.gz			SE	S2-Grh_noCuSO4
+S2-Grh_noCuSO4_rep2	S2-Grh_noCuSO4_rep2	../data/2019-11_RNAseq/raw_reads/TG3A_noCuSO4_2_S10_R1_001.fastq.gz			SE	S2-Grh_noCuSO4
+S2-WT_40uM_rep1	S2-WT_40uM_rep1	../data/2022-01_RNAseq/raw_reads/TGL104_S19_R1_001.fastq.gz			SE	S2-WT_40uM
+S2-WT_40uM_rep2	S2-WT_40uM_rep2	../data/2022-01_RNAseq/raw_reads/TGL105_S20_R1_001.fastq.gz			SE	S2-WT_40uM
+S2-Twi_40uM_rep1	S2-Twi_40uM_rep1	../data/2022-01_RNAseq/raw_reads/TGL106_S21_R1_001.fastq.gz			SE	S2-Twi_40uM
+S2-Twi_40uM_rep2	S2-Twi_40uM_rep2	../data/2022-01_RNAseq/raw_reads/TGL107_S22_R1_001.fastq.gz			SE	S2-Twi_40uM

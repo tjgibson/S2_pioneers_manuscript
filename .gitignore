@@ -1,3 +1,25 @@
+# Project files
+*
+!workflow
+!workflow/scripts
+!workflow/scripts/*
+workflow/scripts/.snakemake*
+!workflow/Snakefile
+!config
+!config/*
+!config/keep_chroms.txt
+!workflow/envs
+!workflow/envs/*
+!README.md
+!workflow/rules
+!workflow/rules/*
+!.gitignore
+!.editorconfig
+!.gitattributes
+!manuscript
+!manuscript/*
+!Snakefile
+
 # History files
 .Rhistory
 .Rapp.history
@@ -37,3 +59,9 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# MacOS files
+.DS_Store
+
+# raw data files for project
+data/

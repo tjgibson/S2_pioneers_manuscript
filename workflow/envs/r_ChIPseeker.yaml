@@ -1,0 +1,6 @@
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - bioconductor-chipseeker
+  - bioconductor-txdb.dmelanogaster.ucsc.dm6.ensgene

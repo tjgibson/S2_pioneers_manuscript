@@ -1,0 +1,385 @@
+ChIPseq:
+  # path or URL to sample sheet (TSV format, columns: sample, condition, ...)
+#  samples: config/samples.tsv
+  # path or URL to sequencing unit sheet (TSV format, columns: sample, unit, fq1, fq2)
+  # Units are technical replicates (e.g. lanes, or resequencing of the same biological
+  # sample).
+  units: config/ChIP_units.tsv
+  
+  # optional inclusion of certain rules -------------------------------------------------------
+  mergeReads:
+    activate: TRUE
+  
+  # text file containing list of chromosomes to keep when filtering ---------------------------
+  filter_chroms: True
+  keep_chroms: config/keep_chroms.txt
+  
+  # reference genome options ------------------------------------------------------------------
+  ref_genome:
+    name: dm6
+    link: https://hgdownload.soe.ucsc.edu/goldenPath/dm6/bigZips/dm6.fa.gz
+  
+  # spike-in genome options ------------------------------------------------------------------
+  use_spikeIn: False
+  
+   
+  # changes to rule paramters ---------------------------------------------------------------
+  params:
+    bowtie2_index: ""
+    bowtie2_align: "-k 2 --very-sensitive --no-mixed --no-discordant -X 5000"
+    filter_multireads: "-f bam -F '(mapping_quality >= 30) and ([XS] == null)'" 
+    bigwigs_ind: "--binSize 10"
+    bigwigs_merged: "--binSize 10"
+    macs2_call_peaks_narrow: "-g dm --call-summits"
+    macs2_call_peaks_broad: "-g dm"
+    filter_peaks_by_replicates:
+      min_overlap: 10
+      replicate_threshold: 2
+
+published_ChIPseq:
+  # path or URL to sample sheet (TSV format, columns: sample, condition, ...)
+#  samples: config/samples.tsv
+  # path or URL to sequencing unit sheet (TSV format, columns: sample, unit, fq1, fq2)
+  # Units are technical replicates (e.g. lanes, or resequencing of the same biological
+  # sample).
+  units: config/published_ChIP_units_all.tsv
+  
+  # optional inclusion of certain rules -------------------------------------------------------
+  mergeReads:
+    activate: TRUE
+  
+  # text file containing list of chromosomes to keep when filtering ---------------------------
+  filter_chroms: True
+  keep_chroms: config/keep_chroms.txt
+  
+  # reference genome options ------------------------------------------------------------------
+  ref_genome:
+    name: dm6
+    link: https://hgdownload.soe.ucsc.edu/goldenPath/dm6/bigZips/dm6.fa.gz
+  
+  # spike-in genome options ------------------------------------------------------------------
+  use_spikeIn: False
+  
+   
+  # changes to rule paramters ---------------------------------------------------------------
+  params:
+    bowtie2_index: ""
+    bowtie2_align: "-k 2 --very-sensitive --no-mixed --no-discordant -X 5000"
+    filter_multireads: "-f bam -F '(mapping_quality >= 30) and ([XS] == null)'" 
+    bigwigs_ind: "--binSize 10"
+    bigwigs_merged: "--binSize 10"
+    macs2_call_peaks_narrow: "-g dm --call-summits"
+    macs2_call_peaks_broad: "-g dm"
+    filter_peaks_by_replicates:
+      min_overlap: 10
+      replicate_threshold: 2
+  
+
+RNAseq:
+  # path or URL to sample sheet (TSV format, columns: sample, condition, ...)
+  samples: config/RNAseq_samples.tsv
+  # path or URL to sequencing unit sheet (TSV format, columns: sample, unit, fq1, fq2)
+  # Units are technical replicates (e.g. lanes, or resequencing of the same biological
+  # sample).
+  units: config/RNAseq_units.tsv
+
+  # optional inclusion of certain rules -------------------------------------------------------
+  mergeReads:
+    activate: False
+
+  # text file containing list of chromosomes to keep when filtering ---------------------------
+  filter_chroms: True
+  keep_chroms: config/keep_chroms.txt
+
+  # reference genome options ------------------------------------------------------------------
+  ref_genome:
+    name: dm6
+    link: https://hgdownload.soe.ucsc.edu/goldenPath/dm6/bigZips/dm6.fa.gz
+
+  ref_annotation:
+    name: flybase_dm6
+    link: https://ftp.flybase.org/genomes/dmel/current/gtf/dmel-all-r6.45.gtf.gz
+
+  # spike-in genome options ------------------------------------------------------------------
+  use_spikeIn: False
+
+  # DESeq2 options -------------------------------------------------------------------------
+  run_diff_exp: TRUE
+  diff_exp:
+    experiments:
+      S2-Zld_RNAseq:
+        contrasts:
+          S2-Zld-vs-S2-WT:
+            - S2-Zld_1000mM
+            - S2-WT_1000uM
+          S2-Zld-induced-vs-uninduced:
+            - S2-Zld_1000mM
+            - S2-Zld_noCuSO4
+          Zld-S2-WT-induced-vs-uninduced:
+            - S2-WT_1000uM
+            - S2-WT_noCuSO4
+      S2-Grh_RNAseq:
+        contrasts:
+          S2-Grh-vs-S2-WT:
+            - S2-Grh_100mM
+            - S2-WT_100uM
+          S2-Grh-induced-vs-uninduced:
+            - S2-Grh_100mM
+            - S2-Grh_noCuSO4
+          Grh-S2-WT-induced-vs-uninduced:
+            - S2-WT_100uM
+            - S2-WT_noCuSO4      
+      S2-Twi_RNAseq:
+        contrasts:
+          S2-Twi-vs-S2-WT:
+            - S2-Twi_40uM
+            - S2-WT_40uM
+    model: ~condition
+    count_threshold: 50
+    padj_cutoff: 0.05
+    log2FC_cutoff: 1
+
+  # changes to rule paramters ---------------------------------------------------------------
+  params:
+    hisat2_index: ""
+    hisat2_align: "-k 2 --very-sensitive --no-mixed --no-discordant"
+    filter_multireads: "-f bam -F '(mapping_quality >= 30) and ([XS] == null)'" 
+    bigwigs_ind: "--binSize 10"
+    bigwigs_merged: "--binSize 10"
+
+ATACseq:
+  # path or URL to sample sheet (TSV format, columns: sample, condition, ...)
+  samples: config/ATACseq_samples.tsv
+  # path or URL to sequencing unit sheet (TSV format, columns: sample, unit, fq1, fq2)
+  # Units are technical replicates (e.g. lanes, or resequencing of the same biological
+  # sample).
+  units: config/ATACseq_units.tsv
+  
+  # optional inclusion of certain rules -------------------------------------------------------
+  mergeReads:
+    activate: False
+
+  # text file containing list of chromosomes to keep when filtering ---------------------------
+  filter_chroms: True
+  keep_chroms: config/keep_chroms.txt
+
+  # reference genome options ------------------------------------------------------------------
+  ref_genome:
+    name: dm6
+    link: https://hgdownload.soe.ucsc.edu/goldenPath/dm6/bigZips/dm6.fa.gz
+  
+  use_spikeIn: False
+  
+  run_diff_accessibility: TRUE
+  diff_accessibility:
+    experiments:
+      S2-Grh_ATACseq:
+      # contrasts for the deseq2 results method
+        contrasts:
+          S2-Grh-FL-vs-S2-WT:
+            - S2-Grh_100uM
+            - FL_ATAC_S2-WT_100uM
+      S2-Zld_ATACseq:
+      # contrasts for the deseq2 results method
+        contrasts:
+          S2-Zld-FL-vs-S2-WT:
+            - S2-Zld_1000uM
+            - S2-WT_1000uM
+      S2-Twi_ATACseq:
+      # contrasts for the deseq2 results method
+        contrasts:
+          S2-Twi-vs-S2-WT-20uM:
+            - S2-Twi_20uM
+            - Twi_ATAC_S2-WT_20uM
+          S2-Twi-vs-S2-WT-40uM:
+            - S2-Twi_40uM
+            - Twi_ATAC_S2-WT_40uM
+      S2-Grh-DBD_ATACseq:
+      # contrasts for the deseq2 results method
+        contrasts:
+          S2-Grh-DBD-vs-S2-WT:
+            - S2-Grh-DBD_20uM
+            - DBD_ATAC_S2-WT_20uM
+      S2-Zld-DBD_ATACseq:
+      # contrasts for the deseq2 results method
+        contrasts:
+          S2-Zld-DBD-vs-S2-WT:
+            - S2-Zld-DBD_100uM
+            - DBD_ATAC_S2-WT_100uM
+      S2-Zld-titration_ATACseq:
+      # contrasts for the deseq2 results method
+        contrasts:
+          S2-Zld-500uM-vs-0uM:
+          - titration_S2-Zld_500uM
+          - titration_S2-Zld_0uM
+          S2-Zld-1000uM-vs-0uM:
+          - titration_S2-Zld_1000uM
+          - titration_S2-Zld_0uM
+          S2-Zld-1500uM-vs-0uM:
+          - titration_S2-Zld_1500uM
+          - titration_S2-Zld_0uM
+      S2-Grh-titration_ATACseq:
+      # contrasts for the deseq2 results method
+        contrasts:
+          S2-Grh-25uM-vs-0uM:
+          - titration_S2-Grh_25uM
+          - titration_S2-Grh_0uM
+          S2-Grh-100uM-vs-0uM:
+          - titration_S2-Grh_100uM
+          - titration_S2-Grh_0uM
+          S2-Grh-400uM-vs-0uM:
+          - titration_S2-Grh_400uM
+          - titration_S2-Grh_0uM
+      S2-HA-Twi-titration_ATACseq:
+      # contrasts for the deseq2 results method
+        contrasts:
+          S2-HA-Twi-10uM-vs-0uM:
+          - titration_S2-HA-Twi_10uM
+          - titration_S2-HA-Twi_0uM
+          S2-HA-Twi-40uM-vs-0uM:
+          - titration_S2-HA-Twi_40uM
+          - titration_S2-HA-Twi_0uM
+          S2-HA-Twi-160uM-vs-0uM:
+          - titration_S2-HA-Twi_160uM
+          - titration_S2-HA-Twi_0uM
+    model: ~condition
+    count_threshold: 50
+    padj_cutoff: 0.05
+    log2FC_cutoff: 0
+  
+  # changes to rule paramters ---------------------------------------------------------------
+  params:
+    bowtie2_index: ""
+    bowtie2_align: "-k 2 --very-sensitive --no-mixed --no-discordant -X 5000"
+    filter_multireads: "-f bam -F '(mapping_quality >= 30) and ([XS] == null)'" 
+    bigwigs_ind: "--binSize 10"
+    bigwigs_merged: "--binSize 10"
+    macs2_call_atac_peaks_ind: "-f BAMPE --keep-dup all -g dm --call-summits"
+    macs2_call_atac_peaks_merged: "-f BAMPE --keep-dup all -g dm --call-summits"
+    
+annotate_ChIP_classes:
+  zld:
+    ChIP_peaks: ChIPseq/results/peaks/final/S2-Zld_aZld_IP.narrowPeak
+    WT_ATAC_peaks: ATACseq/results/peaks/merged_by_sample/S2-WT_1000uM_summits.bed
+    ATAC_results: ATACseq/results/DEseq2_results_filtered/S2-Zld_ATACseq_S2-Zld-FL-vs-S2-WT_results.tsv
+    RNAseq_results: RNAseq/results/DEseq2/S2-Zld_RNAseq_S2-Zld-vs-S2-WT_results.tsv
+    ChIP_feature_annotation: ChIPseq/results/peaks/final/S2-Zld_aZld_IP_peak_annotations.tsv
+  grh:
+    ChIP_peaks: ChIPseq/results/peaks/final/S2-Grh_aGrh_IP.narrowPeak
+    WT_ATAC_peaks: ATACseq/results/peaks/merged_by_sample/FL_ATAC_S2-WT_100uM_summits.bed
+    ATAC_results: ATACseq/results/DEseq2_results_filtered/S2-Grh_ATACseq_S2-Grh-FL-vs-S2-WT_results.tsv
+    RNAseq_results: RNAseq/results/DEseq2/S2-Grh_RNAseq_S2-Grh-vs-S2-WT_results.tsv
+    ChIP_feature_annotation: ChIPseq/results/peaks/final/S2-Grh_aGrh_IP_peak_annotations.tsv
+  twi:
+    ChIP_peaks: ChIPseq/results/peaks/final/S2-Twi_aTwi_IP.narrowPeak
+    WT_ATAC_peaks: ATACseq/results/peaks/merged_by_sample/Twi_ATAC_S2-WT_40uM_summits.bed
+    ATAC_results: ATACseq/results/DEseq2_results_filtered/S2-Twi_ATACseq_S2-Twi-vs-S2-WT-40uM_results.tsv
+    RNAseq_results: RNAseq/results/DEseq2/S2-Twi_RNAseq_S2-Twi-vs-S2-WT_results.tsv
+    ChIP_feature_annotation: ChIPseq/results/peaks/final/S2-Twi_aTwi_IP_peak_annotations.tsv
+
+annotate_motif_classes:
+  zld:
+    motif: "CAGGTA"
+    ChIP_peaks: results/ChIP_peak_classes_filtered/zld_ChIP_classes.bed
+    class_I_peaks: results/ChIP_peak_classes_filtered/zld_class_I.bed
+    class_II_peaks: results/ChIP_peak_classes_filtered/zld_class_II.bed
+    class_III_peaks: results/ChIP_peak_classes_filtered/zld_class_III.bed
+    motif_instances: results/motif_instances/zld_motifs.bed
+    other_tissue:
+      - published_ChIPseq/results/peaks/individual/narrow/embryo-nc14_aZld_peaks.narrowPeak
+      - ../results/bed_files/peaks/brain_aZld.bed
+  grh:
+    motif: "AACNRGTT"
+    ChIP_peaks: results/ChIP_peak_classes_filtered/grh_ChIP_classes.bed
+    class_I_peaks: results/ChIP_peak_classes_filtered/grh_class_I.bed
+    class_II_peaks: results/ChIP_peak_classes_filtered/grh_class_II.bed
+    class_III_peaks: results/ChIP_peak_classes_filtered/grh_class_III.bed
+    motif_instances: results/motif_instances/grh_motifs.bed
+    other_tissue:
+      - published_ChIPseq/results/peaks/individual/narrow/embryo-2-3H_aGrh_peaks.narrowPeak
+      - published_ChIPseq/results/peaks/individual/narrow/embryo-5-6H_aGrh_peaks.narrowPeak
+      - published_ChIPseq/results/peaks/individual/narrow/embryo-11-12H_aGrh_peaks.narrowPeak
+      - published_ChIPseq/results/peaks/individual/narrow/embryo-15-16H_aGrh_peaks.narrowPeak
+      - published_ChIPseq/results/peaks/individual/narrow/wing-disc_aGrh_peaks.narrowPeak
+  twi:
+    motif: "CABVTG"
+    ChIP_peaks: results/ChIP_peak_classes_filtered/twi_ChIP_classes.bed
+    ChIP_classes: results/ChIP_peak_classes_filtered/twi_ChIP_classes.tsv
+    class_I_peaks: results/ChIP_peak_classes_filtered/twi_class_I.bed
+    class_II_peaks: results/ChIP_peak_classes_filtered/twi_class_II.bed
+    class_III_peaks: results/ChIP_peak_classes_filtered/twi_class_III.bed
+    motif_instances: results/motif_instances/twi_motifs.bed
+    other_tissue:
+      - published_ChIPseq/results/peaks/individual/narrow/embryo-1-3H_aTwi_peaks.narrowPeak
+
+bichrom_params:
+  window_size: 500
+  n_bins: 10
+  
+
+bichrom_input:
+  zld_filtered:
+    ChIP_peaks: results/ChIP_peak_classes_filtered/zld_ChIP_classes.bed
+    WT_ATAC_peaks: ATACseq/results/peaks/merged_by_sample/S2-WT_1000uM_summits.bed
+    ChIP_classes: results/ChIP_motif_classes/zld_motif_classes.tsv
+  grh_filtered:
+    ChIP_peaks: results/ChIP_peak_classes_filtered/grh_ChIP_classes.bed
+    WT_ATAC_peaks: ATACseq/results/peaks/merged_by_sample/FL_ATAC_S2-WT_100uM_summits.bed
+    ChIP_classes: results/ChIP_motif_classes/grh_motif_classes.tsv
+  twi_filtered:
+    ChIP_peaks: results/ChIP_peak_classes_filtered/twi_ChIP_classes.bed
+    WT_ATAC_peaks: ATACseq/results/peaks/merged_by_sample/Twi_ATAC_S2-WT_40uM_summits.bed
+    ChIP_classes: results/ChIP_motif_classes/twi_motif_classes.tsv
+#  zld_all:
+#    ChIP_peaks: ChIPseq/results/peaks/final/S2-Zld_aZld_IP.narrowPeak
+#    WT_ATAC_peaks: ATACseq/results/peaks/merged_by_sample/S2-WT_1000uM_summits.bed
+#    ChIP_classes: results/ChiP_peak_classes/zld_ChIP_classes.tsv
+#  zld_i:
+#    ChIP_peaks: results/ChiP_peak_classes/zld_class_I.bed
+#    WT_ATAC_peaks: ATACseq/results/peaks/merged_by_sample/S2-WT_1000uM_summits.bed
+#    ChIP_classes: results/ChiP_peak_classes/zld_ChIP_classes.tsv
+  zld_ii_iii:
+    ChIP_peaks: results/ChiP_peak_classes/zld_class_II_and_III.bed
+    WT_ATAC_peaks: ATACseq/results/peaks/merged_by_sample/S2-WT_1000uM_summits.bed
+    ChIP_classes: results/ChIP_motif_classes/zld_motif_classes.tsv
+#  grh_all:
+#    ChIP_peaks: ChIPseq/results/peaks/final/S2-Grh_aGrh_IP.narrowPeak
+#    WT_ATAC_peaks: ATACseq/results/peaks/merged_by_sample/FL_ATAC_S2-WT_100uM_summits.bed
+#    ChIP_classes: ../results/intermediate_files/grh_full_prediction_set.tsv
+#  grh_i:
+#    ChIP_peaks: results/ChiP_peak_classes/grh_class_I.bed
+#    WT_ATAC_peaks: ATACseq/results/peaks/merged_by_sample/FL_ATAC_S2-WT_100uM_summits.bed
+#    ChIP_classes: results/ChiP_peak_classes/grh_ChIP_classes.tsv
+  grh_ii_iii:
+    ChIP_peaks: results/ChiP_peak_classes/grh_class_II_and_III.bed
+    WT_ATAC_peaks: ATACseq/results/peaks/merged_by_sample/FL_ATAC_S2-WT_100uM_summits.bed
+    ChIP_classes: results/ChIP_motif_classes/grh_motif_classes.tsv
+#  twi_all:
+#    ChIP_peaks: ChIPseq/results/peaks/final/S2-Twi_aTwi_IP.narrowPeak
+#    WT_ATAC_peaks: ATACseq/results/peaks/merged_by_sample/Twi_ATAC_S2-WT_40uM_summits.bed
+#    ChIP_classes: results/ChiP_peak_classes/twi_ChIP_classes.tsv
+#  twi_i:
+#    ChIP_peaks: results/ChiP_peak_classes/twi_class_I.bed
+#    WT_ATAC_peaks: ATACseq/results/peaks/merged_by_sample/Twi_ATAC_S2-WT_40uM_summits.bed 
+#    ChIP_classes: results/ChiP_peak_classes/twi_ChIP_classes.tsv
+  twi_ii_iii:
+    ChIP_peaks: results/ChiP_peak_classes/twi_class_II_and_III.bed
+    WT_ATAC_peaks: ATACseq/results/peaks/merged_by_sample/Twi_ATAC_S2-WT_40uM_summits.bed
+    ChIP_classes: results/ChIP_motif_classes/twi_motif_classes.tsv
+
+  chrom_tracks:
+    - published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K27ac.bw
+    - published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K4me1.bw
+    - published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K4me3.bw
+    - published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_H3K36me3_IP.bw
+    - published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_H2Av_IP.bw
+    - published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE64464_aNej.bw
+    - published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE151983_S2_aH3K27me3_IP.bw
+    - published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_Ez_IP.bw
+    - published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE160855_aH3K9me3.bw
+    - published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE56101_aHP1a.bw
+    - published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE127227_aH1.bw
+    - published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_H3_IP.bw
+    - published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aCTCF.bw
+    - published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aCP190_IP.bw
+    - ../data/published_datasets/Chereji_2019/GSE128689_RAW/GSM3934479_S2_exp2_seq1_40min.bw
