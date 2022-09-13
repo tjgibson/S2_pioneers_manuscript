@@ -10,6 +10,15 @@ output: html_document
 # Introduction
 
 # Results
+## Ectopic pioneer factors bind and open closed chromatin
+
+## Chromatin opening correlates with transcriptional activation
+
+## Twist binds closed chromatin extensively and opens chromatin at some sites
+
+## Motif content distinguishes chromatin opening by Twist from Zelda and Grainy head
+
+## Ectopic transcription factors bind nonspecifically to active chromatin
 
 # Discussion
 

@@ -1233,9 +1233,9 @@ annoYaxis(
 
 g1 <- plotGenes(
   params = region, assembly = "dm6",
-  x = (ref_x + x_offset_browser), y = (ref_y + 2.6), height = gb_height, width = 2.75, fontsize = small_text_params$fontsize,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 0.6, width = 2.75, fontsize = small_text_params$fontsize,
   fill = c("gray50", "gray50"),
-  just = c("left", "center"),
+  just = c("left", "top"),
   default.units = "cm"
 )
 
@@ -1259,7 +1259,7 @@ annoHighlight(
 # Panel J ======================================================================
 # panel label
 ref_x <- 13
-ref_y <- 3.25 
+ref_y <- 3.6 
 
 
 
@@ -1298,7 +1298,7 @@ j_plot <- zld_chip_classes %>%
 plotGG(
   plot = j_plot,
   x = (ref_x), y = (ref_y),
-  width = 5, height = 3, just = c("left", "top"),
+  width = 5, height = 2.65, just = c("left", "top"),
   default.units = "cm"
 )
 
@@ -1448,9 +1448,9 @@ annoYaxis(
 
 g1 <- plotGenes(
   params = region, assembly = "dm6",
-  x = (ref_x + x_offset_browser), y = (ref_y + 2.6), height = gb_height, width = 2.75, fontsize = small_text_params$fontsize, 
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 0.6, width = 2.75, fontsize = small_text_params$fontsize, 
   fill = c("gray50", "gray50"),
-  just = c("left", "center"),
+  just = c("left", "top"),
   default.units = "cm"
 )
 
@@ -1474,7 +1474,7 @@ annoHighlight(
 # Panel L ======================================================================
 # panel label
 ref_x <- 13
-ref_y <- 9.25 
+ref_y <- 9.6
 
 # panel label
 plotText(
@@ -1509,7 +1509,7 @@ l_plot <- grh_chip_classes %>%
 plotGG(
   plot = l_plot,
   x = (ref_x), y = (ref_y),
-  width = 5, height = 3, just = c("left", "top"),
+  width = 5, height = 2.65, just = c("left", "top"),
   default.units = "cm"
 )
 # l_plot <- grh_chip_classes %>% 
