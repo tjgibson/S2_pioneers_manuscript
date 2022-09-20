@@ -63,7 +63,8 @@ rule process_ChIP_peaks:
 	conda:
 		"workflow/envs/r_process_bed.yaml"
 	params:
-		extend_width=201
+		extend_width=201,
+		r_source= "workflow/scripts/utils.R",
 	script:
 		"workflow/scripts/process_peaks.R"
 
@@ -88,6 +89,51 @@ module published_ChIPseq:
 	prefix: "published_ChIPseq"
 use rule * from published_ChIPseq as published_ChIPseq_*
 
+# additional rules for analysis of published data 
+rule get_embryo_peak_seqs:
+	input:
+		"published_ChIPseq/results/peaks/merged/narrow/{sample}_peaks.narrowPeak"
+	output:
+		temp("published_ChIPseq/results/peaks/peak_sequences/{sample}.fasta")
+	params:
+		r_source= "workflow/scripts/utils.R",
+	script:
+		"workflow/scripts/get_embryo_peak_sequences.R"
+
+rule get_embryo_motifs:
+	input:
+		"published_ChIPseq/results/peaks/peak_sequences/{sample}.fasta"
+	output:
+		multiext("published_ChIPseq/results/motifs/{sample}/meme", ".html", ".txt", ".xml")
+	conda:
+		"workflow/envs/meme.yaml"
+	params:
+		mode="zoops",
+		n_motifs=10,
+	shell:
+		 "meme {input} -oc published_ChIPseq/results/motifs/{wildcards.sample} -revcomp -mod {params[0]} -nmotifs {params[1]} -dna"
+
+
+def get_meme_motif_index(wildcards):
+	motifs_index = {
+	"embryo-nc14_aZld": 3,
+	"embryo-15-16H_aGrh": 3,
+	"embryo-1-3H_aTwi": 8
+	}
+	
+	return motifs_index[wildcards.sample]
+	
+
+
+rule get_embryo_PWMs:
+	input:
+		meme_file="published_ChIPseq/results/motifs/{sample}/meme.txt",
+		meme_motif_number= get_meme_motif_index
+	output:
+		"published_ChIPseq/results/motifs/{sample}/{sample}_PWM.tsv"
+	script:
+		"workflow/scripts/get_motif_PWM.R"
+		
 
 # process RNA-seq data
 module RNAseq:

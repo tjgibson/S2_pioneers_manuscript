@@ -10,6 +10,7 @@ output: html_document
 # Introduction
 
 # Results
+
 ## Ectopic pioneer factors bind and open closed chromatin
 
 ## Chromatin opening correlates with transcriptional activation
@@ -42,7 +43,7 @@ output: html_document
 | Anti-HA-peroxidase clone 3F10      | Roche                    | 12013819001          |
 | Anti-Tubulin DM1A                  | Sigma                    | T6199-200UL          |
 | goat anti-rabbit IgG-HRP conjugate | Bio-Rad                  | 1706515              |
-|                                    |                          |                      |
+| Anti-HA clone 12CA5                |                          |                      |
 |                                    |                          |                      |
 |                                    |                          |                      |
 |                                    |                          |                      |

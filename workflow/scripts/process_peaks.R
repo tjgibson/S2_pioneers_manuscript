@@ -3,37 +3,7 @@ suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(rtracklayer))
 suppressPackageStartupMessages(library(GenomicRanges))
 
-# define functions -------------------------------------------------------------
-# function to extract peak summits from narrowPeak file
-# peak start and end values will be replaced with the summit location
-extract_summits <- function(gr, extend_width = 1L) {
-  # verify input is a GRanges object
-  if (!inherits(gr, "GRanges") ) {
-    stop("x must be a GRanges object")
-  }
-  # verify that gr object is in narrowPeak format
-  if ( !all(names(mcols(gr))  %in% c("name", "score", "signalValue", "pValue",  "qValue",  "peak"))) {
-    stop(strwrap("GRanges object does not appear to be in narrowPeak format. Object should contain the following metadata columns: name, score, signalValue, pValue, qValue and peak"))
-  }
-  
-  if (all(gr$peak == -1)) {
-    stop("All values for 'peak' column == -1, indicating that summits were not called. Verify that your peak caller called peak summits")
-  }
-  
-  # replace peak start and end values with summit location
-  summit <- start(gr) + gr$peak - 1
-  start(gr) <- summit
-  end(gr) <- summit
-  
-  # resize peaks to desired width
-  gr <- resize(gr, width = extend_width, fix = "center")
-
-  # remove now meaningless peak column
-  gr$peak <- NULL
-  
-  return(gr)
-}
-
+source(snakemake@params[["r_source"]])
 
 # read peaks -------------------------------------------------------------------
 peak_fn <- snakemake@input[[1]]
