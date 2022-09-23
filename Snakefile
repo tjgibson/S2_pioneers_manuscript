@@ -115,22 +115,23 @@ rule get_embryo_motifs:
 
 
 def get_meme_motif_index(wildcards):
-	motifs_index = {
+	motif_index = {
 	"embryo-nc14_aZld": 3,
 	"embryo-15-16H_aGrh": 3,
 	"embryo-1-3H_aTwi": 8
 	}
 	
-	return motifs_index[wildcards.sample]
+	return motif_index[wildcards.sample]
 	
 
 
 rule get_embryo_PWMs:
 	input:
 		meme_file="published_ChIPseq/results/motifs/{sample}/meme.txt",
-		meme_motif_number= get_meme_motif_index
 	output:
 		"published_ChIPseq/results/motifs/{sample}/{sample}_PWM.tsv"
+	params:
+		meme_motif_number= get_meme_motif_index,
 	script:
 		"workflow/scripts/get_motif_PWM.R"
 		
@@ -256,14 +257,29 @@ rule split_ChIP_classes_filtered:
 	script:
 		"workflow/scripts/split_ChIP_classes.R"
 
+def get_motif_pwm(wildcards):
+	motif_pwm = {
+	"zld":"published_ChIPseq/results/motifs/embryo-nc14_aZld/embryo-nc14_aZld_PWM.tsv",
+	"grh":"published_ChIPseq/results/motifs/embryo-15-16H_aGrh/embryo-15-16H_aGrh_PWM.tsv",
+	"twi":"published_ChIPseq/results/motifs/embryo-1-3H_aTwi/embryo-1-3H_aTwi_PWM.tsv"
+	}
+	
+	return motif_pwm[wildcards.factor]
+	
 
 rule get_motif_instances:
+	input:
+		PWM=get_motif_pwm
 	output:
-		"results/motif_instances/{factor}_motifs.bed"
+		bed="results/motif_instances/{factor}_motifs.bed",
+		tsv="results/motif_instances/{factor}_motifs.tsv",
+		bw_plus="results/motif_instances/{factor}_motifs_plus.bw",
+		bw_minus="results/motif_instances/{factor}_motifs_minus.bw",
+		bw_all="results/motif_instances/{factor}_motifs_all.bw",
 	params:
-		motif= lambda wildcards: config["annotate_motif_classes"][wildcards.factor]["motif"]
+		threshold="80%"
 	script:
-		"workflow/scripts/get_motif_instances.R"
+		"workflow/scripts/get_PWM_instances.R"
 
 rule annotate_motif_classes:
 	input:

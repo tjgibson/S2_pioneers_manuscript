@@ -28,7 +28,7 @@ output: html_document
 ## Reagents
 
 | Reagent                            | Source/vendor            | Catalog/accession \# |
-|----------------------------|------------------------|--------------------|
+|------------------------------------|--------------------------|----------------------|
 | pMT-puro                           | AddGene                  | 17923                |
 | Gibson Cloning                     | New England Biolabs      | E2611                |
 | Schneider's Medium                 | Thermo Fisher Scientific | 21720001             |
@@ -104,13 +104,13 @@ Proteins were separated on denaturing polyacramide gels before transfer to a 0.4
 
 **Figure 1: Ectopic pioneer factors open chromatin and activate transcription.**
 
-**Figure 2: Twist binds closed chromatin extensively and drives accessibility at some sites.**
+**Figure 2: Twist binds closed chromatin extensively and drives accessibility at a limited number of sites.**
 
-**Figure 3: Some endogenous targets are resistant to binding by ectopic pioneer factors.**
+**Figure 3: Motif content shapes pioneer-factor activity**
 
-**Figure 4: Binding and opening of closed chromatin is concentration dependent.**
+**Figure 4: H3K27me3 and H3K9me3 are barriers to pioneer-factor binding.**
 
-**Figure 5: H3K27me3 and H3K9me3 are barriers to pioneer-factor binding.**
+**Figure 5: Binding and opening of closed chromatin is concentration dependent.**
 
 **Figure 6: Regions outside the DNA-binding domain are required for pioneer-factor function.**
 

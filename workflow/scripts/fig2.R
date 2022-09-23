@@ -5,6 +5,8 @@ library(org.Dm.eg.db)
 library(TxDb.Dmelanogaster.UCSC.dm6.ensGene)
 library(grImport)
 library(grid)
+library(RColorBrewer)
+
 
 source("workflow/scripts/plot_heatmap.R")
 
@@ -46,7 +48,8 @@ small_text_params <- pgParams(fontsize = 5)
 
 # colors
 twi_color <- "#00A08A"
-twi_heatmap_colors <- c("white","#00A08A", "#154734")
+# twi_heatmap_colors <- c("white","#00A08A", "#154734")
+twi_heatmap_colors <- brewer.pal(9, "GnBu")
 
 zld_color <- "#5BBCD6"
 grh_color <- "#F98400"
@@ -498,6 +501,8 @@ plotText(
   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 )
 
+
+# generate heatmap
 bw <- c(
   S2_Twi_ChIP =  Twi_ChIP_bw,
   S2_WT_ATAC = Twi_WT_ATAC_bw,
@@ -527,6 +532,7 @@ hm <- plot_heatmap_minimal(
 d_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 0, 0, 0), "mm")))
 
 
+# place heatmap on page
 plotGG(
   plot = d_hm,
   x = (ref_x + 0.75), y = (ref_y + 0.25),
@@ -567,260 +573,260 @@ plotText(
 
 
 
-# # Panel E ======================================================================
-# panel label
-ref_x <- 0.5
-ref_y <- 6.75
-
-# panel label
-plotText(
-  label = "e", params = panel_label_params, fontface = "bold",
-  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
-)
-
-# e_plot <- twi_chip_classes %>%
-#   ggplot(aes(x = class, y = atac_FC)) +
-#   geom_violin(fill = twi_color, lwd = 0.1) +
-#   geom_boxplot(width = 0.1, outlier.shape = NA, lwd = 0.1) +
-#   ylab(expression(ATAC~log[2]~fold~change) ) +
-#   theme_classic(base_size = small_text_params$fontsize)
+# # # Panel E ======================================================================
+# # panel label
+# ref_x <- 0.5
+# ref_y <- 6.75
+# 
+# # panel label
+# plotText(
+#   label = "e", params = panel_label_params, fontface = "bold",
+#   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+# )
+# 
+# # e_plot <- twi_chip_classes %>%
+# #   ggplot(aes(x = class, y = atac_FC)) +
+# #   geom_violin(fill = twi_color, lwd = 0.1) +
+# #   geom_boxplot(width = 0.1, outlier.shape = NA, lwd = 0.1) +
+# #   ylab(expression(ATAC~log[2]~fold~change) ) +
+# #   theme_classic(base_size = small_text_params$fontsize)
+# #
+# # plotGG(
+# #   plot = e_plot,
+# #   x = ref_x, y = ref_y,
+# #   width = 2.5, height = 2, just = c("left", "top"),
+# #   default.units = "cm"
+# # )
+# 
+# zld_chip_classes <- read_tsv(zld_ChIP_classes_fn)
+# grh_chip_classes <- read_tsv(grh_ChIP_classes_fn)
+# 
+# zld_closed <- zld_chip_classes %>%
+#   filter(class != "i") %>%
+#   group_by(class) %>%
+#   summarise(n = n()) %>%
+#   mutate(percent = n / sum(n) * 100) %>%
+#   add_column(factor = "Zld")
+# 
+# grh_closed <- grh_chip_classes %>%
+#   filter(class != "i") %>%
+#   group_by(class) %>%
+#   summarise(n = n()) %>%
+#   mutate(percent = n / sum(n) * 100) %>%
+#   add_column(factor = "Grh")
+# 
+# twi_closed <- twi_chip_classes %>%
+#   filter(class != "i") %>%
+#   group_by(class) %>%
+#   summarise(n = n()) %>%
+#   mutate(percent = n / sum(n) * 100) %>%
+#   add_column(factor = "Twi")
+# 
+# p_data <- bind_rows(zld_closed, grh_closed, twi_closed) %>%
+#   filter(class == "iii")
+# 
+# e_plot <- p_data %>%
+#   mutate(factor = factor(factor, levels = c("Twi", "Grh", "Zld"))) %>%
+#   ggplot(aes(x = factor, y = percent, fill = factor)) + geom_bar(stat = "identity") +
+#   theme_classic(base_size = 5) +
+#   theme(
+#         legend.position = "none",
+#         axis.title.x = element_blank()) +
+#   scale_fill_manual(values=c(twi_color, grh_color, zld_color)) +
+#   ylab("% closed sites opened")
 # 
 # plotGG(
 #   plot = e_plot,
-#   x = ref_x, y = ref_y,
+#   x = ref_x, y = (ref_y + 0.25),
 #   width = 2.5, height = 2, just = c("left", "top"),
 #   default.units = "cm"
 # )
-
-zld_chip_classes <- read_tsv(zld_ChIP_classes_fn)
-grh_chip_classes <- read_tsv(grh_ChIP_classes_fn)
-
-zld_closed <- zld_chip_classes %>% 
-  filter(class != "i") %>% 
-  group_by(class) %>% 
-  summarise(n = n()) %>% 
-  mutate(percent = n / sum(n) * 100) %>% 
-  add_column(factor = "Zld")
-
-grh_closed <- grh_chip_classes %>% 
-  filter(class != "i") %>% 
-  group_by(class) %>% 
-  summarise(n = n()) %>% 
-  mutate(percent = n / sum(n) * 100) %>% 
-  add_column(factor = "Grh")
-
-twi_closed <- twi_chip_classes %>% 
-  filter(class != "i") %>% 
-  group_by(class) %>% 
-  summarise(n = n()) %>% 
-  mutate(percent = n / sum(n) * 100) %>% 
-  add_column(factor = "Twi")
-
-p_data <- bind_rows(zld_closed, grh_closed, twi_closed) %>% 
-  filter(class == "iii")
-
-e_plot <- p_data %>% 
-  mutate(factor = factor(factor, levels = c("Twi", "Grh", "Zld"))) %>% 
-  ggplot(aes(x = factor, y = percent, fill = factor)) + geom_bar(stat = "identity") +
-  theme_classic(base_size = 5) + 
-  theme(
-        legend.position = "none",
-        axis.title.x = element_blank()) +
-  scale_fill_manual(values=c(twi_color, grh_color, zld_color)) +
-  ylab("% closed sites opened")
-
-plotGG(
-  plot = e_plot,
-  x = ref_x, y = (ref_y + 0.25),
-  width = 2.5, height = 2, just = c("left", "top"),
-  default.units = "cm"
-)
-
-# # Panel F ======================================================================
-# panel label
-ref_x <- 3.25
-ref_y <- 6.75
-
-# panel label
-plotText(
-  label = "f", params = panel_label_params, fontface = "bold",
-  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
-)
-
-# f_plot <- twi_chip_classes %>%
-#   ggplot(aes(x = class, y = RNAseq_FC)) +
-#   geom_violin(fill = twi_color, lwd = 0.1) +
-#   geom_boxplot(width = 0.1, outlier.shape = NA, lwd = 0.1) +
-#   ylab(expression(RNA-seq~log[2]~fold~change) ) +
-#   theme_classic(base_size = small_text_params$fontsize)
+# 
+# # # Panel F ======================================================================
+# # panel label
+# ref_x <- 3.25
+# ref_y <- 6.75
+# 
+# # panel label
+# plotText(
+#   label = "f", params = panel_label_params, fontface = "bold",
+#   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+# )
+# 
+# # f_plot <- twi_chip_classes %>%
+# #   ggplot(aes(x = class, y = RNAseq_FC)) +
+# #   geom_violin(fill = twi_color, lwd = 0.1) +
+# #   geom_boxplot(width = 0.1, outlier.shape = NA, lwd = 0.1) +
+# #   ylab(expression(RNA-seq~log[2]~fold~change) ) +
+# #   theme_classic(base_size = small_text_params$fontsize)
+# #
+# # plotGG(
+# #   plot = f_plot,
+# #   x = ref_x, y = ref_y,
+# #   width = 2.5, height = 2, just = c("left", "top"),
+# #   default.units = "cm"
+# # )
+# #
+# 
+# # define bigwig files to use
+# bw <- c(
+#   Twi_ChIP_bw,
+#   Grh_ChIP_bw,
+#   Zld_ChIP_bw
+# )
+# 
+# # define regions to use for metaplots
+# twi_regions <- twi_chip_classes %>%
+#   filter(class != "i") %>%
+#   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
+# 
+# grh_regions <- grh_chip_classes %>%
+#   filter(class != "i") %>%
+#   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
+# 
+# zld_regions <- zld_chip_classes %>%
+#   filter(class != "i") %>%
+#   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
+# 
+# 
+# 
+# metaplot_1 <- plot_average(bw[1], regions = twi_regions, row_split = twi_regions$class, line_width = 0.2) +
+#   scale_color_manual(values=c("#5FC3B5", "#154734")) +
+#   theme(text = element_text(size = 5),
+#         line = element_line(size = 0.1),
+#         axis.title.y = element_blank(),
+#         legend.key.size = unit(2, 'mm'),
+#         legend.title = element_blank(),
+#         legend.position = "bottom",
+#         legend.margin=margin(-5,-5,-5,-5),
+#         legend.box.margin=margin(0,0,0,0),
+#         plot.margin = margin(0,0,0,0)
+#         )
 # 
 # plotGG(
-#   plot = f_plot,
-#   x = ref_x, y = ref_y,
-#   width = 2.5, height = 2, just = c("left", "top"),
+#   plot = metaplot_1,
+#   x = ref_x, y = (ref_y + 0.25),
+#   width = 2, height = 2, just = c("left", "top"),
 #   default.units = "cm"
 # )
 # 
-
-# define bigwig files to use
-bw <- c(
-  Twi_ChIP_bw,
-  Grh_ChIP_bw,
-  Zld_ChIP_bw
-)
-
-# define regions to use for metaplots
-twi_regions <- twi_chip_classes %>% 
-  filter(class != "i") %>% 
-  makeGRangesFromDataFrame(keep.extra.columns = TRUE)
-
-grh_regions <- grh_chip_classes %>% 
-  filter(class != "i") %>% 
-  makeGRangesFromDataFrame(keep.extra.columns = TRUE)
-
-zld_regions <- zld_chip_classes %>% 
-  filter(class != "i") %>% 
-  makeGRangesFromDataFrame(keep.extra.columns = TRUE)
-
-
-
-metaplot_1 <- plot_average(bw[1], regions = twi_regions, row_split = twi_regions$class, line_width = 0.2) +
-  scale_color_manual(values=c("#5FC3B5", "#154734")) +
-  theme(text = element_text(size = 5),
-        line = element_line(size = 0.1),
-        axis.title.y = element_blank(),
-        legend.key.size = unit(2, 'mm'),
-        legend.title = element_blank(),
-        legend.position = "bottom",
-        legend.margin=margin(-5,-5,-5,-5),
-        legend.box.margin=margin(0,0,0,0),
-        plot.margin = margin(0,0,0,0)
-        )
-
-plotGG(
-  plot = metaplot_1,
-  x = ref_x, y = (ref_y + 0.25),
-  width = 2, height = 2, just = c("left", "top"),
-  default.units = "cm"
-)
-
-metaplot_2 <- plot_average(bw[2], regions = grh_regions, row_split = grh_regions$class, line_width = 0.2) +
-  scale_color_manual(values=c("#FDAE6B", "#E6550D")) +
-  theme(text = element_text(size = 5),
-        line = element_line(size = 0.1),
-        axis.title.y = element_blank(),
-        legend.key.size = unit(2, 'mm'),
-        legend.title = element_blank(),
-        legend.position = "bottom",
-        legend.margin=margin(-5,-5,-5,-5),
-        legend.box.margin=margin(0,0,0,0),
-        plot.margin = margin(0,0,0,0)
-  )
-
-plotGG(
-  plot = metaplot_2,
-  x = ref_x + 2.5, y = (ref_y + 0.25),
-  width = 2, height = 2, just = c("left", "top"),
-  default.units = "cm"
-)
-
-metaplot_3 <- plot_average(bw[3], regions = zld_regions, row_split = zld_regions$class, line_width = 0.2) +
-  scale_color_manual(values=c("#9ECAE1", "#3182BD")) +
-  theme(text = element_text(size = 5),
-        line = element_line(size = 0.1),
-        axis.title.y = element_blank(),
-        legend.key.size = unit(2, 'mm'),
-        legend.title = element_blank(),
-        legend.position = "bottom",
-        legend.margin=margin(-5,-5,-5,-5),
-        legend.box.margin=margin(0,0,0,0),
-        plot.margin = margin(0,0,0,0)
-  )
-
-plotGG(
-  plot = metaplot_3,
-  x = ref_x + 5, y = (ref_y + 0.25),
-  width = 2, height = 2, just = c("left", "top"),
-  default.units = "cm"
-)
-
-# add titles to metaplots
-plotText(
-  label = "Twi ChIP", params = small_text_params, fontface = "bold",
-  x = (ref_x + 1.1), y = (ref_y), just = c("center"), default.units = "cm"
-)
-
-plotText(
-  label = "Grh ChIP", params = small_text_params, fontface = "bold",
-  x = (ref_x + 3.6), y = (ref_y), just = c("center"), default.units = "cm"
-)
-
-plotText(
-  label = "Zld ChIP", params = small_text_params, fontface = "bold",
-  x = (ref_x + 6.1), y = (ref_y), just = c("center"), default.units = "cm"
-)
-
-
-
-
-# # Panel G ======================================================================
-# panel label
-ref_x <- 10.75
-ref_y <- 6.75
-
-# panel label
-plotText(
-  label = "g", params = panel_label_params, fontface = "bold",
-  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
-)
-
-
-# import RNA-seq results and reformat for plotting
-twi_RNAseq_results <- read_tsv(twi_RNAseq_results_fn) %>% 
-  filter(is_diff, log2FoldChange > 0) %>% 
-  add_column(factor = "Twi") %>% 
-  left_join(dplyr::select(twi_chip_classes, gene_id, peak_id), by = "gene_id") %>% 
-  mutate(bound_by_factor = !is.na(peak_id)) %>% 
-  dplyr::select(gene_id, factor,bound_by_factor) %>% 
-  distinct(.keep_all = TRUE)
-
-zld_RNAseq_results <- read_tsv(zld_RNAseq_results_fn) %>% 
-  filter(is_diff, log2FoldChange > 0) %>% 
-  add_column(factor = "Zld") %>% 
-  left_join(dplyr::select(zld_chip_classes, gene_id, peak_id), by = "gene_id") %>% 
-  mutate(bound_by_factor = !is.na(peak_id)) %>% 
-  dplyr::select(gene_id, factor,bound_by_factor) %>% 
-  distinct(.keep_all = TRUE)
-
-grh_RNAseq_results <- read_tsv(grh_RNAseq_results_fn) %>% 
-  filter(is_diff, log2FoldChange > 0) %>% 
-  add_column(factor = "Grh") %>% 
-  left_join(dplyr::select(grh_chip_classes, gene_id, peak_id), by = "gene_id") %>% 
-  mutate(bound_by_factor = !is.na(peak_id)) %>% 
-  dplyr::select(gene_id, factor,bound_by_factor) %>% 
-  distinct(.keep_all = TRUE)
-
-p_data <- bind_rows(twi_RNAseq_results, zld_RNAseq_results, grh_RNAseq_results)
-
-h_plot <- p_data %>% 
-  ggplot(aes(x=factor, fill = bound_by_factor)) + geom_bar(position = "stack") +
-  theme_classic(base_size = small_text_params$fontsize) +
-  scale_fill_manual(values=c("#DFF3F0", "#5FC3B5")) +
-  ylab("n upregulated genes") +
-  theme(legend.key.size = unit(2, 'mm'), 
-        axis.title.x = element_blank(),
-        # legend.title = element_blank(),
-        legend.position = "bottom",
-        legend.margin=margin(-5,-5,-5,-5),
-        legend.box.margin=margin(0,0,0,0),
-        plot.margin = margin(0,0,0,0))
-
-plotGG(
-  plot = h_plot,
-  x = ref_x, y = (ref_y + 0.25),
-  width = 2, height = 2, just = c("left", "top"),
-  default.units = "cm"
-)
+# metaplot_2 <- plot_average(bw[2], regions = grh_regions, row_split = grh_regions$class, line_width = 0.2) +
+#   scale_color_manual(values=c("#FDAE6B", "#E6550D")) +
+#   theme(text = element_text(size = 5),
+#         line = element_line(size = 0.1),
+#         axis.title.y = element_blank(),
+#         legend.key.size = unit(2, 'mm'),
+#         legend.title = element_blank(),
+#         legend.position = "bottom",
+#         legend.margin=margin(-5,-5,-5,-5),
+#         legend.box.margin=margin(0,0,0,0),
+#         plot.margin = margin(0,0,0,0)
+#   )
+# 
+# plotGG(
+#   plot = metaplot_2,
+#   x = ref_x + 2.5, y = (ref_y + 0.25),
+#   width = 2, height = 2, just = c("left", "top"),
+#   default.units = "cm"
+# )
+# 
+# metaplot_3 <- plot_average(bw[3], regions = zld_regions, row_split = zld_regions$class, line_width = 0.2) +
+#   scale_color_manual(values=c("#9ECAE1", "#3182BD")) +
+#   theme(text = element_text(size = 5),
+#         line = element_line(size = 0.1),
+#         axis.title.y = element_blank(),
+#         legend.key.size = unit(2, 'mm'),
+#         legend.title = element_blank(),
+#         legend.position = "bottom",
+#         legend.margin=margin(-5,-5,-5,-5),
+#         legend.box.margin=margin(0,0,0,0),
+#         plot.margin = margin(0,0,0,0)
+#   )
+# 
+# plotGG(
+#   plot = metaplot_3,
+#   x = ref_x + 5, y = (ref_y + 0.25),
+#   width = 2, height = 2, just = c("left", "top"),
+#   default.units = "cm"
+# )
+# 
+# # add titles to metaplots
+# plotText(
+#   label = "Twi ChIP", params = small_text_params, fontface = "bold",
+#   x = (ref_x + 1.1), y = (ref_y), just = c("center"), default.units = "cm"
+# )
+# 
+# plotText(
+#   label = "Grh ChIP", params = small_text_params, fontface = "bold",
+#   x = (ref_x + 3.6), y = (ref_y), just = c("center"), default.units = "cm"
+# )
+# 
+# plotText(
+#   label = "Zld ChIP", params = small_text_params, fontface = "bold",
+#   x = (ref_x + 6.1), y = (ref_y), just = c("center"), default.units = "cm"
+# )
+# 
+# 
+# 
+# 
+# # # Panel G ======================================================================
+# # panel label
+# ref_x <- 10.75
+# ref_y <- 6.75
+# 
+# # panel label
+# plotText(
+#   label = "g", params = panel_label_params, fontface = "bold",
+#   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+# )
+# 
+# 
+# # import RNA-seq results and reformat for plotting
+# twi_RNAseq_results <- read_tsv(twi_RNAseq_results_fn) %>%
+#   filter(is_diff, log2FoldChange > 0) %>%
+#   add_column(factor = "Twi") %>%
+#   left_join(dplyr::select(twi_chip_classes, gene_id, peak_id), by = "gene_id") %>%
+#   mutate(bound_by_factor = !is.na(peak_id)) %>%
+#   dplyr::select(gene_id, factor,bound_by_factor) %>%
+#   distinct(.keep_all = TRUE)
+# 
+# zld_RNAseq_results <- read_tsv(zld_RNAseq_results_fn) %>%
+#   filter(is_diff, log2FoldChange > 0) %>%
+#   add_column(factor = "Zld") %>%
+#   left_join(dplyr::select(zld_chip_classes, gene_id, peak_id), by = "gene_id") %>%
+#   mutate(bound_by_factor = !is.na(peak_id)) %>%
+#   dplyr::select(gene_id, factor,bound_by_factor) %>%
+#   distinct(.keep_all = TRUE)
+# 
+# grh_RNAseq_results <- read_tsv(grh_RNAseq_results_fn) %>%
+#   filter(is_diff, log2FoldChange > 0) %>%
+#   add_column(factor = "Grh") %>%
+#   left_join(dplyr::select(grh_chip_classes, gene_id, peak_id), by = "gene_id") %>%
+#   mutate(bound_by_factor = !is.na(peak_id)) %>%
+#   dplyr::select(gene_id, factor,bound_by_factor) %>%
+#   distinct(.keep_all = TRUE)
+# 
+# p_data <- bind_rows(twi_RNAseq_results, zld_RNAseq_results, grh_RNAseq_results)
+# 
+# h_plot <- p_data %>%
+#   ggplot(aes(x=factor, fill = bound_by_factor)) + geom_bar(position = "stack") +
+#   theme_classic(base_size = small_text_params$fontsize) +
+#   scale_fill_manual(values=c("#DFF3F0", "#5FC3B5")) +
+#   ylab("n upregulated genes") +
+#   theme(legend.key.size = unit(2, 'mm'),
+#         axis.title.x = element_blank(),
+#         # legend.title = element_blank(),
+#         legend.position = "bottom",
+#         legend.margin=margin(-5,-5,-5,-5),
+#         legend.box.margin=margin(0,0,0,0),
+#         plot.margin = margin(0,0,0,0))
+# 
+# plotGG(
+#   plot = h_plot,
+#   x = ref_x, y = (ref_y + 0.25),
+#   width = 2, height = 2, just = c("left", "top"),
+#   default.units = "cm"
+# )
 
 
 # close graphics device ========================================================

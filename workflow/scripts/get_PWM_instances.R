@@ -1,85 +1,61 @@
-# load packages
-library(tidyverse)
-library(universalmotif)
-library(Biostrings)
-library(BSgenome.Dmelanogaster.UCSC.dm6)
+# setup ========================================================================
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(universalmotif))
+suppressPackageStartupMessages(library(Biostrings))
+suppressPackageStartupMessages(library(BSgenome.Dmelanogaster.UCSC.dm6))
 
-# test reading meme output
-twi_meme <- read_meme("published_ChIPseq/results/motifs/embryo-1-3H_aTwi/meme.txt")
-twi_pwm <- twi_meme[[8]]@motif
-
-grh_meme <- read_meme("published_ChIPseq/results/motifs/embryo-15-16H_aGrh/meme.txt")
-grh_pwm <- grh_meme[[3]]@motif
-
-zld_meme <- read_meme("published_ChIPseq/results/motifs/embryo-nc14_aZld/meme.txt")
-zld_pwm <- zld_meme[[3]]@motif
-
-# score motif occurences in genome
-twi_motif_instances <- matchPWM(twi_pwm, BSgenome.Dmelanogaster.UCSC.dm6, min.score = "80%", with.score = TRUE)
-grh_motif_instances <- matchPWM(grh_pwm, BSgenome.Dmelanogaster.UCSC.dm6, min.score = "80%", with.score = TRUE)
-zld_motif_instances <- matchPWM(zld_pwm, BSgenome.Dmelanogaster.UCSC.dm6, min.score = "80%", with.score = TRUE)
+# get input from snakemake =====================================================
+pwm_file <- snakemake@input[["PWM"]]
 
 
+# score motif occurrences in genome ============================================
+# read in PWM file
+message("reading PWM from file")
+pwm <- pwm_file %>% 
+  read.table() %>% 
+  as.matrix()
 
-hist( mcols(twi_motif_instances)$score / maxScore(twi_pwm) )
-hist( mcols(grh_motif_instances)$score / maxScore(grh_pwm) )
-hist( mcols(zld_motif_instances)$score / maxScore(zld_pwm) )
+# get motif instances
+message("getting motif instances")
+motif_instances <- matchPWM(pwm, BSgenome.Dmelanogaster.UCSC.dm6, min.score = snakemake@params[["threshold"]], with.score = TRUE)
 
-# export motif occurences
-twi_motif_instances %>% 
+# filter out duplicates caused by palindromic motifs
+message("filtering out duplicate motifs")
+n_motifs <- length(motif_instances)
+motif_instances <- motif_instances %>% 
   as.data.frame() %>% 
-  write_tsv("results/motif_instances/twi_motifs_80percent.tsv")
+  distinct(seqnames, start, end, .keep_all = TRUE) %>% 
+  makeGRangesFromDataFrame(keep.extra.columns = TRUE)
 
-zld_motif_instances %>% 
+seqinfo(motif_instances) <- seqinfo(BSgenome.Dmelanogaster.UCSC.dm6)
+
+message(paste("filtered out", n_motifs - length(motif_instances), "duplicated motifs"))
+
+# transform motif score into percentage
+motif_instances <- motif_instances %>% 
+  plyranges::mutate(score = score / maxScore(pwm) * 100)
+
+
+# export motif occurences ======================================================
+message("writing output files")
+motif_instances %>% 
   as.data.frame() %>% 
-  write_tsv("results/motif_instances/zld_motifs_80percent.tsv")
+  write_tsv(snakemake@output[["tsv"]])
 
-grh_motif_instances %>% 
-  as.data.frame() %>% 
-  write_tsv("results/motif_instances/grh_motifs_80percent.tsv")
+motif_instances %>% 
+  export(snakemake@output[["bed"]])
 
 
-twi_motif_instances %>% 
+motif_instances %>% 
   plyranges::filter(strand == "+") %>% 
-  plyranges::mutate(score = score / maxScore(twi_pwm) * 100 - 80) %>% 
   plyranges::reduce_ranges(score = mean(score)) %>% 
-  export("results/motif_instances/twi_motifs_80percent_plus.bw")
+  export(snakemake@output[["bw_plus"]])
 
-twi_motif_instances %>% 
+motif_instances %>% 
   plyranges::filter(strand == "-") %>% 
-  plyranges::mutate(score = score / maxScore(twi_pwm) * 100 - 80) %>% 
   plyranges::reduce_ranges(score = mean(score)) %>% 
-  export("results/motif_instances/twi_motifs_80percent_minus.bw")
+  export(snakemake@output[["bw_minus"]])
 
-twi_motif_instances %>% 
-  plyranges::filter(strand == "-") %>% 
-  plyranges::mutate(score = score / maxScore(twi_pwm) * 100 - 80) %>% 
+motif_instances %>% 
   plyranges::reduce_ranges(score = mean(score)) %>% 
-  export("results/motif_instances/twi_motifs_80percent_all.bw")
-
-zld_motif_instances %>% 
-  plyranges::filter(strand == "+") %>% 
-  plyranges::mutate(score = score / maxScore(zld_pwm) * 100 - 80) %>% 
-  plyranges::reduce_ranges(score = mean(score)) %>%
-  export("results/motif_instances/zld_motifs_80percent_plus.bw")
-
-zld_motif_instances %>% 
-  plyranges::filter(strand == "-") %>% 
-  plyranges::mutate(score = score / maxScore(zld_pwm) * 100 - 80) %>% 
-  plyranges::reduce_ranges(score = mean(score)) %>%
-  export("results/motif_instances/zld_motifs_80percent_minus.bw")
-
-
-
-grh_motif_instances %>% 
-  plyranges::filter(strand == "+") %>% 
-  plyranges::mutate(score = score / maxScore(grh_pwm) * 100 - 80) %>% 
-  plyranges::reduce_ranges(score = mean(score)) %>%
-  export("results/motif_instances/grh_motifs_80percent_plus.bw")
-
-grh_motif_instances %>% 
-  plyranges::filter(strand == "-") %>% 
-  plyranges::mutate(score = score / maxScore(grh_pwm) * 100 - 80) %>% 
-  plyranges::reduce_ranges(score = mean(score)) %>%
-  export("results/motif_instances/grh_motifs_80percent_minus.bw")
-
+  export(snakemake@output[["bw_all"]])

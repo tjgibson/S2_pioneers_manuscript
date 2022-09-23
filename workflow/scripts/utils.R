@@ -1,4 +1,4 @@
-# function to extract peak summits from narrowPeak file
+# function to extract peak summits from narrowPeak file ==================================================================
 # peak start and end values will be replaced with the summit location
 extract_summits <- function(gr, extend_width = 1L) {
   # verify input is a GRanges object
@@ -28,7 +28,7 @@ extract_summits <- function(gr, extend_width = 1L) {
   return(gr)
 }
 
-# function to merge multiple sets of ChIP peaks into a non-overlapping master set
+# function to merge multiple sets of ChIP peaks into a non-overlapping master set =========================================================
 # supports multiple methods
 # peaks should be a GRangesList
 # method should be either "overlap" or "merge": 
@@ -75,7 +75,7 @@ combine_peaks <- function(peaks, method = "overlap", min_overlap = 1L) {
   
 }
 
-# function to build an overlap table
+# function to build an overlap table =========================================================
 # takes a Granges list object
 # combines all nonoverlapping peaks from all samples, then builds a logical table indicating which peaks from each sample overlap each peak on the master list
 peak_overlap_table <- function(peaks, method = "overlap", min_overlap = 1L, combine_peaks = TRUE) {
@@ -124,4 +124,10 @@ peak_overlap_table <- function(peaks, method = "overlap", min_overlap = 1L, comb
     all_peaks_df[overlaps,sample_name] <- TRUE
   }
   return(all_peaks_df)
+}
+
+# function to check if a sequence is a palindrome ===============================
+is_palindrome <- function(x) {
+  require(Biostrings)
+  return(ifelse(x == reverseComplement(x), TRUE, FALSE) )
 }
