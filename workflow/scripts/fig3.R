@@ -36,6 +36,11 @@ H3K4me1_bw <-  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85
 H3K4me3_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K4me3.bw"
 H2AV_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_H2Av_IP.bw"
 
+zld_ChIP_classes_fn <- "results/ChIP_peak_classes/zld_ChIP_classes.tsv"
+grh_ChIP_classes_fn <- "results/ChIP_peak_classes/grh_ChIP_classes.tsv"
+twi_ChIP_classes_fn <- "results/ChIP_peak_classes/twi_ChIP_classes.tsv"
+
+
 ## create blank layout for plot =================================================
 # pdf(snakemake@output[[1]], useDingbats = FALSE)
 pageCreate(width = 12.0, height = 12.5, default.units = "cm", showGuides = TRUE)
@@ -117,13 +122,12 @@ plotText(
 )
 
 # Panel B ======================================================================
-# panel label
-ref_x <- 0.5
-ref_y <- 3.75 
+ref_x <- 3.5
+ref_y <- 0.5 
 
 # panel label
 plotText(
-  label = "c", params = panel_label_params, fontface = "bold",
+  label = "b", params = panel_label_params, fontface = "bold",
   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 )
 
@@ -222,8 +226,9 @@ plotText(
 
 # Panel C ======================================================================
 # panel label
-ref_x <- 3.5
-ref_y <- 0.5 
+ref_x <- 0.5
+ref_y <- 3.75 
+
 
 # panel label
 plotText(
@@ -231,5 +236,59 @@ plotText(
   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 )
 
+# import ChIP classes
+zld_ChIP_classes <- read_tsv(zld_ChIP_classes_fn)
+grh_ChIP_classes <- read_tsv(grh_ChIP_classes_fn)
+twi_ChIP_classes <- read_tsv(twi_ChIP_classes_fn)
+
+zld_ChIP_classes %>% 
+  mutate(has_motif = n_motifs > 0) %>% 
+  group_by(class) %>% 
+  summarise(percent_with_motif = mean(has_motif) * 100) %>% 
+  add_column(motif_name = "Zld motif") %>% 
+  
+  ggplot(aes(x=class, y = motif_name, fill = percent_with_motif)) + 
+  geom_tile() +
+  theme(axis.text.x = element_text(angle = 45, hjust=1),
+        axis.title = element_blank()) +
+  scale_fill_distiller(palette = "Blues", direction = 1) +
+  geom_text(aes(label = percent_with_motif))
+
+
+
+
+
+
+c_plot <- zld_ChIP_classes %>%
+  ggplot(aes(x = class, y = n_motifs)) + 
+  geom_boxplot(fill = zld_color, outlier.size = 0.1, lwd = 0.1) +
+  ylab(expression("n motifs / peak") ) +
+  theme_classic(base_size = small_text_params$fontsize)
+
+plotGG(
+  plot = c_plot,
+  x = ref_x, y = ref_y,
+  width = 2.5, height = 2, just = c("left", "top"),
+  default.units = "cm"
+)
+
+
+zld_ChIP_classes %>% 
+  ggplot(aes(x = class, y = n_motifs)) + geom_boxplot()
+
+zld_ChIP_classes %>% 
+  ggplot(aes(x = class, y = average_motif_score)) + geom_boxplot()
+
+grh_ChIP_classes %>% 
+  ggplot(aes(x = class, y = n_motifs)) + geom_boxplot()
+
+grh_ChIP_classes %>% 
+  ggplot(aes(x = class, y = average_motif_score)) + geom_boxplot()
+
+twi_ChIP_classes %>% 
+  ggplot(aes(x = class, y = n_motifs)) + geom_boxplot()
+
+twi_ChIP_classes %>% 
+  ggplot(aes(x = class, y = average_motif_score)) + geom_boxplot()
 
 # dev.off()

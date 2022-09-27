@@ -12,6 +12,7 @@ ATAC_results <- snakemake@input[["ATAC_results"]]
 gtf <- snakemake@input[["gtf_genome_annotation"]]
 RNAseq_results <- snakemake@input[["RNAseq_results"]]
 ChIP_features <- snakemake@input[["ChIP_feature_annotation"]]
+motif_instances <- snakemake@input[["motif_instances"]]
 
 # annotate ChIP classes --------------------------------------------------------
 # import ChIP peaks
@@ -90,6 +91,26 @@ DE_genes <- read_tsv(RNAseq_results) %>%
 # add diff expression data to peaks
 peaks_annotated <- peaks_annotated %>% 
   left_join(DE_genes, by = "gene_id")
+
+# add motif information to peak table ------------------------------------------
+# quantify n motifs per peak
+motifs_gr <- read_tsv(motif_instances) %>% 
+  filter(score > snakemake@params[["motif_threshold"]]) %>% 
+  rename(motif_score = score) %>% 
+  makeGRangesFromDataFrame(keep.extra.columns = TRUE)
+
+peaks_annotated$n_motifs <- countOverlaps(peaks_gr, motifs_gr)
+
+# get average motif score per peak
+peak_motif_scores <- peaks_gr %>% 
+  plyranges::join_overlap_left(motifs_gr) %>% 
+  as.data.frame() %>% 
+  group_by(name) %>% 
+  summarise(average_motif_score = mean(motif_score)) %>% 
+  rename(peak_id = name)
+
+peaks_annotated <- peaks_annotated %>% 
+  left_join(peak_motif_scores, by = "peak_id")
 
 # export table with annotated ChIP classes -------------------------------------
 peaks_annotated %>% 

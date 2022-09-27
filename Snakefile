@@ -187,7 +187,8 @@ def get_ChIP_class_input(wildcards):
 	"WT_ATAC_peaks":config["annotate_ChIP_classes"][wildcards.factor]["WT_ATAC_peaks"],
 	"ATAC_results":config["annotate_ChIP_classes"][wildcards.factor]["ATAC_results"],
 	"RNAseq_results":config["annotate_ChIP_classes"][wildcards.factor]["RNAseq_results"],
-	"ChIP_feature_annotation":config["annotate_ChIP_classes"][wildcards.factor]["ChIP_feature_annotation"]
+	"ChIP_feature_annotation":config["annotate_ChIP_classes"][wildcards.factor]["ChIP_feature_annotation"],
+	"motif_instances":config["annotate_ChIP_classes"][wildcards.factor]["motif_instances"]
 	}
 rule annotate_ChIP_classes:
 	input:
@@ -197,6 +198,7 @@ rule annotate_ChIP_classes:
 		"results/ChIP_peak_classes/{factor}_ChIP_classes.tsv"
 	params:
 		r_source= "workflow/scripts/utils.R",
+		motif_threshold=70
 	script:
 		"workflow/scripts/annotate_ChIP_classes.R"
 
@@ -277,7 +279,7 @@ rule get_motif_instances:
 		bw_minus="results/motif_instances/{factor}_motifs_minus.bw",
 		bw_all="results/motif_instances/{factor}_motifs_all.bw",
 	params:
-		threshold="80%"
+		threshold="70%"
 	script:
 		"workflow/scripts/get_PWM_instances.R"
 

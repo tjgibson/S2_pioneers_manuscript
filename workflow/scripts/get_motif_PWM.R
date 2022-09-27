@@ -8,9 +8,10 @@ meme_file <- snakemake@input[["meme_file"]]
 motif_of_interest <- snakemake@params[["meme_motif_number"]]
 
 # extract PWM for motif of interest ============================================
-meme <- read_meme(meme_file)
-pwm <- meme[[motif_of_interest]]@motif
-
+meme <- read_meme(meme_file) %>% 
+  convert_type("PWM", pseudocount = 0.1)
+pwm <- meme[[motif_of_interest]]
+pwm@pseudocount <- 0.1
 # write output =================================================================
 pwm %>% 
   as.data.frame() %>% 

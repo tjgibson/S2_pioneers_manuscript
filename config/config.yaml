@@ -264,18 +264,21 @@ annotate_ChIP_classes:
     ATAC_results: ATACseq/results/DEseq2_results_filtered/S2-Zld_ATACseq_S2-Zld-FL-vs-S2-WT_results.tsv
     RNAseq_results: RNAseq/results/DEseq2/S2-Zld_RNAseq_S2-Zld-vs-S2-WT_results.tsv
     ChIP_feature_annotation: ChIPseq/results/peaks/final/S2-Zld_aZld_IP_peak_annotations.tsv
+    motif_instances: results/motif_instances/zld_motifs.tsv
   grh:
     ChIP_peaks: ChIPseq/results/peaks/final/S2-Grh_aGrh_IP.narrowPeak
     WT_ATAC_peaks: ATACseq/results/peaks/merged_by_sample/FL_ATAC_S2-WT_100uM_summits.bed
     ATAC_results: ATACseq/results/DEseq2_results_filtered/S2-Grh_ATACseq_S2-Grh-FL-vs-S2-WT_results.tsv
     RNAseq_results: RNAseq/results/DEseq2/S2-Grh_RNAseq_S2-Grh-vs-S2-WT_results.tsv
     ChIP_feature_annotation: ChIPseq/results/peaks/final/S2-Grh_aGrh_IP_peak_annotations.tsv
+    motif_instances: results/motif_instances/grh_motifs.tsv
   twi:
     ChIP_peaks: ChIPseq/results/peaks/final/S2-Twi_aTwi_IP.narrowPeak
     WT_ATAC_peaks: ATACseq/results/peaks/merged_by_sample/Twi_ATAC_S2-WT_40uM_summits.bed
     ATAC_results: ATACseq/results/DEseq2_results_filtered/S2-Twi_ATACseq_S2-Twi-vs-S2-WT-40uM_results.tsv
     RNAseq_results: RNAseq/results/DEseq2/S2-Twi_RNAseq_S2-Twi-vs-S2-WT_results.tsv
     ChIP_feature_annotation: ChIPseq/results/peaks/final/S2-Twi_aTwi_IP_peak_annotations.tsv
+    motif_instances: results/motif_instances/twi_motifs.tsv
 
 annotate_motif_classes:
   zld:
