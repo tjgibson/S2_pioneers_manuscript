@@ -3,7 +3,7 @@ library(plotgardener)
 library(tidyverse)
 library(org.Dm.eg.db)
 library(TxDb.Dmelanogaster.UCSC.dm6.ensGene)
-library(grImport)
+# library(grImport)
 library(grid)
 
 source("workflow/scripts/plot_heatmap.R")
@@ -40,6 +40,13 @@ zld_ChIP_classes_fn <- "results/ChIP_peak_classes/zld_ChIP_classes.tsv"
 grh_ChIP_classes_fn <- "results/ChIP_peak_classes/grh_ChIP_classes.tsv"
 twi_ChIP_classes_fn <- "results/ChIP_peak_classes/twi_ChIP_classes.tsv"
 
+zld_motifs_fn <- "results/motif_instances/zld_motifs.tsv"
+grh_motifs_fn <- "results/motif_instances/grh_motifs.tsv"
+twi_motifs_fn <- "results/motif_instances/twi_motifs.tsv"
+
+zld_WT_atac_fn <- "ATACseq/results/peaks/merged_by_sample/S2-WT_1000uM_summits.bed"
+grh_WT_atac_fn <- "ATACseq/results/peaks/merged_by_sample/FL_ATAC_S2-WT_100uM_summits.bed"
+twi_WT_atac_fn <- "ATACseq/results/peaks/merged_by_sample/Twi_ATAC_S2-WT_40uM_summits.bed"
 
 ## create blank layout for plot =================================================
 # pdf(snakemake@output[[1]], useDingbats = FALSE)
@@ -82,14 +89,14 @@ plotText(
 )
 
 # generate euler plot of overlap between Zld, Grh and Twi class I sites
-nonspecific_sites <- class_I_bed_fn %>%
-  map(rtracklayer::import) %>%
-  GRangesList() %>%
+nonspecific_sites <- class_I_bed_fn |>
+  map(rtracklayer::import) |>
+  GRangesList() |>
   peak_overlap_table()
 
-euler_fit <- nonspecific_sites %>% 
-  dplyr::select(6:8) %>% 
-  as.matrix() %>% 
+euler_fit <- nonspecific_sites |> 
+  dplyr::select(6:8) |> 
+  as.matrix() |> 
   eulerr::euler()
 
 euler_plot <- plot(euler_fit,
@@ -241,54 +248,158 @@ zld_ChIP_classes <- read_tsv(zld_ChIP_classes_fn)
 grh_ChIP_classes <- read_tsv(grh_ChIP_classes_fn)
 twi_ChIP_classes <- read_tsv(twi_ChIP_classes_fn)
 
-zld_ChIP_classes %>% 
-  mutate(has_motif = n_motifs > 0) %>% 
-  group_by(class) %>% 
-  summarise(percent_with_motif = mean(has_motif) * 100) %>% 
-  add_column(motif_name = "Zld motif") %>% 
+# get background motif frequency
+zld_motifs_gr <- 
+  zld_motifs_fn |> 
+  read_tsv() |> 
+  makeGRangesFromDataFrame(keep.extra.columns = TRUE)
+
+zld_ATAC_peaks <- 
+  zld_WT_atac_fn |> 
+  rtracklayer::import() |> 
+  resize(width = 201, fix = "center")
+zld_ATAC_peaks$class <- "all_ATAC_peaks"
+
+zld_ATAC_peaks$n_motifs <- countOverlaps(zld_ATAC_peaks, zld_motifs_gr)
+
+zld_merge_peaks <- zld_ATAC_peaks |> 
+  as.data.frame() |> 
+  dplyr::select(-c(name, score, width, strand)) |> 
+  dplyr::rename(peak_chrom = seqnames, peak_start = start, peak_end = end)
+
+grh_motifs_gr <- 
+  grh_motifs_fn |> 
+  read_tsv() |> 
+  makeGRangesFromDataFrame(keep.extra.columns = TRUE)
+
+grh_ATAC_peaks <- 
+  grh_WT_atac_fn |> 
+  rtracklayer::import() |> 
+  resize(width = 201, fix = "center")
+grh_ATAC_peaks$class <- "all_ATAC_peaks"
+
+grh_ATAC_peaks$n_motifs <- countOverlaps(grh_ATAC_peaks, grh_motifs_gr)
+
+grh_merge_peaks <- grh_ATAC_peaks |> 
+  as.data.frame() |> 
+  dplyr::select(-c(name, score, width, strand)) |> 
+  dplyr::rename(peak_chrom = seqnames, peak_start = start, peak_end = end)
+
+twi_motifs_gr <- 
+  twi_motifs_fn |> 
+  read_tsv() |> 
+  makeGRangesFromDataFrame(keep.extra.columns = TRUE)
+
+twi_ATAC_peaks <- 
+  twi_WT_atac_fn |> 
+  rtracklayer::import() |> 
+  resize(width = 201, fix = "center")
+twi_ATAC_peaks$class <- "all_ATAC_peaks"
+
+twi_ATAC_peaks$n_motifs <- countOverlaps(twi_ATAC_peaks, twi_motifs_gr)
+
+twi_merge_peaks <- twi_ATAC_peaks |> 
+  as.data.frame() |> 
+  dplyr::select(-c(name, score, width, strand)) |> 
+  dplyr::rename(peak_chrom = seqnames, peak_start = start, peak_end = end)
+
+
+# plot heatmap of motif frequency
+hm_limits <- c(0,100)
+
+zld_plot <- zld_ChIP_classes |> 
+  bind_rows(zld_merge_peaks) |> 
+  mutate(has_motif = n_motifs > 0) |> 
+  group_by(class) |> 
+  summarise(percent_with_motif = round(mean(has_motif) * 100, 2)) |> 
+  add_column(motif_name = "Zld motif") |> 
   
   ggplot(aes(x=class, y = motif_name, fill = percent_with_motif)) + 
-  geom_tile() +
-  theme(axis.text.x = element_text(angle = 45, hjust=1),
-        axis.title = element_blank()) +
-  scale_fill_distiller(palette = "Blues", direction = 1) +
-  geom_text(aes(label = percent_with_motif))
+  geom_tile(color = "black",show.legend = FALSE) +
+  scale_fill_distiller(palette = "Blues", direction = 1, limits=hm_limits) +
+  geom_text(aes(label = percent_with_motif), size = small_text_params$fontsize * 0.35) +
+  theme_minimal(base_size = small_text_params$fontsize) +
+  theme(legend.key.size = unit(1, 'mm'), 
+        axis.text.y = element_text(size = small_text_params$fontsize),
+        axis.text.x = element_blank(),
+        axis.title = element_blank())
+
+grh_plot <- grh_ChIP_classes |> 
+  bind_rows(grh_merge_peaks) |> 
+  mutate(has_motif = n_motifs > 0) |> 
+  group_by(class) |> 
+  summarise(percent_with_motif = round(mean(has_motif) * 100, 2)) |> 
+  add_column(motif_name = "Grh motif") |> 
+  
+  ggplot(aes(x=class, y = motif_name, fill = percent_with_motif)) + 
+  geom_tile(color = "black",show.legend = FALSE) +
+  scale_fill_distiller(palette = "Oranges", direction = 1, name = NULL) +
+  geom_text(aes(label = percent_with_motif), size = small_text_params$fontsize * 0.35) +
+  theme_minimal(base_size = small_text_params$fontsize) +
+  theme(legend.key.size = unit(1, 'mm'), 
+        axis.text.y = element_text(size = small_text_params$fontsize),
+        axis.text.x = element_blank(),
+        axis.title = element_blank())
+
+twi_plot <- twi_ChIP_classes |> 
+  bind_rows(twi_merge_peaks) |> 
+  mutate(has_motif = n_motifs > 0) |> 
+  group_by(class) |> 
+  summarise(percent_with_motif = round(mean(has_motif) * 100, 2)) |> 
+  add_column(motif_name = "Twi motif") |> 
+  
+  ggplot(aes(x=class, y = motif_name, fill = percent_with_motif)) + 
+  geom_tile(color = "black",show.legend = FALSE) +
+  scale_fill_distiller(palette = "GnBu", direction = 1, name = NULL) +
+  geom_text(aes(label = percent_with_motif), size = small_text_params$fontsize * 0.35) +
+  theme_minimal(base_size = small_text_params$fontsize) +
+  theme(legend.key.size = unit(1, 'mm'), 
+        axis.text.y = element_text(size = small_text_params$fontsize),
+        axis.text.x = element_blank(),
+        axis.title = element_blank())
 
 
 
-
-
-
-c_plot <- zld_ChIP_classes %>%
-  ggplot(aes(x = class, y = n_motifs)) + 
-  geom_boxplot(fill = zld_color, outlier.size = 0.1, lwd = 0.1) +
-  ylab(expression("n motifs / peak") ) +
-  theme_classic(base_size = small_text_params$fontsize)
 
 plotGG(
-  plot = c_plot,
+  plot = zld_plot,
   x = ref_x, y = ref_y,
-  width = 2.5, height = 2, just = c("left", "top"),
+  width = 6, height = 0.5, just = c("left", "top"),
+  default.units = "cm"
+)
+
+plotGG(
+  plot = grh_plot,
+  x = ref_x, y = ref_y + 0.3,
+  width = 6, height = 0.5, just = c("left", "top"),
+  default.units = "cm"
+)
+
+plotGG(
+  plot = twi_plot,
+  x = ref_x, y = ref_y + 0.6,
+  width = 6, height = 0.5, just = c("left", "top"),
   default.units = "cm"
 )
 
 
-zld_ChIP_classes %>% 
-  ggplot(aes(x = class, y = n_motifs)) + geom_boxplot()
-
-zld_ChIP_classes %>% 
-  ggplot(aes(x = class, y = average_motif_score)) + geom_boxplot()
-
-grh_ChIP_classes %>% 
-  ggplot(aes(x = class, y = n_motifs)) + geom_boxplot()
-
-grh_ChIP_classes %>% 
-  ggplot(aes(x = class, y = average_motif_score)) + geom_boxplot()
-
-twi_ChIP_classes %>% 
-  ggplot(aes(x = class, y = n_motifs)) + geom_boxplot()
-
-twi_ChIP_classes %>% 
-  ggplot(aes(x = class, y = average_motif_score)) + geom_boxplot()
+# 
+# zld_ChIP_classes |> 
+#   ggplot(aes(x = class, y = n_motifs)) + geom_boxplot()
+# 
+# zld_ChIP_classes |> 
+#   ggplot(aes(x = class, y = average_motif_score)) + geom_boxplot()
+# 
+# grh_ChIP_classes |> 
+#   ggplot(aes(x = class, y = n_motifs)) + geom_boxplot()
+# 
+# grh_ChIP_classes |> 
+#   ggplot(aes(x = class, y = average_motif_score)) + geom_boxplot()
+# 
+# twi_ChIP_classes |> 
+#   ggplot(aes(x = class, y = n_motifs)) + geom_boxplot()
+# 
+# twi_ChIP_classes |> 
+#   ggplot(aes(x = class, y = average_motif_score)) + geom_boxplot()
 
 # dev.off()

@@ -12,7 +12,7 @@ meme <- read_meme(meme_file) %>%
   convert_type("PWM", pseudocount = 0.1)
 pwm <- meme[[motif_of_interest]]
 pwm@pseudocount <- 0.1
+
 # write output =================================================================
 pwm %>% 
-  as.data.frame() %>% 
-  write.table(snakemake@output[[1]], sep = "\t", quote = FALSE)
+  saveRDS(snakemake@output[[1]])

@@ -129,7 +129,7 @@ rule get_embryo_PWMs:
 	input:
 		meme_file="published_ChIPseq/results/motifs/{sample}/meme.txt",
 	output:
-		"published_ChIPseq/results/motifs/{sample}/{sample}_PWM.tsv"
+		"published_ChIPseq/results/motifs/{sample}/{sample}_PWM.rds"
 	params:
 		meme_motif_number= get_meme_motif_index,
 	script:
@@ -198,7 +198,7 @@ rule annotate_ChIP_classes:
 		"results/ChIP_peak_classes/{factor}_ChIP_classes.tsv"
 	params:
 		r_source= "workflow/scripts/utils.R",
-		motif_threshold=70
+		motif_threshold=1e-3
 	script:
 		"workflow/scripts/annotate_ChIP_classes.R"
 
@@ -261,9 +261,9 @@ rule split_ChIP_classes_filtered:
 
 def get_motif_pwm(wildcards):
 	motif_pwm = {
-	"zld":"published_ChIPseq/results/motifs/embryo-nc14_aZld/embryo-nc14_aZld_PWM.tsv",
-	"grh":"published_ChIPseq/results/motifs/embryo-15-16H_aGrh/embryo-15-16H_aGrh_PWM.tsv",
-	"twi":"published_ChIPseq/results/motifs/embryo-1-3H_aTwi/embryo-1-3H_aTwi_PWM.tsv"
+	"zld":"published_ChIPseq/results/motifs/embryo-nc14_aZld/embryo-nc14_aZld_PWM.rds",
+	"grh":"published_ChIPseq/results/motifs/embryo-15-16H_aGrh/embryo-15-16H_aGrh_PWM.rds",
+	"twi":"published_ChIPseq/results/motifs/embryo-1-3H_aTwi/embryo-1-3H_aTwi_PWM.rds"
 	}
 	
 	return motif_pwm[wildcards.factor]
@@ -275,11 +275,10 @@ rule get_motif_instances:
 	output:
 		bed="results/motif_instances/{factor}_motifs.bed",
 		tsv="results/motif_instances/{factor}_motifs.tsv",
-		bw_plus="results/motif_instances/{factor}_motifs_plus.bw",
-		bw_minus="results/motif_instances/{factor}_motifs_minus.bw",
-		bw_all="results/motif_instances/{factor}_motifs_all.bw",
+		bw__motif_score="results/motif_instances/{factor}_motifs_score.bw",
+		bw_motif_pvalue="results/motif_instances/{factor}_motifs_pvalue.bw",
 	params:
-		threshold="70%"
+		threshold=1e-3
 	script:
 		"workflow/scripts/get_PWM_instances.R"
 
