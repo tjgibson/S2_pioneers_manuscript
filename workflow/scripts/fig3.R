@@ -8,6 +8,7 @@ library(grid)
 
 source("workflow/scripts/plot_heatmap.R")
 source("workflow/scripts/utils.R")
+
 # function to get range for browser tracks -------------------------------------
 signal_range <- function(x, extra = 0.05) {
   min <- floor(min(x))
@@ -17,6 +18,14 @@ signal_range <- function(x, extra = 0.05) {
   output <- c(min - margin, max + margin)
   return(output)
 }
+
+# function to extract legend from ggplot ---------------------------------------
+get_legend <- function(plot){ 
+  tmp <- ggplot_gtable(ggplot_build(plot)) 
+  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box") 
+  legend <- tmp$grobs[[leg]] 
+  legend
+} 
 
 # define input files ===========================================================
 class_I_bed_fn <- c(
@@ -50,6 +59,7 @@ twi_WT_atac_fn <- "ATACseq/results/peaks/merged_by_sample/Twi_ATAC_S2-WT_40uM_su
 
 ## create blank layout for plot =================================================
 # pdf(snakemake@output[[1]], useDingbats = FALSE)
+# pdf("manuscript/figures/fig3.pdf")
 pageCreate(width = 12.0, height = 12.5, default.units = "cm", showGuides = TRUE)
 
 # general figure settings ======================================================
@@ -176,7 +186,7 @@ b_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 
 plotGG(
   plot = b_hm,
   x = (ref_x + 0.25), y = (ref_y + 0.25),
-  width = 8, height = 2.5, just = c("left", "top"),
+  width = 8, height = 2.25, just = c("left", "top"),
   default.units = "cm"
 )
 
@@ -304,10 +314,10 @@ twi_merge_peaks <- twi_ATAC_peaks |>
   dplyr::rename(peak_chrom = seqnames, peak_start = start, peak_end = end)
 
 
-# plot heatmap of motif frequency
+# generate heatmap ggplots and extract legends
 hm_limits <- c(0,100)
 
-zld_plot <- zld_ChIP_classes |> 
+zld_plot_base <- zld_ChIP_classes |> 
   bind_rows(zld_merge_peaks) |> 
   mutate(has_motif = n_motifs > 0) |> 
   group_by(class) |> 
@@ -315,16 +325,21 @@ zld_plot <- zld_ChIP_classes |>
   add_column(motif_name = "Zld motif") |> 
   
   ggplot(aes(x=class, y = motif_name, fill = percent_with_motif)) + 
-  geom_tile(color = "black",show.legend = FALSE) +
-  scale_fill_distiller(palette = "Blues", direction = 1, limits=hm_limits) +
+  geom_tile(color = "black") +
+  scale_fill_distiller(palette = "Blues", direction = 1, limits=hm_limits, breaks = hm_limits, name = NULL, guide = guide_colourbar(direction = "horizontal")) +
   geom_text(aes(label = percent_with_motif), size = small_text_params$fontsize * 0.35) +
   theme_minimal(base_size = small_text_params$fontsize) +
   theme(legend.key.size = unit(1, 'mm'), 
-        axis.text.y = element_text(size = small_text_params$fontsize),
-        axis.text.x = element_blank(),
+        axis.text = element_blank(),
         axis.title = element_blank())
 
-grh_plot <- grh_ChIP_classes |> 
+zld_legend <- get_legend(zld_plot_base)
+
+zld_plot <- 
+  zld_plot_base +
+  guides(fill = "none")
+
+grh_plot_base <- grh_ChIP_classes |> 
   bind_rows(grh_merge_peaks) |> 
   mutate(has_motif = n_motifs > 0) |> 
   group_by(class) |> 
@@ -332,16 +347,21 @@ grh_plot <- grh_ChIP_classes |>
   add_column(motif_name = "Grh motif") |> 
   
   ggplot(aes(x=class, y = motif_name, fill = percent_with_motif)) + 
-  geom_tile(color = "black",show.legend = FALSE) +
-  scale_fill_distiller(palette = "Oranges", direction = 1, name = NULL) +
+  geom_tile(color = "black") +
+  scale_fill_distiller(palette = "Oranges", direction = 1, limits=hm_limits, breaks = hm_limits, name = NULL, guide = guide_colourbar(direction = "horizontal")) +
   geom_text(aes(label = percent_with_motif), size = small_text_params$fontsize * 0.35) +
   theme_minimal(base_size = small_text_params$fontsize) +
   theme(legend.key.size = unit(1, 'mm'), 
-        axis.text.y = element_text(size = small_text_params$fontsize),
-        axis.text.x = element_blank(),
+        axis.text = element_blank(),
         axis.title = element_blank())
 
-twi_plot <- twi_ChIP_classes |> 
+grh_legend <- get_legend(grh_plot_base)
+
+grh_plot <- 
+  grh_plot_base +
+  guides(fill = "none")
+
+twi_plot_base <- twi_ChIP_classes |> 
   bind_rows(twi_merge_peaks) |> 
   mutate(has_motif = n_motifs > 0) |> 
   group_by(class) |> 
@@ -349,43 +369,233 @@ twi_plot <- twi_ChIP_classes |>
   add_column(motif_name = "Twi motif") |> 
   
   ggplot(aes(x=class, y = motif_name, fill = percent_with_motif)) + 
-  geom_tile(color = "black",show.legend = FALSE) +
-  scale_fill_distiller(palette = "GnBu", direction = 1, name = NULL) +
+  geom_tile(color = "black") +
+  scale_fill_distiller(
+    palette = "GnBu", 
+    direction = 1, 
+    limits=hm_limits, 
+    breaks = hm_limits, 
+    name = NULL, guide = 
+      guide_colourbar(direction = "horizontal")
+    ) +
   geom_text(aes(label = percent_with_motif), size = small_text_params$fontsize * 0.35) +
   theme_minimal(base_size = small_text_params$fontsize) +
   theme(legend.key.size = unit(1, 'mm'), 
-        axis.text.y = element_text(size = small_text_params$fontsize),
-        axis.text.x = element_blank(),
+        axis.text = element_blank(),
         axis.title = element_blank())
 
+twi_legend <- get_legend(twi_plot_base)
+
+twi_plot <- 
+  twi_plot_base +
+  guides(fill = "none")
 
 
-
+# place heatmaps on page
 plotGG(
   plot = zld_plot,
-  x = ref_x, y = ref_y,
-  width = 6, height = 0.5, just = c("left", "top"),
+  x = ref_x + 0.25, y = ref_y,
+  width = 3.5, height = 0.5, just = c("left", "top"),
   default.units = "cm"
 )
 
 plotGG(
   plot = grh_plot,
-  x = ref_x, y = ref_y + 0.3,
-  width = 6, height = 0.5, just = c("left", "top"),
+  x = ref_x + 0.25, y = ref_y + 0.3,
+  width = 3.5, height = 0.5, just = c("left", "top"),
   default.units = "cm"
 )
 
 plotGG(
   plot = twi_plot,
-  x = ref_x, y = ref_y + 0.6,
-  width = 6, height = 0.5, just = c("left", "top"),
+  x = ref_x + 0.25, y = ref_y + 0.6,
+  width = 3.5, height = 0.5, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# add labels to heatmaps
+plotText(
+  label = "Zld motif", params = small_text_params, fontface = "bold",
+  x = (ref_x + 0.4), y = (ref_y + 0.22), just = c("right"), default.units = "cm"
+)
+
+plotText(
+  label = "Grh motif", params = small_text_params, fontface = "bold",
+  x = (ref_x + 0.4), y = (ref_y + 0.52), just = c("right"), default.units = "cm"
+)
+
+plotText(
+  label = "Twi motif", params = small_text_params, fontface = "bold",
+  x = (ref_x + 0.4), y = (ref_y + 0.82), just = c("right"), default.units = "cm"
+)
+
+plotText(
+  label = "all accessible", params = small_text_params, fontface = "bold",
+  x = (ref_x + 0.8), y = (ref_y + 1), just = c("right", "top"), default.units = "cm", rot = 45
+)
+
+plotText(
+  label = "class I", params = small_text_params, fontface = "bold",
+  x = (ref_x + 1.6), y = (ref_y + 1), just = c("right", "top"), default.units = "cm", rot = 45
+)
+
+plotText(
+  label = "class II", params = small_text_params, fontface = "bold",
+  x = (ref_x + 2.4), y = (ref_y + 1), just = c("right", "top"), default.units = "cm", rot = 45
+)
+
+plotText(
+  label = "class III", params = small_text_params, fontface = "bold",
+  x = (ref_x + 3.2), y = (ref_y + 1), just = c("right", "top"), default.units = "cm", rot = 45
+)
+
+# place legends on page
+plotGG(
+  plot = zld_legend,
+  width = 0.5, height = 0.2,
+  x = ref_x + 0.75, y = ref_y + 1.75,
+  default.units = "cm"
+)
+
+plotGG(
+  plot = grh_legend,
+  width = 0.5, height = 0.2,
+  x = ref_x + 1.75, y = ref_y + 1.75,
+  default.units = "cm"
+)
+
+plotGG(
+  plot = twi_legend,
+  width = 0.5, height = 0.2,
+  x = ref_x + 2.75, y = ref_y + 1.75,
   default.units = "cm"
 )
 
 
+# # add logos plots next to heatmap
+# library(universalmotif)
 # 
-# zld_ChIP_classes |> 
-#   ggplot(aes(x = class, y = n_motifs)) + geom_boxplot()
+# zld_motif <- readRDS("published_ChIPseq/results/motifs/embryo-nc14_aZld/embryo-nc14_aZld_PWM.rds")
+# zld_logo <- 
+#   view_motifs(zld_motif) + 
+#   theme(
+#     axis.text.x = element_blank(), 
+#     axis.text.y = element_blank(), 
+#     axis.line.y = element_blank(), 
+#     axis.ticks.y = element_blank(), 
+#     axis.title.y = element_blank(),
+#     plot.margin = margin(0, 0, 0, 0, "cm")
+#     )
+# 
+# plotGG(
+#   plot = zld_logo,
+#   x = ref_x + 0.5, y = ref_y + 0.4,
+#   width = 0.5, height = 0.5, just = c("right", "center"),
+#   default.units = "cm"
+# )
+
+# Panel D ======================================================================
+# set y limits for all n_motifs boxplots
+n_motifs_ylim <- c(0,8)
+
+# panel label
+ref_x <- 4.25
+ref_y <- 3.75 
+
+# boxplot
+zld_n_motifs_plot <- zld_ChIP_classes |>
+  ggplot(aes(x = class, y = n_motifs)) + 
+  geom_boxplot(fill = zld_color, outlier.size = 0.01, lwd = 0.1) +
+  theme_classic(base_size = small_text_params$fontsize) +
+  scale_y_continuous(breaks=seq(n_motifs_ylim[1],n_motifs_ylim[2],1), limits = n_motifs_ylim)
+  
+
+plotGG(
+  plot = zld_n_motifs_plot,
+  width = 1.5, height = 2,
+  x = ref_x, y = ref_y,
+  default.units = "cm"
+)
+
+# panel label
+plotText(
+  label = "d", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+# Panel E ======================================================================
+# panel label
+ref_x <- 6
+ref_y <- 3.75 
+
+# boxplot
+zld_n_motifs_plot <- zld_ChIP_classes |>
+  ggplot(aes(x = class, y = average_motif_score)) + 
+  geom_boxplot(fill = zld_color, outlier.size = 0.01, lwd = 0.1) +
+  theme_classic(base_size = small_text_params$fontsize)
+
+
+plotGG(
+  plot = zld_n_motifs_plot,
+  width = 1.5, height = 2,
+  x = ref_x, y = ref_y,
+  default.units = "cm"
+)
+
+# panel label
+plotText(
+  label = "e", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+
+# boxplot
+grh_n_motifs_plot <- grh_ChIP_classes |>
+  ggplot(aes(x = class, y = n_motifs)) + 
+  geom_boxplot(fill = grh_color, outlier.size = 0.01, lwd = 0.1) +
+  theme_classic(base_size = small_text_params$fontsize) +
+  scale_y_continuous(breaks=seq(n_motifs_ylim[1],n_motifs_ylim[2],1), limits = n_motifs_ylim)
+
+plotGG(
+  plot = grh_n_motifs_plot,
+  width = 2, height = 1.5,
+  x = ref_x, y = ref_y,
+  default.units = "cm"
+)
+
+# panel label
+plotText(
+  label = "e", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+# Panel F ======================================================================
+# panel label
+ref_x <- 9.5
+ref_y <- 3.75 
+
+# boxplot
+twi_n_motifs_plot <- twi_ChIP_classes |>
+  ggplot(aes(x = class, y = n_motifs)) + 
+  geom_boxplot(fill = twi_color, outlier.shape = NA, lwd = 0.1) +
+  theme_classic(base_size = small_text_params$fontsize) +
+  scale_y_continuous(breaks=seq(n_motifs_ylim[1],n_motifs_ylim[2],1), limits = n_motifs_ylim)
+
+plotGG(
+  plot = twi_n_motifs_plot,
+  width = 2, height = 1.5,
+  x = ref_x, y = ref_y,
+  default.units = "cm"
+)
+
+# panel label
+plotText(
+  label = "f", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+
+
 # 
 # zld_ChIP_classes |> 
 #   ggplot(aes(x = class, y = average_motif_score)) + geom_boxplot()
@@ -402,4 +612,4 @@ plotGG(
 # twi_ChIP_classes |> 
 #   ggplot(aes(x = class, y = average_motif_score)) + geom_boxplot()
 
-# dev.off()
+dev.off()
