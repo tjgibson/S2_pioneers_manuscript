@@ -95,7 +95,6 @@ peaks_annotated <- peaks_annotated %>%
 # add motif information to peak table ------------------------------------------
 # quantify n motifs per peak
 motifs_gr <- read_tsv(motif_instances) %>% 
-  filter(pvalue < snakemake@params[["motif_threshold"]]) %>% 
   rename(motif_score = score) %>% 
   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
 

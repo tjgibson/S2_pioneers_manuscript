@@ -198,7 +198,6 @@ rule annotate_ChIP_classes:
 		"results/ChIP_peak_classes/{factor}_ChIP_classes.tsv"
 	params:
 		r_source= "workflow/scripts/utils.R",
-		motif_threshold=1e-3
 	script:
 		"workflow/scripts/annotate_ChIP_classes.R"
 

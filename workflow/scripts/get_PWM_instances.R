@@ -21,7 +21,7 @@ message("getting motif instances")
 # motif_instances <- matchPWM(pwm, BSgenome.Dmelanogaster.UCSC.dm6, min.score = snakemake@params[["threshold"]], with.score = TRUE)
 motif_instances <- 
   get_sequence(GRangesForBSGenome("dm6", chrom = c("chr2L", "chr2R", "chr3L", "chr3R", "chr4", "chrX", "chrY")), BSgenome.Dmelanogaster.UCSC.dm6) |> 
-  runFimo(pwm, thresh = 1e-3)
+  runFimo(pwm, thresh = snakemake@params[["threshold"]])
 
 
 seqinfo(motif_instances) <- seqinfo(BSgenome.Dmelanogaster.UCSC.dm6)
