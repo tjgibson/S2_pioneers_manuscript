@@ -348,6 +348,63 @@ rule figure_2:
 	script:
 		"workflow/scripts/fig2.R"
 
+rule figure_3:
+	input:
+  		zld_class_I_bed_fn = "results/ChIP_peak_classes/zld_class_I.bed",
+  		grh_class_I_bed_fn = "results/ChIP_peak_classes/grh_class_I.bed",
+  		twi_class_I_bed_fn = "results/ChIP_peak_classes/twi_class_I.bed",
+
+		ns_sites_bed_fn = "results/ChIP_peak_classes/nonspecific_sites/nonspecific_sites.bed",
+
+		S2_Grh_ChIP_bw =  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw",
+		S2_Twi_ChIP_bw =  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw",
+		H3K27ac_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K27ac.bw",
+		Nej_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE64464_aNej.bw",
+		H3K4me1_bw =  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K4me1.bw",
+		H3K4me3_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K4me3.bw",
+		H2AV_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_H2Av_IP.bw",
+
+		zld_ChIP_classes_fn = "results/ChIP_peak_classes/zld_ChIP_classes.tsv",
+		grh_ChIP_classes_fn = "results/ChIP_peak_classes/grh_ChIP_classes.tsv",
+		twi_ChIP_classes_fn = "results/ChIP_peak_classes/twi_ChIP_classes.tsv",
+
+		zld_motifs_fn = "results/motif_instances/zld_motifs.tsv",
+		grh_motifs_fn = "results/motif_instances/grh_motifs.tsv",
+		twi_motifs_fn = "results/motif_instances/twi_motifs.tsv",
+
+		zld_WT_atac_fn = "ATACseq/results/peaks/merged_by_sample/S2-WT_1000uM_summits.bed",
+		grh_WT_atac_fn = "ATACseq/results/peaks/merged_by_sample/FL_ATAC_S2-WT_100uM_summits.bed",
+		twi_WT_atac_fn = "ATACseq/results/peaks/merged_by_sample/Twi_ATAC_S2-WT_40uM_summits.bed",
+	output:
+		"manuscript/figures/fig3.pdf"
+	script:
+		"workflow/scripts/fig3.R"
+
+rule figure_6:
+	input:
+  		Zld_FL_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw",
+		Zld_DBD_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld-DBD_aZld_IP.bw",
+		Zld_WT_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/S2-WT_1000uM_small.bw",
+		Zld_Zld_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/S2-Zld_1000uM_small.bw",
+
+		Grh_FL_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw",
+		Grh_DBD_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh-DBD_aGrh_IP.bw",
+		Grh_WT_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/FL_ATAC_S2-WT_100uM_small.bw",
+		Grh_Grh_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/S2-Grh_100uM_small.bw",
+
+		zld_ChIP_classes = "results/ChIP_peak_classes/zld_ChIP_classes.tsv",
+		grh_ChIP_classes = "results/ChIP_peak_classes/grh_ChIP_classes.tsv",
+
+		zld_FL_atac_results = "ATACseq/results/DEseq2_results_filtered/S2-Zld_ATACseq_S2-Zld-FL-vs-S2-WT_results.tsv",
+		zld_DBD_atac_results = "ATACseq/results/DEseq2_results_filtered/S2-Zld-DBD_ATACseq_S2-Zld-DBD-vs-S2-WT_results.tsv",
+		grh_FL_atac_results = "ATACseq/results/DEseq2_results_filtered/S2-Grh_ATACseq_S2-Grh-FL-vs-S2-WT_results.tsv",
+		grh_DBD_atac_results = "ATACseq/results/DEseq2_results_filtered/S2-Grh-DBD_ATACseq_S2-Grh-DBD-vs-S2-WT_results.tsv",
+
+	output:
+		"manuscript/figures/fig6.pdf"
+	script:
+		"workflow/scripts/fig6.R"
+
 ##### target rules #####
 rule all:
     input:
@@ -357,5 +414,6 @@ rule all:
         rules.ATACseq_all.input,
         "manuscript/figures/fig1.pdf",
         "manuscript/figures/fig2.pdf",
-#         "manuscript/figures/fig4.pdf",
+        "manuscript/figures/fig3.pdf",
+        "manuscript/figures/fig6.pdf",
     default_target: True

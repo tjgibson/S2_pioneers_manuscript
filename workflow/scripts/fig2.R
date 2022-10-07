@@ -3,7 +3,7 @@ library(plotgardener)
 library(tidyverse)
 library(org.Dm.eg.db)
 library(TxDb.Dmelanogaster.UCSC.dm6.ensGene)
-library(grImport)
+# library(grImport)
 library(grid)
 library(RColorBrewer)
 

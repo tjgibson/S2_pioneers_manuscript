@@ -1,10 +1,10 @@
 # setup ========================================================================
-library(plotgardener)
-library(tidyverse)
-library(org.Dm.eg.db)
-library(TxDb.Dmelanogaster.UCSC.dm6.ensGene)
+suppressPackageStartupMessages(library(plotgardener))
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(org.Dm.eg.db))
+suppressPackageStartupMessages(library(TxDb.Dmelanogaster.UCSC.dm6.ensGene))
 # library(grImport)
-library(grid)
+suppressPackageStartupMessages(library(grid))
 
 source("workflow/scripts/plot_heatmap.R")
 source("workflow/scripts/utils.R")
@@ -29,38 +29,67 @@ get_legend <- function(plot){
 
 # define input files ===========================================================
 class_I_bed_fn <- c(
-  zld_class_I = "results/ChIP_peak_classes/zld_class_I.bed",
-  grh_class_I = "results/ChIP_peak_classes/grh_class_I.bed",
-  twi_class_I = "results/ChIP_peak_classes/twi_class_I.bed"
+  zld_class_I = snakemake@input[["zld_class_I_bed_fn"]],
+  grh_class_I = snakemake@input[["grh_class_I_bed_fn"]],
+  twi_class_I = snakemake@input[["twi_class_I_bed_fn"]]
 )
 
-ns_sites_bed_fn <- "results/ChIP_peak_classes/nonspecific_sites/nonspecific_sites.bed"
+ns_sites_bed_fn <- snakemake@input[["ns_sites_bed_fn"]]
 
-S2_Zld_ChIP_bw <-  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw"
-S2_Grh_ChIP_bw <-  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw"
-S2_Twi_ChIP_bw <-  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw"
-H3K27ac_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K27ac.bw"
-Nej_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE64464_aNej.bw"
-H3K4me1_bw <-  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K4me1.bw"
-H3K4me3_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K4me3.bw"
-H2AV_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_H2Av_IP.bw"
+S2_Zld_ChIP_bw <-  snakemake@input[["S2_Zld_ChIP_bw"]]
+S2_Grh_ChIP_bw <-  snakemake@input[["S2_Grh_ChIP_bw"]]
+S2_Twi_ChIP_bw <-  snakemake@input[["S2_Twi_ChIP_bw"]]
+H3K27ac_bw <- snakemake@input[["H3K27ac_bw"]]
+Nej_bw <- snakemake@input[["Nej_bw"]]
+H3K4me1_bw <-  snakemake@input[["H3K4me1_bw"]]
+H3K4me3_bw <- snakemake@input[["H3K4me3_bw"]]
+H2AV_bw <- snakemake@input[["H2AV_bw"]]
 
-zld_ChIP_classes_fn <- "results/ChIP_peak_classes/zld_ChIP_classes.tsv"
-grh_ChIP_classes_fn <- "results/ChIP_peak_classes/grh_ChIP_classes.tsv"
-twi_ChIP_classes_fn <- "results/ChIP_peak_classes/twi_ChIP_classes.tsv"
+zld_ChIP_classes_fn <- snakemake@input[["zld_ChIP_classes_fn"]]
+grh_ChIP_classes_fn <- snakemake@input[["grh_ChIP_classes_fn"]]
+twi_ChIP_classes_fn <- snakemake@input[["twi_ChIP_classes_fn"]]
 
-zld_motifs_fn <- "results/motif_instances/zld_motifs.tsv"
-grh_motifs_fn <- "results/motif_instances/grh_motifs.tsv"
-twi_motifs_fn <- "results/motif_instances/twi_motifs.tsv"
+zld_motifs_fn <- snakemake@input[["zld_motifs_fn"]]
+grh_motifs_fn <- snakemake@input[["grh_motifs_fn"]]
+twi_motifs_fn <- snakemake@input[["twi_motifs_fn"]]
 
-zld_WT_atac_fn <- "ATACseq/results/peaks/merged_by_sample/S2-WT_1000uM_summits.bed"
-grh_WT_atac_fn <- "ATACseq/results/peaks/merged_by_sample/FL_ATAC_S2-WT_100uM_summits.bed"
-twi_WT_atac_fn <- "ATACseq/results/peaks/merged_by_sample/Twi_ATAC_S2-WT_40uM_summits.bed"
+zld_WT_atac_fn <- snakemake@input[["zld_WT_atac_fn"]]
+grh_WT_atac_fn <- snakemake@input[["grh_WT_atac_fn"]]
+twi_WT_atac_fn <- snakemake@input[["twi_WT_atac_fn"]]
+
+# class_I_bed_fn <- c(
+#   zld_class_I = "results/ChIP_peak_classes/zld_class_I.bed",
+#   grh_class_I = "results/ChIP_peak_classes/grh_class_I.bed",
+#   twi_class_I = "results/ChIP_peak_classes/twi_class_I.bed"
+# )
+# 
+# ns_sites_bed_fn <- "results/ChIP_peak_classes/nonspecific_sites/nonspecific_sites.bed"
+# 
+# S2_Zld_ChIP_bw <-  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw"
+# S2_Grh_ChIP_bw <-  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw"
+# S2_Twi_ChIP_bw <-  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw"
+# H3K27ac_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K27ac.bw"
+# Nej_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE64464_aNej.bw"
+# H3K4me1_bw <-  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K4me1.bw"
+# H3K4me3_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K4me3.bw"
+# H2AV_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_H2Av_IP.bw"
+# 
+# zld_ChIP_classes_fn <- "results/ChIP_peak_classes/zld_ChIP_classes.tsv"
+# grh_ChIP_classes_fn <- "results/ChIP_peak_classes/grh_ChIP_classes.tsv"
+# twi_ChIP_classes_fn <- "results/ChIP_peak_classes/twi_ChIP_classes.tsv"
+# 
+# zld_motifs_fn <- "results/motif_instances/zld_motifs.tsv"
+# grh_motifs_fn <- "results/motif_instances/grh_motifs.tsv"
+# twi_motifs_fn <- "results/motif_instances/twi_motifs.tsv"
+# 
+# zld_WT_atac_fn <- "ATACseq/results/peaks/merged_by_sample/S2-WT_1000uM_summits.bed"
+# grh_WT_atac_fn <- "ATACseq/results/peaks/merged_by_sample/FL_ATAC_S2-WT_100uM_summits.bed"
+# twi_WT_atac_fn <- "ATACseq/results/peaks/merged_by_sample/Twi_ATAC_S2-WT_40uM_summits.bed"
 
 ## create blank layout for plot =================================================
 pdf(snakemake@output[[1]], useDingbats = FALSE)
 # pdf("manuscript/figures/fig3.pdf")
-pageCreate(width = 12.0, height = 12.5, default.units = "cm", showGuides = TRUE)
+pageCreate(width = 12.0, height = 12.5, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics
@@ -203,42 +232,42 @@ plotText(
 
 plotText(
   label = "Zld", params = small_text_params, fontface = "bold",
-  x = (ref_x + 0.70625), y = (ref_y), just = c("center"), default.units = "cm"
+  x = (ref_x + 0.65), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "Grh", params = small_text_params, fontface = "bold",
-  x = (ref_x + 1.71875), y = (ref_y), just = c("center"), default.units = "cm"
+  x = (ref_x + 1.68), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "Twi", params = small_text_params, fontface = "bold",
-  x = (ref_x + 2.73125), y = (ref_y), just = c("center"), default.units = "cm"
+  x = (ref_x + 2.71), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "H3K27ac", params = small_text_params, fontface = "bold",
-  x = (ref_x + 3.74375), y = (ref_y), just = c("center"), default.units = "cm"
+  x = (ref_x + 3.74), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "CBP", params = small_text_params, fontface = "bold",
-  x = (ref_x + 4.75625), y = (ref_y), just = c("center"), default.units = "cm"
+  x = (ref_x + 4.77), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "H3K4me1", params = small_text_params, fontface = "bold",
-  x = (ref_x + 5.76875), y = (ref_y), just = c("center"), default.units = "cm"
+  x = (ref_x + 5.80), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "H3K4me3", params = small_text_params, fontface = "bold",
-  x = (ref_x + 6.78125), y = (ref_y), just = c("center"), default.units = "cm"
+  x = (ref_x + 6.83), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "H2AV", params = small_text_params, fontface = "bold",
-  x = (ref_x + 7.79375), y = (ref_y), just = c("center"), default.units = "cm"
+  x = (ref_x + 7.86), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 # Panel C ======================================================================
