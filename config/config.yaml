@@ -282,7 +282,6 @@ annotate_ChIP_classes:
 
 annotate_motif_classes:
   zld:
-    motif: "CAGGTA"
     ChIP_peaks: results/ChIP_peak_classes_filtered/zld_ChIP_classes.bed
     class_I_peaks: results/ChIP_peak_classes_filtered/zld_class_I.bed
     class_II_peaks: results/ChIP_peak_classes_filtered/zld_class_II.bed
@@ -290,9 +289,8 @@ annotate_motif_classes:
     motif_instances: results/motif_instances/zld_motifs.bed
     other_tissue:
       - published_ChIPseq/results/peaks/individual/narrow/embryo-nc14_aZld_peaks.narrowPeak
-      - ../results/bed_files/peaks/brain_aZld.bed
+      - ../S2_pioneers/results/bed_files/peaks/brain_aZld.bed
   grh:
-    motif: "AACNRGTT"
     ChIP_peaks: results/ChIP_peak_classes_filtered/grh_ChIP_classes.bed
     class_I_peaks: results/ChIP_peak_classes_filtered/grh_class_I.bed
     class_II_peaks: results/ChIP_peak_classes_filtered/grh_class_II.bed
@@ -305,7 +303,6 @@ annotate_motif_classes:
       - published_ChIPseq/results/peaks/individual/narrow/embryo-15-16H_aGrh_peaks.narrowPeak
       - published_ChIPseq/results/peaks/individual/narrow/wing-disc_aGrh_peaks.narrowPeak
   twi:
-    motif: "CABVTG"
     ChIP_peaks: results/ChIP_peak_classes_filtered/twi_ChIP_classes.bed
     ChIP_classes: results/ChIP_peak_classes_filtered/twi_ChIP_classes.tsv
     class_I_peaks: results/ChIP_peak_classes_filtered/twi_class_I.bed
@@ -385,4 +382,4 @@ bichrom_input:
     - published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_H3_IP.bw
     - published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aCTCF.bw
     - published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aCP190_IP.bw
-    - ../data/published_datasets/Chereji_2019/GSE128689_RAW/GSM3934479_S2_exp2_seq1_40min.bw
+    - data/published_datasets/Chereji_2019/GSE128689_RAW/GSM3934479_S2_exp2_seq1_40min.bw

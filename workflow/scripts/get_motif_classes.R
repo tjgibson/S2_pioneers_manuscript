@@ -4,7 +4,7 @@ suppressPackageStartupMessages(library(GenomicRanges))
 suppressPackageStartupMessages(library(rtracklayer))
 suppressPackageStartupMessages(library(BSgenome.Dmelanogaster.UCSC.dm6))
 
-source("../../useful_functions/peak_processing.R")
+source("workflow/scripts/utils.R")
 
 
 # define input files ===========================================================

@@ -28,7 +28,7 @@ output: html_document
 ## Reagents
 
 | Reagent                            | Source/vendor            | Catalog/accession \# |
-|------------------------------------|--------------------------|----------------------|
+|------------------------------|-----------------------|-------------------|
 | pMT-puro                           | AddGene                  | 17923                |
 | Gibson Cloning                     | New England Biolabs      | E2611                |
 | Schneider's Medium                 | Thermo Fisher Scientific | 21720001             |
@@ -104,6 +104,8 @@ Proteins were separated on denaturing polyacramide gels before transfer to a 0.4
 
 **Figure 1: Ectopic pioneer factors open chromatin and activate transcription.**
 
+**Extended data Figure 1: Generation of stable cell lines.**
+
 **Figure 2: Twist binds closed chromatin extensively and drives accessibility at a limited number of sites.**
 
 **Figure 3: Motif content shapes pioneer-factor activity**
@@ -115,3 +117,27 @@ Proteins were separated on denaturing polyacramide gels before transfer to a 0.4
 **Figure 6: Regions outside the DNA-binding domain are required for pioneer-factor function.**
 
 **Figure 7: Pioneer-factor function requires stable chromatin occupancy.**
+
+**Information to include in supplemental figures:**
+
+-   Schematic of stable cell line generation.
+
+-   Cell line validation by RNA-seq
+
+-   Verification of protein expression.
+
+-   Determination of physiological protein levels.
+
+-   QC for genomics datasets: e.g. PCA, replicate correlation, example genome browsers of individual replicates.
+
+-   Antibody controls: IgG, IPs in WT cells, etc.
+
+-   CUT&RUN time course for Zld and Grh?
+
+-   De novo motif results
+
+-   Analysis of promoter motifs
+
+-   GO analysis for RNA-seq data
+
+-   
