@@ -118,7 +118,7 @@ def get_meme_motif_index(wildcards):
 	motif_index = {
 	"embryo-nc14_aZld": 3,
 	"embryo-15-16H_aGrh": 3,
-	"embryo-1-3H_aTwi": 8
+	"embryo-1-3H_aTwi": 5
 	}
 	
 	return motif_index[wildcards.sample]
