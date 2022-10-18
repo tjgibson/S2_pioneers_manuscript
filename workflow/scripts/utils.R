@@ -131,3 +131,13 @@ is_palindrome <- function(x) {
   require(Biostrings)
   return(ifelse(x == reverseComplement(x), TRUE, FALSE) )
 }
+
+# function to get range for browser tracks -------------------------------------
+signal_range <- function(x, extra = 0.05) {
+  min <- floor(min(x))
+  max <- ceiling(max(x))
+  range <- max - min
+  margin <- range * extra
+  output <- c(min - margin, max + margin)
+  return(output)
+}
