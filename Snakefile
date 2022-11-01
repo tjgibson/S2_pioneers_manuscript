@@ -303,6 +303,9 @@ rule annotate_motif_classes:
 # run bichrom
 include: "bichrom/workflow/rules/bichrom.smk"
 
+# run BPnet
+include: "BPnet/workflow/rules/BPnet.smk"
+
 # module process_CUTandRUN:
 #     snakefile:
 #         "https://github.com/tjgibson/NGS-workflow-chipseq/raw/main/workflow/Snakefile"

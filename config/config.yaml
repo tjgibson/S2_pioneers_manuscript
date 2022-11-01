@@ -383,3 +383,45 @@ bichrom_input:
     - published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aCTCF.bw
     - published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aCP190_IP.bw
     - data/published_datasets/Chereji_2019/GSE128689_RAW/GSM3934479_S2_exp2_seq1_40min.bw
+    
+BPnet_input:
+  zld:
+    ChIP_peaks: results/ChiP_peak_classes/zld_class_II_and_III.bed
+    IP: 
+      bam: ChIPseq/results/aligned_reads/merged/S2-Zld_aZld_IP.bam
+      bai: ChIPseq/results/aligned_reads/merged/S2-Zld_aZld_IP.bam.bai
+    input: 
+      bam: ChIPseq/results/aligned_reads/merged/S2-Zld_aZld_input.bam
+      bai: ChIPseq/results/aligned_reads/merged/S2-Zld_aZld_input.bam.bai     
+  grh:
+    ChIP_peaks: results/ChiP_peak_classes/grh_class_II_and_III.bed
+    IP: 
+      bam: ChIPseq/results/aligned_reads/merged/S2-Grh_aGrh_IP.bam
+      bai: ChIPseq/results/aligned_reads/merged/S2-Grh_aGrh_IP.bam.bai
+    input: 
+      bam: ChIPseq/results/aligned_reads/merged/S2-Grh_aGrh_input.bam
+      bai: ChIPseq/results/aligned_reads/merged/S2-Grh_aGrh_input.bam.bai
+  twi:
+    ChIP_peaks: results/ChiP_peak_classes/twi_class_II_and_III.bed
+    IP: 
+      bam: ChIPseq/results/aligned_reads/merged/S2-Twi_aTwi_IP.bam
+      bai: ChIPseq/results/aligned_reads/merged/S2-Twi_aTwi_IP.bam.bai
+    input: 
+      bam: ChIPseq/results/aligned_reads/merged/S2-Twi_aTwi_input.bam
+      bai: ChIPseq/results/aligned_reads/merged/S2-Twi_aTwi_input.bam.bai
+  zld_brain:
+    ChIP_peaks: ../S2_pioneers/results/bed_files/peaks/brain_aZld.bed
+    IP: 
+      bam: published_ChIPseq/results/aligned_reads/merged/brain_aZld.bam
+      bai: published_ChIPseq/results/aligned_reads/merged/brain_aZld.bam.bai
+    input: 
+      bam: published_ChIPseq/results/aligned_reads/merged/brain_input.bam
+      bai: published_ChIPseq/results/aligned_reads/merged/brain_input.bam.bai
+  grh_embryo:
+    ChIP_peaks: published_ChIPseq/results/peaks/merged/narrow/embryo-15-16H_aGrh_peaks.narrowPeak
+    IP: 
+      bam: published_ChIPseq/results/aligned_reads/merged/embryo-15-16H_aGrh.bam
+      bai: published_ChIPseq/results/aligned_reads/merged/embryo-15-16H_aGrh.bam.bai
+    input: 
+      bam: published_ChIPseq/results/aligned_reads/merged/embryo-15-16H_input.bam
+      bai: published_ChIPseq/results/aligned_reads/merged/embryo-15-16H_input.bam.bai
