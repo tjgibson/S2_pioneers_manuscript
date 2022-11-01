@@ -194,3 +194,4 @@ brain_input_rep2	SRR11818935			SRR11818935	SE	FALSE			brain_input	GSE150931		Har
 embryo-1-3H_aTwi_rep1	SRR086221			SRR086221	SE	TRUE	embryo-1-3H_input	narrow	embryo-1-3H_aTwi			Stathopoulos	
 embryo-1-3H_aTwi_rep2	SRR086222			SRR086222	SE	TRUE	embryo-1-3H_input	narrow	embryo-1-3H_aTwi			Stathopoulos	
 embryo-1-3H_input	SRR086223			SRR086223	SE	FALSE		narrow	embryo-1-3H_input			Stathopoulos	
+embryo-2-4H	SRR4014594			SRR4014594		TRUE		narrow		GSE55306		Zeitlinger	GSM1430016
