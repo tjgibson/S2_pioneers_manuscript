@@ -110,7 +110,7 @@ For each ChIP experiment, \~50 million cells were crosslinked by adding methanol
 
 **Figure 1: Ectopic pioneer factors open chromatin and activate transcription.**
 
-**Extended data Figure 1: Generation of stable cell lines.**
+**Extended data Figure 1: Stable cell lines allow inducible expression of transcription factors at physiological concentrations.**
 
 **Figure 2: Twist binds closed chromatin extensively and drives accessibility at a limited number of sites.**
 
