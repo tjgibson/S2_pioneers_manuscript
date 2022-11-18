@@ -1,0 +1,242 @@
+---
+title: "Defining properties regulating pioneer-factor binding and function"
+format: html
+editor: visual
+bibliography: references.bib
+---
+
+# Abstract
+
+# Introduction
+
+# Results
+
+## Ectopically expressed pioneer factors bind and open closed chromatin
+
+-   Gain of function system is necessary to understand mechanisms of PF activity
+
+-   Establish system for ectopic expression of pioneer factors
+
+-   Identification of physiological expression levels
+
+-   Define binding classes I-III and describe characteristics (distribution, promoters/enhancers, etc.)
+
+-   Time course and dynamics of binding to different classes (supplement)
+
+To investigate the mechanisms of chromatin binding and opening by pioneer factors, we generated stable cell lines inducibly expressing Zelda (Zld) and Grainy head (Grh) in Drosophila S2 cells (Extended Data Fig. XX), where neither factor is endogenously expressed. We validated our wild-type (WT) S2 cells by performing RNA-seq and verifying the expression of known S2 cell markers (Extended Data Fig. 1b) [@Cherbas2011]. We confirmed that Zld and Grh RNA (Extended Data Fig. XX) and protein (Extended Data Fig. XX) were not present in WT S2 cells. The stable cell lines express Zld or Grh under the control of the metallothionein promoter, which allows inducible and tunable expression with the addition of CuSO~4.~ To determine protein levels that would be approximately physiological, we compared Zld or Grh levels in cells with varying concentrations of CuSO~4~ to the levels of endogenous expression found in Drosophila embryos (Extended Data Fig. XX). Physiological protein levels were achieved at 1000 mM or 100 mM CuSO~4~ for Zld or Grh, respectively.
+
+To determine how exogenous Zld and Grh interact with preexisting chromatin in S2 cells, we expressed each factor at physiological levels and determined genome-wide binding sites using chromatin immunoprecipitation coupled with sequencing (ChIP-seq). We identified XXXX peaks for Zld and XXXX for Grh.
+
+## Chromatin opening correlates with transcriptional activation
+
+-   Description of RNA-seq data: number of differential genes, overlap with ChIP data, GO analysis.
+
+-   Comparison of RNA-seq and ATAC data: chromatin opening correlates with transcriptional activation.
+
+-   Class III promoters are most likely to be associated with upregulated genes
+
+## Twist binds closed chromatin extensively and opens chromatin at a subset of sites
+
+-   Introduce Twist and justify the comparison to Zld/Grh.
+
+-   Twi binds closed chromatin and opens at some sites
+
+-   Class I-III sites, distribution, etc.
+
+-   Twi also promotes transcriptional activation.
+
+-   Description of RNA-seq data: number of differential genes, overlap with ChIP data, GO analysis.
+
+-   Comparison of RNA-seq and ATAC
+
+## Ectopically expressed transcription factors bind opportunistically to active chromatin
+
+-   Overlap of class I regions suggests nonspecific binding
+
+-   Analysis of published ChIP data shows that class I regions are within active chromatin
+
+-   RNA-seq and ATAC-seq for class I to show that the binding is not functional
+
+## Class II and III regions are mostly in naïve chromatin
+
+-   Analysis of chromatin at class II-III regions: mostly devoid of histone modifications
+
+-   Class III regions have higher H3 and H1 occupancy compared to class II
+
+## Chromatin opening by pioneer factors is driven by motif content
+
+-   De novo motif enrichment for ChIP peaks (supplemental)
+
+-   Motif analysis: percent with motif, average n motifs, motif quality
+
+-   Motif positioning around nucleosomes? (supplemental)
+
+## Ectopic Zld, Grh and Twi fail to access many endogenous binding sites
+
+-   Zelda binding is more similar to the brain than the embryo
+
+-   Grh binding is stable across tissues
+
+-   Twi sites in S2 cells have low level binding in embryo, but strongest peaks from embryo are not bound
+
+## Repressive chromatin is a barrier to pioneer-factor binding
+
+-   Enrichment of repressive marks at sites bound in other tissues
+
+-   Results of Taz experiments (TBD)
+
+-   Comment on sites that are not bound and lack repressive chromatin.
+
+## Pioneer-factor binding and chromatin opening is concentration dependent
+
+-   For all three factors, increased concentration results in increased binding and opening of class II and III sites.
+
+-   For all three factors, increased concentration leads to novel binding sites.
+
+-   For Zld and Twi, increased concentration is insufficient to allow binding to repressed sites.
+
+-   For Grh, increased concentration does allow binding and opening at repressed sites
+
+## Regions outside the DNA-binding domain are required for binding and opening of closed chromatin
+
+-   Generation of stable cell lines to express DBDs at same concentration as FL proteins
+
+-   Zld DBD is totally unable to bind to closed sites.
+
+-   In supplement, show Zld DBD binding specifically at class II and III sites with CAGGTAG to support that this is not due to a loss of ZnF2
+
+-   Grh DBD has reduced ability to access closed chromatin
+
+-   Neither DBD is sufficient for chromatin opening.
+
+# Discussion
+
+# Materials and Methods
+
+## Reagents
+
+| Reagent                               | Source/vendor             | Catalog/accession \# | Notes                   |
+|-------------------|------------------|------------------|------------------|
+| pMT-puro                              | AddGene                   | 17923                |                         |
+| Gibson Cloning                        | New England Biolabs       | E2611                |                         |
+| Schneider's Medium                    | Thermo Fisher Scientific  | 21720001             |                         |
+| Fetal Bovine Serum                    | Omega Scientific          | FB-02                |                         |
+| Antibiotic/antimycotic                | Thermo Fisher Scientific  | 15240062             |                         |
+| Effectene Transfection Reagent        | Qiagen                    | 301427               |                         |
+| PVDF Membrane                         |                           |                      |                         |
+| Formaldehyde                          |                           |                      |                         |
+| Protease inhibitor tablets            |                           |                      |                         |
+| NEBNext Ultra II DNA library prep kit |                           |                      |                         |
+| TruSeq v2 RNA library prep kit        |                           |                      |                         |
+| Trizol                                |                           |                      |                         |
+| **Antibodies**                        |                           |                      |                         |
+| Anti-Zld                              | Harrison et al., 2010     |                      | ChIP: 6 µL , WB: 1:750  |
+| Anti-Grh                              | Harrison et al., 2010     |                      | ChIP: 8 µL, WB: 1:1000  |
+| Anti-Twi                              | He et al., 2015           |                      | ChIP: 10 µg, WB: 1:1000 |
+| Anti-HA-peroxidase clone 3F10         | Roche                     | 12013819001          | WB: 1:500               |
+| Anti-Tubulin DM1A                     | Sigma                     | T6199-200UL          | WB: 1:5000              |
+| goat anti-rabbit IgG-HRP conjugate    | Bio-Rad                   | 1706515              | WB: 1:3000              |
+| Anti-HA clone 12CA5                   | Roche                     |                      | ChIP: 7.5 µL            |
+| Anti-H3K27me3                         | Cell Signaling Technology |                      | WB:, CR:                |
+|                                       |                           |                      |                         |
+|                                       |                           |                      |                         |
+
+## Cloning
+
+*zld*, *grh*, or *twi* cDNA (isoforms RB, RH, and RA, respectively) were cloned into pMT-puro plasmid (Addgene) via Gibson cloning (New England Biolabs). For cloning of the Zld and Grh DNA-binding domains, DNA encoding amino acids 1114-1487 (Zld) or amino acids 603-1032 (Grh) was cloned into pMT-puro.
+
+-   **TG2A- Zld RB**
+
+-   **TG3A- Grh PH**
+
+-   **TG4A**
+
+-   **TG6A**
+
+-   **TG8A**
+
+-   **MF8A**
+
+-   GFP-DBD lines
+
+## Cell culture and generation of stable cell lines
+
+Drosophila S2 cells were cultured at 27°C in Schneider's medium (Thermo Fisher Scientific) supplemented with 10% fetal bovine serum (Omega Scientific) and antibiotic/antimycotic (Thermo Fisher Scientific). For the generation of stable cell lines, cells were plated at 5✕10^5^ cells per mL. After 24 hours, cells were transfected with 10 µg plasmid DNA using Effectene transfection reagent (Qiagen). After an additional 24 hours, puromycin was added to a final concentration of 2 µg/mL. Stable cell lines were recovered after 2-3 weeks of selection. Following recovery of stable cell lines, cells were cultured with 1 µg/mL puromycin.
+
+## Induction of transcription factor expression
+
+Transcription factor expression was induced by adding CuSO~4~ to the cell culture media. Expression of protein at physiological levels was achieved with 1000, 100, or 40 µM CuSO~4~ for Zld, Grh or Twi, respectively (Supplemental figure X). For experiments with sub- or supraphysiological protein levels (Fig. 5), the following CuSO~4~ concentrations were used: 500 µM (Zld subphysiological), 1000 µM (Zld physiological) or 1500 µM (Zld supraphysiological); 25 µM (Grh subphysiological), 100 µM (Grh physiological) or 400 µM (Grh supraphysiological); 10 µM (Twi subphysiological), 40 µM (Twi physiological) or 160 µM (Twi supraphysiological). For all induction experiments, cells were plated at 1×10^6^ cells per mL. Unless otherwise specified, experiments were performed with cells harvested 48 hours after induction.
+
+## Immunoblotting
+
+Proteins were separated on denaturing polyacramide gels before transfer to a 0.45 μm Immobilon-P PVDF membrane (Millipore) in transfer buffer (25 mM Tris, 200 mM Glycine, 20% methanol) for 60 min (75 min for Zld) at 500mA at 4°C. The membranes were blocked with BLOTTO (2.5% non-fat dry milk, 0.5% BSA, 0.5% NP-40, in TBST) for 30 min at room temperature and then incubated with anti-Zld (1:750) (Harrison et al., 2010), anti-Grh (1:1000) (Harrison et al., 2010), anti-Twi (1:1000) (He et al. 2015), anti-HA-peroxidase (1:500) (clone 3F10, Roche), or anti-Tubulin (DM1A, 1:5000) (Sigma), overnight at 4°C. The secondary incubation was performed with goat anti-rabbit IgG-HRP conjugate (1:3000) (Bio-Rad) for 1 hr at room temperature. Blots were treated with SuperSignal West Pico PLUS chemiluminescent substrate (Thermo Fisher Scientific) and visualized using the Azure Biosystems c600 or Kodak/Carestream BioMax Film (VWR).
+
+## Immunostaining
+
+## ChIP-seq
+
+For each ChIP experiment, \~50 million cells were crosslinked by adding methanol-free formaldehyde directly to the cell culture medium to a final concentration of 0.8%. Cells were rotated on a nutator for 7 minutes at room temperature (RT) before quenching of crosslinking by adding glycine to 125 mM. Crosslinked cells were pelleted by centrifugation at 600 × *g* for 3 minutes. Cells were washed twice with 1X PBS. Cells were lysed by resuspending in lysis buffer (50 mM HEPES pH 7.9, 140 mM NaCl, 1 mM EDTA, 10% glycerol, 0.5% NP40, 0.25% Triton-X 100) with protease inhibitors (Pierce) and incubating on ice for 10 minutes. The resulting chromatin was pelleted for 5 minutes at 1500 × *g* and resuspended in RIPA buffer. Chromatin was sonicated in a Covaris S220 Ultrasonicator (5 cycles of 120 seconds with 60 second delay, 170 peak power, 10% duty factor, 200 cycles/burst). Sonicated chromatin was centrifuged for 10 minutes at 10,000 × *g* to pellet insoluble material. 5% of the supernatant was set aside as input, and the remainder was incubated at 4°C overnight with antibodies (6 µL anti-Zld, 8 µL anti-Grh, 10 µg anti-Twi, 7.5 µL anti-HA). 20 µL protein A beads (Dynabeads Protein A, ThermoFisher Scientific) blocked with BSA were added and samples were incubated at 4°C for 4 hours. Beads were separated on a magnet and washed 3× with low salt wash buffer (10 mM Tris pH 7.6, 1 mM EDTA, 0.1% SDS, 0.1% Na-Deoxycholate, 1% Triton-X 100, 150 mM NaCl), 2× high salt wash buffer (10 mM Tris pH 7.6, 1 mM EDTA, 0.1% SDS, 0.1% sodium deoxycholate, 1% Triton-X 100, 300 mM NaC), 2× LiCl wash buffer (0.25 M LiCl, 0.5% NP40, 0.5% sodium deoxycholate), and 1× with TE buffer with NaCl (10 mM Tris-HCl pH 8.0, 1 mM EDTA, 50 mM NaCl). Beads were resuspended in elution buffer (50 mM Tris-HCl pH 8.0, 1% SDS, 10 mM EDTA) and incubated at 65°C for 10 minutes. The IP and input samples were treated with 4.5 µL RNAse A for 30 minutes. 5 µL Proteinase K was added and samples were incubated overnight at 65°C to reverse crosslinking. DNA was isolated by phenol:chloroform extraction, precipitated with EtOH, and resuspended in 20 µL H~2~O.Preparation of sequencing libraries was performed using NEBNext Ultra II kit (NEB) with 7 PCR cycles for library amplification. Sequencing was performed on the Illumina Hi-Seq4000 using 50bp single-end reads, or on the Illumina NovaSeq 6000 using 150bp paired-end reads.
+
+## ChIP-seq analysis
+
+## RNA-seq
+
+5×10^6^ cells were harvested and resuspended in 800 µL Trizol (Invitrogen). RNA was purified using a chloroform extraction followed by a column-based Quick-RNA MiniPrep extraction (Zymo). Poly-A-selected RNA sequencing (RNA-seq) libraries were prepared using the TruSeq RNA sample prep kit v2 (Illumina).
+
+## RNA-seq analysis
+
+## ATAC-seq
+
+## ATAC-seq analysis
+
+## CUT&RUN
+
+## CUT&RUN analysis
+
+## Treatment of S2 cells with Tazemetostat
+
+## Analysis of previously published data
+
+## Data and code availability
+
+# Figure Legends
+
+**Figure 1: Ectopic pioneer factors open chromatin and activate transcription.**
+
+**Figure 2: Twist binds closed chromatin extensively and drives accessibility at a limited number of sites.**
+
+**Figure 3: Motif content shapes pioneer-factor activity**
+
+**Figure 4: H3K27me3 and H3K9me3 are barriers to pioneer-factor binding.**
+
+**Figure 5: Binding and opening of closed chromatin is concentration dependent.**
+
+**Figure 6: Regions outside the DNA-binding domain are required for pioneer-factor function.**
+
+**Figure 7: Pioneer-factor function requires stable chromatin occupancy.**
+
+**Extended data Figure 1: Stable cell lines allow inducible expression of transcription factors at physiological concentrations.**
+
+**Information to include in supplemental figures:**
+
+-   Schematic of stable cell line generation.
+
+-   Cell line validation by RNA-seq
+
+-   Verification of protein expression.
+
+-   Determination of physiological protein levels.
+
+-   QC for genomics datasets: e.g. PCA, replicate correlation, example genome browsers of individual replicates.
+
+-   Antibody controls: IgG, IPs in WT cells, etc.
+
+-   CUT&RUN time course for Zld and Grh?
+
+-   De novo motif results
+
+-   Analysis of promoter motifs
+
+-   GO analysis for RNA-seq data
+
+-   
