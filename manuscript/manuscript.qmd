@@ -3,6 +3,7 @@ title: "Defining properties regulating pioneer-factor binding and function"
 format: html
 editor: visual
 bibliography: references.bib
+#csl: nature.csl
 ---
 
 # Abstract
