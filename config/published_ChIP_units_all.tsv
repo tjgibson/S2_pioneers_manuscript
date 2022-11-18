@@ -187,11 +187,11 @@ embryo-11-12H_input	SRR3661303			SRR3661303	SE	FALSE		narrow	embryo-11-12H_input
 embryo-15-16H_input	SRR3661304			SRR3661304	SE	FALSE		narrow	embryo-15-16H_input	GSE83305		Harrison	GSM2199208
 wing-disc_aGrh	SRR5244306			SRR5244306	SE	TRUE	wing-disc_input	narrow	wing-disc_aGrh	GSE83305		Harrison	GSM2482850
 wing-disc_input	SRR5244308			SRR5244308	SE	FALSE		narrow	wing-disc_input	GSE83305		Harrison	GSM2482913
-brain_aZld_rep1	SRR11818934			SRR11818934	SE	TRUE	brain_input_rep1	narrow	brain_aZld	GSE150931		Harrison	GSM4561505
-brain_aZld_rep2	SRR11818936			SRR11818936	SE	TRUE	brain_input_rep2	narrow	brain_aZld	GSE150931		Harrison	GSM4561507
+brain_aZld_rep1	SRR11818934			SRR11818934	SE	FALSE	brain_input_rep1	narrow	brain_aZld	GSE150931		Harrison	GSM4561505
+brain_aZld_rep2	SRR11818936			SRR11818936	SE	FALSE	brain_input_rep2	narrow	brain_aZld	GSE150931		Harrison	GSM4561507
 brain_input_rep1	SRR11818933			SRR11818933	SE	FALSE			brain_input	GSE150931		Harrison	GSM4561504
 brain_input_rep2	SRR11818935			SRR11818935	SE	FALSE			brain_input	GSE150931		Harrison	GSM4561506
 embryo-1-3H_aTwi_rep1	SRR086221			SRR086221	SE	TRUE	embryo-1-3H_input	narrow	embryo-1-3H_aTwi			Stathopoulos	
 embryo-1-3H_aTwi_rep2	SRR086222			SRR086222	SE	TRUE	embryo-1-3H_input	narrow	embryo-1-3H_aTwi			Stathopoulos	
 embryo-1-3H_input	SRR086223			SRR086223	SE	FALSE		narrow	embryo-1-3H_input			Stathopoulos	
-embryo-2-4H	SRR4014594			SRR4014594		TRUE		narrow		GSE55306		Zeitlinger	GSM1430016
+embryo-2-4H_aTwi	SRR4014594			SRR4014594	SE	TRUE		narrow	embryo-2-4H_aTwi	GSE55306		Zeitlinger	GSM1430016

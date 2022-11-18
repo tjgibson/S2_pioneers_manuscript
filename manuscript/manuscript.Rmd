@@ -11,15 +11,67 @@ output: html_document
 
 # Results
 
-## Ectopic pioneer factors bind and open closed chromatin
+## Ectopically expressed pioneer factors bind and open closed chromatin
+
+-   Gain of function system is necessary to understand mechanisms of PF activity
+
+-   Establish system for ectopic expression of pioneer factors
+
+-   Identification of physiological expression levels
+
+-   Define binding classes I-III and describe characteristics (distribution, promoters/enhancers, etc.)
 
 ## Chromatin opening correlates with transcriptional activation
 
-## Twist binds closed chromatin extensively and opens chromatin at some sites
+-   Description of RNA-seq data: number of differential genes, overlap with ChIP data, GO analysis.
 
-## Motif content distinguishes chromatin opening by Twist from Zelda and Grainy head
+-   Comparison of RNA-seq and ATAC data: chromatin opening correlates with transcriptional activation.
 
-## Ectopic transcription factors bind nonspecifically to active chromatin
+-   Class III promoters are most likely to be associated with upregulated genes
+
+## Twist binds closed chromatin extensively and opens chromatin at a subset of sites
+
+-   Introduce Twist and justify the comparison to Zld/Grh.
+
+-   Twi binds closed chromatin and opens at some sites
+
+-   Class I-III sites, distribution, etc.
+
+-   Twi also promotes transcriptional activation.
+
+-   Description of RNA-seq data: number of differential genes, overlap with ChIP data, GO analysis.
+
+-   Comparison of RNA-seq and ATAC
+
+## Ectopically expressed transcription factors bind opportunistically to active chromatin
+
+-   Overlap of class I regions suggests nonspecific binding
+
+-   Analysis of published ChIP data shows that class I regions are within active chromatin
+
+-   RNA-seq and ATAC-seq for class I to show that the binding is not functional
+
+## Class II and III regions are mostly in naïve chromatin
+
+-   Analysis of chromatin at class II-III regions: mostly devoid of histone modifications
+
+-   Class III regions have higher H3 and H1 occupancy compared to class II
+
+-   Class II and III have poorly positioned nucleosomes
+
+## Chromatin opening by pioneer factors is driven by motif content
+
+-   De novo motif enrichment for ChIP peaks (supplemental)
+
+-   Motif analysis
+
+## Ectopic Zld, Grh and Twi fail to access many endogenous binding sites
+
+## Repressive chromatin is a barrier to pioneer-factor binding
+
+## Pioneer-factor binding and chromatin opening is concentration dependent
+
+## Regions outside the DNA-binding domain are required for binding and opening of closed chromatin
 
 # Discussion
 
