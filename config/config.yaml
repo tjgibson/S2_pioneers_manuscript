@@ -1,3 +1,10 @@
+##########################################################################################
+##########################################################################################
+###                                                                                    ###
+###             ChIP-seq analysis configuration                                        ###
+###                                                                                    ###
+##########################################################################################
+##########################################################################################
 ChIPseq:
   # path or URL to sample sheet (TSV format, columns: sample, condition, ...)
 #  samples: config/samples.tsv
@@ -73,7 +80,14 @@ published_ChIPseq:
     filter_peaks_by_replicates:
       min_overlap: 10
       replicate_threshold: 2
-  
+ 
+##########################################################################################
+##########################################################################################
+###                                                                                    ###
+###              RNA-seq analysis configuration                                        ###
+###                                                                                    ###
+##########################################################################################
+########################################################################################## 
 
 RNAseq:
   # path or URL to sample sheet (TSV format, columns: sample, condition, ...)
@@ -146,6 +160,14 @@ RNAseq:
     filter_multireads: "-f bam -F '(mapping_quality >= 30) and ([XS] == null)'" 
     bigwigs_ind: "--binSize 10"
     bigwigs_merged: "--binSize 10"
+
+##########################################################################################
+##########################################################################################
+###                                                                                    ###
+###             ATAC-seq analysis configuration                                        ###
+###                                                                                    ###
+##########################################################################################
+##########################################################################################
 
 ATACseq:
   # path or URL to sample sheet (TSV format, columns: sample, condition, ...)
@@ -256,7 +278,69 @@ ATACseq:
     bigwigs_merged: "--binSize 10"
     macs2_call_atac_peaks_ind: "-f BAMPE --keep-dup all -g dm --call-summits"
     macs2_call_atac_peaks_merged: "-f BAMPE --keep-dup all -g dm --call-summits"
-    
+
+##########################################################################################
+##########################################################################################
+###                                                                                    ###
+###              CUT&RUN analysis configuration                                        ###
+###                                                                                    ###
+##########################################################################################
+##########################################################################################
+CUTandRUN:
+  # path or URL to sample sheet (TSV format, columns: sample, condition, ...)
+  #samples: config/samples.tsv
+  # path or URL to sequencing unit sheet (TSV format, columns: sample, unit, fq1, fq2)
+  # Units are technical replicates (e.g. lanes, or resequencing of the same biological
+  # sample).
+  units: config/CR_units.tsv
+
+  # optional inclusion of certain rules -------------------------------------------------------
+  mergeReads:
+    activate: False
+
+  # text file containing list of chromosomes to keep when filtering ---------------------------
+  filter_chroms: True
+  keep_chroms: config/keep_chroms.txt
+
+  # reference genome options ------------------------------------------------------------------
+  ref_genome:
+    name: dm6
+    link: https://hgdownload.soe.ucsc.edu/goldenPath/dm6/bigZips/dm6.fa.gz
+
+  # spike-in genome options ------------------------------------------------------------------
+  use_spikeIn: False
+  epiCypher_spikeIn: False
+
+  spikeIn_genome:
+    name: yeast_w303
+    link: http://sgd-archive.yeastgenome.org/sequence/strains/W303/W303_SGD_2015_JRIU00000000/W303_SGD_2015_JRIU00000000.fsa.gz
+
+
+
+
+  # changes to rule paramters ---------------------------------------------------------------
+  params:
+    bowtie2_index: ""
+    bowtie2_align: "-k 2 --very-sensitive --no-mixed --no-discordant -X 5000"
+    filter_multireads: "-f bam -F '(mapping_quality >= 30) and ([XS] == null)'" 
+    bigwigs_ind: "--binSize 10"
+    bigwigs_merged: "--binSize 10"
+    macs2_call_peaks_narrow: "-f BAMPE --keep-dup all -g dm --call-summits"
+    macs2_call_peaks_broad: "-f BAMPE --keep-dup all -g dm"
+    bigwigs_ind: "--binSize 10"
+    bigwigs_merged: "--binSize 10"
+    filter_peaks_by_replicates:
+      min_overlap: 10
+      replicate_threshold: 2
+
+   
+##########################################################################################
+##########################################################################################
+###                                                                                    ###
+###             config for additional analysis                                         ###
+###                                                                                    ###
+##########################################################################################
+########################################################################################## 
 annotate_ChIP_classes:
   zld:
     ChIP_peaks: ChIPseq/results/peaks/final/S2-Zld_aZld_IP.narrowPeak

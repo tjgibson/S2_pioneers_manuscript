@@ -173,6 +173,14 @@ rule filter_ATAC_results:
 	script:
 		"workflow/scripts/filter_ATAC_results.R"
 
+# process CUT&RUN data
+module CUTandRUN:
+	snakefile: "https://github.com/tjgibson/NGS-workflow-CUTandRUN/raw/master/workflow/Snakefile"
+# 	snakefile: "../NGS_workflows/NGS-workflow-CUTandRUN/workflow/Snakefile"
+	config: config["CUTandRUN"]
+	prefix: "CUTandRUN"
+use rule * from CUTandRUN as CUTandRUN_*
+
 # Annotate ChIP classes
 # - Use output of above modules to annotate ChIP peaks as class I, II, or III
 # - Annotate with additional information 
@@ -415,6 +423,7 @@ rule all:
         rules.published_ChIPseq_all.input,
         rules.RNAseq_all.input,
         rules.ATACseq_all.input,
+        rules.CUTandRUN_all.input,
         "manuscript/figures/fig1.pdf",
         "manuscript/figures/fig2.pdf",
         "manuscript/figures/fig3.pdf",
