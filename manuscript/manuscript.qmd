@@ -259,6 +259,8 @@ normalization of bigwigs
 
 ## RNA-seq analysis
 
+Raw reads were aligned to the Drosophila melanogaster (dm6) genome using HISAT2 version 2.1.0 with parameters -k 2 --very-sensitive. Reads with a mapping quality score \< 30 and reads aligning to the mitochondrial genome or unplaced scaffolds were discarded. FeatureCounts (from Subread version 2.0) was used to assign aligned reads to genes (FlyBase gene annotation release r6.45). The resultant table of read counts was used to perform differential expression analysis using DESeq2 [@love2014]. Genes with an adjusted p-value \< 0.05 and a fold change \> 2 were considered differentially expressed.
+
 ## ATAC-seq
 
 ## ATAC-seq analysis
@@ -267,7 +269,7 @@ normalization of bigwigs
 
 ## CUT&RUN analysis
 
-## Treatment of S2 cells with Tazemetostat
+## Treatment of S2 cells with tazemetostat
 
 ## Analysis of previously published data
 
