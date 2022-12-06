@@ -90,13 +90,14 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="ectopically-expressed-pioneer-factors-bind-and-open-closed-chromatin">Ectopically expressed pioneer factors bind and open closed chromatin</h2>
 <ul>
 <li><p>Gain of function system is necessary to understand mechanisms of PF activity</p></li>
-<li><p>Establish system for ectopic expression of pioneer factors</p></li>
-<li><p>Identification of physiological expression levels</p></li>
+<li><p><del>Establish system for ectopic expression of pioneer factors</del></p></li>
+<li><p><del>Identification of physiological expression levels</del></p></li>
 <li><p>Define binding classes I-III and describe characteristics (distribution, promoters/enhancers, etc.)</p></li>
 <li><p>Time course and dynamics of binding to different classes (supplement)</p></li>
 </ul>
 <p>To investigate the mechanisms of chromatin binding and opening by pioneer factors, we generated stable cell lines inducibly expressing Zelda (Zld) and Grainy head (Grh) in Drosophila S2 cells (Extended Data Fig. XX), where neither factor is endogenously expressed. We validated our wild-type (WT) S2 cells by performing RNA-seq and verifying the expression of known S2 cell markers (Extended Data Fig. 1b) <span class="citation" data-cites="Cherbas2011">(<a href="#ref-Cherbas2011" role="doc-biblioref">Cherbas et al. 2010</a>)</span>. We confirmed that Zld and Grh RNA (Extended Data Fig. XX) and protein (Extended Data Fig. XX) were not present in WT S2 cells. The stable cell lines express Zld or Grh under the control of the metallothionein promoter, which allows inducible and tunable expression with the addition of CuSO<sub>4.</sub> To determine protein levels that would be approximately physiological, we compared Zld or Grh levels in cells with varying concentrations of CuSO<sub>4</sub> to the levels of endogenous expression found in Drosophila embryos (Extended Data Fig. XX). Physiological protein levels were achieved at 1000 mM or 100 mM CuSO<sub>4</sub> for Zld or Grh, respectively.</p>
-<p>To determine how exogenous Zld and Grh interact with preexisting chromatin in S2 cells, we expressed each factor at physiological levels and determined genome-wide binding sites using chromatin immunoprecipitation coupled with sequencing (ChIP-seq). We identified XXXX peaks for Zld and XXXX for Grh.</p>
+<p>To determine how exogenous Zld and Grh interact with preexisting chromatin in S2 cells, we expressed each factor at physiological levels and determined genome-wide binding sites using chromatin immunoprecipitation coupled with sequencing (ChIP-seq). We identified 14455 peaks for Zld and 13833 for Grh. To control for antibody specificity, we performed additional ChIP experiments in WT cells using IgG, anti-Zld, or anti-Grh (Extended Data Fig. XX). We excluded any peaks that were called in these datasets, ensuring that we analyzed peaks that were detected only upon ectopic expression of Zld or Grh. <!--# Not sure the best way to discuss the control ChIP experiments. Should I mention how many peaks we detect in WT cells? What supplemental figures should I include? Should peak calling be done using IgG or WT cells as control instead of input? --></p>
+<p>Having established that Zld and Grh can bind to thousands of sites in S2 cells, we performed ATAC-seq on WT cells or cells expressing Zld or Grh to determine if these factors bind and open closed chromatin in S2 cells. We performed differential accessibility analysis comparing Zld or Grh-expressing cells to WT cells. We detected XXX differentially accessible (XXX increased, XXX decreased) regions for Zld and XXX for Grh (XXX increased, XXX decreased) (Extended Data Fig. XX).</p>
 </section>
 <section id="chromatin-opening-correlates-with-transcriptional-activation" class="level2">
 <h2 class="anchored" data-anchor-id="chromatin-opening-correlates-with-transcriptional-activation">Chromatin opening correlates with transcriptional activation</h2>
@@ -185,10 +186,10 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="reagents">Reagents</h2>
 <table class="table">
 <colgroup>
-<col style="width: 26%">
-<col style="width: 24%">
-<col style="width: 24%">
-<col style="width: 24%">
+<col style="width: 34%">
+<col style="width: 23%">
+<col style="width: 19%">
+<col style="width: 22%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -323,7 +324,7 @@ div.csl-indent {
 <td>Anti-H3K27me3</td>
 <td>Cell Signaling Technology</td>
 <td></td>
-<td>WB:, CR:</td>
+<td>WB: 1:1000, CR: 0.5 µL</td>
 </tr>
 <tr class="even">
 <td></td>
@@ -374,6 +375,13 @@ div.csl-indent {
 </section>
 <section id="chip-seq-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="chip-seq-analysis">ChIP-seq analysis</h2>
+<p>Bowtie2 version 2.4.4 <span class="citation" data-cites="Langmead2012">(<a href="#ref-Langmead2012" role="doc-biblioref">Langmead and Salzberg 2012</a>)</span> was used to align ChIP-seq reads to the <em>Drosophila melanogaster</em> genome (version dm6) with the following non-default parameters: -k 2 --very-sensitive --no-mixed --no-discordant -X 5000. Aligned reads were filtered to include only reads with a mapping quality score &gt; 30. Reads mapping to unplaced scaffolds or the mitochondrial genome were discarded.</p>
+<p>Alignment</p>
+<p>Filtering</p>
+<p>peak calling</p>
+<p>peak filtering</p>
+<p>generation of bigwigs</p>
+<p>normalization of bigwigs</p>
 </section>
 <section id="rna-seq" class="level2">
 <h2 class="anchored" data-anchor-id="rna-seq">RNA-seq</h2>
@@ -413,20 +421,44 @@ div.csl-indent {
 <p><strong>Figure 5: Binding and opening of closed chromatin is concentration dependent.</strong></p>
 <p><strong>Figure 6: Regions outside the DNA-binding domain are required for pioneer-factor function.</strong></p>
 <p><strong>Figure 7: Pioneer-factor function requires stable chromatin occupancy.</strong></p>
-<p><strong>Extended data Figure 1: Stable cell lines allow inducible expression of transcription factors at physiological concentrations.</strong></p>
+<p><strong>Extended Data Figure 1: Stable cell lines allow inducible expression of transcription factors at physiological concentrations.</strong></p>
+<ul>
+<li><p>Schematic of cell line generation.</p></li>
+<li><p>RNA-seq data to show expression of S2 and not Kc cell markers.</p></li>
+<li><p>Western blots to determine physiological expression and lack of protein expression in WT cells.</p></li>
+<li><p>RNA-seq data to show leaky expression and strong induction of RNA levels.</p></li>
+</ul>
+<p><strong>Extended Data Figure 2: Ectopically expressed Zld and Grh bind to thousands of sites in S2 cells.</strong></p>
+<ul>
+<li><p>ChIP-seq replicate correlation</p></li>
+<li><p>Genome browser and heatmaps for all ChIP peaks?</p></li>
+<li><p>IgG and WT controls for antibody specificity</p></li>
+</ul>
+<p><strong>Extended Data Figure 3: Ectopic expression of pioneer factors in S2 cells leads to widespread changes to chromatin accessibility.</strong></p>
+<ul>
+<li><p>ATAC PCA plot</p></li>
+<li><p>ATAC replicate correlation</p></li>
+<li><p>volcano and/or MA plots with enrichment of binding</p></li>
+<li><p>Example genome browsers?</p></li>
+<li><p>Analysis of nonspecific changes?</p></li>
+</ul>
+<p><strong>Extended Data Figure 4: Zld and Grh bind to chromatin rapidly after induction of protein expression</strong></p>
+<ul>
+<li><p>Western blot time course of protein levels</p></li>
+<li><p>CUT&amp;RUN time course to show rapid binding</p></li>
+<li><p>likely rules out dependence on DNA replication</p></li>
+</ul>
+<p><strong>Extended Data Figure 5: Zld and Grh binding promotes transcriptional activation at a subset of binding sites</strong></p>
+<ul>
+<li><p>RNA-seq PCA</p></li>
+<li><p>RNA-seq replicate correlation</p></li>
+<li><p>RNA-seq volcano/MA plots</p></li>
+<li><p>RNA-seq GO analysis</p></li>
+</ul>
 <p><strong>Information to include in supplemental figures:</strong></p>
 <ul>
-<li><p>Schematic of stable cell line generation.</p></li>
-<li><p>Cell line validation by RNA-seq</p></li>
-<li><p>Verification of protein expression.</p></li>
-<li><p>Determination of physiological protein levels.</p></li>
-<li><p>QC for genomics datasets: e.g.&nbsp;PCA, replicate correlation, example genome browsers of individual replicates.</p></li>
-<li><p>Antibody controls: IgG, IPs in WT cells, etc.</p></li>
-<li><p>CUT&amp;RUN time course for Zld and Grh?</p></li>
 <li><p>De novo motif results</p></li>
 <li><p>Analysis of promoter motifs</p></li>
-<li><p>GO analysis for RNA-seq data</p></li>
-<li></li>
 </ul>
 
 </section>
@@ -434,6 +466,9 @@ div.csl-indent {
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-Cherbas2011" class="csl-entry" role="doc-biblioentry">
 Cherbas, Lucy, Aarron Willingham, Dayu Zhang, Li Yang, Yi Zou, Brian D. Eads, Joseph W. Carlson, et al. 2010. <span>“The Transcriptional Diversity of 25 <span><em>Drosophila</em></span> Cell Lines.”</span> <em>Genome Research</em> 21 (2): 301–14. <a href="https://doi.org/10.1101/gr.112961.110">https://doi.org/10.1101/gr.112961.110</a>.
+</div>
+<div id="ref-Langmead2012" class="csl-entry" role="doc-biblioentry">
+Langmead, Ben, and Steven L Salzberg. 2012. <span>“Fast Gapped-Read Alignment with Bowtie 2.”</span> <em>Nature Methods</em> 9 (4): 357–59. <a href="https://doi.org/10.1038/nmeth.1923">https://doi.org/10.1038/nmeth.1923</a>.
 </div>
 </div></section></div></main>
 <!-- /main column -->

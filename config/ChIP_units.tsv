@@ -83,3 +83,35 @@ S2-Zld-0uM_aZld_IP_rep2	S2-Zld-0uM_aZld_IP_rep2	../data/2022-08_ChIP/run2/lane2/
 S2-Zld-500uM_aZld_IP_rep2	S2-Zld-500uM_aZld_IP_rep2	../data/2022-08_ChIP/run2/lane2/TGL169_S30_R1_001.fastq.gz			SE	TRUE	S2-Zld-500uM_input_rep2	narrow	S2-Zld-500uM_aZld_IP
 S2-Zld-1000uM_aZld_IP_rep2	S2-Zld-1000uM_aZld_IP_rep2	../data/2022-08_ChIP/run2/lane2/TGL170_S31_R1_001.fastq.gz			SE	TRUE	S2-Zld-1000uM_input_rep2	narrow	S2-Zld-1000uM_aZld_IP
 S2-Zld-1500uM_aZld_IP_rep2	S2-Zld-1500uM_aZld_IP_rep2	../data/2022-08_ChIP/run2/lane2/TGL171_S32_R1_001.fastq.gz			SE	TRUE	S2-Zld-1500uM_input_rep2	narrow	S2-Zld-1500uM_aZld_IP
+S2-Zld_DMSO_aZld_rep1	S2-Zld_DMSO_aZld_rep1	./../data/2022-12_ChIP/TGL198_S1_R1_001.fastq.gz			SE	TRUE	S2-Zld_DMSO_input_rep1	narrow	S2-Zld_DMSO_aZld
+S2-Zld_taz_aZld_rep1	S2-Zld_taz_aZld_rep1	./../data/2022-12_ChIP/TGL199_S2_R1_001.fastq.gz			SE	TRUE	S2-Zld_taz_input_rep1	narrow	S2-Zld_taz_aZld
+S2-Grh_DMSO_aGrh_rep1	S2-Grh_DMSO_aGrh_rep1	./../data/2022-12_ChIP/TGL200_S3_R1_001.fastq.gz			SE	TRUE	S2-Grh_DMSO_input_rep1	narrow	S2-Grh_DMSO_aGrh
+S2-Grh_taz_aGrh_rep1	S2-Grh_taz_aGrh_rep1	./../data/2022-12_ChIP/TGL201_S4_R1_001.fastq.gz			SE	TRUE	S2-Grh_taz_input_rep1	narrow	S2-Grh_taz_aGrh
+S2-HA-Twi_DMSO_aHA_rep1	S2-HA-Twi_DMSO_aHA_rep1	./../data/2022-12_ChIP/TGL202_S5_R1_001.fastq.gz			SE	TRUE	S2-HA-Twi_DMSO_input_rep1	narrow	S2-HA-Twi_DMSO_aHA
+S2-HA-Twi_taz_aHA_rep1	S2-HA-Twi_taz_aHA_rep1	./../data/2022-12_ChIP/TGL203_S6_R1_001.fastq.gz			SE	TRUE	S2-HA-Twi_taz_input_rep1	narrow	S2-HA-Twi_taz_aHA
+S2-Zld_DMSO_aZld_rep2	S2-Zld_DMSO_aZld_rep2	./../data/2022-12_ChIP/TGL204_S7_R1_001.fastq.gz			SE	TRUE	S2-Zld_DMSO_input_rep2	narrow	S2-Zld_DMSO_aZld
+S2-Zld_taz_aZld_rep2	S2-Zld_taz_aZld_rep2	./../data/2022-12_ChIP/TGL205_S8_R1_001.fastq.gz			SE	TRUE	S2-Zld_taz_input_rep2	narrow	S2-Zld_taz_aZld
+S2-Grh_DMSO_aGrh_rep2	S2-Grh_DMSO_aGrh_rep2	./../data/2022-12_ChIP/TGL206_S9_R1_001.fastq.gz			SE	TRUE	S2-Grh_DMSO_input_rep2	narrow	S2-Grh_DMSO_aGrh
+S2-Grh_taz_aGrh_rep2	S2-Grh_taz_aGrh_rep2	./../data/2022-12_ChIP/TGL207_S10_R1_001.fastq.gz			SE	TRUE	S2-Grh_taz_input_rep2	narrow	S2-Grh_taz_aGrh
+S2-HA-Twi_DMSO_aHA_rep2	S2-HA-Twi_DMSO_aHA_rep2	./../data/2022-12_ChIP/TGL208_S11_R1_001.fastq.gz			SE	TRUE	S2-HA-Twi_DMSO_input_rep2	narrow	S2-HA-Twi_DMSO_aHA
+S2-HA-Twi_taz_aHA_rep2	S2-HA-Twi_taz_aHA_rep2	./../data/2022-12_ChIP/TGL209_S12_R1_001.fastq.gz			SE	TRUE	S2-HA-Twi_taz_input_rep2	narrow	S2-HA-Twi_taz_aHA
+S2-WT_aTwi_rep1	S2-WT_aTwi_rep1	./../data/2022-12_ChIP/TGL210_S13_R1_001.fastq.gz			SE	TRUE	S2-WT_aTwi_input_rep1	narrow	S2-WT_aTwi
+S2-WT_aTwi_rep2	S2-WT_aTwi_rep2	./../data/2022-12_ChIP/TGL211_S14_R1_001.fastq.gz			SE	TRUE	S2-WT_aTwi_input_rep2	narrow	S2-WT_aTwi
+S2-WT_aHA_rep1	S2-WT_aHA_rep1	./../data/2022-12_ChIP/TGL212_S15_R1_001.fastq.gz			SE	TRUE	S2-WT_aHA_input_rep1	narrow	S2-WT_aHA
+S2-WT_aHA_rep2	S2-WT_aHA_rep2	./../data/2022-12_ChIP/TGL213_S16_R1_001.fastq.gz			SE	TRUE	S2-WT_aHA_input_rep2	narrow	S2-WT_aHA
+S2-Zld_DMSO_input_rep1	S2-Zld_DMSO_input_rep1	./../data/2022-12_ChIP/TGL214_S17_R1_001.fastq.gz			SE	FALSE			S2-Zld_DMSO_input
+S2-Zld_taz_input_rep1	S2-Zld_taz_input_rep1	./../data/2022-12_ChIP/TGL215_S18_R1_001.fastq.gz			SE	FALSE			S2-Zld_taz_input
+S2-Grh_DMSO_input_rep1	S2-Grh_DMSO_input_rep1	./../data/2022-12_ChIP/TGL216_S19_R1_001.fastq.gz			SE	FALSE			S2-Grh_DMSO_input
+S2-Grh_taz_input_rep1	S2-Grh_taz_input_rep1	./../data/2022-12_ChIP/TGL217_S20_R1_001.fastq.gz			SE	FALSE			S2-Grh_taz_input
+S2-HA-Twi_DMSO_input_rep1	S2-HA-Twi_DMSO_input_rep1	./../data/2022-12_ChIP/TGL218_S21_R1_001.fastq.gz			SE	FALSE			S2-HA-Twi_DMSO_input
+S2-HA-Twi_taz_input_rep1	S2-HA-Twi_taz_input_rep1	./../data/2022-12_ChIP/TGL219_S22_R1_001.fastq.gz			SE	FALSE			S2-HA-Twi_taz_input
+S2-Zld_DMSO_input_rep2	S2-Zld_DMSO_input_rep2	./../data/2022-12_ChIP/TGL220_S23_R1_001.fastq.gz			SE	FALSE			S2-Zld_DMSO_input
+S2-Zld_taz_input_rep2	S2-Zld_taz_input_rep2	./../data/2022-12_ChIP/TGL221_S24_R1_001.fastq.gz			SE	FALSE			S2-Zld_taz_input
+S2-Grh_DMSO_input_rep2	S2-Grh_DMSO_input_rep2	./../data/2022-12_ChIP/TGL222_S25_R1_001.fastq.gz			SE	FALSE			S2-Grh_DMSO_input
+S2-Grh_taz_input_rep2	S2-Grh_taz_input_rep2	./../data/2022-12_ChIP/TGL223_S26_R1_001.fastq.gz			SE	FALSE			S2-Grh_taz_input
+S2-HA-Twi_DMSO_input_rep2	S2-HA-Twi_DMSO_input_rep2	./../data/2022-12_ChIP/TGL224_S27_R1_001.fastq.gz			SE	FALSE			S2-HA-Twi_DMSO_input
+S2-HA-Twi_taz_input_rep2	S2-HA-Twi_taz_input_rep2	./../data/2022-12_ChIP/TGL225_S28_R1_001.fastq.gz			SE	FALSE			S2-HA-Twi_taz_input
+S2-WT_aTwi_input_rep1	S2-WT_aTwi_input_rep1	./../data/2022-12_ChIP/TGL226_S29_R1_001.fastq.gz			SE	FALSE			S2-WT_aTwi_input
+S2-WT_aTwi_input_rep2	S2-WT_aTwi_input_rep2	./../data/2022-12_ChIP/TGL227_S30_R1_001.fastq.gz			SE	FALSE			S2-WT_aTwi_input
+S2-WT_aHA_input_rep1	S2-WT_aHA_input_rep1	./../data/2022-12_ChIP/TGL228_S31_R1_001.fastq.gz			SE	FALSE			S2-WT_aHA_input
+S2-WT_aHA_input_rep2	S2-WT_aHA_input_rep2	./../data/2022-12_ChIP/TGL229_S32_R1_001.fastq.gz			SE	FALSE			S2-WT_aHA_input

@@ -6,6 +6,12 @@ bibliography: references.bib
 #csl: nature.csl
 ---
 
+```{r}
+#| include: false
+library(here)
+library(tidyverse)
+```
+
 # Abstract
 
 # Introduction
@@ -26,9 +32,60 @@ bibliography: references.bib
 
 To investigate the mechanisms of chromatin binding and opening by pioneer factors, we generated stable cell lines inducibly expressing Zelda (Zld) and Grainy head (Grh) in Drosophila S2 cells (Extended Data Fig. XX), where neither factor is endogenously expressed. We validated our wild-type (WT) S2 cells by performing RNA-seq and verifying the expression of known S2 cell markers (Extended Data Fig. 1b) [@Cherbas2011]. We confirmed that Zld and Grh RNA (Extended Data Fig. XX) and protein (Extended Data Fig. XX) were not present in WT S2 cells. The stable cell lines express Zld or Grh under the control of the metallothionein promoter, which allows inducible and tunable expression with the addition of CuSO~4.~ To determine protein levels that would be approximately physiological, we compared Zld or Grh levels in cells with varying concentrations of CuSO~4~ to the levels of endogenous expression found in Drosophila embryos (Extended Data Fig. XX). Physiological protein levels were achieved at 1000 mM or 100 mM CuSO~4~ for Zld or Grh, respectively.
 
-To determine how exogenous Zld and Grh interact with preexisting chromatin in S2 cells, we expressed each factor at physiological levels and determined genome-wide binding sites using chromatin immunoprecipitation coupled with sequencing (ChIP-seq). We identified XXXX peaks for Zld and XXXX for Grh. To control for antibody specificity, we performed additional ChIP experiments using IgG, anti-Zld, or anti-Grh (Extended Data Fig. XX). We excluded any peaks that were called in these datasets, ensuring that we analyzed peaks that were detected only upon ectopic expression of Zld or Grh. <!--# Not sure the best way to discuss the control ChIP experiments. Should I mention how many peaks we detect in WT cells? What supplemental figures should I include? Should peak calling be done using IgG or WT cells as control instead of input? -->
+```{r}
+#| include: false
+# zld_ChIP_classes <- snakemake@input[["zld_ChIP_classes"]]
+# grh_ChIP_classes <- snakemake@input[["grh_ChIP_classes"]]
 
-Having established that Zld and Grh can bind to thousands of sites in S2 cells, we performed ATAC-seq on WT cells or cells expressing Zld or Grh to determine if these factors bind and open closed chromatin in S2 cells. We performed differential accessibility analysis comparing Zld or Grh-expressing cells to WT cells. We detected XXX differentially accessible regions for Zld and XXX for Grh.
+zld_ChIP_classes <- here("results/ChIP_peak_classes/zld_ChIP_classes.tsv") |> 
+  read_tsv()
+grh_ChIP_classes <- here("results/ChIP_peak_classes/grh_ChIP_classes.tsv") |> 
+  read_tsv()
+
+zld_n_ChIP_peaks <- nrow(zld_ChIP_classes)
+grh_n_ChIP_peaks <- nrow(grh_ChIP_classes)
+```
+
+To determine how exogenous Zld and Grh interact with preexisting chromatin in S2 cells, we expressed each factor at physiological levels and determined genome-wide binding sites using chromatin immunoprecipitation coupled with sequencing (ChIP-seq). We identified `r zld_n_ChIP_peaks` peaks for Zld and `r grh_n_ChIP_peaks` for Grh. To control for antibody specificity, we performed additional ChIP experiments in WT cells using IgG, anti-Zld, or anti-Grh (Extended Data Fig. XX). We excluded any peaks that were called in these datasets, ensuring that we analyzed peaks that were detected only upon ectopic expression of Zld or Grh. <!--# Not sure the best way to discuss the control ChIP experiments. Should I mention how many peaks we detect in WT cells? What supplemental figures should I include? Should peak calling be done using IgG or WT cells as control instead of input? -->
+
+```{r}
+#| include: false
+
+zld_ATAC_results <- here("ATACseq/results/DEseq2_results_filtered/S2-Zld_ATACseq_S2-Zld-FL-vs-S2-WT_results.tsv") |> 
+  read_tsv() |> 
+  mutate(direction_of_change = case_when(
+    is_diff & log2FoldChange > 0 ~ "increased",
+    is_diff & log2FoldChange < 0 ~ "decreased",
+    !is_diff ~ "ns"
+  ))
+  
+grh_ATAC_results <- here("ATACseq/results/DEseq2_results_filtered/S2-Grh_ATACseq_S2-Grh-FL-vs-S2-WT_results.tsv") |> 
+  read_tsv() |> 
+  mutate(direction_of_change = case_when(
+    is_diff & log2FoldChange > 0 ~ "increased",
+    is_diff & log2FoldChange < 0 ~ "decreased",
+    !is_diff ~ "ns"
+  ))
+
+zld_diff <- zld_ATAC_results |> 
+  pull(is_diff) |> 
+  sum()
+zld_up <- (zld_ATAC_results$direction_of_change == "increased") |> 
+  sum()
+zld_down <- (zld_ATAC_results$direction_of_change == "decreased") |> 
+  sum()
+
+grh_diff <- grh_ATAC_results |> 
+  pull(is_diff) |> 
+  sum()
+grh_up <- (grh_ATAC_results$direction_of_change == "increased") |> 
+  sum()
+grh_down <- (grh_ATAC_results$direction_of_change == "decreased") |> 
+  sum()
+
+```
+
+Having established that Zld and Grh can bind to thousands of sites in S2 cells, we performed ATAC-seq on WT cells or cells expressing Zld or Grh to determine if these factors bind and open closed chromatin in S2 cells. We performed differential accessibility analysis comparing Zld or Grh-expressing cells to WT cells. We detected `r zld_diff` differentially accessible regions for Zld (`r zld_up` increased, `r zld_down` decreased) and `r grh_diff` for Grh (`r grh_up` increased, `r grh_down` decreased) (Extended Data Fig. XX).
 
 ## Chromatin opening correlates with transcriptional activation
 
@@ -140,7 +197,7 @@ Having established that Zld and Grh can bind to thousands of sites in S2 cells, 
 | Anti-Tubulin DM1A                     | Sigma                     | T6199-200UL          | WB: 1:5000              |
 | goat anti-rabbit IgG-HRP conjugate    | Bio-Rad                   | 1706515              | WB: 1:3000              |
 | Anti-HA clone 12CA5                   | Roche                     |                      | ChIP: 7.5 µL            |
-| Anti-H3K27me3                         | Cell Signaling Technology |                      | WB:, CR:                |
+| Anti-H3K27me3                         | Cell Signaling Technology |                      | WB: 1:1000, CR: 0.5 µL  |
 |                                       |                           |                      |                         |
 |                                       |                           |                      |                         |
 
@@ -181,6 +238,20 @@ Proteins were separated on denaturing polyacramide gels before transfer to a 0.4
 For each ChIP experiment, \~50 million cells were crosslinked by adding methanol-free formaldehyde directly to the cell culture medium to a final concentration of 0.8%. Cells were rotated on a nutator for 7 minutes at room temperature (RT) before quenching of crosslinking by adding glycine to 125 mM. Crosslinked cells were pelleted by centrifugation at 600 × *g* for 3 minutes. Cells were washed twice with 1X PBS. Cells were lysed by resuspending in lysis buffer (50 mM HEPES pH 7.9, 140 mM NaCl, 1 mM EDTA, 10% glycerol, 0.5% NP40, 0.25% Triton-X 100) with protease inhibitors (Pierce) and incubating on ice for 10 minutes. The resulting chromatin was pelleted for 5 minutes at 1500 × *g* and resuspended in RIPA buffer. Chromatin was sonicated in a Covaris S220 Ultrasonicator (5 cycles of 120 seconds with 60 second delay, 170 peak power, 10% duty factor, 200 cycles/burst). Sonicated chromatin was centrifuged for 10 minutes at 10,000 × *g* to pellet insoluble material. 5% of the supernatant was set aside as input, and the remainder was incubated at 4°C overnight with antibodies (6 µL anti-Zld, 8 µL anti-Grh, 10 µg anti-Twi, 7.5 µL anti-HA). 20 µL protein A beads (Dynabeads Protein A, ThermoFisher Scientific) blocked with BSA were added and samples were incubated at 4°C for 4 hours. Beads were separated on a magnet and washed 3× with low salt wash buffer (10 mM Tris pH 7.6, 1 mM EDTA, 0.1% SDS, 0.1% Na-Deoxycholate, 1% Triton-X 100, 150 mM NaCl), 2× high salt wash buffer (10 mM Tris pH 7.6, 1 mM EDTA, 0.1% SDS, 0.1% sodium deoxycholate, 1% Triton-X 100, 300 mM NaC), 2× LiCl wash buffer (0.25 M LiCl, 0.5% NP40, 0.5% sodium deoxycholate), and 1× with TE buffer with NaCl (10 mM Tris-HCl pH 8.0, 1 mM EDTA, 50 mM NaCl). Beads were resuspended in elution buffer (50 mM Tris-HCl pH 8.0, 1% SDS, 10 mM EDTA) and incubated at 65°C for 10 minutes. The IP and input samples were treated with 4.5 µL RNAse A for 30 minutes. 5 µL Proteinase K was added and samples were incubated overnight at 65°C to reverse crosslinking. DNA was isolated by phenol:chloroform extraction, precipitated with EtOH, and resuspended in 20 µL H~2~O.Preparation of sequencing libraries was performed using NEBNext Ultra II kit (NEB) with 7 PCR cycles for library amplification. Sequencing was performed on the Illumina Hi-Seq4000 using 50bp single-end reads, or on the Illumina NovaSeq 6000 using 150bp paired-end reads.
 
 ## ChIP-seq analysis
+
+Bowtie2 version 2.4.4 [@Langmead2012] was used to align ChIP-seq reads to the *Drosophila melanogaster* genome (version dm6) with the following non-default parameters: -k 2 \--very-sensitive \--no-mixed \--no-discordant -X 5000. Aligned reads were filtered to include only reads with a mapping quality score \> 30. Reads mapping to unplaced scaffolds or the mitochondrial genome were discarded.
+
+Alignment
+
+Filtering
+
+peak calling
+
+peak filtering
+
+generation of bigwigs
+
+normalization of bigwigs
 
 ## RNA-seq
 
@@ -249,6 +320,8 @@ For each ChIP experiment, \~50 million cells were crosslinked by adding methanol
 -   Analysis of nonspecific changes?
 
 **Extended Data Figure 4: Zld and Grh bind to chromatin rapidly after induction of protein expression**
+
+-   Western blot time course of protein levels
 
 -   CUT&RUN time course to show rapid binding
 

@@ -310,7 +310,7 @@ annotate_motif_classes:
     class_III_peaks: results/ChIP_peak_classes_filtered/twi_class_III.bed
     motif_instances: results/motif_instances/twi_motifs.bed
     other_tissue:
-      - published_ChIPseq/results/peaks/individual/narrow/embryo-1-3H_aTwi_peaks.narrowPeak
+      - published_ChIPseq/results/peaks/merged/narrow/embryo-1-3H_aTwi_peaks.narrowPeak
 
 bichrom_params:
   window_size: 500
