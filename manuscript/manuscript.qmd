@@ -26,7 +26,7 @@ library(tidyverse)
 
 -   ~~Identification of physiological expression levels~~
 
--   Define binding classes I-III and describe characteristics (distribution, promoters/enhancers, etc.)
+-   ~~Define binding classes I-III and describe characteristics (distribution, promoters/enhancers, etc.)~~
 
 -   Time course and dynamics of binding to different classes (supplement)
 
@@ -87,7 +87,9 @@ grh_down <- (grh_ATAC_results$direction_of_change == "decreased") |>
 
 Having established that Zld and Grh can bind to thousands of sites in S2 cells, we performed ATAC-seq on WT cells or cells expressing Zld or Grh to determine if these factors bind and open closed chromatin in S2 cells. We performed differential accessibility analysis comparing Zld or Grh-expressing cells to WT cells. We detected `r zld_diff` differentially accessible regions for Zld (`r zld_up` increased, `r zld_down` decreased) and `r grh_diff` for Grh (`r grh_up` increased, `r grh_down` decreased) (Extended Data Fig. XX). <!--# Add more information here about sites with differential accessibility. Include percentage of increased and decreased sites that are bound by Zld or Grh. Comment on how much is specific vs. secondary effect, and justify defining ChIP peak classes that include only a subset of DA sites. -->
 
-To characterize the extent of chromatin opening by Zld and Grh, we integrated our ChIP-seq and ATAC-seq data and identified 3 classes of binding sites (Fig. 1a,b). Class I sites are accessible in WT cells and remain accessible when bound by ectopically-expressed Zld or Grh. Class II sites are inaccessible in WT cells, however binding of Zld or Grh does not lead to chromatin opening. Class III sites are inaccessible in WT cells and Zld or Grh binding results in chromatin opening. The majority of ChIP-seq peaks for Zld and Grh were class I sites, with a subset of binding sites in closed chromatin, and a small subset undergoing chromatin opening (Fig. 1c,f). While class I binding sites occured mostly at promoters, the majority of class II and III sites were at promoter-distal sites (Fig. 1d,g). Genome-wide analysis of signal intensities at all class II and III sites confirmed that these sites lack ATAC signal in WT cells and that class III sites undergo robust chromatin opening upon Zld or Grh induction (Fig. 1e,h). Together, these data show that when expressed exogenously at physiolgical levels, Zld and Grh can bind and open closed chromatin at a subset of binding sites.
+To characterize the extent of chromatin opening by Zld and Grh, we integrated our ChIP-seq and ATAC-seq data and identified 3 classes of binding sites (Fig. 1a,b). Class I sites are accessible in WT cells and remain accessible when bound by ectopically-expressed Zld or Grh. Class II sites are inaccessible in WT cells, however binding of Zld or Grh does not lead to chromatin opening. Class III sites are inaccessible in WT cells and Zld or Grh binding results in chromatin opening. The majority of ChIP-seq peaks for Zld and Grh were class I sites, with a subset of binding sites in closed chromatin, and a small subset undergoing chromatin opening (Fig. 1c,f). While class I binding sites occured mostly at promoters, the majority of class II and III sites were at promoter-distal sites (Fig. 1d,g). Genome-wide analysis of signa <!--#  -->l intensities at all class II and III sites confirmed that these sites lack ATAC signal in WT cells and that class III sites undergo robust chromatin opening upon Zld or Grh induction (Fig. 1e,h). Together, these data show that when expressed exogenously at physiolgical levels, Zld and Grh can bind and open closed chromatin at a subset of binding sites.
+
+<!--# Could potentially add the cut&run time course here? Think about where to put this, or if it is worth including at all. -->
 
 ## Chromatin opening correlates with transcriptional activation
 
@@ -96,6 +98,8 @@ To characterize the extent of chromatin opening by Zld and Grh, we integrated ou
 -   Comparison of RNA-seq and ATAC data: chromatin opening correlates with transcriptional activation.
 
 -   Class III promoters are most likely to be associated with upregulated genes
+
+Having established that ectopically expressed Zld and Grh bind and open closed chromatin, we sought to determine if binding of these factors also led to transcriptional activation. To identify changes in gene expression upon Zld or Grh induction, we performed RNA-seq and compared induced cells to WT cells lacking Zld or Grh expression. Differential expression analysis using DESeq2 [@love2014] identified XXX differentially expressed genes for Zld and XXX for Grh (Extended Data Fig. XX).
 
 ## Twist binds closed chromatin extensively and opens chromatin at a subset of sites
 
