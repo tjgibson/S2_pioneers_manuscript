@@ -304,9 +304,28 @@ rule annotate_motif_classes:
 	params:
 		bichrom_window_size=config["bichrom_params"]["window_size"],
 	output:
-		"results/ChIP_motif_classes/{factor}_motif_classes.tsv",
+		"results/ChIP_tissue_classes/{factor}_motif_classes.tsv",
 	script:
 		"workflow/scripts/get_motif_classes.R"
+
+rule annotate_tissue_classes:
+	input:
+		all_peaks = lambda wildcards: config["annotate_motif_classes"][wildcards.factor]["ChIP_peaks"],
+		class_I_peaks = lambda wildcards: config["annotate_motif_classes"][wildcards.factor]["class_I_peaks"],
+		class_II_peaks = lambda wildcards: config["annotate_motif_classes"][wildcards.factor]["class_II_peaks"],
+		class_III_peaks = lambda wildcards: config["annotate_motif_classes"][wildcards.factor]["class_III_peaks"],
+		motifs = lambda wildcards: config["annotate_motif_classes"][wildcards.factor]["motif_instances"],
+		other_tissue_peaks = lambda wildcards: config["annotate_motif_classes"][wildcards.factor]["other_tissue"],
+		H3K27me3_peaks = "published_ChIPseq/results/peaks/individual/broad/GSE151983_S2_aH3K27me3_IP_peaks.broadPeak",
+		H3K9me3_peaks = "published_ChIPseq/results/peaks/filtered/GSE160855_aH3K9me3.broadPeak",
+		keep_chroms = "config/keep_chroms.txt",
+		nonspecific_sites = "results/ChIP_peak_classes/nonspecific_sites/nonspecific_sites.bed",
+	params:
+		bichrom_window_size=config["bichrom_params"]["window_size"],
+	output:
+		"results/ChIP_tissue_classes/{factor}_tissue_classes.tsv",
+	script:
+		"workflow/scripts/get_tissue_classes.R"
 
 # run bichrom
 include: "bichrom/workflow/rules/bichrom.smk"
@@ -367,8 +386,9 @@ rule figure_3:
 
 		ns_sites_bed_fn = "results/ChIP_peak_classes/nonspecific_sites/nonspecific_sites.bed",
 
-		S2_Grh_ChIP_bw =  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw",
-		S2_Twi_ChIP_bw =  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw",
+		S2_Zld_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw",
+		S2_Grh_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw",
+		S2_Twi_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw",
 		H3K27ac_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K27ac.bw",
 		Nej_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE64464_aNej.bw",
 		H3K4me1_bw =  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K4me1.bw",
