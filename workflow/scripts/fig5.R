@@ -45,6 +45,10 @@ twi_500uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration
 twi_1000uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-HA-Twi_40uM_small.bw"
 twi_1500uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-HA-Twi_160uM_small.bw"
 
+zld_titration_classes_fn <- "results/ChIP_titration_classes/zld_titration_classes.tsv"
+grh_titration_classes_fn <- "results/ChIP_titration_classes/grh_titration_classes.tsv"
+twi_titration_classes_fn <- "results/ChIP_titration_classes/twi_titration_classes.tsv"
+
 
 ## create blank layout for plot =================================================
 # pdf(snakemake@output[[1]], useDingbats = FALSE)
@@ -94,33 +98,33 @@ bw <- c(
 
 
 regions <- zld_tissue_occupancy %>%
-  filter(class != "class I") |>
+  # filter(class != "class I") |>
   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
 
 
-hm <- plot_heatmap_minimal(
-  bw, regions,
-  upstream = hm_upstream, downstream = hm_downstream,
-  colors  = zld_heatmap_colors,
-  row_split = regions$class,
-  # order_by_samples = 1,
-  individual_scales = FALSE,
-  use_raster = TRUE, raster_by_magick = TRUE, raster_magick_filter = "Triangle",
-  border = "black",
-  border_gp = gpar(lwd = 0.5),
-  show_heatmap_legend = FALSE,
-  return_heatmap_list = TRUE
-)
-
-b_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 0, 0, 0), "mm")))
-
-# place heatmap on page
-plotGG(
-  plot = b_hm,
-  x = (ref_x + 0.25), y = (ref_y + 0.25),
-  width = 5, height = 5, just = c("left", "top"),
-  default.units = "cm"
-)
+# hm <- plot_heatmap_minimal(
+#   bw, regions,
+#   upstream = hm_upstream, downstream = hm_downstream,
+#   colors  = zld_heatmap_colors,
+#   row_split = regions$class,
+#   # order_by_samples = 1,
+#   individual_scales = FALSE,
+#   use_raster = TRUE, raster_by_magick = TRUE, raster_magick_filter = "Triangle",
+#   border = "black",
+#   border_gp = gpar(lwd = 0.5),
+#   show_heatmap_legend = FALSE,
+#   return_heatmap_list = TRUE
+# )
+# 
+# b_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 0, 0, 0), "mm")))
+# 
+# # place heatmap on page
+# plotGG(
+#   plot = b_hm,
+#   x = (ref_x + 0.25), y = (ref_y + 0.25),
+#   width = 5, height = 5, just = c("left", "top"),
+#   default.units = "cm"
+# )
 
 # # add axes to heatmaps
 # seekViewport(name = "matrix_1_heatmap_body_6_1")
@@ -160,9 +164,18 @@ plotGG(
 
 # plot metaplot 1
 plot_range <- c(-0.1,3)
+plot_colors <- c(
+  `class I` = "#DEEBF7",
+  `class II` = "#9ECAE1",
+  `class III` = "#3182BD",
+  repressed_H3K27me3 = "#D9D9D9",
+  repressed_H3K9me3 = "#969696",
+  repressed_other = "#737373"
+)
 
 metaplot_1 <- plot_average(bw[1], regions = regions, row_split = regions$class, line_width = 0.2) +
-  scale_color_brewer(palette = "Blues") +
+  # scale_color_brewer(palette = "Blues") +
+  scale_color_manual(values = plot_colors) +
   theme(text = element_text(size = 5),
         line = element_line(size = 0.1),
         axis.title.y = element_blank(),
@@ -186,7 +199,8 @@ plotGG(
 
 # plot metaplot 2
 metaplot_2 <- plot_average(bw[2], regions = regions, row_split = regions$class, line_width = 0.2) +
-  scale_color_brewer(palette = "Blues") +
+  # scale_color_brewer(palette = "Blues") +
+  scale_color_manual(values = plot_colors) +
   theme(text = element_text(size = 5),
         line = element_line(size = 0.1),
         axis.title.y = element_blank(),
@@ -210,7 +224,8 @@ plotGG(
 
 # plot metaplot 3
 metaplot_3 <- plot_average(bw[3], regions = regions, row_split = regions$class, line_width = 0.2) +
-  scale_color_brewer(palette = "Blues") +
+  # scale_color_brewer(palette = "Blues") +
+  scale_color_manual(values = plot_colors) +
   theme(text = element_text(size = 5),
         line = element_line(size = 0.1),
         axis.title.y = element_blank(),
@@ -234,7 +249,8 @@ plotGG(
 
 # plot metaplot 4
 metaplot_4 <- plot_average(bw[4], regions = regions, row_split = regions$class, line_width = 0.2) +
-  scale_color_brewer(palette = "Blues") +
+  # scale_color_brewer(palette = "Blues") +
+  scale_color_manual(values = plot_colors) +
   theme(text = element_text(size = 5),
         line = element_line(size = 0.1),
         axis.title.y = element_blank(),
@@ -259,7 +275,7 @@ plotGG(
 # panel B ======================================================================
 # reference points for positioning figure components
 ref_x <- 0.5
-ref_y <- 4
+ref_y <- 3
 
 # panel label
 plotText(
@@ -344,8 +360,18 @@ regions <- zld_tissue_occupancy %>%
 # plot metaplot 1
 plot_range <- c(-0.1,3)
 
+plot_colors <- c(
+  `class I` = "#DEEBF7",
+  `class II` = "#9ECAE1",
+  `class III` = "#3182BD",
+  repressed_H3K27me3 = "#D9D9D9",
+  repressed_H3K9me3 = "#969696",
+  repressed_other = "#737373"
+)
+
 metaplot_5 <- plot_average(bw[1], regions = regions, row_split = regions$class, line_width = 0.2) +
-  scale_color_brewer(palette = "Blues") +
+  # scale_color_brewer(palette = "Blues") +
+  scale_color_manual(values = plot_colors) +
   theme(text = element_text(size = 5),
         line = element_line(size = 0.1),
         axis.title.y = element_blank(),
@@ -369,7 +395,8 @@ plotGG(
 
 # plot metaplot 2
 metaplot_6 <- plot_average(bw[2], regions = regions, row_split = regions$class, line_width = 0.2) +
-  scale_color_brewer(palette = "Blues") +
+  # scale_color_brewer(palette = "Blues") +
+  scale_color_manual(values = plot_colors) +
   theme(text = element_text(size = 5),
         line = element_line(size = 0.1),
         axis.title.y = element_blank(),
@@ -393,7 +420,8 @@ plotGG(
 
 # plot metaplot 3
 metaplot_7 <- plot_average(bw[3], regions = regions, row_split = regions$class, line_width = 0.2) +
-  scale_color_brewer(palette = "Blues") +
+  # scale_color_brewer(palette = "Blues") +
+  scale_color_manual(values = plot_colors) +
   theme(text = element_text(size = 5),
         line = element_line(size = 0.1),
         axis.title.y = element_blank(),
@@ -417,7 +445,8 @@ plotGG(
 
 # plot metaplot 4
 metaplot_8 <- plot_average(bw[4], regions = regions, row_split = regions$class, line_width = 0.2) +
-  scale_color_brewer(palette = "Blues") +
+  # scale_color_brewer(palette = "Blues") +
+  scale_color_manual(values = plot_colors) +
   theme(text = element_text(size = 5),
         line = element_line(size = 0.1),
         axis.title.y = element_blank(),
@@ -439,6 +468,75 @@ plotGG(
   default.units = "cm"
 )
 
+# panel C ======================================================================
+# reference points for positioning figure components
+ref_x <- 11
+ref_y <- 0.5
+
+# panel label
+plotText(
+  label = "c", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+# generate plot
+zld_class_plot <- zld_titration_classes_fn |> 
+  read_tsv() |> 
+    ggplot(aes(x = CuSO4, fill = class)) + 
+  geom_bar(color = "black") +
+  theme_classic(base_size = small_text_params$fontsize) +
+  theme(legend.key.size = unit(2, 'mm')) +
+  scale_fill_brewer(palette = "Blues") +
+  ylab("n peaks")
+
+# place chart on page
+plotGG(
+  plot = zld_class_plot,
+  x = (ref_x), y = ref_y,
+  width = 3, height = 2, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# panel D ======================================================================
+library(eulerr)
+
+# reference points for positioning figure components
+ref_x <- 11
+ref_y <- 3
+
+# panel label
+plotText(
+  label = "d", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+# define input files
+input_files <- c(
+  zld_0uM = "ChIPseq/results/peaks/filtered/S2-Zld-0uM_aZld_IP.narrowPeak",
+  zld_500uM = "ChIPseq/results/peaks/filtered/S2-Zld-500uM_aZld_IP.narrowPeak",
+  zld_1000uM = "ChIPseq/results/peaks/filtered/S2-Zld-1000uM_aZld_IP.narrowPeak",
+  zld_1500uM = "ChIPseq/results/peaks/filtered/S2-Zld-1500uM_aZld_IP.narrowPeak"
+  
+)
+
+peak_overlaps <- input_files %>%
+  map(rtracklayer::import) %>%
+  GRangesList() %>%
+  peak_overlap_table()
+
+
+zld_euler_plot <- peak_overlaps %>% 
+  dplyr::select(8,9) %>% 
+  as.matrix() %>% 
+  euler() %>% 
+  plot(quantities = list(fontsize = small_text_params$fontsize), labels = list(fontsize = small_text_params$fontsize))
+
+plotGG(
+  plot = zld_euler_plot,
+  x = (ref_x), y = (ref_y + 0.25),
+  width = 2, height = 2, just = c("left", "top"),
+  default.units = "cm"
+)
 
 
 dev.off()

@@ -52,8 +52,8 @@ twi_heatmap_colors <- brewer.pal(9, "GnBu")
 # gb_height <- 0.3
 
 # set heatmap parameters
-hm_upstream <-  500
-hm_downstream <-  500
+hm_upstream <-  1000
+hm_downstream <-  1000
 
 # panel A ======================================================================
 # reference points for positioning figure components
@@ -298,7 +298,7 @@ plotText(
 # panel D ======================================================================
 # reference points for positioning figure components
 ref_x <- 0.5
-ref_y <- 6
+ref_y <- 6.5
 
 # panel label
 plotText(
@@ -311,8 +311,8 @@ plotText(
 bw <- c(
   S2_Zld_ChIP_DMSO =  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_DMSO_aZld.bw",
   S2_Zld_ChIP_taz = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_taz_aZld.bw",
-  S2_Zld_H3K27me3_DMSO = "CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Zld_DMSO_aH3K27me3.bw",
-  S2_Zld_H3K27me3_taz = "CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Zld_Taz_aH3K27me3.bw" 
+  S2_Zld_H3K27me3_DMSO = "CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Zld_DMSO_aH3K27me3.bw",
+  S2_Zld_H3K27me3_taz = "CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Zld_Taz_aH3K27me3.bw" 
 )
 
 
@@ -375,7 +375,7 @@ plotText(
 # panel E ======================================================================
 # reference points for positioning figure components
 ref_x <- 6.5
-ref_y <- 6
+ref_y <- 6.5
 
 # panel label
 plotText(
@@ -387,8 +387,8 @@ plotText(
 bw <- c(
   S2_Grh_ChIP_DMSO =  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_DMSO_aGrh.bw",
   S2_Grh_ChIP_taz = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_taz_aGrh.bw",
-  S2_Grh_H3K27me3_DMSO = "CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Grh_DMSO_aH3K27me3.bw",
-  S2_Grh_H3K27me3_taz = "CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Grh_Taz_aH3K27me3.bw" 
+  S2_Grh_H3K27me3_DMSO = "CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Grh_DMSO_aH3K27me3.bw",
+  S2_Grh_H3K27me3_taz = "CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Grh_Taz_aH3K27me3.bw" 
 )
 
 
@@ -451,7 +451,7 @@ plotText(
 # panel F ======================================================================
 # reference points for positioning figure components
 ref_x <- 12.5
-ref_y <-6
+ref_y <-6.5
 
 # panel label
 plotText(
@@ -463,8 +463,8 @@ plotText(
 bw <- c(
   S2_Twi_ChIP_DMSO =  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-HA-Twi_DMSO_aHA.bw",
   S2_Twi_ChIP_taz = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-HA-Twi_taz_aHA.bw",
-  S2_Twi_H3K27me3_DMSO = "CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-HA-Twi_DMSO_aH3K27me3.bw",
-  S2_Twi_H3K27me3_taz = "CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-HA-Twi_Taz_aH3K27me3.bw" 
+  S2_Twi_H3K27me3_DMSO = "CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-HA-Twi_DMSO_aH3K27me3.bw",
+  S2_Twi_H3K27me3_taz = "CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-HA-Twi_Taz_aH3K27me3.bw" 
 )
 
 
