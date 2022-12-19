@@ -141,3 +141,11 @@ signal_range <- function(x, extra = 0.05) {
   output <- c(min - margin, max + margin)
   return(output)
 }
+
+# function to extract legend from ggplot ---------------------------------------
+get_legend <- function(plot){ 
+  tmp <- ggplot_gtable(ggplot_build(plot)) 
+  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box") 
+  legend <- tmp$grobs[[leg]] 
+  legend
+} 

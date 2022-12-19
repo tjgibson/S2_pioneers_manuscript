@@ -246,6 +246,9 @@ However, the lack of strong nucleosome positioning at these regions makes it dif
 
 -   Twi sites in S2 cells have low level binding in embryo, but strongest peaks from embryo are not bound
 
+Prior studies have extensively explored the *in vivo* binding sites of Zld, Grh, and Twi during normal Drosophila development.
+To better understand how cell-type specific variables affect pioneer-factor binding, we compared ChIP-seq data for our ectopically expressed factors to published datasets for endogenous Zld and Grh binding.
+
 ## Repressive chromatin is a barrier to pioneer-factor binding
 
 -   Enrichment of repressive marks at sites bound in other tissues
@@ -296,7 +299,7 @@ Together, these experiments show that regions outside the DBD are essential for 
 ## Reagents
 
 | Reagent                               | Source/vendor             | Catalog/accession \# | Notes                   |
-|-----------------------|-----------------|-----------------|-----------------|
+|---------------------|-----------------|-----------------|-----------------|
 | pMT-puro                              | AddGene                   | 17923                |                         |
 | Gibson Cloning                        | New England Biolabs       | E2611                |                         |
 | Schneider's Medium                    | Thermo Fisher Scientific  | 21720001             |                         |

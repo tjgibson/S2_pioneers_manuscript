@@ -19,14 +19,6 @@ signal_range <- function(x, extra = 0.05) {
   return(output)
 }
 
-# function to extract legend from ggplot ---------------------------------------
-get_legend <- function(plot){ 
-  tmp <- ggplot_gtable(ggplot_build(plot)) 
-  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box") 
-  legend <- tmp$grobs[[leg]] 
-  legend
-} 
-
 # define input files ===========================================================
 class_I_bed_fn <- c(
   zld_class_I = snakemake@input[["zld_class_I_bed_fn"]],

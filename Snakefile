@@ -175,8 +175,8 @@ rule filter_ATAC_results:
 
 # process CUT&RUN data
 module CUTandRUN:
-	snakefile: "https://github.com/tjgibson/NGS-workflow-CUTandRUN/raw/master/workflow/Snakefile"
-# 	snakefile: "../NGS_workflows/NGS-workflow-CUTandRUN/workflow/Snakefile"
+# 	snakefile: "https://github.com/tjgibson/NGS-workflow-CUTandRUN/raw/master/workflow/Snakefile"
+	snakefile: "../NGS_workflows/NGS-workflow-CUTandRUN/workflow/Snakefile"
 	config: config["CUTandRUN"]
 	prefix: "CUTandRUN"
 use rule * from CUTandRUN as CUTandRUN_*

@@ -308,15 +308,9 @@ CUTandRUN:
     link: https://hgdownload.soe.ucsc.edu/goldenPath/dm6/bigZips/dm6.fa.gz
 
   # spike-in genome options ------------------------------------------------------------------
-  use_spikeIn: False
-  epiCypher_spikeIn: False
-
-  spikeIn_genome:
-    name: yeast_w303
-    link: http://sgd-archive.yeastgenome.org/sequence/strains/W303/W303_SGD_2015_JRIU00000000/W303_SGD_2015_JRIU00000000.fsa.gz
-
-
-
+  use_spikeIn: TRUE
+  epiCypher_spikeIn: TRUE
+  epiCypher_barcodes: config/epicypher_met_panel_nuc_barcodes.csv
 
   # changes to rule paramters ---------------------------------------------------------------
   params:
