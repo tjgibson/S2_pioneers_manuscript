@@ -110,10 +110,40 @@ grid.xaxis(at = c(0, 1), label = c(paste0("-", hm_upstream / 1000, "KB"), paste0
 seekViewport(name = "page")
 
 # add heatmap labels
-# plotText(
-#   label = paste(length(regions), "overlapping", "\n", "class I sites"), params = small_text_params, fontface = "bold",
-#   x = (ref_x), y = (ref_y + 1.5), just = c("center"), default.units = "cm", rot = 90
-# )
+plotText(
+  label = "class:", params = small_text_params, fontface = "bold",
+  x = (ref_x - 0.1), y = (ref_y + 0.2), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "I", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 0.6), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "II", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 1.3), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "III", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 1.58), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "IV", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 1.9), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "V", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 2.5), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "VI", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 4), just = c("center"), default.units = "cm"
+)
 
 plotText(
   label = paste0("Zld", "\n", "S2 cells"), params = small_text_params, fontface = "bold",
@@ -190,11 +220,46 @@ plotGG(
 )
 
 # add axes to heatmaps
-# seekViewport(name = "matrix_1_heatmap_body_6_1")
-# grid.xaxis(at = c(0, 1), label = c(paste0("-", hm_upstream / 1000, "KB"), paste0("+",hm_downstream / 1000, "KB")), gp = gpar(lwd = 0.5, fontsize = small_text_params$fontsize))
-# seekViewport(name = "page")
+seekViewport(name = "matrix_6_heatmap_body_6_1")
+grid.xaxis(at = c(0, 1), label = c(paste0("-", hm_upstream / 1000, "KB"), paste0("+",hm_downstream / 1000, "KB")), gp = gpar(lwd = 0.5, fontsize = small_text_params$fontsize))
+seekViewport(name = "page")
 
 # add heatmap labels
+plotText(
+  label = "class:", params = small_text_params, fontface = "bold",
+  x = (ref_x - 0.1), y = (ref_y + 0.2), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "I", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 0.5), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "II", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 1.35), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "III", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 1.8), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "IV", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 2.3), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "V", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 2.7), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "VI", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 4), just = c("center"), default.units = "cm"
+)
+
 plotText(
   label = paste0("Grh", "\n", "S2 cells"), params = small_text_params, fontface = "bold",
   x = (ref_x + 0.68), y = (ref_y), just = c("center"), default.units = "cm"
@@ -269,11 +334,46 @@ plotGG(
 )
 
 # add axes to heatmaps
-# seekViewport(name = "matrix_1_heatmap_body_6_1")
-# grid.xaxis(at = c(0, 1), label = c(paste0("-", hm_upstream / 1000, "KB"), paste0("+",hm_downstream / 1000, "KB")), gp = gpar(lwd = 0.5, fontsize = small_text_params$fontsize))
-# seekViewport(name = "page")
+seekViewport(name = "matrix_11_heatmap_body_6_1")
+grid.xaxis(at = c(0, 1), label = c(paste0("-", hm_upstream / 1000, "KB"), paste0("+",hm_downstream / 1000, "KB")), gp = gpar(lwd = 0.5, fontsize = small_text_params$fontsize))
+seekViewport(name = "page")
 
 # add heatmap labels
+plotText(
+  label = "class:", params = small_text_params, fontface = "bold",
+  x = (ref_x - 0.1), y = (ref_y + 0.4), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "I", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 1.25), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "II", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 3.25), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "III", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 4.35), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "IV", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 4.55), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "V", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 4.75), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "VI", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 5), just = c("center"), default.units = "cm"
+)
+
 plotText(
   label = paste0("Twi", "\n", "S2 cells"), params = small_text_params, fontface = "bold",
   x = (ref_x + 0.75), y = (ref_y), just = c("center"), default.units = "cm"
@@ -346,11 +446,46 @@ plotGG(
 )
 
 # add axes to heatmaps
-# seekViewport(name = "matrix_1_heatmap_body_6_1")
-# grid.xaxis(at = c(0, 1), label = c(paste0("-", hm_upstream / 1000, "KB"), paste0("+",hm_downstream / 1000, "KB")), gp = gpar(lwd = 0.5, fontsize = small_text_params$fontsize))
-# seekViewport(name = "page")
+seekViewport(name = "matrix_15_heatmap_body_6_1")
+grid.xaxis(at = c(0, 1), label = c(paste0("-", hm_upstream / 1000, "KB"), paste0("+",hm_downstream / 1000, "KB")), gp = gpar(lwd = 0.5, fontsize = small_text_params$fontsize))
+seekViewport(name = "page")
 
 # add heatmap labels
+plotText(
+  label = "class:", params = small_text_params, fontface = "bold",
+  x = (ref_x - 0.1), y = (ref_y + 0.2), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "I", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 0.6), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "II", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 1.3), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "III", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 1.58), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "IV", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 1.9), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "V", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 2.5), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "VI", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 4), just = c("center"), default.units = "cm"
+)
+
 plotText(
   label = paste0("Zld ChIP", "\n", "DMSO"), params = small_text_params, fontface = "bold",
   x = (ref_x + 0.75), y = (ref_y), just = c("center"), default.units = "cm"
@@ -422,11 +557,47 @@ plotGG(
 )
 
 # add axes to heatmaps
-# seekViewport(name = "matrix_1_heatmap_body_6_1")
-# grid.xaxis(at = c(0, 1), label = c(paste0("-", hm_upstream / 1000, "KB"), paste0("+",hm_downstream / 1000, "KB")), gp = gpar(lwd = 0.5, fontsize = small_text_params$fontsize))
-# seekViewport(name = "page")
+seekViewport(name = "matrix_19_heatmap_body_6_1")
+grid.xaxis(at = c(0, 1), label = c(paste0("-", hm_upstream / 1000, "KB"), paste0("+",hm_downstream / 1000, "KB")), gp = gpar(lwd = 0.5, fontsize = small_text_params$fontsize))
+seekViewport(name = "page")
 
 # add heatmap labels
+plotText(
+  label = "class:", params = small_text_params, fontface = "bold",
+  x = (ref_x - 0.1), y = (ref_y + 0.2), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "I", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 0.5), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "II", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 1.35), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "III", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 1.8), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "IV", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 2.3), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "V", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 2.7), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "VI", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 4), just = c("center"), default.units = "cm"
+)
+
+
 plotText(
   label = paste0("Grh ChIP", "\n", "DMSO"), params = small_text_params, fontface = "bold",
   x = (ref_x + 0.75), y = (ref_y), just = c("center"), default.units = "cm"
@@ -499,11 +670,46 @@ plotGG(
 )
 
 # add axes to heatmaps
-# seekViewport(name = "matrix_1_heatmap_body_6_1")
-# grid.xaxis(at = c(0, 1), label = c(paste0("-", hm_upstream / 1000, "KB"), paste0("+",hm_downstream / 1000, "KB")), gp = gpar(lwd = 0.5, fontsize = small_text_params$fontsize))
-# seekViewport(name = "page")
+seekViewport(name = "matrix_23_heatmap_body_6_1")
+grid.xaxis(at = c(0, 1), label = c(paste0("-", hm_upstream / 1000, "KB"), paste0("+",hm_downstream / 1000, "KB")), gp = gpar(lwd = 0.5, fontsize = small_text_params$fontsize))
+seekViewport(name = "page")
 
 # add heatmap labels
+plotText(
+  label = "class:", params = small_text_params, fontface = "bold",
+  x = (ref_x - 0.1), y = (ref_y + 0.4), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "I", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 1.25), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "II", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 3.25), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "III", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 4.35), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "IV", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 4.55), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "V", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 4.75), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "VI", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 5), just = c("center"), default.units = "cm"
+)
+
 plotText(
   label = paste0("Twi ChIP", "\n", "DMSO"), params = small_text_params, fontface = "bold",
   x = (ref_x + 0.75), y = (ref_y), just = c("center"), default.units = "cm"

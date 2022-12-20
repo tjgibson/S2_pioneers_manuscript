@@ -163,19 +163,12 @@ plotGG(
 
 # plot metaplot 3
 metaplot_3 <- plot_average(bw[3], regions = regions, row_split = regions$class, line_width = 0.2) +
-  # scale_color_brewer(palette = "Blues") +
   scale_color_manual(values = plot_colors) +
   theme(text = element_text(size = 5),
         line = element_line(size = 0.1),
         axis.title.y = element_blank(),
         plot.margin = margin(0,0,0,0),
         legend.position = "none"
-        # legend.key.size = unit(2, 'mm'),
-        # legend.title = element_blank(),
-        # legend.position = "bottom",
-        # legend.margin=margin(-5,-5,-5,-5),
-        # legend.box.margin=margin(0,0,0,0)
-        
   ) +
   ylim(plot_range)
 
@@ -188,19 +181,12 @@ plotGG(
 
 # plot metaplot 4
 metaplot_4 <- plot_average(bw[4], regions = regions, row_split = regions$class, line_width = 0.2) +
-  # scale_color_brewer(palette = "Blues") +
   scale_color_manual(values = plot_colors) +
   theme(text = element_text(size = 5),
         line = element_line(size = 0.1),
         axis.title.y = element_blank(),
         plot.margin = margin(0,0,0,0),
         legend.position = "none"
-        # legend.key.size = unit(2, 'mm'),
-        # legend.title = element_blank(),
-        # legend.position = "bottom",
-        # legend.margin=margin(-5,-5,-5,-5),
-        # legend.box.margin=margin(0,0,0,0)
-        
   ) +
   ylim(plot_range)
 
@@ -210,6 +196,33 @@ plotGG(
   width = 2, height = 2, just = c("left", "top"),
   default.units = "cm"
 )
+
+# add labels to plots
+plotText(
+  label = "ChIP-seq signal", params = small_text_params,
+  x = ref_x, y = (ref_y + 1.25), just = "center", default.units = "cm", rot = 90
+)
+
+plotText(
+  label = "0 µM", params = large_text_params,
+  x = (ref_x + 1.25), y = (ref_y), just = "center", default.units = "cm"
+)
+
+plotText(
+  label = "500 µM", params = large_text_params,
+  x = (ref_x + 3.75), y = (ref_y), just = "center", default.units = "cm"
+)
+
+plotText(
+  label = "1000 µM", params = large_text_params,
+  x = (ref_x + 6.25), y = (ref_y), just = "center", default.units = "cm"
+)
+
+plotText(
+  label = "1500 µM", params = large_text_params,
+  x = (ref_x + 8.75), y = (ref_y), just = "center", default.units = "cm"
+)
+
 
 # panel B ======================================================================
 # reference points for positioning figure components
@@ -345,6 +358,12 @@ plotGG(
   default.units = "cm"
 )
 
+# add labels to plots
+plotText(
+  label = "ATAC-seq signal", params = small_text_params,
+  x = ref_x, y = (ref_y + 1.25), just = "center", default.units = "cm", rot = 90
+)
+
 # legend for A and B ===========================================================
 plotLegend(
   legend = names(plot_colors),
@@ -363,11 +382,6 @@ plotLegend(
 ref_x <- 13.5
 ref_y <- 0.5
 
-# panel label
-plotText(
-  label = "c", params = panel_label_params, fontface = "bold",
-  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
-)
 
 # generate plot
 zld_class_plot <- zld_titration_classes_fn |> 
@@ -385,6 +399,12 @@ plotGG(
   x = (ref_x), y = ref_y,
   width = 3, height = 2.5, just = c("left", "top"),
   default.units = "cm"
+)
+
+# panel label
+plotText(
+  label = "c", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 )
 
 # panel D ======================================================================
@@ -562,6 +582,33 @@ plotGG(
   default.units = "cm"
 )
 
+# add labels to plots
+plotText(
+  label = "ChIP-seq signal", params = small_text_params,
+  x = ref_x, y = (ref_y + 1.25), just = "center", default.units = "cm", rot = 90
+)
+
+plotText(
+  label = "0 µM", params = large_text_params,
+  x = (ref_x + 1.25), y = (ref_y), just = "center", default.units = "cm"
+)
+
+plotText(
+  label = "25 µM", params = large_text_params,
+  x = (ref_x + 3.75), y = (ref_y), just = "center", default.units = "cm"
+)
+
+plotText(
+  label = "100 µM", params = large_text_params,
+  x = (ref_x + 6.25), y = (ref_y), just = "center", default.units = "cm"
+)
+
+plotText(
+  label = "400 µM", params = large_text_params,
+  x = (ref_x + 8.75), y = (ref_y), just = "center", default.units = "cm"
+)
+
+
 # panel F ======================================================================
 # reference points for positioning figure components
 ref_x <- 0.5
@@ -671,6 +718,12 @@ plotGG(
   default.units = "cm"
 )
 
+# add labels to plots
+plotText(
+  label = "ATAC-seq signal", params = small_text_params,
+  x = ref_x, y = (ref_y + 1.25), just = "center", default.units = "cm", rot = 90
+)
+
 # legend for E and F ===========================================================
 plotLegend(
   legend = names(plot_colors),
@@ -689,11 +742,6 @@ plotLegend(
 ref_x <- 13.5
 ref_y <- 5.5
 
-# panel label
-plotText(
-  label = "g", params = panel_label_params, fontface = "bold",
-  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
-)
 
 # generate plot
 grh_class_plot <- grh_titration_classes_fn |> 
@@ -712,6 +760,13 @@ plotGG(
   width = 3, height = 2.5, just = c("left", "top"),
   default.units = "cm"
 )
+
+# panel label
+plotText(
+  label = "g", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
 
 # panel H ======================================================================
 
@@ -887,6 +942,32 @@ plotGG(
   default.units = "cm"
 )
 
+# add labels to plots
+plotText(
+  label = "ChIP-seq signal", params = small_text_params,
+  x = ref_x, y = (ref_y + 1.25), just = "center", default.units = "cm", rot = 90
+)
+
+plotText(
+  label = "0 µM", params = large_text_params,
+  x = (ref_x + 1.25), y = (ref_y), just = "center", default.units = "cm"
+)
+
+plotText(
+  label = "10 µM", params = large_text_params,
+  x = (ref_x + 3.75), y = (ref_y), just = "center", default.units = "cm"
+)
+
+plotText(
+  label = "40 µM", params = large_text_params,
+  x = (ref_x + 6.25), y = (ref_y), just = "center", default.units = "cm"
+)
+
+plotText(
+  label = "160 µM", params = large_text_params,
+  x = (ref_x + 8.75), y = (ref_y), just = "center", default.units = "cm"
+)
+
 # panel J ======================================================================
 # reference points for positioning figure components
 ref_x <- 0.5
@@ -994,6 +1075,12 @@ plotGG(
   default.units = "cm"
 )
 
+# add labels to plots
+plotText(
+  label = "ATAC-seq signal", params = small_text_params,
+  x = ref_x, y = (ref_y + 1.25), just = "center", default.units = "cm", rot = 90
+)
+
 # legend for I and J ===========================================================
 plotLegend(
   legend = names(plot_colors),
@@ -1012,11 +1099,6 @@ plotLegend(
 ref_x <- 13.5
 ref_y <- 10.5
 
-# panel label
-plotText(
-  label = "k", params = panel_label_params, fontface = "bold",
-  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
-)
 
 # generate plot
 twi_class_plot <- twi_titration_classes_fn |> 
@@ -1034,6 +1116,12 @@ plotGG(
   x = (ref_x), y = ref_y,
   width = 3, height = 2.5, just = c("left", "top"),
   default.units = "cm"
+)
+
+# panel label
+plotText(
+  label = "k", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 )
 
 # panel L ======================================================================

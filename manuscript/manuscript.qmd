@@ -20,8 +20,6 @@ library(tidyverse)
 
 ## Ectopically expressed pioneer factors bind and open closed chromatin
 
--   Gain of function system is necessary to understand mechanisms of PF activity
-
 -   ~~Establish system for ectopic expression of pioneer factors~~
 
 -   ~~Identification of physiological expression levels~~
@@ -240,22 +238,38 @@ However, the lack of strong nucleosome positioning at these regions makes it dif
 
 ## Ectopic Zld, Grh and Twi fail to access many endogenous binding sites
 
--   Zelda binding is more similar to the brain than the embryo
+-   Z~~elda binding is more similar to the brain than the embryo~~
 
--   Grh binding is stable across tissues
+-   ~~Grh binding is stable across tissues~~
 
--   Twi sites in S2 cells have low level binding in embryo, but strongest peaks from embryo are not bound
+-   ~~Twi sites in S2 cells have low level binding in embryo, but strongest peaks from embryo are not bound~~
+
+-   ~~Enrichment of repressive marks at sites bound in other tissues~~
+
+-   ~~Results of Taz experiments~~
+
+-   Comment on class VI sites that are not bound and lack repressive chromatin.
 
 Prior studies have extensively explored the *in vivo* binding sites of Zld, Grh, and Twi during normal Drosophila development.
-To better understand how cell-type specific variables affect pioneer-factor binding, we compared ChIP-seq data for our ectopically expressed factors to published datasets for endogenous Zld and Grh binding.
+To better understand how cell-type specific variables affect pioneer-factor binding, we compared ChIP-seq data for our ectopically expressed factors to published datasets for endogenous Zld, Grh and Twi binding.
+We compared Zld binding sites in S2 cells to Zld ChIP-seq data from the early embryo ([@Harrison2011], nuclear cycle 14 embryos) and from larval neural stem cells [@Larson2021a]. We identified many binding sites that would normally be bound by Zld in another tissue, but were not bound in S2 cells (Extended Data Fig. XX). Previous work has shown that regions resistant to pioneer-factor binding are enriched for the repressive histone modifications H3K9me3 and H3K27me3 [@Mayran2018a; @Soufi2012].
+To test if repressive marks were present at the resistant sites in S2 cells, we compared our data to published S2 cell ChIP-seq datasets for H3K27me3 [@Jain2020] and H3K9me3 [@Eastwood2021].
+Based on analysis of these datasets we divided the resistant sites into three additional classes of binding sites: class IV sites have high levels H3K27me3, class V sites have high levels of H3K9me3, and class VI have low levels of both repressive marks (Fig 4a).
+We performed the same comparison for Grh and Twi and identified these same classes (Fig 4b,c).
+We compared to Grh ChIP-seq data from late embryos (16-17 hours) and wing imaginal discs [@Nevil2017], and to Twi ChIP-seq data from early embryos (1-3 hours) [@Ozdemir2011].
+Despite the presence of class IV, V and VI binding sites for all three proteins, there were distinct patterns of binding across different tissues.
+Zld binding in S2 cells was more similar to that of neural stem cells than embryos, with many of the strongest binding sites in embryos remaining unbound in S2 cells (Fig. 4a).
+For Grh, by contrast, many of the strongest binding sites were shared across the three tissues (Fig. 4b).
+Twi binding sites in S2 cells had low levels of binding in embryos, but many of the strongest embryonic binding sites were unbound.
 
-## Repressive chromatin is a barrier to pioneer-factor binding
-
--   Enrichment of repressive marks at sites bound in other tissues
-
--   Results of Taz experiments
-
--   Comment on sites that are not bound and lack repressive chromatin.
+To test the functional relevance of repressive chromatin to pioneer-factor binding, we used the chemical inhibitor tazemetostat to disrupt activity of the PRC2 complex responsible for depositing H3K27me3.
+We treated our stable cell lines with DMSO or tazemetostat for 7 days, inducing Zld, Grh, or Twi expression on day 5.
+We confirmed loss of H3K27me3 by westerm blot and CUT&RUN [@Skene2017] (Extended Data Fig. XX).
+We used ChIP-seq to test if tazemetostat treatment resulted in changes to Zld, Grh, or Twi binding.
+Tazemetostat treatment did not result in global changes to Zld, Grh, or Twi binding when compared to DMSO controls (Fig. 4d-f).
+Despite a dramatic loss of H3K27me3, the majority of class IV binding sites remained unbound in tazemetostat-treated cells.
+We did identify some individual sites where tazemetostat treatment lead to a loss of K27me3 and a concomitant gain of Zld, Grh or Twi, binding (Extended Data Fig. XX).
+Together, these data demonstrate that despite the correlation of H3K27me3 with resistance to pioneer factor binding, loss of PRC2 activity is insufficient to promote widespread binding of Zld, Grh, or Twi to repressed binding sites.
 
 ## Pioneer-factor binding and chromatin opening is concentration dependent
 
@@ -266,6 +280,9 @@ To better understand how cell-type specific variables affect pioneer-factor bind
 -   For Zld and Twi, increased concentration is insufficient to allow binding to repressed sites.
 
 -   For Grh, increased concentration does allow binding and opening at repressed sites
+
+Previous studies have proposed that pioneer factor activity may depend on protein concentration [@Hansen2022].
+Considering that tazemetostat treatment had limited effects on pioneer factor binding, we asked if varying the protein concentration of Zld, Grh, or Twi could affect binding and pioneering.
 
 ## Regions outside the DNA-binding domain are required for binding and opening of closed chromatin
 
@@ -299,7 +316,7 @@ Together, these experiments show that regions outside the DBD are essential for 
 ## Reagents
 
 | Reagent                               | Source/vendor             | Catalog/accession \# | Notes                   |
-|---------------------------------------|---------------------------|----------------------|-------------------------|
+|--------------------|------------------|------------------|------------------|
 | pMT-puro                              | AddGene                   | 17923                |                         |
 | Gibson Cloning                        | New England Biolabs       | E2611                |                         |
 | Schneider's Medium                    | Thermo Fisher Scientific  | 21720001             |                         |
