@@ -19,6 +19,8 @@ use rule * from ChIPseq as ChIPseq_*
 # 	input:
 # 		"ChIPseq/results/peaks/filtered/S2-WT_aZld_IP.narrowPeak",
 # 		"ChIPseq/results/peaks/filtered/S2-WT_aGrh_IP.narrowPeak",
+# 		"ChIPseq/results/peaks/filtered/S2-WT_aTwi.narrowPeak",
+# 		
 # 	output:
 # 		"resources/zld_regions_to_exclude.bed",
 # 		"resources/grh_regions_to_exclude.bed",
@@ -31,7 +33,7 @@ use rule * from ChIPseq as ChIPseq_*
 # 		"""
 # 		cat {input[0]} {params[0]} | cut -f 1,2,3 > {output[0]}
 # 		cat {input[1]} {params[1]} | cut -f 1,2,3 > {output[1]}
-# 		cat {params[2]} | cut -f 1,2,3 > {output[2]}
+# 		cat {input[2]} {params[2]} | cut -f 1,2,3 > {output[2]}
 # 		"""
 rule regions_to_exclude:
 	input:
@@ -411,6 +413,75 @@ rule figure_3:
 	script:
 		"workflow/scripts/fig3.R"
 
+rule figure_4:
+	input:
+		zld_tissue_occupancy = "results/ChIP_tissue_classes/zld_tissue_classes.tsv",
+		grh_tissue_occupancy = "results/ChIP_tissue_classes/grh_tissue_classes.tsv",
+		twi_tissue_occupancy = "results/ChIP_tissue_classes/twi_tissue_classes.tsv",
+		S2_ZLD_ChIP_bw =   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw",
+		embryo_Zld_ChIP_bw =  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-nc14_aZld.bw",
+		brain_Zld_ChIP_bw =  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/brain_aZld.bw",
+		S2_H3K27me3_bw =  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE151983_S2_aH3K27me3_IP.bw",
+		S2_H3K9me3_bw =  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE160855_aH3K9me3.bw",
+		S2_Grh_ChIP_bw =   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw",
+		embryo_Grh_ChIP_bw =  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-15-16H_aGrh.bw",
+		wing_disc_Grh_ChIP_bw =  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/wing-disc_aGrh.bw",
+		S2_Twi_ChIP_bw =  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw",
+		embryo_Twi_ChIP_bw =  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-1-3H_aTwi.bw",
+		S2_Zld_ChIP_DMSO_bw =  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_DMSO_aZld.bw",
+		S2_Zld_ChIP_taz_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_taz_aZld.bw",
+		S2_Zld_H3K27me3_DMSO_bw = "CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Zld_DMSO_aH3K27me3.bw",
+		S2_Zld_H3K27me3_taz_bw = "CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Zld_Taz_aH3K27me3.bw",
+		S2_Grh_ChIP_DMSO_bw =  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_DMSO_aGrh.bw",
+		S2_Grh_ChIP_taz_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_taz_aGrh.bw",
+		S2_Grh_H3K27me3_DMSO_bw = "CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Grh_DMSO_aH3K27me3.bw",
+		S2_Grh_H3K27me3_taz_bw = "CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Grh_Taz_aH3K27me3.bw",
+		S2_Twi_ChIP_DMSO_bw =  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-HA-Twi_DMSO_aHA.bw",
+		S2_Twi_ChIP_taz_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-HA-Twi_taz_aHA.bw",
+		S2_Twi_H3K27me3_DMSO_bw = "CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-HA-Twi_DMSO_aH3K27me3.bw",
+		S2_Twi_H3K27me3_taz_bw = "CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-HA-Twi_Taz_aH3K27me3.bw",
+	output:
+		"manuscript/figures/fig4.pdf"
+	script:
+		"workflow/scripts/fig4.R"
+
+rule figure_5:
+	input:
+		zld_tissue_occupancy = "results/ChIP_tissue_classes/zld_tissue_classes.tsv",
+		grh_tissue_occupancy = "results/ChIP_tissue_classes/grh_tissue_classes.tsv",
+		twi_tissue_occupancy = "results/ChIP_tissue_classes/twi_tissue_classes.tsv",
+		zld_0uM_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld-0uM_aZld_IP.bw",
+		zld_500uM_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld-500uM_aZld_IP.bw",
+		zld_1000uM_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld-1000uM_aZld_IP.bw",
+		zld_1500uM_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld-1500uM_aZld_IP.bw",
+		grh_0uM_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh-0uM_aGrh_IP.bw",
+		grh_25uM_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh-25uM_aGrh_IP.bw",
+		grh_100uM_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh-100uM_aGrh_IP.bw",
+		grh_400uM_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh-400uM_aGrh_IP.bw",
+		twi_0uM_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-HA-Twi-0uM_aHA_IP.bw",
+		twi_10uM_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-HA-Twi-10uM_aHA_IP.bw",
+		twi_40uM_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-HA-Twi-40uM_aHA_IP.bw",
+		twi_160uM_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-HA-Twi-160uM_aHA_IP.bw",
+		zld_0uM_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-Zld_0uM_small.bw",
+		zld_500uM_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-Zld_500uM_small.bw",
+		zld_1000uM_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-Zld_1000uM_small.bw",
+		zld_1500uM_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-Zld_1500uM_small.bw",
+		grh_0uM_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-Grh_0uM_small.bw",
+		grh_25uM_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-Grh_25uM_small.bw",
+		grh_100uM_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-Grh_100uM_small.bw",
+		grh_400uM_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-Grh_400uM_small.bw",
+		twi_0uM_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-HA-Twi_0uM_small.bw",
+		twi_10uM_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-HA-Twi_10uM_small.bw",
+		twi_40uM_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-HA-Twi_40uM_small.bw",
+		twi_160uM_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-HA-Twi_160uM_small.bw",
+		zld_titration_classes_fn = "results/ChIP_titration_classes/zld_titration_classes.tsv",
+		grh_titration_classes_fn = "results/ChIP_titration_classes/grh_titration_classes.tsv",
+		twi_titration_classes_fn = "results/ChIP_titration_classes/twi_titration_classes.tsv",
+	output:
+		"manuscript/figures/fig5.pdf"
+	script:
+		"workflow/scripts/fig5.R"
+
 rule figure_6:
 	input:
   		Zld_FL_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw",
@@ -447,5 +518,7 @@ rule all:
         "manuscript/figures/fig1.pdf",
         "manuscript/figures/fig2.pdf",
         "manuscript/figures/fig3.pdf",
+        "manuscript/figures/fig4.pdf",
+        "manuscript/figures/fig5.pdf",
         "manuscript/figures/fig6.pdf",
     default_target: True

@@ -11,48 +11,85 @@ source("workflow/scripts/plot_heatmap.R")
 source("workflow/scripts/utils.R")
 
 # define input files ===========================================================
-zld_tissue_occupancy <- read_tsv("results/ChIP_tissue_classes/zld_tissue_classes.tsv")
-grh_tissue_occupancy <- read_tsv("results/ChIP_tissue_classes/grh_tissue_classes.tsv")
-twi_tissue_occupancy <- read_tsv("results/ChIP_tissue_classes/twi_tissue_classes.tsv")
+# zld_tissue_occupancy <- read_tsv("results/ChIP_tissue_classes/zld_tissue_classes.tsv")
+# grh_tissue_occupancy <- read_tsv("results/ChIP_tissue_classes/grh_tissue_classes.tsv")
+# twi_tissue_occupancy <- read_tsv("results/ChIP_tissue_classes/twi_tissue_classes.tsv")
+# 
+# zld_0uM_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld-0uM_aZld_IP.bw"
+# zld_500uM_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld-500uM_aZld_IP.bw"
+# zld_1000uM_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld-1000uM_aZld_IP.bw"
+# zld_1500uM_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld-1500uM_aZld_IP.bw"
+# 
+# grh_0uM_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh-0uM_aGrh_IP.bw"
+# grh_25uM_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh-25uM_aGrh_IP.bw"
+# grh_100uM_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh-100uM_aGrh_IP.bw"
+# grh_400uM_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh-400uM_aGrh_IP.bw"
+# 
+# twi_0uM_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-HA-Twi-0uM_aHA_IP.bw"
+# twi_10uM_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-HA-Twi-10uM_aHA_IP.bw"
+# twi_40uM_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-HA-Twi-40uM_aHA_IP.bw"
+# twi_160uM_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-HA-Twi-160uM_aHA_IP.bw"
+# 
+# zld_0uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-Zld_0uM_small.bw"
+# zld_500uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-Zld_500uM_small.bw"
+# zld_1000uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-Zld_1000uM_small.bw"
+# zld_1500uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-Zld_1500uM_small.bw"
+# 
+# grh_0uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-Grh_0uM_small.bw"
+# grh_25uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-Grh_25uM_small.bw"
+# grh_100uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-Grh_100uM_small.bw"
+# grh_400uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-Grh_400uM_small.bw"
+# 
+# twi_0uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-HA-Twi_0uM_small.bw"
+# twi_10uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-HA-Twi_10uM_small.bw"
+# twi_40uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-HA-Twi_40uM_small.bw"
+# twi_160uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-HA-Twi_160uM_small.bw"
+# 
+# zld_titration_classes_fn <- "results/ChIP_titration_classes/zld_titration_classes.tsv"
+# grh_titration_classes_fn <- "results/ChIP_titration_classes/grh_titration_classes.tsv"
+# twi_titration_classes_fn <- "results/ChIP_titration_classes/twi_titration_classes.tsv"
 
-zld_0uM_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld-0uM_aZld_IP.bw"
-zld_500uM_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld-500uM_aZld_IP.bw"
-zld_1000uM_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld-1000uM_aZld_IP.bw"
-zld_1500uM_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld-1500uM_aZld_IP.bw"
+zld_tissue_occupancy_fn <- snakemake@input[["zld_tissue_occupancy"]]
+grh_tissue_occupancy_fn <- snakemake@input[["grh_tissue_occupancy"]]
+twi_tissue_occupancy_fn <- snakemake@input[["twi_tissue_occupancy"]]
 
-grh_0uM_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh-0uM_aGrh_IP.bw"
-grh_25uM_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh-25uM_aGrh_IP.bw"
-grh_100uM_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh-100uM_aGrh_IP.bw"
-grh_400uM_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh-400uM_aGrh_IP.bw"
+zld_0uM_ChIP_bw <- snakemake@input[["zld_0uM_ChIP_bw"]]
+zld_500uM_ChIP_bw <- snakemake@input[["zld_500uM_ChIP_bw"]]
+zld_1000uM_ChIP_bw <- snakemake@input[["zld_1000uM_ChIP_bw"]]
+zld_1500uM_ChIP_bw <- snakemake@input[["zld_1500uM_ChIP_bw"]]
 
-twi_0uM_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-HA-Twi-0uM_aHA_IP.bw"
-twi_10uM_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-HA-Twi-10uM_aHA_IP.bw"
-twi_40uM_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-HA-Twi-40uM_aHA_IP.bw"
-twi_160uM_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-HA-Twi-160uM_aHA_IP.bw"
+grh_0uM_ChIP_bw <- snakemake@input[["grh_0uM_ChIP_bw"]]
+grh_25uM_ChIP_bw <- snakemake@input[["grh_25uM_ChIP_bw"]]
+grh_100uM_ChIP_bw <- snakemake@input[["grh_100uM_ChIP_bw"]]
+grh_400uM_ChIP_bw <- snakemake@input[["grh_400uM_ChIP_bw"]]
 
-zld_0uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-Zld_0uM_small.bw"
-zld_500uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-Zld_500uM_small.bw"
-zld_1000uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-Zld_1000uM_small.bw"
-zld_1500uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-Zld_1500uM_small.bw"
+twi_0uM_ChIP_bw <- snakemake@input[["twi_0uM_ChIP_bw"]]
+twi_10uM_ChIP_bw <- snakemake@input[["twi_10uM_ChIP_bw"]]
+twi_40uM_ChIP_bw <- snakemake@input[["twi_40uM_ChIP_bw"]]
+twi_160uM_ChIP_bw <- snakemake@input[["twi_160uM_ChIP_bw"]]
 
-grh_0uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-Grh_0uM_small.bw"
-grh_25uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-Grh_25uM_small.bw"
-grh_100uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-Grh_100uM_small.bw"
-grh_400uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-Grh_400uM_small.bw"
+zld_0uM_ATAC_bw <- snakemake@input[["zld_0uM_ATAC_bw"]]
+zld_500uM_ATAC_bw <- snakemake@input[["zld_500uM_ATAC_bw"]]
+zld_1000uM_ATAC_bw <- snakemake@input[["zld_1000uM_ATAC_bw"]]
+zld_1500uM_ATAC_bw <- snakemake@input[["zld_1500uM_ATAC_bw"]]
 
-twi_0uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-HA-Twi_0uM_small.bw"
-twi_10uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-HA-Twi_10uM_small.bw"
-twi_40uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-HA-Twi_40uM_small.bw"
-twi_160uM_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/titration_S2-HA-Twi_160uM_small.bw"
+grh_0uM_ATAC_bw <- snakemake@input[["grh_0uM_ATAC_bw"]]
+grh_25uM_ATAC_bw <- snakemake@input[["grh_25uM_ATAC_bw"]]
+grh_100uM_ATAC_bw <- snakemake@input[["grh_100uM_ATAC_bw"]]
+grh_400uM_ATAC_bw <- snakemake@input[["grh_400uM_ATAC_bw"]]
 
-zld_titration_classes_fn <- "results/ChIP_titration_classes/zld_titration_classes.tsv"
-grh_titration_classes_fn <- "results/ChIP_titration_classes/grh_titration_classes.tsv"
-twi_titration_classes_fn <- "results/ChIP_titration_classes/twi_titration_classes.tsv"
+twi_0uM_ATAC_bw <- snakemake@input[["twi_0uM_ATAC_bw"]]
+twi_10uM_ATAC_bw <- snakemake@input[["twi_10uM_ATAC_bw"]]
+twi_40uM_ATAC_bw <- snakemake@input[["twi_40uM_ATAC_bw"]]
+twi_160uM_ATAC_bw <- snakemake@input[["twi_160uM_ATAC_bw"]]
 
+zld_titration_classes_fn <- snakemake@input[["zld_titration_classes_fn"]]
+grh_titration_classes_fn <- snakemake@input[["grh_titration_classes_fn"]]
+twi_titration_classes_fn <- snakemake@input[["twi_titration_classes_fn"]]
 
 ## create blank layout for plot =================================================
-# pdf(snakemake@output[[1]], useDingbats = FALSE)
-pdf("manuscript/figures/fig5.pdf")
+pdf(snakemake@output[[1]], useDingbats = FALSE)
+# pdf("manuscript/figures/fig5.pdf")
 pageCreate(width = 18.0, height = 18, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
@@ -76,6 +113,16 @@ twi_heatmap_colors <- brewer.pal(9, "GnBu")
 # set heatmap parameters
 hm_upstream <-  500
 hm_downstream <-  500
+
+# read in tissue occupancy classes =============================================
+zld_tissue_occupancy <- zld_tissue_occupancy_fn %>% 
+  read_tsv()
+
+grh_tissue_occupancy <- grh_tissue_occupancy_fn %>% 
+  read_tsv()
+
+twi_tissue_occupancy <- twi_tissue_occupancy_fn %>% 
+  read_tsv()
 
 # panel A ======================================================================
 # reference points for positioning figure components

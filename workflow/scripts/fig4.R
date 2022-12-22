@@ -11,26 +11,58 @@ source("workflow/scripts/plot_heatmap.R")
 source("workflow/scripts/utils.R")
 
 # define input files ===========================================================
-zld_tissue_occupancy <- read_tsv("results/ChIP_tissue_classes/zld_tissue_classes.tsv")
-grh_tissue_occupancy <- read_tsv("results/ChIP_tissue_classes/grh_tissue_classes.tsv")
-twi_tissue_occupancy <- read_tsv("results/ChIP_tissue_classes/twi_tissue_classes.tsv")
+# zld_tissue_occupancy <- read_tsv("results/ChIP_tissue_classes/zld_tissue_classes.tsv")
+# grh_tissue_occupancy <- read_tsv("results/ChIP_tissue_classes/grh_tissue_classes.tsv")
+# twi_tissue_occupancy <- read_tsv("results/ChIP_tissue_classes/twi_tissue_classes.tsv")
+# 
+# S2_ZLD_ChIP_bw <-   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw"
+# embryo_Zld_ChIP_bw <-  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-nc14_aZld.bw"
+# brain_Zld_ChIP_bw <-  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/brain_aZld.bw"
+# S2_H3K27me3_bw <-  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE151983_S2_aH3K27me3_IP.bw"
+# S2_H3K9me3_bw <-  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE160855_aH3K9me3.bw"
+# 
+# S2_Grh_ChIP_bw <-   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw"
+# embryo_Grh_ChIP_bw <-  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-15-16H_aGrh.bw"
+# wing_disc_Grh_ChIP_bw <-  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/wing-disc_aGrh.bw"
+# 
+# S2_Twi_ChIP_bw <-  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw"
+# embryo_Twi_ChIP_bw <-  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-1-3H_aTwi.bw"
 
-S2_ZLD_ChIP_bw <-   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw"
-embryo_Zld_ChIP_bw <-  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-nc14_aZld.bw"
-brain_Zld_ChIP_bw <-  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/brain_aZld.bw"
-S2_H3K27me3_bw <-  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE151983_S2_aH3K27me3_IP.bw"
-S2_H3K9me3_bw <-  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE160855_aH3K9me3.bw"
+zld_tissue_occupancy_fn <- snakemake@input[["zld_tissue_occupancy"]]
+grh_tissue_occupancy_fn <- snakemake@input[["grh_tissue_occupancy"]]
+twi_tissue_occupancy_fn <- snakemake@input[["twi_tissue_occupancy"]]
 
-S2_Grh_ChIP_bw <-   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw"
-embryo_Grh_ChIP_bw <-  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-15-16H_aGrh.bw"
-wing_disc_Grh_ChIP_bw <-  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/wing-disc_aGrh.bw"
+S2_ZLD_ChIP_bw <-   snakemake@input[["S2_ZLD_ChIP_bw"]]
+embryo_Zld_ChIP_bw <-  snakemake@input[["embryo_Zld_ChIP_bw"]]
+brain_Zld_ChIP_bw <-  snakemake@input[["brain_Zld_ChIP_bw"]]
+S2_H3K27me3_bw <-  snakemake@input[["S2_H3K27me3_bw"]]
+S2_H3K9me3_bw <-  snakemake@input[["S2_H3K9me3_bw"]]
 
-S2_Twi_ChIP_bw <-  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw"
-embryo_Twi_ChIP_bw <-  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-1-3H_aTwi.bw"
+S2_Grh_ChIP_bw <-   snakemake@input[["S2_Grh_ChIP_bw"]]
+embryo_Grh_ChIP_bw <-  snakemake@input[["embryo_Grh_ChIP_bw"]]
+wing_disc_Grh_ChIP_bw <-  snakemake@input[["wing_disc_Grh_ChIP_bw"]]
+
+S2_Twi_ChIP_bw <-  snakemake@input[["S2_Twi_ChIP_bw"]]
+embryo_Twi_ChIP_bw <-  snakemake@input[["embryo_Twi_ChIP_bw"]]
+
+S2_Zld_ChIP_DMSO <- snakemake@input[["S2_Zld_ChIP_DMSO_bw"]]
+S2_Zld_ChIP_taz  <- snakemake@input[["S2_Zld_ChIP_taz_bw"]]
+S2_Zld_H3K27me3_DMSO <-  snakemake@input[["S2_Zld_H3K27me3_DMSO_bw"]]
+S2_Zld_H3K27me3_taz <-  snakemake@input[["S2_Zld_H3K27me3_taz_bw"]]
+
+S2_Grh_ChIP_DMSO <-   snakemake@input[["S2_Grh_ChIP_DMSO_bw"]]
+S2_Grh_ChIP_taz <-  snakemake@input[["S2_Grh_ChIP_taz_bw"]]
+S2_Grh_H3K27me3_DMSO <-  snakemake@input[["S2_Grh_H3K27me3_DMSO_bw"]]
+S2_Grh_H3K27me3_taz <-  snakemake@input[["S2_Grh_H3K27me3_taz_bw"]]
+
+S2_Twi_ChIP_DMSO <-   snakemake@input[["S2_Twi_ChIP_DMSO_bw"]]
+S2_Twi_ChIP_taz <-  snakemake@input[["S2_Twi_ChIP_taz_bw"]]
+S2_Twi_H3K27me3_DMSO <-  snakemake@input[["S2_Twi_H3K27me3_DMSO_bw"]]
+S2_Twi_H3K27me3_taz <-  snakemake@input[["S2_Twi_H3K27me3_taz_bw"]]
 
 ## create blank layout for plot =================================================
-# pdf(snakemake@output[[1]], useDingbats = FALSE)
-pdf("manuscript/figures/fig4.pdf")
+pdf(snakemake@output[[1]], useDingbats = FALSE)
+# pdf("manuscript/figures/fig4.pdf")
 pageCreate(width = 18.0, height = 12, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
@@ -54,6 +86,16 @@ twi_heatmap_colors <- brewer.pal(9, "GnBu")
 # set heatmap parameters
 hm_upstream <-  1000
 hm_downstream <-  1000
+
+# read in tissue occupancy classes =============================================
+zld_tissue_occupancy <- zld_tissue_occupancy_fn %>% 
+  read_tsv()
+
+grh_tissue_occupancy <- grh_tissue_occupancy_fn %>% 
+  read_tsv()
+
+twi_tissue_occupancy <- twi_tissue_occupancy_fn %>% 
+  read_tsv()
 
 # panel A ======================================================================
 # reference points for positioning figure components
