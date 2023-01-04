@@ -369,52 +369,38 @@ Together, these experiments show that regions outside the DBD are essential for 
 
 ## Reagents
 
-| Reagent                               | Source/vendor             | Catalog/accession \# | Notes                   |
-|---------------------------------------|---------------------------|----------------------|-------------------------|
-| pMT-puro                              | AddGene                   | 17923                |                         |
-| Gibson Cloning                        | New England Biolabs       | E2611                |                         |
-| Schneider's Medium                    | Thermo Fisher Scientific  | 21720001             |                         |
-| Fetal Bovine Serum                    | Omega Scientific          | FB-02                |                         |
-| Antibiotic/antimycotic                | Thermo Fisher Scientific  | 15240062             |                         |
-| Effectene Transfection Reagent        | Qiagen                    | 301427               |                         |
-| PVDF Membrane                         |                           |                      |                         |
-| Formaldehyde                          |                           |                      |                         |
-| Protease inhibitor tablets            |                           |                      |                         |
-| NEBNext Ultra II DNA library prep kit |                           |                      |                         |
-| TruSeq v2 RNA library prep kit        |                           |                      |                         |
-| Trizol                                |                           |                      |                         |
-| **Antibodies**                        |                           |                      |                         |
-| Anti-Zld                              | Harrison et al., 2010     |                      | ChIP: 6 µL , WB: 1:750  |
-| Anti-Grh                              | Harrison et al., 2010     |                      | ChIP: 8 µL, WB: 1:1000  |
-| Anti-Twi                              | He et al., 2015           |                      | ChIP: 10 µg, WB: 1:1000 |
-| Anti-HA-peroxidase clone 3F10         | Roche                     | 12013819001          | WB: 1:500               |
-| Anti-Tubulin DM1A                     | Sigma                     | T6199-200UL          | WB: 1:5000              |
-| goat anti-rabbit IgG-HRP conjugate    | Bio-Rad                   | 1706515              | WB: 1:3000              |
-| Anti-HA clone 12CA5                   | Roche                     |                      | ChIP: 7.5 µL            |
-| Anti-H3K27me3                         | Cell Signaling Technology |                      | WB: 1:1000, CR: 0.5 µL  |
-|                                       |                           |                      |                         |
-|                                       |                           |                      |                         |
+| Reagent                               | Source/vendor              | Catalog/accession \# | Notes                   |
+|---------------------|-----------------|-----------------|-----------------|
+| pMT-puro                              | AddGene                    | 17923                |                         |
+| Gibson Cloning                        | New England Biolabs        | E2611                |                         |
+| Schneider's Medium                    | Thermo Fisher Scientific   | 21720001             |                         |
+| Fetal Bovine Serum                    | Omega Scientific           | FB-02                |                         |
+| Antibiotic/antimycotic                | Thermo Fisher Scientific   | 15240062             |                         |
+| Effectene Transfection Reagent        | Qiagen                     | 301427               |                         |
+| PVDF Membrane                         |                            |                      |                         |
+| Formaldehyde                          |                            |                      |                         |
+| Protease inhibitor tablets            |                            |                      |                         |
+| NEBNext Ultra II DNA library prep kit |                            |                      |                         |
+| TruSeq v2 RNA library prep kit        |                            |                      |                         |
+| Trizol                                |                            |                      |                         |
+| **Antibodies**                        |                            |                      |                         |
+| Anti-Zld                              | Harrison et al., 2010      |                      | ChIP: 6 µL , WB: 1:750  |
+| Anti-Grh                              | Harrison et al., 2010      |                      | ChIP: 8 µL, WB: 1:1000  |
+| Anti-Twi                              | He et al., 2015            |                      | ChIP: 10 µg, WB: 1:1000 |
+| Anti-HA-peroxidase clone 3F10         | Roche                      | 12013819001          | WB: 1:500               |
+| Anti-Tubulin DM1A                     | Sigma                      | T6199-200UL          | WB: 1:5000              |
+| goat anti-rabbit IgG-HRP conjugate    | Bio-Rad                    | 1706515              | WB: 1:3000              |
+| Anti-HA clone 12CA5                   | Roche                      |                      | ChIP: 7.5 µL            |
+| Anti-H3K27me3                         | Cell Signaling Technology  | C36B11; Lot #19      | WB: 1:1000, CR: 0.5 µL  |
+|                                       |                            |                      |                         |
+|                                       |                            |                      |                         |
 
-## Cloning
+## 
+
+## Cell culture and generation of stable cell lines
 
 *zld*, *grh*, or *twi* cDNA (isoforms RB, RH, and RA, respectively) were cloned into pMT-puro plasmid (Addgene) via Gibson cloning (New England Biolabs).
 For cloning of the Zld and Grh DNA-binding domains, DNA encoding amino acids 1114-1487 (Zld) or amino acids 603-1032 (Grh) was cloned into pMT-puro.
-
--   **TG2A- Zld RB**
-
--   **TG3A- Grh PH**
-
--   **TG4A**
-
--   **TG6A**
-
--   **TG8A**
-
--   **MF8A**
-
--   GFP-DBD lines
-
-## Cell culture and generation of stable cell lines
 
 Drosophila S2 cells were cultured at 27°C in Schneider's medium (Thermo Fisher Scientific) supplemented with 10% fetal bovine serum (Omega Scientific) and antibiotic/antimycotic (Thermo Fisher Scientific).
 For the generation of stable cell lines, cells were plated at 5✕10^5^ cells per mL.
@@ -464,18 +450,10 @@ Sequencing was performed on the Illumina Hi-Seq4000 using 50bp single-end reads,
 Bowtie2 version 2.4.4 [@Langmead2012] was used to align ChIP-seq reads to the *Drosophila melanogaster* genome (version dm6) with the following non-default parameters: -k 2 \--very-sensitive \--no-mixed \--no-discordant -X 5000.
 Aligned reads were filtered to include only reads with a mapping quality score \> 30.
 Reads mapping to unplaced scaffolds or the mitochondrial genome were discarded.
-
-Alignment
-
-Filtering
-
-peak calling
-
-peak filtering
-
-generation of bigwigs
-
-normalization of bigwigs
+Peak calling was performed using MACS2 version 2.2 with parameters -g dm \--call-summits.
+Only peaks that were detected in all replicates were considered in downstream analysis.
+bigWig files were generated using deepTools bamCoverage version 3.5.1 with parameters --binSize 10.
+bigWig files were z-score normalized by subtracting the genome-wide average of all bins from each bin value and dividing by the standard deviation of all bins.
 
 ## RNA-seq
 
@@ -493,17 +471,73 @@ Genes with an adjusted p-value \< 0.05 and a fold change \> 2 were considered di
 
 ## ATAC-seq
 
+ATAC-seq was performed as described previsouly [@Buenrostro2013].
+2×10^5^ cells were harvested for ATAC-seq by centrifugation at 600 × *g* for 3 minutes at RT.
+Cells were washed once in 100 µL 1X PBS and resuspended in 100 µL ATAC lysis buffer (10 mM Tris pH 7.5, 10 mM NaCl, 3 mM MgCl~2~,0.1% NP-40).
+Cells were centrifuged at 600 × *g* for 10 minutes at 4°C.
+Supernatant was removed and pellet was resuspended in 47.5 µL buffer TD (Illumina).
+2.5 uL of Tagment DNA Enzyme (Illumina) was added and samples were incubated at 37°C for 30 minutes.
+Tagmented DNA was purified using MinElute Reaction Cleanup Kit (Qiagen) and eluted in 10 µL of buffer EB.
+DNA was PCR amplified for 12 cycles with the following conditions:72°C for 5 minutes, 98°C for 30 seconds, then 12 cycles of 98°C for 10 seconds, 63°C for 30 seconds and 72°C for 1 minute.
+Amplified libraries were purified using a 1.2X ratio of Axygen paramagnetic beads.
+Sequencing was performed on the Illumina NovaSeq 6000 using 150bp paired-end reads.
+
 ## ATAC-seq analysis
 
-## CUT&RUN
-
-## CUT&RUN analysis
+Raw ATAC-seq reads were trimmed to remove adapter sequences using NGmerge version 0.3 [@Gaspar2018].
+Trimmed reads were aligned to the *Drosophila melanogaster* genome (version dm6) using bowtie2 with paramters -k 2 \--very-sensitive \--no-mixed \--no-discordant -X 5000.
+Reads with a mapping quality \< 30 and reads aligning to the mitochondrial genome or scaffolds were discarded.
+As described previously, only fragments \< 100bp were considered for downstream analysis [@Buenrostro2013].
+Reads were combined across all replicates and peak calling was performed using MACS2 with parameters -f BAMPE \--keep-dup all -g dm \--call-summits.
+featureCounts was used to count the number of reads aligning within 200bp (100bp upstream or downstream) of peak summits.
+Differential accessibility analysis was performed using DESeq2.
+Regions with an adjusted p-value \< 0.05 were considered differentially accessible.
 
 ## Treatment of S2 cells with tazemetostat
 
+Cells were plated at 1×10^6^ cells per mL and DMSO or tazemetostat was added to a final concentration of 10 µM.
+Cells were split on days 2 and 5 and tazemetostat was added to maintain a final concentration of 10 µM.
+On day 5, CuSO~4~ was added to achieve physiological expression of Zld, Grh or Twi (see above).
+On day 7, cells were harvested for immunoblotting, ChIP and CUT&RUN.
+
+## CUT&RUN
+
+CUT&RUN was performed using EpiCypher reagents according to the manufacturer protocol.
+2×10^5^ cells were used for each CUT&RUN reaction.
+Overnight incubation with antibodies was performed in antibody buffer containing 0.05% digitonin.
+0.5 µL anti-H3K27me3 (Cell signaling technologies) or rabbit IgG were used for CUT&RUN.
+Prior to addition of antibody, a 1:5 dilution of K-MetStat Panel spike-in nucleosomes (EpiCypher, cat. \# 19-1002) was added to each reaction.
+Libraries were prepared using the NEBNext Ultra II kit (NEB).
+During library preparation, cleanup steps were performed using a 1.1X ratio of Axygen paramagnetic beads, as recommended by EpiCypher.
+PCR amplification was performed with the following conditions: 98°C for 45 seconds, then 14 cycles of 98°C for 15 seconds, 60°C for 10 seconds, and a final extension of 72°C for 1 minute.
+Sequencing was performed on the Illumina NovaSeq 6000 with 150bp paired-end reads.
+
+## CUT&RUN analysis
+
+Trimming
+
+Alignment
+
+Filtering
+
+peak calling
+
+bigwigs
+
+z-score normalization
+
+spike-in normalization
+
 ## Analysis of previously published data
 
+Previously published datasets analyzed in this study can be found in supplemental table XXXX.
+All previously published data were analyzed in parallel with data from this study using analysis parameters described above.
+
 ## Data and code availability
+
+Sequencing data have been deposited in the Gene Expresion Omnibus under accession GSEXXXX.
+All analysis code is available on GitHub: https://github.com/tjgibson/S2_pioneers_manuscript.
+An archived version of the data processing and analysis pipeline is available on Zenodo: doiXXXX.
 
 # Figure Legends
 
