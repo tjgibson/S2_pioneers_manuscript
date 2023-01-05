@@ -142,7 +142,7 @@ rule get_embryo_PWMs:
 module RNAseq:
     snakefile:
         "https://github.com/tjgibson/NGS-workflow-RNAseq/raw/main/workflow/Snakefile"
-#         "../../NGS_workflows/NGS-workflow-RNAseq/workflow/Snakefile"
+#         "../NGS_workflows/NGS-workflow-RNAseq/workflow/Snakefile"
 		config: config["RNAseq"]
 		prefix: "RNAseq"
 use rule * from RNAseq as RNAseq_*
