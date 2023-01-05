@@ -369,31 +369,31 @@ Together, these experiments show that regions outside the DBD are essential for 
 
 ## Reagents
 
-| Reagent                               | Source/vendor              | Catalog/accession \# | Notes                   |
-|---------------------|-----------------|-----------------|-----------------|
-| pMT-puro                              | AddGene                    | 17923                |                         |
-| Gibson Cloning                        | New England Biolabs        | E2611                |                         |
-| Schneider's Medium                    | Thermo Fisher Scientific   | 21720001             |                         |
-| Fetal Bovine Serum                    | Omega Scientific           | FB-02                |                         |
-| Antibiotic/antimycotic                | Thermo Fisher Scientific   | 15240062             |                         |
-| Effectene Transfection Reagent        | Qiagen                     | 301427               |                         |
-| PVDF Membrane                         |                            |                      |                         |
-| Formaldehyde                          |                            |                      |                         |
-| Protease inhibitor tablets            |                            |                      |                         |
-| NEBNext Ultra II DNA library prep kit |                            |                      |                         |
-| TruSeq v2 RNA library prep kit        |                            |                      |                         |
-| Trizol                                |                            |                      |                         |
-| **Antibodies**                        |                            |                      |                         |
-| Anti-Zld                              | Harrison et al., 2010      |                      | ChIP: 6 µL , WB: 1:750  |
-| Anti-Grh                              | Harrison et al., 2010      |                      | ChIP: 8 µL, WB: 1:1000  |
-| Anti-Twi                              | He et al., 2015            |                      | ChIP: 10 µg, WB: 1:1000 |
-| Anti-HA-peroxidase clone 3F10         | Roche                      | 12013819001          | WB: 1:500               |
-| Anti-Tubulin DM1A                     | Sigma                      | T6199-200UL          | WB: 1:5000              |
-| goat anti-rabbit IgG-HRP conjugate    | Bio-Rad                    | 1706515              | WB: 1:3000              |
-| Anti-HA clone 12CA5                   | Roche                      |                      | ChIP: 7.5 µL            |
-| Anti-H3K27me3                         | Cell Signaling Technology  | C36B11; Lot #19      | WB: 1:1000, CR: 0.5 µL  |
-|                                       |                            |                      |                         |
-|                                       |                            |                      |                         |
+| Reagent                               | Source/vendor             | Catalog/accession \# | Notes                   |
+|--------------------|------------------|------------------|------------------|
+| pMT-puro                              | AddGene                   | 17923                |                         |
+| Gibson Cloning                        | New England Biolabs       | E2611                |                         |
+| Schneider's Medium                    | Thermo Fisher Scientific  | 21720001             |                         |
+| Fetal Bovine Serum                    | Omega Scientific          | FB-02                |                         |
+| Antibiotic/antimycotic                | Thermo Fisher Scientific  | 15240062             |                         |
+| Effectene Transfection Reagent        | Qiagen                    | 301427               |                         |
+| PVDF Membrane                         |                           |                      |                         |
+| Formaldehyde                          |                           |                      |                         |
+| Protease inhibitor tablets            |                           |                      |                         |
+| NEBNext Ultra II DNA library prep kit |                           |                      |                         |
+| TruSeq v2 RNA library prep kit        |                           |                      |                         |
+| Trizol                                |                           |                      |                         |
+| **Antibodies**                        |                           |                      |                         |
+| Anti-Zld                              | Harrison et al., 2010     |                      | ChIP: 6 µL , WB: 1:750  |
+| Anti-Grh                              | Harrison et al., 2010     |                      | ChIP: 8 µL, WB: 1:1000  |
+| Anti-Twi                              | He et al., 2015           |                      | ChIP: 10 µg, WB: 1:1000 |
+| Anti-HA-peroxidase clone 3F10         | Roche                     | 12013819001          | WB: 1:500               |
+| Anti-Tubulin DM1A                     | Sigma                     | T6199-200UL          | WB: 1:5000              |
+| goat anti-rabbit IgG-HRP conjugate    | Bio-Rad                   | 1706515              | WB: 1:3000              |
+| Anti-HA clone 12CA5                   | Roche                     |                      | ChIP: 7.5 µL            |
+| Anti-H3K27me3                         | Cell Signaling Technology | C36B11; Lot #19      | WB: 1:1000, CR: 0.5 µL  |
+|                                       |                           |                      |                         |
+|                                       |                           |                      |                         |
 
 ## 
 
@@ -590,33 +590,11 @@ Shown for Zld **(a)** and Grh **(b)**.
 
 -   Schematic of cell line generation.
 
--   RNA-seq data to show expression of S2 and not Kc cell markers.
-
 -   Western blots to determine physiological expression and lack of protein expression in WT cells.
 
 -   RNA-seq data to show leaky expression and strong induction of RNA levels.
 
-**Extended Data Figure 2: Ectopically expressed Zld and Grh bind to thousands of sites in S2 cells.**
-
--   ChIP-seq replicate correlation
-
--   Genome browser and heatmaps for all ChIP peaks?
-
--   IgG and WT controls for antibody specificity
-
-**Extended Data Figure 3: Ectopic expression of pioneer factors in S2 cells leads to widespread changes to chromatin accessibility.**
-
--   ATAC PCA plot
-
--   ATAC replicate correlation
-
--   volcano and/or MA plots with enrichment of binding
-
--   Example genome browsers?
-
--   Analysis of nonspecific changes?
-
-**Extended Data Figure 4: Zld and Grh bind to chromatin rapidly after induction of protein expression**
+**Extended Data Figure 2: Zld and Grh bind to chromatin rapidly after induction of protein expression**
 
 -   Western blot time course of protein levels
 
@@ -624,25 +602,27 @@ Shown for Zld **(a)** and Grh **(b)**.
 
 -   likely rules out dependence on DNA replication
 
-**Extended Data Figure 5: Zld and Grh binding promotes transcriptional activation at a subset of binding sites**
+**Extended Data Figure 3: Ectopic expression of pioneer factors in S2 cells leads to widespread changes to chromatin accessibility and gene expression.**
+
+-   volcano and/or MA plots with enrichment of binding
+
+-   Analysis of nonspecific changes?
 
 -   RNA-seq PCA
-
--   RNA-seq replicate correlation
 
 -   RNA-seq volcano/MA plots
 
 -   RNA-seq GO analysis
 
-**Extended Data Figure 6: Twist binding leads to chromatin opening and transcriptional activation**
+**Extended Data Figure 4: Twist binding leads to chromatin opening and transcriptional activation**
 
--   Twi ATAC PCA, volcano, and examples
+-   Twi volcano and examples
 
--   TWI RNA-seq PCA, volcano, and examples
+-   TWI RNA-seq volcano and examples
 
 -   Twi RNA-seq GO analysis
 
-**Extended Data Figure 7: Chromatin features associated with Zld, Grh and Twi binding sites**
+**Extended Data Figure 5: Chromatin features associated with Zld, Grh and Twi binding sites**
 
 -   analysis of published ChIP datasets not shown in main figure
 
@@ -650,7 +630,9 @@ Shown for Zld **(a)** and Grh **(b)**.
 
 -   Class III sites have higher levels of H1 and H3 than class II sites.
 
-**Extended Data Figure 8: Zld, Grh and Twi do not bind preferentially to motifs in a particular position on nucleosomes**
+**Extended Data Figure 6: Zld, Grh and Twi do not bind preferentially to motifs in a particular position on nucleosomes**
+
+-   De novo motif enrichment for each factor
 
 -   MNase data to show enrichment of nucleosomes around target motifs
 
