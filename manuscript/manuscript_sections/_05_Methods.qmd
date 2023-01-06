@@ -1,0 +1,172 @@
+## Reagents
+
+| Reagent                               | Source/vendor             | Catalog/accession \# | Notes                   |
+|-------------------|------------------|------------------|------------------|
+| pMT-puro                              | AddGene                   | 17923                |                         |
+| Gibson Cloning                        | New England Biolabs       | E2611                |                         |
+| Schneider's Medium                    | Thermo Fisher Scientific  | 21720001             |                         |
+| Fetal Bovine Serum                    | Omega Scientific          | FB-02                |                         |
+| Antibiotic/antimycotic                | Thermo Fisher Scientific  | 15240062             |                         |
+| Effectene Transfection Reagent        | Qiagen                    | 301427               |                         |
+| PVDF Membrane                         |                           |                      |                         |
+| Formaldehyde                          |                           |                      |                         |
+| Protease inhibitor tablets            |                           |                      |                         |
+| NEBNext Ultra II DNA library prep kit |                           |                      |                         |
+| TruSeq v2 RNA library prep kit        |                           |                      |                         |
+| Trizol                                |                           |                      |                         |
+| **Antibodies**                        |                           |                      |                         |
+| Anti-Zld                              | Harrison et al., 2010     |                      | ChIP: 6 µL , WB: 1:750  |
+| Anti-Grh                              | Harrison et al., 2010     |                      | ChIP: 8 µL, WB: 1:1000  |
+| Anti-Twi                              | He et al., 2015           |                      | ChIP: 10 µg, WB: 1:1000 |
+| Anti-HA-peroxidase clone 3F10         | Roche                     | 12013819001          | WB: 1:500               |
+| Anti-Tubulin DM1A                     | Sigma                     | T6199-200UL          | WB: 1:5000              |
+| goat anti-rabbit IgG-HRP conjugate    | Bio-Rad                   | 1706515              | WB: 1:3000              |
+| Anti-HA clone 12CA5                   | Roche                     |                      | ChIP: 7.5 µL            |
+| Anti-H3K27me3                         | Cell Signaling Technology | C36B11; Lot #19      | WB: 1:1000, CR: 0.5 µL  |
+|                                       |                           |                      |                         |
+|                                       |                           |                      |                         |
+
+## 
+
+## Cell culture and generation of stable cell lines
+
+*zld*, *grh*, or *twi* cDNA (isoforms RB, RH, and RA, respectively) were cloned into pMT-puro plasmid (Addgene) via Gibson cloning (New England Biolabs).
+For cloning of the Zld and Grh DNA-binding domains, DNA encoding amino acids 1114-1487 (Zld) or amino acids 603-1032 (Grh) was cloned into pMT-puro.
+
+We validated our wild-type (WT) S2 cells by performing RNA-seq and verifying the expression of known S2 cell markers and the absence of Kc cell markers [@Cherbas2011].
+Drosophila S2 cells were cultured at 27°C in Schneider's medium (Thermo Fisher Scientific) supplemented with 10% fetal bovine serum (Omega Scientific) and antibiotic/antimycotic (Thermo Fisher Scientific).
+For the generation of stable cell lines, cells were plated at 5✕10^5^ cells per mL.
+After 24 hours, cells were transfected with 10 µg plasmid DNA using Effectene transfection reagent (Qiagen).
+After an additional 24 hours, puromycin was added to a final concentration of 2 µg/mL.
+Stable cell lines were recovered after 2-3 weeks of selection.
+Following recovery of stable cell lines, cells were cultured with 1 µg/mL puromycin.
+
+## Induction of transcription factor expression
+
+Transcription factor expression was induced by adding CuSO~4~ to the cell culture media.
+Expression of protein at physiological levels was achieved with 1000, 100, or 40 µM CuSO~4~ for Zld, Grh or Twi, respectively (Supplemental figure X).
+For experiments with sub- or supraphysiological protein levels (Fig. 5), the following CuSO~4~ concentrations were used: 500 µM (Zld subphysiological), 1000 µM (Zld physiological) or 1500 µM (Zld supraphysiological); 25 µM (Grh subphysiological), 100 µM (Grh physiological) or 400 µM (Grh supraphysiological); 10 µM (Twi subphysiological), 40 µM (Twi physiological) or 160 µM (Twi supraphysiological).
+For all induction experiments, cells were plated at 1×10^6^ cells per mL.
+Unless otherwise specified, experiments were performed with cells harvested 48 hours after induction.
+
+## Immunoblotting
+
+Proteins were separated on denaturing polyacramide gels before transfer to a 0.45 μm Immobilon-P PVDF membrane (Millipore) in transfer buffer (25 mM Tris, 200 mM Glycine, 20% methanol) for 60 min (75 min for Zld) at 500mA at 4°C.
+The membranes were blocked with BLOTTO (2.5% non-fat dry milk, 0.5% BSA, 0.5% NP-40, in TBST) for 30 min at room temperature and then incubated with anti-Zld (1:750) (Harrison et al., 2010), anti-Grh (1:1000) (Harrison et al., 2010), anti-Twi (1:1000) (He et al. 2015), anti-HA-peroxidase (1:500) (clone 3F10, Roche), or anti-Tubulin (DM1A, 1:5000) (Sigma), overnight at 4°C.
+The secondary incubation was performed with goat anti-rabbit IgG-HRP conjugate (1:3000) (Bio-Rad) for 1 hr at room temperature.
+Blots were treated with SuperSignal West Pico PLUS chemiluminescent substrate (Thermo Fisher Scientific) and visualized using the Azure Biosystems c600 or Kodak/Carestream BioMax Film (VWR).
+
+## Immunostaining
+
+## ChIP-seq
+
+For each ChIP experiment, \~50 million cells were crosslinked by adding methanol-free formaldehyde directly to the cell culture medium to a final concentration of 0.8%.
+Cells were rotated on a nutator for 7 minutes at room temperature (RT) before quenching of crosslinking by adding glycine to 125 mM.
+Crosslinked cells were pelleted by centrifugation at 600 × *g* for 3 minutes.
+Cells were washed twice with 1X PBS.
+Cells were lysed by resuspending in lysis buffer (50 mM HEPES pH 7.9, 140 mM NaCl, 1 mM EDTA, 10% glycerol, 0.5% NP40, 0.25% Triton-X 100) with protease inhibitors (Pierce) and incubating on ice for 10 minutes.
+The resulting chromatin was pelleted for 5 minutes at 1500 × *g* and resuspended in RIPA buffer.
+Chromatin was sonicated in a Covaris S220 Ultrasonicator (5 cycles of 120 seconds with 60 second delay, 170 peak power, 10% duty factor, 200 cycles/burst).
+Sonicated chromatin was centrifuged for 10 minutes at 10,000 × *g* to pellet insoluble material.
+5% of the supernatant was set aside as input, and the remainder was incubated at 4°C overnight with antibodies (6 µL anti-Zld, 8 µL anti-Grh, 10 µg anti-Twi, 7.5 µL anti-HA).
+20 µL protein A beads (Dynabeads Protein A, ThermoFisher Scientific) blocked with BSA were added and samples were incubated at 4°C for 4 hours.
+Beads were separated on a magnet and washed 3× with low salt wash buffer (10 mM Tris pH 7.6, 1 mM EDTA, 0.1% SDS, 0.1% Na-Deoxycholate, 1% Triton-X 100, 150 mM NaCl), 2× high salt wash buffer (10 mM Tris pH 7.6, 1 mM EDTA, 0.1% SDS, 0.1% sodium deoxycholate, 1% Triton-X 100, 300 mM NaC), 2× LiCl wash buffer (0.25 M LiCl, 0.5% NP40, 0.5% sodium deoxycholate), and 1× with TE buffer with NaCl (10 mM Tris-HCl pH 8.0, 1 mM EDTA, 50 mM NaCl).
+Beads were resuspended in elution buffer (50 mM Tris-HCl pH 8.0, 1% SDS, 10 mM EDTA) and incubated at 65°C for 10 minutes.
+The IP and input samples were treated with 4.5 µL RNAse A for 30 minutes.
+5 µL Proteinase K was added and samples were incubated overnight at 65°C to reverse crosslinking.
+DNA was isolated by phenol:chloroform extraction, precipitated with EtOH, and resuspended in 20 µL H~2~O.Preparation of sequencing libraries was performed using NEBNext Ultra II kit (NEB) with 7 PCR cycles for library amplification.
+Sequencing was performed on the Illumina Hi-Seq4000 using 50bp single-end reads, or on the Illumina NovaSeq 6000 using 150bp paired-end reads.
+
+## ChIP-seq analysis
+
+Bowtie2 version 2.4.4 [@Langmead2012] was used to align ChIP-seq reads to the *Drosophila melanogaster* genome (version dm6) with the following non-default parameters: -k 2 \--very-sensitive \--no-mixed \--no-discordant -X 5000.
+Aligned reads were filtered to include only reads with a mapping quality score \> 30.
+Reads mapping to unplaced scaffolds or the mitochondrial genome were discarded.
+Peak calling was performed using MACS2 version 2.2 with parameters -g dm \--call-summits.
+Only peaks that were detected in all replicates were considered in downstream analysis.
+bigWig files were generated using deepTools bamCoverage version 3.5.1 with parameters --binSize 10.
+bigWig files were z-score normalized by subtracting the genome-wide average of all bins from each bin value and dividing by the standard deviation of all bins.
+
+## RNA-seq
+
+5×10^6^ cells were harvested and resuspended in 800 µL Trizol (Invitrogen).
+RNA was purified using a chloroform extraction followed by a column-based Quick-RNA MiniPrep extraction (Zymo).
+Poly-A-selected RNA sequencing (RNA-seq) libraries were prepared using the TruSeq RNA sample prep kit v2 (Illumina).
+
+## RNA-seq analysis
+
+Raw reads were aligned to the Drosophila melanogaster (dm6) genome using HISAT2 version 2.1.0 with parameters -k 2 --very-sensitive.
+Reads with a mapping quality score \< 30 and reads aligning to the mitochondrial genome or unplaced scaffolds were discarded.
+FeatureCounts (from Subread version 2.0) was used to assign aligned reads to genes (FlyBase gene annotation release r6.45).
+The resultant table of read counts was used to perform differential expression analysis using DESeq2 [@love2014].
+Genes with an adjusted p-value \< 0.05 and a fold change \> 2 were considered differentially expressed.
+
+## ATAC-seq
+
+ATAC-seq was performed as described previsouly [@Buenrostro2013].
+2×10^5^ cells were harvested for ATAC-seq by centrifugation at 600 × *g* for 3 minutes at RT.
+Cells were washed once in 100 µL 1X PBS and resuspended in 100 µL ATAC lysis buffer (10 mM Tris pH 7.5, 10 mM NaCl, 3 mM MgCl~2~,0.1% NP-40).
+Cells were centrifuged at 600 × *g* for 10 minutes at 4°C.
+Supernatant was removed and pellet was resuspended in 47.5 µL buffer TD (Illumina).
+2.5 uL of Tagment DNA Enzyme (Illumina) was added and samples were incubated at 37°C for 30 minutes.
+Tagmented DNA was purified using MinElute Reaction Cleanup Kit (Qiagen) and eluted in 10 µL of buffer EB.
+DNA was PCR amplified for 12 cycles with the following conditions:72°C for 5 minutes, 98°C for 30 seconds, then 12 cycles of 98°C for 10 seconds, 63°C for 30 seconds and 72°C for 1 minute.
+Amplified libraries were purified using a 1.2X ratio of Axygen paramagnetic beads.
+Sequencing was performed on the Illumina NovaSeq 6000 using 150bp paired-end reads.
+
+## ATAC-seq analysis
+
+Raw ATAC-seq reads were trimmed to remove adapter sequences using NGmerge version 0.3 [@Gaspar2018].
+Trimmed reads were aligned to the *Drosophila melanogaster* genome (version dm6) using bowtie2 with paramters -k 2 \--very-sensitive \--no-mixed \--no-discordant -X 5000.
+Reads with a mapping quality \< 30 and reads aligning to the mitochondrial genome or scaffolds were discarded.
+As described previously, only fragments \< 100bp were considered for downstream analysis [@Buenrostro2013].
+Reads were combined across all replicates and peak calling was performed using MACS2 with parameters -f BAMPE \--keep-dup all -g dm \--call-summits.
+featureCounts was used to count the number of reads aligning within 200bp (100bp upstream or downstream) of peak summits.
+Differential accessibility analysis was performed using DESeq2.
+Regions with an adjusted p-value \< 0.05 were considered differentially accessible.
+
+## Treatment of S2 cells with tazemetostat
+
+Cells were plated at 1×10^6^ cells per mL and DMSO or tazemetostat was added to a final concentration of 10 µM.
+Cells were split on days 2 and 5 and tazemetostat was added to maintain a final concentration of 10 µM.
+On day 5, CuSO~4~ was added to achieve physiological expression of Zld, Grh or Twi (see above).
+On day 7, cells were harvested for immunoblotting, ChIP and CUT&RUN.
+
+## CUT&RUN
+
+CUT&RUN was performed using EpiCypher reagents according to the manufacturer protocol.
+2×10^5^ cells were used for each CUT&RUN reaction.
+Overnight incubation with antibodies was performed in antibody buffer containing 0.05% digitonin.
+0.5 µL anti-H3K27me3 (Cell signaling technologies) or rabbit IgG were used for CUT&RUN.
+Prior to addition of antibody, a 1:5 dilution of K-MetStat Panel spike-in nucleosomes (EpiCypher, cat. \# 19-1002) was added to each reaction.
+Libraries were prepared using the NEBNext Ultra II kit (NEB).
+During library preparation, cleanup steps were performed using a 1.1X ratio of Axygen paramagnetic beads, as recommended by EpiCypher.
+PCR amplification was performed with the following conditions: 98°C for 45 seconds, then 14 cycles of 98°C for 15 seconds, 60°C for 10 seconds, and a final extension of 72°C for 1 minute.
+Sequencing was performed on the Illumina NovaSeq 6000 with 150bp paired-end reads.
+
+## CUT&RUN analysis
+
+Trimming
+
+Alignment
+
+Filtering
+
+peak calling
+
+bigwigs
+
+z-score normalization
+
+spike-in normalization
+
+## Analysis of previously published data
+
+Previously published datasets analyzed in this study can be found in supplemental table XXXX.
+All previously published data were analyzed in parallel with data from this study using analysis parameters described above.
+
+## Data and code availability
+
+Sequencing data have been deposited in the Gene Expresion Omnibus under accession GSEXXXX.
+All analysis code is available on GitHub: https://github.com/tjgibson/S2_pioneers_manuscript.
+An archived version of the data processing and analysis pipeline is available on Zenodo: doiXXXX.

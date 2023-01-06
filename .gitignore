@@ -18,6 +18,7 @@ workflow/scripts/.snakemake*
 !.gitattributes
 !manuscript
 !manuscript/*
+!manuscript/manuscript_sections/*
 !Snakefile
 
 # History files
