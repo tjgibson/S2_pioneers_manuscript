@@ -53,7 +53,7 @@ Shown for Zld **(a)** and Grh **(b)**.
 
 **Extended Data Figure 2: Zld and Grh bind to chromatin rapidly after induction of protein expression**
 
--   Western blot time course of protein levels
+-   ~~Western blot time course of protein levels~~
 
 -   CUT&RUN time course to show rapid binding
 
@@ -65,17 +65,39 @@ Shown for Zld **(a)** and Grh **(b)**.
 
 -   Analysis of nonspecific changes?
 
--   RNA-seq volcano/MA plots
+-   ~~RNA-seq volcano/MA plots~~
 
--   RNA-seq GO analysis
+-   ~~RNA-seq GO analysis~~
+
+-   Genome browser examples of specific and nonspecific accessibility changes?
+
+-   motif enrichment for nonspecific changes?
+
+-   \% of TFs bound and activated by Zld/Grh as indicator of nonspecific changes?
+
+-   Should we include any analysis of decreased/downregulated sites for RNA-seq or ATAC?
+
+-   Violin plots to emphasize correlation between ATAC and RNA-seq?
 
 **Extended Data Figure 4: Twist binding leads to chromatin opening and transcriptional activation**
 
+-   Western blot of Twi induction
+
 -   Twi volcano and examples
 
--   TWI RNA-seq volcano and examples
+-   ~~TWI RNA-seq volcano and examples3~~
 
--   Twi RNA-seq GO analysis
+-   ~~Twi RNA-seq GO analysis~~
+
+-   Genome browser examples of specific and nonspecific accessibility changes?
+
+-   motif enrichment for nonspecific changes?
+
+-   \% of TFs bound and activated by Zld/Grh as indicator of nonspecific changes?
+
+-   Should we include any analysis of decreased/downregulated sites for RNA-seq or ATAC?
+
+-   Violin plots to emphasize correlation between ATAC and RNA-seq?
 
 **Extended Data Figure 5: Chromatin features associated with Zld, Grh and Twi binding sites**
 

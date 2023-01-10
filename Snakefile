@@ -152,6 +152,27 @@ use rule * from RNAseq as RNAseq_*
 # - Exclude any problem regions as needed (Zld, Grh, Twi, MtnA etc.)
 # - Annotate genes with ChIP data
 
+def get_ChIP_peaks_annotated(wildcards):
+	motif_index = {
+	"S2-Zld_RNAseq": "ChIPseq/results/peaks/final/S2-Zld_aZld_IP_peak_annotations.tsv",
+	"S2-Grh_RNAseq": "ChIPseq/results/peaks/final/S2-Grh_aGrh_IP_peak_annotations.tsv",
+	"S2-Twi_RNAseq": "ChIPseq/results/peaks/final/S2-Twi_aTwi_IP_peak_annotations.tsv",
+	}
+	
+	return motif_index[wildcards.experiment]
+	
+
+rule annotate_RNAseq_results:
+	input:
+		"RNAseq/results/DEseq2/{experiment}_{contrast}_results.tsv",
+		get_ChIP_peaks_annotated,
+	output:
+		"RNAseq/results/DEseq2/{experiment}_{contrast}_results_annotated.tsv"
+# 	conda:
+# 		"workflow/envs/r_ChIPseeker.yaml"
+	script:
+		"workflow/scripts/annotate_RNAseq_results.R"
+
 
 # process ATAC-seq data
 module ATACseq:
