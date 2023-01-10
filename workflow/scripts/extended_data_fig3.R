@@ -34,7 +34,7 @@ grh_RNAseq_results_fn  <- "RNAseq/results/DEseq2/S2-Grh_RNAseq_S2-Grh-vs-S2-WT_r
 # # create blank layout for plot ===============================================
 # pdf(snakemake@output[[1]], useDingbats = FALSE)
 pdf("manuscript/figures/extended_data_fig3.pdf", useDingbats = FALSE)
-pageCreate(width = 18, height = 18.5, default.units = "cm", showGuides = FALSE)
+pageCreate(width = 18, height = 12, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics
