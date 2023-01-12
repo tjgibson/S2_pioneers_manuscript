@@ -343,7 +343,7 @@ Analysis of ChIP-seq signal at our previously defined class I-III regions reveal
 We had previously shown that in neural stem cells, Zld binds to many regions that lack a canonical Zld motif through a mechanism that is not understood [@Larson2021a].
 Because many Zld binding sites in S2 cells also lack a canonical CAGGTA motif (Fig. 3, Extended Data Fig XX), it is possible that expressing the DNA-binding domain alone also removed regions of the protein that are required for CAGGTA-independent binding.
 To rule out this possibility, we analyzed DBD ChIP-seq signal only at regions containing a canonical motif.
-This analysis demonstrated that the DBD alone is unable to bind to these regions, suggesting that even for binding to canonical motifs, regions outside the DBD are required.
+This analysis demonstrated that the DBD alone is unable to bind to these regions, suggesting that even for binding to canonical motifs, regions outside the DBD are required (Extended Data Fig. XX).
 Binding of the Grh DBD to class II-III regions was strongly reduced compared to the FL protein, although some closed regions retained low levels of binding (Fig. 6b,e).
 For either Zld or Grh, the DBD alone was insufficient to open chromatin (Fig 6d,f).
 Together, these experiments show that regions outside the DBD are essential for binding and opening of closed chromatin.

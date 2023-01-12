@@ -117,7 +117,37 @@ Shown for Zld **(a)** and Grh **(b)**.
 
 -   additional analysis of Fiber-seq data to show that nucleosomes at these regions are poorly positioned
 
-**Extended Data Figure 7:**
+**Extended Data Figure 7: Zld, Grh and Twi display cell-type specific binding**
+
+-   comparison to other tissues
+
+-   analysis of motifs across tissues?
+
+**Extended Data Figure 8: PRC2 inhibition is insufficient to promote Zld, Grh, and Twi binding to repressed targets**
+
+-   Examples of class III regions with H3K27me3
+
+-   examples of class IV-VII regions
+
+-   Spike-in validation of H3K27me3 antibody
+
+-   Genome browsers showing loss of H3K27me3 in taz-treated cells without changes in binding.
+
+**Extended Data Figure 9: Expression of Zld, Grh, or Twi at supraphysiological levels results in novel binding sites**
+
+-   Western blot showing protein levels for titration experiments
+
+-   Examples of novel binding sites for each factor
+
+-   motif enrichment at novel binding sites
+
+-   Chromatin features at novel binding sites.
+
+**Extended Data Figure 10:**
+
+-   Analysis of Zld DBD ChIP only at CAGGTAG sites
+
+-   Examples of any novel DBD binding sites not detected for full-length proteins
 
 **Additional information to include in supplemental figures:**
 
