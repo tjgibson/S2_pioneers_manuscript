@@ -7,18 +7,25 @@ bibliography: references.bib
 ---
 
 # Abstract
+
 {{< include manuscript_sections/_01_Abstract.qmd >}}
 
 # Introduction
+
 {{< include manuscript_sections/_02_Introduction.qmd >}}
 
 # Results
+
 {{< include manuscript_sections/_03_Results.qmd >}}
 
 # Discussion
+
 {{< include manuscript_sections/_04_Discussion.qmd >}}
 
 # Materials and Methods
+
 {{< include manuscript_sections/_05_Discussion.qmd >}}
 
 # Figure Legends
+
+{{< include manuscript_sections/_06_Figure_Legends.qmd >}}

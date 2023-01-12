@@ -1,1 +1,12 @@
 # Introduction
+
+outline:
+
+-   Introduction to pioneer factors: what are they and why do they matter
+
+-   articulate the knowledge gap and questions: how do PFs select their binding sites?
+    What controls context-dependent pioneer factor binding and activity?
+
+-   Introduce Zld and Grh.
+
+-   Summary paragraph.

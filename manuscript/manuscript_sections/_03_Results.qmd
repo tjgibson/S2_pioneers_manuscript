@@ -252,7 +252,7 @@ Hierarchical clustering of MNase-seq data revealed that there was no preference 
 For class II and III peaks, some motifs were positioned close to the nuclesome dyad, some motifs were at the edge of nucleosomes, and some motifs were in linker DNA.
 This analysis is complicated by the fact that MNase-seq is a bulk assay and may not accurately represent nucleosome positioning in individual cells, especially at regions with poorly positioned nucleosomes.
 To more directly assess the positioning of nucleosomes around motifs, we analyzed a previously published single-molecule dataset using methyltransferase footprinting to determine the locations of nucleosomes on individual chromatin fibers [@Stergachis2020].
-We analyzed the distance from motifs at class II and regions to the nearest nucleosome dyad.
+We analyzed the distance from motifs at class II and III regions to the nearest nucleosome dyad.
 This analysis showed that nucleosomes at class II and III regions are poorly positioned (Extended Data Fig. XX).
 Comparing class II and III regions did not identify any differences in nucleosome positioning that might be associated with chromatin opening at class III regions (Extended Data Fig. XX).
 Together, these data suggest that Zld, Grh and Twi do not have a strong preference for motifs at a particular position on nucleosomes.

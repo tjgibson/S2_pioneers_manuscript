@@ -50,7 +50,7 @@ hm_downstream <-  500
 zld_ChIP_classes <- zld_ChIP_classes_fn |> 
   read_tsv()
 
-grh_ChIP_classes <- grh_ChIP_classes |> 
+grh_ChIP_classes <- grh_ChIP_classes_fn |> 
   read_tsv()
 
 # panel A ======================================================================

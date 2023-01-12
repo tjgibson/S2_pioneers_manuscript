@@ -117,6 +117,8 @@ Shown for Zld **(a)** and Grh **(b)**.
 
 -   additional analysis of Fiber-seq data to show that nucleosomes at these regions are poorly positioned
 
+**Extended Data Figure 7:**
+
 **Additional information to include in supplemental figures:**
 
 -   De novo motif results
