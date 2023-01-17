@@ -6,16 +6,7 @@ library(TxDb.Dmelanogaster.UCSC.dm6.ensGene)
 library(RColorBrewer)
 
 source("workflow/scripts/plot_heatmap.R")
-
-# function to get range for browser tracks -------------------------------------
-signal_range <- function(x, extra = 0.05) {
-  min <- floor(min(x))
-  max <- ceiling(max(x))
-  range <- max - min
-  margin <- range * extra
-  output <- c(min - margin, max + margin)
-  return(output)
-}
+source("workflow/scripts/utils.R")
 
 # define input files ===========================================================
 Zld_ChIP_bw <- snakemake@input[["Zld_ChIP_bw"]]
