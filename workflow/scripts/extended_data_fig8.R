@@ -2032,8 +2032,62 @@ zld_color <- "#5BBCD6"
       )
       
       # add sample labels to heatmap
+      plotSegments(
+        x0 = (ref_x + 1), y0 = (ref_y + 0.25), x1 = (ref_x + 1), y1 = (ref_y + 0.95),
+        default.units = "cm"
+      )  
       
-      plotSegments()
+      plotSegments(
+        x0 = (ref_x + 1), y0 = (ref_y + 1.05), x1 = (ref_x + 1), y1 = (ref_y + 1.85),
+        default.units = "cm"
+      )  
+      
+       plotSegments(
+        x0 = (ref_x + 0.25), y0 = (ref_y + 0.25), x1 = (ref_x + 0.25), y1 = (ref_y + 1.85),
+        default.units = "cm"
+      )  
+       
+      
+       plotSegments(
+         x0 = (ref_x + 0.25), y0 = (ref_y + 1.9), x1 = (ref_x + 0.25), y1 = (ref_y + 2.7),
+         default.units = "cm"
+       )  
+       
+      plotText(
+        label = "DMSO",
+        fontsize = small_text_params$fontsize, 
+        rot = 90, 
+        x = ref_x + 0.8,
+        y = ref_y + 0.6,
+        default.units = "cm"
+      )
+   
+      plotText(
+        label = "taz",
+        fontsize = small_text_params$fontsize, 
+        rot = 90, 
+        x = ref_x + 0.8,
+        y = ref_y + 1.4,
+        default.units = "cm"
+      )
+      
+      plotText(
+        label = "anti-H3K27me3",
+        fontsize = small_text_params$fontsize, 
+        rot = 90, 
+        x = ref_x,
+        y = ref_y + 1,
+        default.units = "cm"
+      )
+      
+      plotText(
+        label = "IgG",
+        fontsize = small_text_params$fontsize, 
+        rot = 90, 
+        x = ref_x,
+        y = ref_y + 2.2,
+        default.units = "cm"
+      )
       
       # close graphics device ========================================================
       dev.off()
