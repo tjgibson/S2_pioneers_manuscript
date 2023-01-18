@@ -47,7 +47,7 @@ twi_motif_instances_fn <- "results/motif_instances/twi_motifs.tsv"
 
 # # create blank layout for plot ===============================================
 # pdf(snakemake@output[[1]], useDingbats = FALSE)
-pdf("manuscript/figures/supp_fig_tissue_overlaps.pdf", useDingbats = FALSE)
+pdf("manuscript/figures/extended_data_fig7.pdf", useDingbats = FALSE)
 pageCreate(width = 18.3, height = 12.5, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
