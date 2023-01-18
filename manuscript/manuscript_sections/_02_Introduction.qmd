@@ -1,12 +1,87 @@
+---
+editor: 
+  markdown: 
+    wrap: 72
+---
+
 # Introduction
 
-outline:
+Transcription factors activate transcription by binding to specific DNA
+motifs and recruiting transcriptional machinery. The packaging of DNA
+into chromatin obstructs TFs from accessing their target motifs. Thus,
+many TFs can only bind to motifs that fall within nucleosome-free
+regions (NFRs). One mechanism for how NFRs are established is through
+the action of pioneer transcription factors (PFs). PFs are defined by
+their ability to recognize target motifs on nucleosomes. PFs bind to
+nucleosomal targets, promote chromatin opening, and create NFRs that
+allow additional TFs to bind and activate transcription. Through this
+activity, PFs drive cell-type specific gene expression programs that
+determine cell fate. Due to these properties, PFs are essential players
+in development, induced reprogramming, and disease.
 
--   Introduction to pioneer factors: what are they and why do they matter
+Despite the importance of PFs to these diverse biological processes, how
+PFs select their binding sites in different biological contexts remains
+incompletely understood. Despite their ability to target inaccessible,
+nucleosomal binding sites, PFs do not bind to all genomic instances of
+their target motifs. Many PFs have also been shown to have cell-type
+specific patterns of binding and activity. How PF binding is restricted
+in different tissues or cellular contexts remains unclear. Many PFs bind
+primarily to naïve chromatin that is inaccessible, inactive, and lacks
+most histone modifications. Cell-type specific binding is often
+associated with cell-type specific chromatin features, however many of
+these observations have been correlative, and this has not been
+extensively tested functionally. In some cases, inhibition of various
+chromatin modifiers can enhance the ability of PFs to promote cellular
+reprogramming, but the molecular basis of how this relates to PF binding
+is unclear. Thus, a more systematic exploration of how PF binding and
+activity is regulated is essential to understanding how these factors
+function in development and disease.
 
--   articulate the knowledge gap and questions: how do PFs select their binding sites?
-    What controls context-dependent pioneer factor binding and activity?
+Two well studied PFs that display context-dependent activity and Zelda
+(Zld) and Grainy head (Grh). Zld is essential for driving early
+embryonic development in Drosophila. Immediately following
+fertilization, the zygotic genome is transcriptionally silent and
+development is controlled by maternally deposited mRNAs and proteins.
+Maternal products are gradually degraded as the zygotic genome is
+activated during a process known as the maternal-to-zygotic transition
+(MZT). In Drosophila, the pioneering activity Zld is essential for
+driving the MZT. Zld was the first discovered activator of the zygotic
+genome, and work on Zld paved the way for the identification of
+analogous proteins in other species. Our lab recently identified an
+additional function of Zld in promoting neural stem cell (NSC) fate in
+the developing larval brain. The majority of Zld binding sites are
+unique to either the embryo or NSCs, with only a subset of regions being
+bound in both tissues. How Zld is directed to distinct binding sites in
+the embryo and NSCs in unknown.
 
--   Introduce Zld and Grh.
+Grh is a master regulator of epithelial cell fate that is conserved
+among metazoans. In Drosophila, Grh acts as a pioneer factor in late
+embryos and larval tissues. Unlike Zld, Grh binding is similar across
+different tissues and developmental stages. Despite this stable binding,
+Grh is dispensible for chromatin accessibility in the early embryo, and
+only displays pioneering activity in late embryos or larval tissues.
+This intriguing combination of stable binding and cell-type specific
+activity raises questions about how pioneering by Grh is regulated
+during development. Additionally, overexpression of Grh is a hallmark of
+many epithelial cancers. The role of Grh in cancer is not well
+understood, as Grh can either inhibit or promote tumorigenesis,
+depending on the context.
 
--   Summary paragraph.
+The essential roles of Zld and Grh in diverse biological processes and
+the well documented context-dependent binding and activity of these
+factors makes them excellent models to explore how PF binding and
+activity are regulated. Because many previous studies have relied on
+loss-of-function experiments, it has been difficult to unravel causal
+relationships between chromatin structure and PF activity. We therefore
+expressed Zld and Grh in Drosophila S2 cells, where neither factor is
+endogenously expressed. We demonstrate that when expressed ectopically,
+Zld and Grh bind to closed chromatin, establish NFRs, and promote
+transcriptional activation. We show that an additional TF, Twist (Twi),
+can act as a pioneer factor. Pioneering by Zld, Grh, and Twi depends on
+a combination of local chromatin structure, sequence context, and PF
+concentration and requires protein regions outside the DNA-binding
+domain. We propose that pioneering activity is not a binary feature
+intrinsic to a protein, but occurs on a spectrum and can be regulated by
+a variety of protein-intrinsic and cell-type specific features.
+
+<!--# Should I discuss what is known about DBDs, structural features, and how PFs engage chromatin? -->

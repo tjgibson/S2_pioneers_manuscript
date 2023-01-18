@@ -1,1 +1,17 @@
 # Discussion
+
+Major conclusions to emphasize:
+
+-   Twist is a pioneer factor
+
+-   PF activity occurs on a spectrum and is context-dependent.
+
+-   Context-dependent PF activity can be regulated by both protein-intrinsic and extrinsic features.
+
+-   Preexisting active chromatin attracts TF binding, even with weaker motifs.
+
+-   Most functional binding occurs at canonical motifs in naïve chromatin
+
+-   Sequence composition is a main determinant of PF binding and activity
+
+-   Regions outside the DBD are essential for pioneering
