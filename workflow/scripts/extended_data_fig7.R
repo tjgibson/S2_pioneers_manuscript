@@ -16,39 +16,34 @@ S2_Zld_ChIP_fn <- "ChIPseq/results/peaks/final/S2-Zld_aZld_IP.bed"
 nc14_Zld_ChIP_fn <- "published_ChIPseq/results/peaks/individual/narrow/embryo-nc14_aZld_summits.bed"
 brain_Zld_ChIP_fn <-  "../S2_pioneers/results/bed_files/peaks/brain_aZld.bed"
 
-S2_ZLD_ChIP_bw <-   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw"
-embryo_Zld_ChIP_bw <-  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-nc14_aZld.bw"
-brain_Zld_ChIP_bw <-  "../S2_pioneers/results/bigwigs/normalized/Zld_NB_merged_zscore.bw"
-zld_motif_bw <-  "results/motif_instances/zld_motifs_pvalue.bw"
-
-zld_motif_instances_fn <- "results/motif_instances/zld_motifs.tsv"
+Zld_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw"
+Zld_nc14_ChIP_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/individual/embryo-nc14_aZld.bw"
 
 # Grh input files
 S2_Grh_ChIP_fn <- "ChIPseq/results/peaks/final/S2-Grh_aGrh_IP.bed"
 embryo_Grh_ChIP_fn <- "published_ChIPseq/results/peaks/individual/narrow/embryo-15-16H_aGrh_summits.bed"
 wing_Grh_ChIP_fn <- "published_ChIPseq/results/peaks/individual/narrow/wing-disc_aGrh_summits.bed"
 
-S2_Grh_ChIP_bw <-   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw"
-embryo_Grh_ChIP_bw <-  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-15-16H_aGrh.bw"
-wing_disc_Grh_ChIP_bw <-  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/wing-disc_aGrh.bw"
-grh_motif_bw <-  "results/motif_instances/grh_motifs_pvalue.bw"
-
-grh_motif_instances_fn <- "results/motif_instances/grh_motifs.tsv"
+Grh_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw"
+Grh_embryo_ChIP_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-15-16H_aGrh.bw"
 
 # Twi input files
 S2_twi_ChIP_fn <- "ChIPseq/results/peaks/final/S2-Twi_aTwi_IP.bed"
 embryo_twi_ChIP_fn <- "published_ChIPseq/results/peaks/merged/narrow/embryo-1-3H_aTwi_summits.bed"
 
-S2_twi_ChIP_bw <-   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw"
-embryo_twi_ChIP_bw <-  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-1-3H_aTwi.bw"
-twi_motif_bw <-  "results/motif_instances/twi_motifs_pvalue.bw"
+Twi_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw"
+Twi_embryo_ChIP_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-1-3H_aTwi.bw"
 
-twi_motif_instances_fn <- "results/motif_instances/twi_motifs.tsv"
+
+
+H3K27me3_ChIP_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/individual/GSE151983_S2_aH3K27me3_IP.bw"
+H3K9me3_ChIP_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE160855_aH3K9me3.bw"
+
 
 # # create blank layout for plot ===============================================
 # pdf(snakemake@output[[1]], useDingbats = FALSE)
 pdf("manuscript/figures/extended_data_fig7.pdf", useDingbats = FALSE)
-pageCreate(width = 18.3, height = 12.5, default.units = "cm", showGuides = FALSE)
+pageCreate(width = 18, height = 18, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics
@@ -66,10 +61,16 @@ grh_heatmap_colors <- brewer.pal(9, "Oranges")
 twi_color <- "#00A08A"
 twi_heatmap_colors <- brewer.pal(9, "GnBu")
 
-# set heatmap parameters
-hm_upstream <-  500
-hm_downstream <-  500
-
+H3K27me3_color <- "gray40"      
+  
+  # reference points for positioning figure components
+  x_offset_class_label <- 0.25
+  x_offset_browser_label <- 1
+  x_offset_browser <- 1.5
+  
+  # set genome browser height
+  gb_height <- 0.3
+  
 # panel A ======================================================================
 # reference points for positioning figure components ---------------------------
 ref_x <- 0.5
@@ -118,222 +119,37 @@ euler_plot <- plot(euler_fit,
 
 plotGG(
   plot = euler_plot,
-  x = (ref_x + 0.25), y = (ref_y),
-  width = 2.5, height = 2.5, just = c("left", "top"),
+  x = (ref_x + 0.5), y = (ref_y),
+  width = 4, height = 4, just = c("left", "top"),
   default.units = "cm"
 )
 
 # add labels for different groups
 plotText(
   label = "Brain Zld ChIP", params = small_text_params, fontface = "bold",
-  x = (ref_x + 1.25), y = (ref_y), just = "top", default.units = "cm"
+  x = (ref_x + 2), y = (ref_y + 0.25), just = "top", default.units = "cm"
 )
 
 plotText(
-  label = paste0("S2 Zld ChIP"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 0.25), y = (ref_y + 2.25), just = "center", default.units = "cm"
+  label = paste0("S2 Zld", "\n", "ChIP"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 1), y = (ref_y + 2.25), just = "center", default.units = "cm"
 )
 
 plotText(
   label = paste0("nc14 embryo", "\n", "Zld Chip"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 2.5), y = (ref_y + 2.5), just = "center", default.units = "cm"
+  x = (ref_x + 3.8), y = (ref_y + 2), just = "center", default.units = "cm"
 )
+
 
 
 # panel B ======================================================================
 # reference points for positioning figure components ---------------------------
-ref_x <- 3.5
+ref_x <- 6.5
 ref_y <- 0.5
 
 # panel label
 plotText(
   label = "b", params = panel_label_params, fontface = "bold",
-  x = (ref_x), y = (ref_y), just = "bottom", default.units = "cm"
-)
-
-
-# plot heatmap of overlaps for Zld
-bw <- c(
-  S2_ZLD_ChIP =  S2_ZLD_ChIP_bw,
-  embryo_Zld_ChIP = embryo_Zld_ChIP_bw,
-  brain_Zld_ChIP = brain_Zld_ChIP_bw,
-  zld_motif = zld_motif_bw
-)
-
-group <- c(1,1,1,2)
-
-regions <- peak_overlaps |> 
-  makeGRangesFromDataFrame(keep.extra.columns = TRUE)
-
-
-hm <- plot_heatmap_minimal(
-  bw, regions, 
-  upstream = hm_upstream, downstream = hm_downstream, 
-  colors  = zld_heatmap_colors, 
-  row_split = regions$overlap_group,
-  scale_group = group,
-  return_heatmap_list = TRUE,
-  use_raster = TRUE, raster_by_magick = TRUE, raster_magick_filter = "Triangle",
-  border = "black",
-  border_gp = gpar(lwd = 0.5)
-)
-
-b_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 0, 0, 0), "mm")))
-
-# place heatmap on page
-plotGG(
-  plot = b_hm,
-  x = (ref_x + 0.25), y = (ref_y + 0.25),
-  width = 6, height = 2.25, just = c("left", "top"),
-  default.units = "cm"
-)
-
-# add axes to heatmaps
-seekViewport(name = "matrix_1_heatmap_body_7_1")
-grid.xaxis(at = c(0, 1), label = c(paste0("-", hm_upstream / 1000, "KB"), paste0("+",hm_downstream / 1000, "KB")), gp = gpar(lwd = 0.5, fontsize = small_text_params$fontsize))
-seekViewport(name = "page")
-
-# add heatmap labels
-plotText(
-  label = "S2 Zld ChIP", params = small_text_params, fontface = "bold",
-  x = (ref_x + 0.9), y = (ref_y), just = c("center"), default.units = "cm"
-)
-
-plotText(
-  label = "nc14 Zld ChIP", params = small_text_params, fontface = "bold",
-  x = (ref_x + 2.5), y = (ref_y), just = c("center"), default.units = "cm"
-)
-
-plotText(
-  label = "Brain Zld ChIP", params = small_text_params, fontface = "bold",
-  x = (ref_x + 4), y = (ref_y), just = c("center"), default.units = "cm"
-)
-
-plotText(
-  label = "Zld motif", params = small_text_params, fontface = "bold",
-  x = (ref_x + 5.6), y = (ref_y), just = c("center"), default.units = "cm"
-)
-
-
-# panel C ======================================================================
-# reference points for positioning figure components ---------------------------
-ref_x <- 10
-ref_y <- 0.5
-
-# panel label
-plotText(
-  label = "c", params = panel_label_params, fontface = "bold",
-  x = (ref_x), y = (ref_y), just = "bottom", default.units = "cm"
-)
-
-# quantify n motifs per peak ---------------------------------------------------
-peak_overlaps$name <- paste0("peak_", seq(nrow(peak_overlaps)))
-peaks_gr <- makeGRangesFromDataFrame(peak_overlaps, keep.extra.columns = TRUE)
-
-motifs_gr <- read_tsv(zld_motif_instances_fn) %>% 
-  rename(motif_score = score) %>% 
-  makeGRangesFromDataFrame(keep.extra.columns = TRUE)
-
-peak_overlaps$n_motifs <- countOverlaps(peaks_gr, motifs_gr)
-
-# get average motif score per peak ---------------------------------------------
-peak_motif_scores <- peaks_gr %>% 
-  plyranges::join_overlap_left(motifs_gr) %>% 
-  as.data.frame() %>% 
-  group_by(name) %>% 
-  summarise(average_motif_score = mean(motif_score)) 
-
-peak_overlaps <- peak_overlaps %>% 
-  left_join(peak_motif_scores, by = "name")
-
-
-
-zld_motif_percent_hm <- 
-  peak_overlaps |> 
-  mutate(has_motif = n_motifs > 0) |> 
-  group_by(overlap_group) |> 
-  summarise(percent_with_motif = round(mean(has_motif) * 100, 2)) |> 
-  add_column(motif_name = "Zld motif") |> 
-  ggplot(aes(x= as.factor(overlap_group), y = motif_name, fill = percent_with_motif)) + 
-  geom_tile(color = "black") +
-  scale_fill_distiller(palette = "Blues", direction = 1, limits=c(0,100), breaks = c(0,100), name = NULL) +
-  geom_text(aes(label = percent_with_motif), size = small_text_params$fontsize * 0.35) +
-  theme_minimal(base_size = small_text_params$fontsize) +
-  theme(legend.key.size = unit(1, 'mm'), 
-        # axis.text.x = element_text(angle=45, vjust=1, hjust=1),
-        axis.text.y = element_blank(),
-        axis.title = element_blank()
-  )
-
-
-
-# place heatmap on page
-plotGG(
-  plot = zld_motif_percent_hm,
-  x = ref_x + 0.25, y = ref_y,
-  width = 6, height = 0.75, just = c("left", "top"),
-  default.units = "cm"
-)
-
-# panel D ======================================================================
-# reference points for positioning figure components ---------------------------
-ref_x <- 10
-ref_y <- 1.5
-
-# panel label
-plotText(
-  label = "d", params = panel_label_params, fontface = "bold",
-  x = (ref_x), y = (ref_y), just = "bottom", default.units = "cm"
-)
-
-d_plot <- 
-  peak_overlaps |> 
-  ggplot(aes(x = as.factor(overlap_group), y = n_motifs)) +
-  geom_boxplot(outlier.size = 0.01, lwd = 0.1, fill = zld_color) +
-  theme_classic(base_size = small_text_params$fontsize)
-
-plotGG(
-  plot = d_plot,
-  x = ref_x + 0.25, y = ref_y,
-  width = 2.75, height = 2, just = c("left", "top"),
-  default.units = "cm"
-)
-
-# panel E ======================================================================
-# reference points for positioning figure components ---------------------------
-ref_x <- 13
-ref_y <- 1.5
-
-# panel label
-plotText(
-  label = "e", params = panel_label_params, fontface = "bold",
-  x = (ref_x), y = (ref_y), just = "bottom", default.units = "cm"
-)
-
-
-e_plot <- 
-  peak_overlaps |> 
-  ggplot(aes(x = as.factor(overlap_group), y = average_motif_score)) +
-  geom_boxplot(outlier.size = 0.01, lwd = 0.1, fill = zld_color) +
-  theme_classic(base_size = small_text_params$fontsize)
-
-
-plotGG(
-  plot = e_plot,
-  x = ref_x + 0.25, y = ref_y,
-  width = 2.75, height = 2, just = c("left", "top"),
-  default.units = "cm"
-)
-
-
-# panel F ======================================================================
-# reference points for positioning figure components ---------------------------
-ref_x <- 0.5
-ref_y <- 3.5
-
-# panel label
-plotText(
-  label = "f", params = panel_label_params, fontface = "bold",
   x = (ref_x), y = (ref_y), just = "bottom", default.units = "cm"
 )
 
@@ -378,220 +194,35 @@ euler_plot <- plot(euler_fit,
 plotGG(
   plot = euler_plot,
   x = (ref_x + 0.25), y = (ref_y),
-  width = 2.5, height = 2.5, just = c("left", "top"),
+  width = 4, height = 4, just = c("left", "top"),
   default.units = "cm"
 )
 
 # add labels for different groups
 plotText(
   label = "Wing disc Grh ChIP", params = small_text_params, fontface = "bold",
-  x = (ref_x + 1.25), y = (ref_y), just = "top", default.units = "cm"
+  x = (ref_x + 1.5), y = (ref_y + 0.25), just = "top", default.units = "cm"
 )
 
 plotText(
-  label = paste0("S2 Grh ChIP"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 0.25), y = (ref_y + 2.25), just = "center", default.units = "cm"
+  label = paste0("S2 Grh", "\n", "ChIP"), params = small_text_params, fontface = "bold",
+  x = (ref_x - 0.1), y = (ref_y + 2), just = "center", default.units = "cm"
 )
 
 plotText(
   label = paste0("15-16H embryo", "\n", "Grh Chip"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 2.5), y = (ref_y + 2.5), just = "center", default.units = "cm"
+  x = (ref_x + 3.3), y = (ref_y + 1.5), just = "center", default.units = "cm"
 )
 
 
-# panel G ======================================================================
+# panel C ======================================================================
 # reference points for positioning figure components ---------------------------
-ref_x <- 3.5
-ref_y <- 3.5
+ref_x <- 12.5
+ref_y <- 0.5
 
 # panel label
 plotText(
-  label = "g", params = panel_label_params, fontface = "bold",
-  x = (ref_x), y = (ref_y), just = "bottom", default.units = "cm"
-)
-
-
-# plot heatmap of overlaps for Zld
-bw <- c(
-  S2_Grh_ChIP =  S2_Grh_ChIP_bw,
-  embryo_Grh_ChIP = embryo_Grh_ChIP_bw,
-  wing_disc_Grh_ChIP = wing_disc_Grh_ChIP_bw,
-  grh_motif = grh_motif_bw
-)
-
-group <- c(1,1,1,2)
-
-regions <- peak_overlaps |> 
-  makeGRangesFromDataFrame(keep.extra.columns = TRUE)
-
-
-hm <- plot_heatmap_minimal(
-  bw, regions, 
-  upstream = hm_upstream, downstream = hm_downstream, 
-  colors  = grh_heatmap_colors, 
-  row_split = regions$overlap_group,
-  scale_group = group,
-  return_heatmap_list = TRUE,
-  use_raster = TRUE, raster_by_magick = TRUE, raster_magick_filter = "Triangle",
-  border = "black",
-  border_gp = gpar(lwd = 0.5)
-)
-
-g_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 0, 0, 0), "mm")))
-
-# place heatmap on page
-plotGG(
-  plot = g_hm,
-  x = (ref_x + 0.25), y = (ref_y + 0.25),
-  width = 6, height = 2.25, just = c("left", "top"),
-  default.units = "cm"
-)
-
-# add axes to heatmaps
-seekViewport(name = "matrix_1_heatmap_body_7_1")
-grid.xaxis(at = c(0, 1), label = c(paste0("-", hm_upstream / 1000, "KB"), paste0("+",hm_downstream / 1000, "KB")), gp = gpar(lwd = 0.5, fontsize = small_text_params$fontsize))
-seekViewport(name = "page")
-
-# add heatmap labels
-plotText(
-  label = "S2 Grh ChIP", params = small_text_params, fontface = "bold",
-  x = (ref_x + 0.9), y = (ref_y), just = c("center"), default.units = "cm"
-)
-
-plotText(
-  label = "embryo Grh ChIP", params = small_text_params, fontface = "bold",
-  x = (ref_x + 2.5), y = (ref_y), just = c("center"), default.units = "cm"
-)
-
-plotText(
-  label = "Wing disc Grh ChIP", params = small_text_params, fontface = "bold",
-  x = (ref_x + 4), y = (ref_y), just = c("center"), default.units = "cm"
-)
-
-plotText(
-  label = "Grh motif", params = small_text_params, fontface = "bold",
-  x = (ref_x + 5.6), y = (ref_y), just = c("center"), default.units = "cm"
-)
-
-
-# panel H ======================================================================
-# reference points for positioning figure components ---------------------------
-ref_x <- 10
-ref_y <- 3.5
-
-# panel label
-plotText(
-  label = "h", params = panel_label_params, fontface = "bold",
-  x = (ref_x), y = (ref_y), just = "bottom", default.units = "cm"
-)
-
-# quantify n motifs per peak ---------------------------------------------------
-peak_overlaps$name <- paste0("peak_", seq(nrow(peak_overlaps)))
-peaks_gr <- makeGRangesFromDataFrame(peak_overlaps, keep.extra.columns = TRUE)
-
-motifs_gr <- read_tsv(grh_motif_instances_fn) %>% 
-  rename(motif_score = score) %>% 
-  makeGRangesFromDataFrame(keep.extra.columns = TRUE)
-
-peak_overlaps$n_motifs <- countOverlaps(peaks_gr, motifs_gr)
-
-# get average motif score per peak ---------------------------------------------
-peak_motif_scores <- peaks_gr %>% 
-  plyranges::join_overlap_left(motifs_gr) %>% 
-  as.data.frame() %>% 
-  group_by(name) %>% 
-  summarise(average_motif_score = mean(motif_score)) 
-
-peak_overlaps <- peak_overlaps %>% 
-  left_join(peak_motif_scores, by = "name")
-
-
-
-grh_motif_percent_hm <- 
-  peak_overlaps |> 
-  mutate(has_motif = n_motifs > 0) |> 
-  group_by(overlap_group) |> 
-  summarise(percent_with_motif = round(mean(has_motif) * 100, 2)) |> 
-  add_column(motif_name = "Grh motif") |> 
-  ggplot(aes(x= as.factor(overlap_group), y = motif_name, fill = percent_with_motif)) + 
-  geom_tile(color = "black") +
-  scale_fill_distiller(palette = "Oranges", direction = 1, limits=c(0,100), breaks = c(0,100), name = NULL) +
-  geom_text(aes(label = percent_with_motif), size = small_text_params$fontsize * 0.35) +
-  theme_minimal(base_size = small_text_params$fontsize) +
-  theme(legend.key.size = unit(1, 'mm'), 
-        # axis.text.x = element_text(angle=45, vjust=1, hjust=1),
-        axis.text.y = element_blank(),
-        axis.title = element_blank()
-  )
-
-
-
-# place heatmap on page
-plotGG(
-  plot = grh_motif_percent_hm,
-  x = ref_x + 0.25, y = ref_y,
-  width = 6, height = 0.75, just = c("left", "top"),
-  default.units = "cm"
-)
-
-# panel I ======================================================================
-# reference points for positioning figure components ---------------------------
-ref_x <- 10
-ref_y <- 4.5
-
-# panel label
-plotText(
-  label = "i", params = panel_label_params, fontface = "bold",
-  x = (ref_x), y = (ref_y), just = "bottom", default.units = "cm"
-)
-
-i_plot <- 
-  peak_overlaps |> 
-  ggplot(aes(x = as.factor(overlap_group), y = n_motifs)) +
-  geom_boxplot(outlier.size = 0.01, lwd = 0.1, fill = grh_color) +
-  theme_classic(base_size = small_text_params$fontsize)
-
-plotGG(
-  plot = i_plot,
-  x = ref_x + 0.25, y = ref_y,
-  width = 2.75, height = 2, just = c("left", "top"),
-  default.units = "cm"
-)
-
-# panel j ======================================================================
-# reference points for positioning figure components ---------------------------
-ref_x <- 13
-ref_y <- 4.5
-
-# panel label
-plotText(
-  label = "j", params = panel_label_params, fontface = "bold",
-  x = (ref_x), y = (ref_y), just = "bottom", default.units = "cm"
-)
-
-
-i_plot <- 
-  peak_overlaps |> 
-  ggplot(aes(x = as.factor(overlap_group), y = average_motif_score)) +
-  geom_boxplot(outlier.size = 0.01, lwd = 0.1, fill = grh_color) +
-  theme_classic(base_size = small_text_params$fontsize)
-
-
-plotGG(
-  plot = i_plot,
-  x = ref_x + 0.25, y = ref_y,
-  width = 2.75, height = 2, just = c("left", "top"),
-  default.units = "cm"
-)
-
-# panel K ======================================================================
-# reference points for positioning figure components ---------------------------
-ref_x <- 0.5
-ref_y <- 6.5
-
-# panel label
-plotText(
-  label = "k", params = panel_label_params, fontface = "bold",
+  label = "c", params = panel_label_params, fontface = "bold",
   x = (ref_x), y = (ref_y), just = "bottom", default.units = "cm"
 )
 
@@ -631,199 +262,1438 @@ euler_plot <- plot(euler_fit,
 plotGG(
   plot = euler_plot,
   x = (ref_x + 0.25), y = (ref_y),
-  width = 2.5, height = 2.5, just = c("left", "top"),
+  width = 4, height = 4, just = c("left", "top"),
   default.units = "cm"
 )
 
 # add labels for different groups
 plotText(
   label = paste0("S2 Twi ChIP"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 0.25), y = (ref_y + 0.25), just = "center", default.units = "cm"
+  x = (ref_x + 1.5), y = (ref_y + 1.8), just = "center", default.units = "cm"
 )
 
 plotText(
   label = paste0("2-3H embryo", "\n", "Twi Chip"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 2.5), y = (ref_y + 0.25), just = "center", default.units = "cm"
+  x = (ref_x + 4.5), y = (ref_y + 1.2), just = "center", default.units = "cm"
+)
+
+# panel D ==================================================================
+# panel label
+ref_x <- 0.5
+ref_y <- 4.5
+
+plotText(
+  label = "d", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+plotText(
+  label = "class IV", params = large_text_params, fontface = "bold",
+  x = ref_x + 3, y = ref_y, just = "bottom", default.units = "cm"
 )
 
 
-# panel l ======================================================================
-# reference points for positioning figure components ---------------------------
-ref_x <- 3.5
-ref_y <- 6.5
+# add broad H3K27me3 region
+plotText(
+  label = paste("H3K27me3"),
+  params = small_text_params,
+  fontface = "bold",
+  x = (ref_x + x_offset_browser_label),
+  y = (ref_y + 0.25),
+  just = c("right", "center"),
+  default.units = "cm"
+)
 
+plotText(
+  label = paste("H3K9me3"),
+  params = small_text_params,
+  fontface = "bold",
+  x = (ref_x + x_offset_browser_label),
+  y = (ref_y + 0.75),
+  just = c("right", "center"),
+  default.units = "cm"
+)
+
+region <- pgParams(
+  chrom = "chr3R",
+  chromstart = 30824716, chromend = 30888891,
+  assembly = "dm6"
+)
+
+`H3K27me3_ChIP` <- readBigwig(file = H3K27me3_ChIP_bw, 
+                              params = region
+)
+
+`H3K9me3_ChIP` <- readBigwig(file = H3K9me3_ChIP_bw, 
+                             params = region
+)
+
+ChIP_range <- signal_range(c(H3K27me3_ChIP$score, H3K9me3_ChIP$score))
+
+s1 <- plotSignal(
+  data = `H3K27me3_ChIP`, params = region,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.25), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s1, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+s2 <- plotSignal(
+  data = `H3K9me3_ChIP`, params = region,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s2, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+# add zoomed in view of ChIP
+zoomRegion <- pgParams(
+  chrom = "chr3R",
+  chromstart = 30846356, chromend = 30858282,
+  assembly = "dm6"
+)
+
+annoZoomLines(
+  plot = s2, params = zoomRegion,
+  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1, 1.5),
+  default.units = "cm",
+  lty = 2
+)
+
+
+
+plotText(
+  label = "Zld embryo ChIP", params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
+)
+
+
+plotText(
+  label = "Zld S2 ChIP", params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
+)
+
+
+
+`Zld_nc14_ChIP` <- readBigwig(file = Zld_nc14_ChIP_bw, 
+                              params = zoomRegion
+)
+
+`Zld_S2_ChIP` <- readBigwig(file = Zld_ChIP_bw, 
+                            params = zoomRegion
+)
+
+
+
+ChIP_range <- signal_range(c(Zld_S2_ChIP$score, Zld_nc14_ChIP$score))
+
+s2 <- plotSignal(
+  data = `Zld_nc14_ChIP`, params = zoomRegion,
+  x = (ref_x + x_offset_browser), y = (ref_y + 1.75), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = zld_color, fill = zld_color, baseline = FALSE, baseline.lwd = 0, baseline.color = zld_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s2, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+
+s3 <- plotSignal(
+  data = `Zld_S2_ChIP`, params = zoomRegion,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.25), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = zld_color, fill = zld_color, baseline = FALSE, baseline.lwd = 0, baseline.color = zld_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s3, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+
+plotGenes(
+  params = zoomRegion, assembly = "dm6",
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
+  just = c("left", "top"),
+  default.units = "cm"
+)
+
+
+# panel E ==================================================================
 # panel label
+ref_x <- 0.5
+ref_y <- 8.5
+
+plotText(
+  label = "e", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+plotText(
+  label = "class V", params = large_text_params, fontface = "bold",
+  x = ref_x + 3, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+
+# add broad H3K27me3 region
+plotText(
+  label = paste("H3K27me3"),
+  params = small_text_params,
+  fontface = "bold",
+  x = (ref_x + x_offset_browser_label),
+  y = (ref_y + 0.25),
+  just = c("right", "center"),
+  default.units = "cm"
+)
+
+plotText(
+  label = paste("H3K9me3"),
+  params = small_text_params,
+  fontface = "bold",
+  x = (ref_x + x_offset_browser_label),
+  y = (ref_y + 0.75),
+  just = c("right", "center"),
+  default.units = "cm"
+)
+
+region <- pgParams(
+  chrom = "chr3L",
+  chromstart = 11796001, chromend = 12064216,
+  assembly = "dm6"
+)
+
+`H3K27me3_ChIP` <- readBigwig(file = H3K27me3_ChIP_bw, 
+                              params = region
+)
+
+`H3K9me3_ChIP` <- readBigwig(file = H3K9me3_ChIP_bw, 
+                             params = region
+)
+
+ChIP_range <- signal_range(c(H3K27me3_ChIP$score, H3K9me3_ChIP$score))
+
+s1 <- plotSignal(
+  data = `H3K27me3_ChIP`, params = region,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.25), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s1, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+s2 <- plotSignal(
+  data = `H3K9me3_ChIP`, params = region,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s2, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+# add zoomed in view of ChIP
+zoomRegion <- pgParams(
+  chrom = "chr3L",
+  chromstart = 11919547, chromend = 11940115,
+  assembly = "dm6"
+)
+
+annoZoomLines(
+  plot = s2, params = zoomRegion,
+  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1, 1),
+  default.units = "cm",
+  lty = 2
+)
+
+plotText(
+  label = "Zld embryo ChIP", params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
+)
+
+
+plotText(
+  label = "Zld S2 ChIP", params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
+)
+
+
+
+`Zld_nc14_ChIP` <- readBigwig(file = Zld_nc14_ChIP_bw, 
+                              params = zoomRegion
+)
+
+`Zld_S2_ChIP` <- readBigwig(file = Zld_ChIP_bw, 
+                            params = zoomRegion
+)
+
+
+
+ChIP_range <- signal_range(c(Zld_S2_ChIP$score, Zld_nc14_ChIP$score))
+
+s2 <- plotSignal(
+  data = `Zld_nc14_ChIP`, params = zoomRegion,
+  x = (ref_x + x_offset_browser), y = (ref_y + 1.75), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = zld_color, fill = zld_color, baseline = FALSE, baseline.lwd = 0, baseline.color = zld_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s2, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+
+s3 <- plotSignal(
+  data = `Zld_S2_ChIP`, params = zoomRegion,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.25), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = zld_color, fill = zld_color, baseline = FALSE, baseline.lwd = 0, baseline.color = zld_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s3, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+
+plotGenes(
+  params = zoomRegion, assembly = "dm6",
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
+  just = c("left", "top"),
+  default.units = "cm"
+)
+
+# panel F ==================================================================
+# panel label
+ref_x <- 0.5
+ref_y <- 12.5
+
+plotText(
+  label = "f", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+plotText(
+  label = "class VI", params = large_text_params, fontface = "bold",
+  x = ref_x + 3, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+
+# add broad H3K27me3 region
+plotText(
+  label = paste("H3K27me3"),
+  params = small_text_params,
+  fontface = "bold",
+  x = (ref_x + x_offset_browser_label),
+  y = (ref_y + 0.25),
+  just = c("right", "center"),
+  default.units = "cm"
+)
+
+plotText(
+  label = paste("H3K9me3"),
+  params = small_text_params,
+  fontface = "bold",
+  x = (ref_x + x_offset_browser_label),
+  y = (ref_y + 0.75),
+  just = c("right", "center"),
+  default.units = "cm"
+)
+
+region <- pgParams(
+  chrom = "chrX",
+  chromstart = 393315, chromend = 402092,
+  assembly = "dm6"
+)
+
+`H3K27me3_ChIP` <- readBigwig(file = H3K27me3_ChIP_bw, 
+                              params = region
+)
+
+`H3K9me3_ChIP` <- readBigwig(file = H3K9me3_ChIP_bw, 
+                             params = region
+)
+
+ChIP_range <- c(-1.2,8)
+
+s1 <- plotSignal(
+  data = `H3K27me3_ChIP`, params = region,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.25), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s1, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+s2 <- plotSignal(
+  data = `H3K9me3_ChIP`, params = region,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s2, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+# add zoomed in view of ChIP
+zoomRegion <- pgParams(
+  chrom = "chrX",
+  chromstart = 393449, chromend = 400413,
+  assembly = "dm6"
+)
+
+annoZoomLines(
+  plot = s2, params = zoomRegion,
+  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1, 1),
+  default.units = "cm",
+  lty = 2
+)
+
+plotText(
+  label = "Zld embryo ChIP", params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
+)
+
+
+plotText(
+  label = "Zld S2 ChIP", params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
+)
+
+
+
+`Zld_nc14_ChIP` <- readBigwig(file = Zld_nc14_ChIP_bw, 
+                              params = zoomRegion
+)
+
+`Zld_S2_ChIP` <- readBigwig(file = Zld_ChIP_bw, 
+                            params = zoomRegion
+)
+
+
+
+ChIP_range <- signal_range(c(Zld_S2_ChIP$score, Zld_nc14_ChIP$score))
+
+s2 <- plotSignal(
+  data = `Zld_nc14_ChIP`, params = zoomRegion,
+  x = (ref_x + x_offset_browser), y = (ref_y + 1.75), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = zld_color, fill = zld_color, baseline = FALSE, baseline.lwd = 0, baseline.color = zld_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s2, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+
+s3 <- plotSignal(
+  data = `Zld_S2_ChIP`, params = zoomRegion,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.25), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = zld_color, fill = zld_color, baseline = FALSE, baseline.lwd = 0, baseline.color = zld_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s3, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+
+plotGenes(
+  params = zoomRegion, assembly = "dm6",
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
+  just = c("left", "top"),
+  default.units = "cm"
+)
+
+
+# panel G ==================================================================
+# panel label
+ref_x <- 6.5
+ref_y <- 4.5
+
+plotText(
+  label = "g", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+plotText(
+  label = "class IV", params = large_text_params, fontface = "bold",
+  x = ref_x + 3, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+
+# add broad H3K27me3 region
+plotText(
+  label = paste("H3K27me3"),
+  params = small_text_params,
+  fontface = "bold",
+  x = (ref_x + x_offset_browser_label),
+  y = (ref_y + 0.25),
+  just = c("right", "center"),
+  default.units = "cm"
+)
+
+plotText(
+  label = paste("H3K9me3"),
+  params = small_text_params,
+  fontface = "bold",
+  x = (ref_x + x_offset_browser_label),
+  y = (ref_y + 0.75),
+  just = c("right", "center"),
+  default.units = "cm"
+)
+
+region <- pgParams(
+  chrom = "chr3L",
+  chromstart = 3232675, chromend = 3324202,
+  assembly = "dm6"
+)
+
+`H3K27me3_ChIP` <- readBigwig(file = H3K27me3_ChIP_bw, 
+                              params = region
+)
+
+`H3K9me3_ChIP` <- readBigwig(file = H3K9me3_ChIP_bw, 
+                             params = region
+)
+
+ChIP_range <- signal_range(c(H3K27me3_ChIP$score, H3K9me3_ChIP$score))
+
+s1 <- plotSignal(
+  data = `H3K27me3_ChIP`, params = region,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.25), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s1, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+s2 <- plotSignal(
+  data = `H3K9me3_ChIP`, params = region,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s2, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+# add zoomed in view of ChIP
+zoomRegion <- pgParams(
+  chrom = "chr3L",
+  chromstart = 3254519, chromend = 3272949,
+  assembly = "dm6"
+)
+
+annoZoomLines(
+  plot = s2, params = zoomRegion,
+  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1, 1),
+  default.units = "cm",
+  lty = 2
+)
+
+plotText(
+  label = "Grh embryo ChIP", params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
+)
+
+
+plotText(
+  label = "Grh S2 ChIP", params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
+)
+
+
+
+`Grh_embryo_ChIP` <- readBigwig(file = Grh_embryo_ChIP_bw, 
+                                params = zoomRegion
+)
+
+`Grh_S2_ChIP` <- readBigwig(file = Grh_ChIP_bw, 
+                            params = zoomRegion
+)
+
+
+
+ChIP_range <- signal_range(c(Grh_S2_ChIP$score, Grh_embryo_ChIP$score))
+
+s2 <- plotSignal(
+  data = `Grh_embryo_ChIP`, params = zoomRegion,
+  x = (ref_x + x_offset_browser), y = (ref_y + 1.75), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = grh_color, fill = grh_color, baseline = FALSE, baseline.lwd = 0, baseline.color = grh_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s2, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+
+s3 <- plotSignal(
+  data = `Grh_S2_ChIP`, params = zoomRegion,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.25), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = grh_color, fill = grh_color, baseline = FALSE, baseline.lwd = 0, baseline.color = grh_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s3, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+
+plotGenes(
+  params = zoomRegion, assembly = "dm6",
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
+  just = c("left", "top"),
+  default.units = "cm"
+)
+
+# panel H ==================================================================
+# panel label
+ref_x <- 6.5
+ref_y <- 8.5
+
+plotText(
+  label = "h", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+plotText(
+  label = "class V", params = large_text_params, fontface = "bold",
+  x = ref_x + 3, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+
+# add broad H3K27me3 region
+plotText(
+  label = paste("H3K27me3"),
+  params = small_text_params,
+  fontface = "bold",
+  x = (ref_x + x_offset_browser_label),
+  y = (ref_y + 0.25),
+  just = c("right", "center"),
+  default.units = "cm"
+)
+
+plotText(
+  label = paste("H3K9me3"),
+  params = small_text_params,
+  fontface = "bold",
+  x = (ref_x + x_offset_browser_label),
+  y = (ref_y + 0.75),
+  just = c("right", "center"),
+  default.units = "cm"
+)
+
+region <- pgParams(
+  chrom = "chr2L",
+  chromstart = 4443392, chromend = 4669912,
+  assembly = "dm6"
+)
+
+`H3K27me3_ChIP` <- readBigwig(file = H3K27me3_ChIP_bw, 
+                              params = region
+)
+
+`H3K9me3_ChIP` <- readBigwig(file = H3K9me3_ChIP_bw, 
+                             params = region
+)
+
+ChIP_range <- signal_range(c(H3K27me3_ChIP$score, H3K9me3_ChIP$score))
+
+s1 <- plotSignal(
+  data = `H3K27me3_ChIP`, params = region,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.25), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s1, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+s2 <- plotSignal(
+  data = `H3K9me3_ChIP`, params = region,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s2, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+# add zoomed in view of ChIP
+zoomRegion <- pgParams(
+  chrom = "chr2L",
+  chromstart = 4562557, chromend = 4626155,
+  assembly = "dm6"
+)
+
+annoZoomLines(
+  plot = s2, params = zoomRegion,
+  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1, 1),
+  default.units = "cm",
+  lty = 2
+)
+
+plotText(
+  label = "Grh embryo ChIP", params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
+)
+
+
+plotText(
+  label = "Grh S2 ChIP", params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
+)
+
+
+
+`Grh_embryo_ChIP` <- readBigwig(file = Grh_embryo_ChIP_bw, 
+                                params = zoomRegion
+)
+
+`Grh_S2_ChIP` <- readBigwig(file = Grh_ChIP_bw, 
+                            params = zoomRegion
+)
+
+
+
+ChIP_range <- signal_range(c(Grh_S2_ChIP$score, Grh_embryo_ChIP$score))
+
+s2 <- plotSignal(
+  data = `Grh_embryo_ChIP`, params = zoomRegion,
+  x = (ref_x + x_offset_browser), y = (ref_y + 1.75), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = grh_color, fill = grh_color, baseline = FALSE, baseline.lwd = 0, baseline.color = grh_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s2, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+
+s3 <- plotSignal(
+  data = `Grh_S2_ChIP`, params = zoomRegion,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.25), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = grh_color, fill = grh_color, baseline = FALSE, baseline.lwd = 0, baseline.color = grh_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s3, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+
+plotGenes(
+  params = zoomRegion, assembly = "dm6",
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
+  just = c("left", "top"),
+  default.units = "cm"
+)
+
+
+# panel I ==================================================================
+# panel label
+ref_x <- 6.5
+ref_y <- 12.5
+
+plotText(
+  label = "i", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+plotText(
+  label = "class VI", params = large_text_params, fontface = "bold",
+  x = ref_x + 3, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+
+# add broad H3K27me3 region
+plotText(
+  label = paste("H3K27me3"),
+  params = small_text_params,
+  fontface = "bold",
+  x = (ref_x + x_offset_browser_label),
+  y = (ref_y + 0.25),
+  just = c("right", "center"),
+  default.units = "cm"
+)
+
+plotText(
+  label = paste("H3K9me3"),
+  params = small_text_params,
+  fontface = "bold",
+  x = (ref_x + x_offset_browser_label),
+  y = (ref_y + 0.75),
+  just = c("right", "center"),
+  default.units = "cm"
+)
+
+# region candidates:
+# chr3R:22,748,753-22,807,827
+# chrX:13,216,271-13,269,214
+
+region <- pgParams(
+  chrom = "chrX",
+  chromstart = 13181251, chromend = 13295616,
+  assembly = "dm6"
+)
+
+`H3K27me3_ChIP` <- readBigwig(file = H3K27me3_ChIP_bw, 
+                              params = region
+)
+
+`H3K9me3_ChIP` <- readBigwig(file = H3K9me3_ChIP_bw, 
+                             params = region
+)
+
+ChIP_range <- c(-1.1,8)
+
+s1 <- plotSignal(
+  data = `H3K27me3_ChIP`, params = region,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.25), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s1, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+s2 <- plotSignal(
+  data = `H3K9me3_ChIP`, params = region,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s2, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+# add zoomed in view of ChIP
+zoomRegion <- pgParams(
+  chrom = "chrX",
+  chromstart = 13218840, chromend = 13238073,
+  assembly = "dm6"
+)
+
+annoZoomLines(
+  plot = s2, params = zoomRegion,
+  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1, 1),
+  default.units = "cm",
+  lty = 2
+)
+
+plotText(
+  label = "Grh embryo ChIP", params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
+)
+
+
+plotText(
+  label = "Grh S2 ChIP", params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
+)
+
+
+
+`Grh_embryo_ChIP` <- readBigwig(file = Grh_embryo_ChIP_bw, 
+                                params = zoomRegion
+)
+
+`Grh_S2_ChIP` <- readBigwig(file = Grh_ChIP_bw, 
+                            params = zoomRegion
+)
+
+
+
+ChIP_range <- signal_range(c(Grh_S2_ChIP$score, Grh_embryo_ChIP$score))
+
+s2 <- plotSignal(
+  data = `Grh_embryo_ChIP`, params = zoomRegion,
+  x = (ref_x + x_offset_browser), y = (ref_y + 1.75), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = grh_color, fill = grh_color, baseline = FALSE, baseline.lwd = 0, baseline.color = grh_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s2, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+
+s3 <- plotSignal(
+  data = `Grh_S2_ChIP`, params = zoomRegion,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.25), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = grh_color, fill = grh_color, baseline = FALSE, baseline.lwd = 0, baseline.color = grh_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s3, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+
+plotGenes(
+  params = zoomRegion, assembly = "dm6",
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
+  just = c("left", "top"),
+  default.units = "cm"
+)
+
+# panel J ==================================================================
+# panel label
+ref_x <- 12.5
+ref_y <- 4.5
+
+plotText(
+  label = "j", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+plotText(
+  label = "class IV", params = large_text_params, fontface = "bold",
+  x = ref_x + 3, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+
+# add broad H3K27me3 region
+plotText(
+  label = paste("H3K27me3"),
+  params = small_text_params,
+  fontface = "bold",
+  x = (ref_x + x_offset_browser_label),
+  y = (ref_y + 0.25),
+  just = c("right", "center"),
+  default.units = "cm"
+)
+
+plotText(
+  label = paste("H3K9me3"),
+  params = small_text_params,
+  fontface = "bold",
+  x = (ref_x + x_offset_browser_label),
+  y = (ref_y + 0.75),
+  just = c("right", "center"),
+  default.units = "cm"
+)
+
+region <- pgParams(
+  chrom = "chr2R",
+  chromstart = 12753782, chromend = 12796150,
+  assembly = "dm6"
+)
+
+`H3K27me3_ChIP` <- readBigwig(file = H3K27me3_ChIP_bw, 
+                              params = region
+)
+
+`H3K9me3_ChIP` <- readBigwig(file = H3K9me3_ChIP_bw, 
+                             params = region
+)
+
+ChIP_range <- signal_range(c(H3K27me3_ChIP$score, H3K9me3_ChIP$score))
+
+s1 <- plotSignal(
+  data = `H3K27me3_ChIP`, params = region,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.25), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s1, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+s2 <- plotSignal(
+  data = `H3K9me3_ChIP`, params = region,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s2, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+# add zoomed in view of ChIP
+zoomRegion <- pgParams(
+  chrom = "chr2R",
+  chromstart = 12773275, chromend = 12791478,
+  assembly = "dm6"
+)
+
+annoZoomLines(
+  plot = s2, params = zoomRegion,
+  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1, 1),
+  default.units = "cm",
+  lty = 2
+)
+
+plotText(
+  label = "Twi embryo ChIP", params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
+)
+
+
+plotText(
+  label = "Twi S2 ChIP", params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
+)
+
+
+
+`Twi_embryo_ChIP` <- readBigwig(file = Twi_embryo_ChIP_bw, 
+                                params = zoomRegion
+)
+
+`Twi_S2_ChIP` <- readBigwig(file = Twi_ChIP_bw, 
+                            params = zoomRegion
+)
+
+
+
+ChIP_range <- signal_range(c(Twi_S2_ChIP$score, Twi_embryo_ChIP$score))
+
+s2 <- plotSignal(
+  data = `Twi_embryo_ChIP`, params = zoomRegion,
+  x = (ref_x + x_offset_browser), y = (ref_y + 1.75), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = twi_color, fill = twi_color, baseline = FALSE, baseline.lwd = 0, baseline.color = twi_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s2, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+
+s3 <- plotSignal(
+  data = `Twi_S2_ChIP`, params = zoomRegion,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.25), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = twi_color, fill = twi_color, baseline = FALSE, baseline.lwd = 0, baseline.color = twi_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s3, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+
+plotGenes(
+  params = zoomRegion, assembly = "dm6",
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
+  just = c("left", "top"),
+  default.units = "cm"
+)
+
+# panel K ==================================================================
+# panel label
+ref_x <- 12.5
+ref_y <- 8.5
+
+plotText(
+  label = "k", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+plotText(
+  label = "class V", params = large_text_params, fontface = "bold",
+  x = ref_x + 3, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+
+# add broad H3K27me3 region
+plotText(
+  label = paste("H3K27me3"),
+  params = small_text_params,
+  fontface = "bold",
+  x = (ref_x + x_offset_browser_label),
+  y = (ref_y + 0.25),
+  just = c("right", "center"),
+  default.units = "cm"
+)
+
+plotText(
+  label = paste("H3K9me3"),
+  params = small_text_params,
+  fontface = "bold",
+  x = (ref_x + x_offset_browser_label),
+  y = (ref_y + 0.75),
+  just = c("right", "center"),
+  default.units = "cm"
+)
+
+# candidate regions
+# chrX:18,315,069-18,367,911
+# chrX:17891901-18095637
+# chr3L:13,423,435-14,067,450
+
+region <- pgParams(
+  chrom = "chr3L",
+  chromstart = 13423435, chromend = 14067450,
+  assembly = "dm6"
+)
+
+`H3K27me3_ChIP` <- readBigwig(file = H3K27me3_ChIP_bw, 
+                              params = region
+)
+
+`H3K9me3_ChIP` <- readBigwig(file = H3K9me3_ChIP_bw, 
+                             params = region
+)
+
+ChIP_range <- signal_range(c(H3K27me3_ChIP$score, H3K9me3_ChIP$score))
+
+s1 <- plotSignal(
+  data = `H3K27me3_ChIP`, params = region,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.25), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s1, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+s2 <- plotSignal(
+  data = `H3K9me3_ChIP`, params = region,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s2, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+# add zoomed in view of ChIP
+zoomRegion <- pgParams(
+  chrom = "chr3L",
+  chromstart = 13658008, chromend = 13683890,
+  assembly = "dm6"
+)
+
+annoZoomLines(
+  plot = s2, params = zoomRegion,
+  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1, 1),
+  default.units = "cm",
+  lty = 2
+)
+
+plotText(
+  label = "Twi embryo ChIP", params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
+)
+
+
+plotText(
+  label = "Twi S2 ChIP", params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
+)
+
+
+
+`Twi_embryo_ChIP` <- readBigwig(file = Twi_embryo_ChIP_bw, 
+                                params = zoomRegion
+)
+
+`Twi_S2_ChIP` <- readBigwig(file = Twi_ChIP_bw, 
+                            params = zoomRegion
+)
+
+
+
+ChIP_range <- signal_range(c(Twi_S2_ChIP$score, Twi_embryo_ChIP$score))
+
+s2 <- plotSignal(
+  data = `Twi_embryo_ChIP`, params = zoomRegion,
+  x = (ref_x + x_offset_browser), y = (ref_y + 1.75), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = twi_color, fill = twi_color, baseline = FALSE, baseline.lwd = 0, baseline.color = twi_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s2, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+
+s3 <- plotSignal(
+  data = `Twi_S2_ChIP`, params = zoomRegion,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.25), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = twi_color, fill = twi_color, baseline = FALSE, baseline.lwd = 0, baseline.color = twi_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s3, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+
+plotGenes(
+  params = zoomRegion, assembly = "dm6",
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
+  just = c("left", "top"),
+  default.units = "cm"
+)
+
+
+# panel L ==================================================================
+# panel label
+ref_x <- 12.5
+ref_y <- 12.5
+
 plotText(
   label = "l", params = panel_label_params, fontface = "bold",
-  x = (ref_x), y = (ref_y), just = "bottom", default.units = "cm"
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+plotText(
+  label = "class VI", params = large_text_params, fontface = "bold",
+  x = ref_x + 3, y = ref_y, just = "bottom", default.units = "cm"
 )
 
 
-# plot heatmap of overlaps for Twi
-bw <- c(
-  S2_twi_ChIP =  S2_twi_ChIP_bw,
-  embryo_twi_ChIP = embryo_twi_ChIP_bw,
-  twi_motif = twi_motif_bw
-)
-
-group <- c(1,1,2)
-
-regions <- peak_overlaps |> 
-  makeGRangesFromDataFrame(keep.extra.columns = TRUE)
-
-
-hm <- plot_heatmap_minimal(
-  bw, regions, 
-  upstream = hm_upstream, downstream = hm_downstream, 
-  colors  = twi_heatmap_colors, 
-  row_split = regions$overlap_group,
-  scale_group = group,
-  return_heatmap_list = TRUE,
-  use_raster = TRUE, raster_by_magick = TRUE, raster_magick_filter = "Triangle",
-  border = "black",
-  border_gp = gpar(lwd = 0.5)
-)
-
-l_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 0, 0, 0), "mm")))
-
-# place heatmap on page
-plotGG(
-  plot = l_hm,
-  x = (ref_x + 0.25), y = (ref_y + 0.25),
-  width = 6, height = 2.25, just = c("left", "top"),
+# add broad H3K27me3 region
+plotText(
+  label = paste("H3K27me3"),
+  params = small_text_params,
+  fontface = "bold",
+  x = (ref_x + x_offset_browser_label),
+  y = (ref_y + 0.25),
+  just = c("right", "center"),
   default.units = "cm"
 )
 
-# add axes to heatmaps
-seekViewport(name = "matrix_1_heatmap_body_7_1")
-grid.xaxis(at = c(0, 1), label = c(paste0("-", hm_upstream / 1000, "KB"), paste0("+",hm_downstream / 1000, "KB")), gp = gpar(lwd = 0.5, fontsize = small_text_params$fontsize))
-seekViewport(name = "page")
-
-# add heatmap labels
 plotText(
-  label = "S2 Twi ChIP", params = small_text_params, fontface = "bold",
-  x = (ref_x + 1.1), y = (ref_y), just = c("center"), default.units = "cm"
-)
-
-plotText(
-  label = "embryo Twi ChIP", params = small_text_params, fontface = "bold",
-  x = (ref_x + 3.2), y = (ref_y), just = c("center"), default.units = "cm"
-)
-
-
-plotText(
-  label = "Twi motif", params = small_text_params, fontface = "bold",
-  x = (ref_x + 5.3), y = (ref_y), just = c("center"), default.units = "cm"
-)
-
-
-# panel M ======================================================================
-# reference points for positioning figure components ---------------------------
-ref_x <- 10
-ref_y <- 6.5
-
-# panel label
-plotText(
-  label = "m", params = panel_label_params, fontface = "bold",
-  x = (ref_x), y = (ref_y), just = "bottom", default.units = "cm"
-)
-
-# quantify n motifs per peak ---------------------------------------------------
-peak_overlaps$name <- paste0("peak_", seq(nrow(peak_overlaps)))
-peaks_gr <- makeGRangesFromDataFrame(peak_overlaps, keep.extra.columns = TRUE)
-
-motifs_gr <- read_tsv(twi_motif_instances_fn) %>% 
-  rename(motif_score = score) %>% 
-  makeGRangesFromDataFrame(keep.extra.columns = TRUE)
-
-peak_overlaps$n_motifs <- countOverlaps(peaks_gr, motifs_gr)
-
-# get average motif score per peak ---------------------------------------------
-peak_motif_scores <- peaks_gr %>% 
-  plyranges::join_overlap_left(motifs_gr) %>% 
-  as.data.frame() %>% 
-  group_by(name) %>% 
-  summarise(average_motif_score = mean(motif_score)) 
-
-peak_overlaps <- peak_overlaps %>% 
-  left_join(peak_motif_scores, by = "name")
-
-
-
-twi_motif_percent_hm <- 
-  peak_overlaps |> 
-  mutate(has_motif = n_motifs > 0) |> 
-  group_by(overlap_group) |> 
-  summarise(percent_with_motif = round(mean(has_motif) * 100, 2)) |> 
-  add_column(motif_name = "Grh motif") |> 
-  ggplot(aes(x= as.factor(overlap_group), y = motif_name, fill = percent_with_motif)) + 
-  geom_tile(color = "black") +
-  scale_fill_distiller(palette = "GnBu", direction = 1, limits=c(0,100), breaks = c(0,100), name = NULL) +
-  geom_text(aes(label = percent_with_motif), size = small_text_params$fontsize * 0.35) +
-  theme_minimal(base_size = small_text_params$fontsize) +
-  theme(legend.key.size = unit(1, 'mm'), 
-        # axis.text.x = element_text(angle=45, vjust=1, hjust=1),
-        axis.text.y = element_blank(),
-        axis.title = element_blank()
-  )
-
-
-
-# place heatmap on page
-plotGG(
-  plot = twi_motif_percent_hm,
-  x = ref_x + 0.25, y = ref_y,
-  width = 6, height = 0.75, just = c("left", "top"),
+  label = paste("H3K9me3"),
+  params = small_text_params,
+  fontface = "bold",
+  x = (ref_x + x_offset_browser_label),
+  y = (ref_y + 0.75),
+  just = c("right", "center"),
   default.units = "cm"
 )
 
-# panel N ======================================================================
-# reference points for positioning figure components ---------------------------
-ref_x <- 10
-ref_y <- 7.5
 
-# panel label
+region <- pgParams(
+  chrom = "chr3L",
+  chromstart = 10650450, chromend = 10684646,
+  assembly = "dm6"
+)
+
+`H3K27me3_ChIP` <- readBigwig(file = H3K27me3_ChIP_bw, 
+                              params = region
+)
+
+`H3K9me3_ChIP` <- readBigwig(file = H3K9me3_ChIP_bw, 
+                             params = region
+)
+
+ChIP_range <- c(-1.1,8)
+
+s1 <- plotSignal(
+  data = `H3K27me3_ChIP`, params = region,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.25), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s1, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+s2 <- plotSignal(
+  data = `H3K9me3_ChIP`, params = region,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s2, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+# add zoomed in view of ChIP
+zoomRegion <- pgParams(
+  chrom = "chr3L",
+  chromstart = 10667170, chromend = 10675448,
+  assembly = "dm6"
+)
+
+annoZoomLines(
+  plot = s2, params = zoomRegion,
+  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1, 1),
+  default.units = "cm",
+  lty = 2
+)
+
 plotText(
-  label = "n", params = panel_label_params, fontface = "bold",
-  x = (ref_x), y = (ref_y), just = "bottom", default.units = "cm"
+  label = "Twi embryo ChIP", params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
 )
 
-n_plot <- 
-  peak_overlaps |> 
-  ggplot(aes(x = as.factor(overlap_group), y = n_motifs)) +
-  geom_boxplot(outlier.size = 0.01, lwd = 0.1, fill = twi_color) +
-  theme_classic(base_size = small_text_params$fontsize)
 
-plotGG(
-  plot = n_plot,
-  x = ref_x + 0.25, y = ref_y,
-  width = 2.75, height = 2, just = c("left", "top"),
-  default.units = "cm"
-)
-
-# panel O ======================================================================
-# reference points for positioning figure components ---------------------------
-ref_x <- 13
-ref_y <- 7.5
-
-# panel label
 plotText(
-  label = "o", params = panel_label_params, fontface = "bold",
-  x = (ref_x), y = (ref_y), just = "bottom", default.units = "cm"
+  label = "Twi S2 ChIP", params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
 )
 
 
-o_plot <- 
-  peak_overlaps |> 
-  ggplot(aes(x = as.factor(overlap_group), y = average_motif_score)) +
-  geom_boxplot(outlier.size = 0.01, lwd = 0.1, fill = twi_color) +
-  theme_classic(base_size = small_text_params$fontsize)
+
+`Twi_embryo_ChIP` <- readBigwig(file = Twi_embryo_ChIP_bw, 
+                                params = zoomRegion
+)
+
+`Twi_S2_ChIP` <- readBigwig(file = Twi_ChIP_bw, 
+                            params = zoomRegion
+)
 
 
-plotGG(
-  plot = o_plot,
-  x = ref_x + 0.25, y = ref_y,
-  width = 2.75, height = 2, just = c("left", "top"),
+
+ChIP_range <- signal_range(c(Twi_S2_ChIP$score, Twi_embryo_ChIP$score))
+
+s2 <- plotSignal(
+  data = `Twi_embryo_ChIP`, params = zoomRegion,
+  x = (ref_x + x_offset_browser), y = (ref_y + 1.75), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = twi_color, fill = twi_color, baseline = FALSE, baseline.lwd = 0, baseline.color = twi_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s2, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+
+s3 <- plotSignal(
+  data = `Twi_S2_ChIP`, params = zoomRegion,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.25), width = 3.75, height = gb_height,
+  just = c("left", "center"), default.units = "cm",
+  linecolor = twi_color, fill = twi_color, baseline = FALSE, baseline.lwd = 0, baseline.color = twi_color,
+  range = ChIP_range
+)
+
+annoYaxis(
+  plot = s3, at = round(ChIP_range, 1),
+  axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+)
+
+
+
+plotGenes(
+  params = zoomRegion, assembly = "dm6",
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
+  just = c("left", "top"),
   default.units = "cm"
 )
 
