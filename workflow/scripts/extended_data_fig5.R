@@ -7,6 +7,7 @@ library(RColorBrewer)
 library(rtracklayer)
 
 source("workflow/scripts/plot_heatmap.R")
+source("workflow/scripts/utils.R")
 
 # define input files ===========================================================
 # Zld_ChIP_bw <- snakemake@input[["Zld_ChIP_bw"]]
@@ -135,7 +136,18 @@ zld_color <- "#5BBCD6"
       # twi_heatmap_colors <- c("white","#00A08A", "#154734")
     twi_heatmap_colors <- brewer.pal(9, "GnBu")
     
-  
+    H3K27me3_color <- "gray40"      
+      
+    # reference points for positioning figure components
+    x_offset_class_label <- 0.25
+    x_offset_browser_label <- 1
+    x_offset_browser <- 1.5
+    
+    # set genome browser height
+    gb_height <- 0.3
+    
+    
+    
     # panel A ======================================================================
     # reference points for positioning figure components
     ref_x <- 0.5
@@ -188,55 +200,59 @@ zld_color <- "#5BBCD6"
       theme_minimal(base_size = small_text_params$fontsize) +
       theme(axis.text.x = element_text(angle = 45, hjust=1),
             axis.title = element_blank(),
-                  panel.grid.major = element_blank(),
-                  panel.grid.minor = element_blank(),
-                  panel.border = element_blank(),
-                  panel.background = element_blank(),
-            legend.key.size = unit(2, 'mm')
-            ) +
+            panel.grid.major = element_blank(),
+            panel.grid.minor = element_blank(),
+            panel.border = element_blank(),
+            panel.background = element_blank(),
+            legend.key.size = unit(2, 'mm'),
+            legend.position = "top",
+            legend.justification = c(0.9),
+            legend.margin=margin(0,0,4,0),
+            legend.box.margin=margin(-10,-10,-10,-10)
+      ) +
       scale_fill_distiller(palette = "Blues", direction = 1)
     
     
     plotGG(
       plot = a_plot,
-      x = (ref_x), y = ref_y,
-      width = 12, height = 2.5, just = c("left", "top"),
+      x = (ref_x), y = ref_y + 0.5,
+      width = 10, height = 2.5, just = c("left", "top"),
       default.units = "cm"
     )
     
     # add labels to bottom of heatmap
     plotSegments(
-      x0 = ref_x, y0 = ref_y + 2.5, x1 = ref_x + 3.75, y1 = ref_y + 2.5,
+      x0 = ref_x, y0 = ref_y + 3, x1 = ref_x + 3.75, y1 = ref_y + 3,
       default.units = "cm",
       lwd = 1
     )
     
     plotSegments(
-      x0 = ref_x + 4, y0 = ref_y + 2.5, x1 = ref_x + 4.5, y1 = ref_y + 2.5,
+      x0 = ref_x + 4, y0 = ref_y + 3, x1 = ref_x + 4.5, y1 = ref_y + 3,
       default.units = "cm",
       lwd = 1
     )
     
     plotSegments(
-      x0 = ref_x + 4.75, y0 = ref_y + 2.5, x1 =ref_x + 6.5 , y1 = ref_y + 2.5,
+      x0 = ref_x + 4.75, y0 = ref_y + 3, x1 =ref_x + 6.5 , y1 = ref_y + 3,
       default.units = "cm",
       lwd = 1
     )
     
     plotSegments(
-      x0 = ref_x + 6.75, y0 = ref_y + 2.5, x1 = ref_x + 7.5, y1 = ref_y + 2.5,
+      x0 = ref_x + 6.75, y0 = ref_y + 3, x1 = ref_x + 7.5, y1 = ref_y + 3,
       default.units = "cm",
       lwd = 1
     )
     
     plotSegments(
-      x0 = ref_x + 7.75, y0 = ref_y + 2.5, x1 = ref_x + 8.5, y1 = ref_y + 2.5,
+      x0 = ref_x + 7.75, y0 = ref_y + 3, x1 = ref_x + 8.5, y1 = ref_y + 3,
       default.units = "cm",
       lwd = 1
     )
     
     plotSegments(
-      x0 = ref_x + 8.75, y0 = ref_y + 2.5, x1 = ref_x + 9.75, y1 = ref_y + 2.5,
+      x0 = ref_x + 8.75, y0 = ref_y + 3, x1 = ref_x + 9.75, y1 = ref_y + 3,
       default.units = "cm",
       lwd = 1
     )
@@ -245,7 +261,16 @@ zld_color <- "#5BBCD6"
       label = "active",
       params = large_text_params,
       x = ref_x + 1.875,
-      y = ref_y + 2.75,
+      y = ref_y + 3.25,
+      just = c("center", "bottom"),
+      default.units = "cm"
+    )
+    
+    plotText(
+      label = "histones",
+      params = large_text_params,
+      x = ref_x + 4.2,
+      y = ref_y + 3.25,
       just = c("center", "bottom"),
       default.units = "cm"
     )
@@ -254,16 +279,16 @@ zld_color <- "#5BBCD6"
       label = "polycomb",
       params = large_text_params,
       x = ref_x + 5.5,
-      y = ref_y + 2.75,
+      y = ref_y + 3.25,
       just = c("center", "bottom"),
       default.units = "cm"
     )
-
+    
     plotText(
       label = "heterochromatin",
       params = large_text_params,
       x = ref_x + 7.1,
-      y = ref_y + 2.75,
+      y = ref_y + 3.25,
       just = c("center", "bottom"),
       default.units = "cm"
     )
@@ -272,7 +297,7 @@ zld_color <- "#5BBCD6"
       label = "TFs",
       params = large_text_params,
       x = ref_x + 8.1,
-      y = ref_y + 2.8,
+      y = ref_y + 3.3,
       just = c("center", "top"),
       default.units = "cm"
     )
@@ -281,19 +306,187 @@ zld_color <- "#5BBCD6"
       label = "insulators",
       params = large_text_params,
       x = ref_x + 9.25,
-      y = ref_y + 2.75,
+      y = ref_y + 3.25,
       just = c("center", "bottom"),
       default.units = "cm"
     )
     
     # panel B ======================================================================
+    # panel label
+    ref_x <- 11
+    ref_y <- 0.5
+    
+    plotText(
+      label = "b", params = panel_label_params, fontface = "bold",
+      x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+    )
+    
+    plotText(
+      label = "class III", params = large_text_params, fontface = "bold",
+      x = ref_x + 3, y = ref_y, just = "bottom", default.units = "cm"
+    )
+    
+    # add broad H3K27me3 region
+    plotText(
+      label = paste("H3K27me3"),
+      params = small_text_params,
+      fontface = "bold",
+      x = (ref_x + x_offset_browser_label),
+      y = (ref_y + 0.25),
+      just = c("right", "center"),
+      default.units = "cm"
+    )
+    
+    region <- pgParams(
+      chrom = "chr3R",
+      chromstart = 6647050, chromend = 6823266,
+      assembly = "dm6"
+    )
+    
+    `H3K27me3_ChIP` <- readBigwig(file = H3K27me3_ChIP_bw, 
+                                  params = region
+    )
+    
+    ChIP_range <- signal_range(c(H3K27me3_ChIP$score))
+    
+    s1 <- plotSignal(
+      data = `H3K27me3_ChIP`, params = region,
+      x = (ref_x + x_offset_browser), y = (ref_y + 0.25), width = 3.75, height = gb_height,
+      just = c("left", "center"), default.units = "cm",
+      linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
+      range = ChIP_range
+    )
+    
+    annoYaxis(
+      plot = s1, at = round(ChIP_range, 1),
+      axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+    )
+    
+    # add zoomed in view of ChIP and ATAC
+    zoomRegion <- pgParams(
+      chrom = "chr3R",
+      chromstart = 6751637, chromend = 6760890,
+      assembly = "dm6"
+    )
+    
+    annoZoomLines(
+      plot = s1, params = zoomRegion,
+      y0 = (s1$y + s1$height / 2), x1 = c(s1$x, s1$x + s1$width), y1 = (ref_y + 0.9), extend = c(gb_height, 1.5),
+      default.units = "cm",
+      lty = 2
+    )
+    
+    # plotText(
+    #   label = "Zld embryo ChIP", params = small_text_params, fontface = "bold",
+    #   x = (ref_x + x_offset_browser_label), y = (ref_y + 0.75), just = c("right","center"), default.units = "cm"
+    # )
+    # 
+    
+    plotText(
+      label = "Zld S2 ChIP", params = small_text_params, fontface = "bold",
+      x = (ref_x + x_offset_browser_label), y = (ref_y + 1.25), just = c("right","center"), default.units = "cm"
+    )
+    
+    
+    plotText(
+      label = "S2 WT ATAC", params = small_text_params, fontface = "bold",
+      x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
+    )
+    
+    plotText(
+      label = "ZLD ATAC", params = small_text_params, fontface = "bold",
+      x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
+    )
+    
+    
+    
+    
+    
+    `Zld_ChIP` <- readBigwig(file = Zld_ChIP_bw, 
+                             params = zoomRegion
+    )
+    
+    
+    `S2-WT_ATAC` <- readBigwig(file = Zld_WT_ATAC_bw, 
+                               params = zoomRegion
+    )
+    
+    `S2-Zld_ATAC` <- readBigwig(file = Zld_Zld_ATAC_bw, 
+                                params = zoomRegion
+    )
+    
+    ChIP_range <- signal_range(c(Zld_ChIP$score))
+    ATAC_range <- signal_range(c(`S2-WT_ATAC`$score, `S2-Zld_ATAC`$score))
+    
+    
+    s2 <- plotSignal(
+      data = `Zld_ChIP`, params = zoomRegion,
+      x = (ref_x + x_offset_browser), y = (ref_y + 1.25), width = 3.75, height = gb_height,
+      just = c("left", "center"), default.units = "cm",
+      linecolor = zld_color, fill = zld_color, baseline = FALSE, baseline.lwd = 0, baseline.color = zld_color,
+      range = ChIP_range
+    )
+    
+    annoYaxis(
+      plot = s2, at = round(ChIP_range, 1),
+      axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+    )
+    
+    
+    
+    s3 <- plotSignal(
+      data = `S2-WT_ATAC`, params = zoomRegion,
+      x = (ref_x + x_offset_browser), y = (ref_y + 1.75), width = 3.75, height = gb_height,
+      just = c("left", "center"), default.units = "cm",
+      linecolor = zld_color, fill = zld_color, baseline = FALSE, baseline.lwd = 0, baseline.color = zld_color,
+      range = ATAC_range
+    )
+    
+    annoYaxis(
+      plot = s3, at = round(ATAC_range, 1),
+      axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+    )
+    
+    
+    
+    s4 <- plotSignal(
+      data = `S2-Zld_ATAC`, params = zoomRegion,
+      x = (ref_x + x_offset_browser), y = (ref_y + 2.25), width = 3.75, height = gb_height,
+      just = c("left", "center"), default.units = "cm",
+      linecolor = zld_color, fill = zld_color, baseline = FALSE, baseline.lwd = 0, baseline.color = zld_color,
+      range = ATAC_range
+    )
+    
+    annoYaxis(
+      plot = s4, at = round(ATAC_range, 1),
+      axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+    )
+    
+    plotGenes(
+      params = zoomRegion, assembly = "dm6",
+      x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
+      just = c("left", "top"),
+      default.units = "cm"
+    )
+    
+    annoHighlight(
+      plot = s2,
+      chrom = "chr3R",
+      chromstart = 6755358,
+      chromend = 6755908,
+      y = (ref_y + 1), height = 1.5, just = c("left", "top"),
+      default.units = "cm"
+    )
+    
+    
+    # panel C ======================================================================
     # reference points for positioning figure components
     ref_x <- 0.5
-    ref_y <- 3.5
+    ref_y <- 4.5
     
     # panel label
     plotText(
-      label = "b",
+      label = "c",
       params = panel_label_params,
       fontface = "bold",
       x = ref_x,
@@ -315,7 +508,7 @@ zld_color <- "#5BBCD6"
     p_data <- grh_chip_classes |> 
       bind_cols(chrom_mark_averages)
     
-    b_plot <- p_data |> 
+    c_plot <- p_data |> 
       dplyr::select(class, H3K27ac:Mod_mdg4) |> 
       pivot_longer(H3K27ac:Mod_mdg4, names_to = "chromatin_feature", values_to = "normalized_signal") |> 
       group_by(class, chromatin_feature) |> summarise(normalized_signal = mean(normalized_signal)) |> 
@@ -342,51 +535,55 @@ zld_color <- "#5BBCD6"
             panel.grid.minor = element_blank(),
             panel.border = element_blank(),
             panel.background = element_blank(),
-            legend.key.size = unit(2, 'mm')
+            legend.key.size = unit(2, 'mm'),
+            legend.position = "top",
+            legend.justification = c(0.9),
+            legend.margin=margin(0,0,4,0),
+            legend.box.margin=margin(-10,-10,-10,-10)
       ) +
       scale_fill_distiller(palette = "Oranges", direction = 1)
     
     
     plotGG(
-      plot = b_plot,
-      x = (ref_x), y = ref_y,
-      width = 12, height = 2.5, just = c("left", "top"),
+      plot = c_plot,
+      x = (ref_x), y = ref_y + 0.5,
+      width = 10, height = 2.5, just = c("left", "top"),
       default.units = "cm"
     )
     
     # add labels to bottom of heatmap
     plotSegments(
-      x0 = ref_x, y0 = ref_y + 2.5, x1 = ref_x + 3.75, y1 = ref_y + 2.5,
+      x0 = ref_x, y0 = ref_y + 3, x1 = ref_x + 3.75, y1 = ref_y + 3,
       default.units = "cm",
       lwd = 1
     )
     
     plotSegments(
-      x0 = ref_x + 4, y0 = ref_y + 2.5, x1 = ref_x + 4.5, y1 = ref_y + 2.5,
+      x0 = ref_x + 4, y0 = ref_y + 3, x1 = ref_x + 4.5, y1 = ref_y + 3,
       default.units = "cm",
       lwd = 1
     )
     
     plotSegments(
-      x0 = ref_x + 4.75, y0 = ref_y + 2.5, x1 =ref_x + 6.5 , y1 = ref_y + 2.5,
+      x0 = ref_x + 4.75, y0 = ref_y + 3, x1 =ref_x + 6.5 , y1 = ref_y + 3,
       default.units = "cm",
       lwd = 1
     )
     
     plotSegments(
-      x0 = ref_x + 6.75, y0 = ref_y + 2.5, x1 = ref_x + 7.5, y1 = ref_y + 2.5,
+      x0 = ref_x + 6.75, y0 = ref_y + 3, x1 = ref_x + 7.5, y1 = ref_y + 3,
       default.units = "cm",
       lwd = 1
     )
     
     plotSegments(
-      x0 = ref_x + 7.75, y0 = ref_y + 2.5, x1 = ref_x + 8.5, y1 = ref_y + 2.5,
+      x0 = ref_x + 7.75, y0 = ref_y + 3, x1 = ref_x + 8.5, y1 = ref_y + 3,
       default.units = "cm",
       lwd = 1
     )
     
     plotSegments(
-      x0 = ref_x + 8.75, y0 = ref_y + 2.5, x1 = ref_x + 9.75, y1 = ref_y + 2.5,
+      x0 = ref_x + 8.75, y0 = ref_y + 3, x1 = ref_x + 9.75, y1 = ref_y + 3,
       default.units = "cm",
       lwd = 1
     )
@@ -395,7 +592,16 @@ zld_color <- "#5BBCD6"
       label = "active",
       params = large_text_params,
       x = ref_x + 1.875,
-      y = ref_y + 2.75,
+      y = ref_y + 3.25,
+      just = c("center", "bottom"),
+      default.units = "cm"
+    )
+    
+    plotText(
+      label = "histones",
+      params = large_text_params,
+      x = ref_x + 4.2,
+      y = ref_y + 3.25,
       just = c("center", "bottom"),
       default.units = "cm"
     )
@@ -404,7 +610,7 @@ zld_color <- "#5BBCD6"
       label = "polycomb",
       params = large_text_params,
       x = ref_x + 5.5,
-      y = ref_y + 2.75,
+      y = ref_y + 3.25,
       just = c("center", "bottom"),
       default.units = "cm"
     )
@@ -413,7 +619,7 @@ zld_color <- "#5BBCD6"
       label = "heterochromatin",
       params = large_text_params,
       x = ref_x + 7.1,
-      y = ref_y + 2.75,
+      y = ref_y + 3.25,
       just = c("center", "bottom"),
       default.units = "cm"
     )
@@ -422,7 +628,7 @@ zld_color <- "#5BBCD6"
       label = "TFs",
       params = large_text_params,
       x = ref_x + 8.1,
-      y = ref_y + 2.8,
+      y = ref_y + 3.3,
       just = c("center", "top"),
       default.units = "cm"
     )
@@ -431,15 +637,169 @@ zld_color <- "#5BBCD6"
       label = "insulators",
       params = large_text_params,
       x = ref_x + 9.25,
-      y = ref_y + 2.75,
+      y = ref_y + 3.25,
       just = c("center", "bottom"),
       default.units = "cm"
     )
     
-    # panel C ======================================================================
+    # panel D ======================================================================
+    # panel label
+    ref_x <- 11
+    ref_y <- 4.5
+    
+    plotText(
+      label = "d", params = panel_label_params, fontface = "bold",
+      x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+    )
+    
+    plotText(
+      label = "class III", params = large_text_params, fontface = "bold",
+      x = ref_x + 3, y = ref_y, just = "bottom", default.units = "cm"
+    )
+    
+    # add broad H3K27me3 region
+    plotText(
+      label = paste("H3K27me3"),
+      params = small_text_params,
+      fontface = "bold",
+      x = (ref_x + x_offset_browser_label),
+      y = (ref_y + 0.25),
+      just = c("right", "center"),
+      default.units = "cm"
+    )
+    
+    region <- pgParams(
+      chrom = "chr2L",
+      chromstart = 14042440, chromend = 14236112,
+      assembly = "dm6"
+    )
+    
+    `H3K27me3_ChIP` <- readBigwig(file = H3K27me3_ChIP_bw, 
+                                  params = region
+    )
+    
+    ChIP_range <- signal_range(c(H3K27me3_ChIP$score))
+    
+    s1 <- plotSignal(
+      data = `H3K27me3_ChIP`, params = region,
+      x = (ref_x + x_offset_browser), y = (ref_y + 0.25), width = 3.75, height = gb_height,
+      just = c("left", "center"), default.units = "cm",
+      linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
+      range = ChIP_range
+    )
+    
+    annoYaxis(
+      plot = s1, at = round(ChIP_range, 1),
+      axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+    )
+    
+    # add zoomed in view of ChIP and ATAC
+    zoomRegion <- pgParams(
+      chrom = "chr2L",
+      chromstart = 14100727, chromend = 14113159,
+      assembly = "dm6"
+    )
+    
+    annoZoomLines(
+      plot = s1, params = zoomRegion,
+      y0 = (s1$y + s1$height / 2), x1 = c(s1$x, s1$x + s1$width), y1 = (ref_y + 0.9), extend = c(gb_height, 1.5),
+      default.units = "cm",
+      lty = 2
+    )
+    
+    
+    plotText(
+      label = "Grh S2 ChIP", params = small_text_params, fontface = "bold",
+      x = (ref_x + x_offset_browser_label), y = (ref_y + 1.25), just = c("right","center"), default.units = "cm"
+    )
+    
+    
+    plotText(
+      label = "S2 WT ATAC", params = small_text_params, fontface = "bold",
+      x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
+    )
+    
+    plotText(
+      label = "Grh ATAC", params = small_text_params, fontface = "bold",
+      x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
+    )
+    
+    
+    
+    
+    
+    `Grh_ChIP` <- readBigwig(file = Grh_ChIP_bw, 
+                             params = zoomRegion
+    )
+    
+    
+    `S2-WT_ATAC` <- readBigwig(file = Grh_WT_ATAC_bw, 
+                               params = zoomRegion
+    )
+    
+    `S2-Grh_ATAC` <- readBigwig(file = Grh_Grh_ATAC_bw, 
+                                params = zoomRegion
+    )
+    
+    ChIP_range <- signal_range(c(Grh_ChIP$score))
+    ATAC_range <- signal_range(c(`S2-WT_ATAC`$score, `S2-Grh_ATAC`$score))
+    
+    
+    s2 <- plotSignal(
+      data = `Grh_ChIP`, params = zoomRegion,
+      x = (ref_x + x_offset_browser), y = (ref_y + 1.25), width = 3.75, height = gb_height,
+      just = c("left", "center"), default.units = "cm",
+      linecolor = grh_color, fill = grh_color, baseline = FALSE, baseline.lwd = 0, baseline.color = grh_color,
+      range = ChIP_range
+    )
+    
+    annoYaxis(
+      plot = s2, at = round(ChIP_range, 1),
+      axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+    )
+    
+    
+    
+    s3 <- plotSignal(
+      data = `S2-WT_ATAC`, params = zoomRegion,
+      x = (ref_x + x_offset_browser), y = (ref_y + 1.75), width = 3.75, height = gb_height,
+      just = c("left", "center"), default.units = "cm",
+      linecolor = grh_color, fill = grh_color, baseline = FALSE, baseline.lwd = 0, baseline.color = grh_color,
+      range = ATAC_range
+    )
+    
+    annoYaxis(
+      plot = s3, at = round(ATAC_range, 1),
+      axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+    )
+    
+    
+    
+    s4 <- plotSignal(
+      data = `S2-Grh_ATAC`, params = zoomRegion,
+      x = (ref_x + x_offset_browser), y = (ref_y + 2.25), width = 3.75, height = gb_height,
+      just = c("left", "center"), default.units = "cm",
+      linecolor = grh_color, fill = grh_color, baseline = FALSE, baseline.lwd = 0, baseline.color = grh_color,
+      range = ATAC_range
+    )
+    
+    annoYaxis(
+      plot = s4, at = round(ATAC_range, 1),
+      axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+    )
+    
+    plotGenes(
+      params = zoomRegion, assembly = "dm6",
+      x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
+      just = c("left", "top"),
+      default.units = "cm"
+    )
+    
+    
+    # panel E ======================================================================
     # reference points for positioning figure components
     ref_x <- 0.5
-    ref_y <- 6.5
+    ref_y <- 8.5
     
     # panel label
     plotText(
@@ -492,51 +852,55 @@ zld_color <- "#5BBCD6"
             panel.grid.minor = element_blank(),
             panel.border = element_blank(),
             panel.background = element_blank(),
-            legend.key.size = unit(2, 'mm')
+            legend.key.size = unit(2, 'mm'),
+            legend.position = "top",
+            legend.justification = c(0.9),
+            legend.margin=margin(0,0,4,0),
+            legend.box.margin=margin(-10,-10,-10,-10)
       ) +
       scale_fill_distiller(palette = "GnBu", direction = 1)
     
     
     plotGG(
       plot = b_plot,
-      x = (ref_x), y = ref_y,
-      width = 12, height = 2.5, just = c("left", "top"),
+      x = (ref_x), y = ref_y + 0.5,
+      width = 10, height = 2.5, just = c("left", "top"),
       default.units = "cm"
     )
     
     # add labels to bottom of heatmap
     plotSegments(
-      x0 = ref_x, y0 = ref_y + 2.5, x1 = ref_x + 3.75, y1 = ref_y + 2.5,
+      x0 = ref_x, y0 = ref_y + 3, x1 = ref_x + 3.75, y1 = ref_y + 3,
       default.units = "cm",
       lwd = 1
     )
     
     plotSegments(
-      x0 = ref_x + 4, y0 = ref_y + 2.5, x1 = ref_x + 4.5, y1 = ref_y + 2.5,
+      x0 = ref_x + 4, y0 = ref_y + 3, x1 = ref_x + 4.5, y1 = ref_y + 3,
       default.units = "cm",
       lwd = 1
     )
     
     plotSegments(
-      x0 = ref_x + 4.75, y0 = ref_y + 2.5, x1 =ref_x + 6.5 , y1 = ref_y + 2.5,
+      x0 = ref_x + 4.75, y0 = ref_y + 3, x1 =ref_x + 6.5 , y1 = ref_y + 3,
       default.units = "cm",
       lwd = 1
     )
     
     plotSegments(
-      x0 = ref_x + 6.75, y0 = ref_y + 2.5, x1 = ref_x + 7.5, y1 = ref_y + 2.5,
+      x0 = ref_x + 6.75, y0 = ref_y + 3, x1 = ref_x + 7.5, y1 = ref_y + 3,
       default.units = "cm",
       lwd = 1
     )
     
     plotSegments(
-      x0 = ref_x + 7.75, y0 = ref_y + 2.5, x1 = ref_x + 8.5, y1 = ref_y + 2.5,
+      x0 = ref_x + 7.75, y0 = ref_y + 3, x1 = ref_x + 8.5, y1 = ref_y + 3,
       default.units = "cm",
       lwd = 1
     )
     
     plotSegments(
-      x0 = ref_x + 8.75, y0 = ref_y + 2.5, x1 = ref_x + 9.75, y1 = ref_y + 2.5,
+      x0 = ref_x + 8.75, y0 = ref_y + 3, x1 = ref_x + 9.75, y1 = ref_y + 3,
       default.units = "cm",
       lwd = 1
     )
@@ -545,7 +909,16 @@ zld_color <- "#5BBCD6"
       label = "active",
       params = large_text_params,
       x = ref_x + 1.875,
-      y = ref_y + 2.75,
+      y = ref_y + 3.25,
+      just = c("center", "bottom"),
+      default.units = "cm"
+    )
+    
+    plotText(
+      label = "histones",
+      params = large_text_params,
+      x = ref_x + 4.2,
+      y = ref_y + 3.25,
       just = c("center", "bottom"),
       default.units = "cm"
     )
@@ -554,7 +927,7 @@ zld_color <- "#5BBCD6"
       label = "polycomb",
       params = large_text_params,
       x = ref_x + 5.5,
-      y = ref_y + 2.75,
+      y = ref_y + 3.25,
       just = c("center", "bottom"),
       default.units = "cm"
     )
@@ -563,7 +936,7 @@ zld_color <- "#5BBCD6"
       label = "heterochromatin",
       params = large_text_params,
       x = ref_x + 7.1,
-      y = ref_y + 2.75,
+      y = ref_y + 3.25,
       just = c("center", "bottom"),
       default.units = "cm"
     )
@@ -572,7 +945,7 @@ zld_color <- "#5BBCD6"
       label = "TFs",
       params = large_text_params,
       x = ref_x + 8.1,
-      y = ref_y + 2.8,
+      y = ref_y + 3.3,
       just = c("center", "top"),
       default.units = "cm"
     )
@@ -581,10 +954,168 @@ zld_color <- "#5BBCD6"
       label = "insulators",
       params = large_text_params,
       x = ref_x + 9.25,
-      y = ref_y + 2.75,
+      y = ref_y + 3.25,
       just = c("center", "bottom"),
       default.units = "cm"
     )
+    
+  
+    
+    # panel C ======================================================================
+    # panel label
+    ref_x <- 11
+    ref_y <- 8.5
+    
+    plotText(
+      label = "c", params = panel_label_params, fontface = "bold",
+      x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+    )
+    
+    plotText(
+      label = "class III", params = large_text_params, fontface = "bold",
+      x = ref_x + 3, y = ref_y, just = "bottom", default.units = "cm"
+    )
+    
+    # add broad H3K27me3 region
+    plotText(
+      label = paste("H3K27me3"),
+      params = small_text_params,
+      fontface = "bold",
+      x = (ref_x + x_offset_browser_label),
+      y = (ref_y + 0.25),
+      just = c("right", "center"),
+      default.units = "cm"
+    )
+    
+    region <- pgParams(
+      chrom = "chr2R",
+      chromstart = 24259395, chromend = 24314647,
+      assembly = "dm6"
+    )
+    
+    `H3K27me3_ChIP` <- readBigwig(file = H3K27me3_ChIP_bw, 
+                                  params = region
+    )
+    
+    ChIP_range <- signal_range(c(H3K27me3_ChIP$score))
+    
+    
+    s1 <- plotSignal(
+      data = `H3K27me3_ChIP`, params = region,
+      x = (ref_x + x_offset_browser), y = (ref_y + 0.25), width = 3.75, height = gb_height,
+      just = c("left", "center"), default.units = "cm",
+      linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
+      range = ChIP_range
+    )
+    
+    annoYaxis(
+      plot = s1, at = round(ChIP_range, 1),
+      axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+    )
+    
+    # add zoomed in view of ChIP and ATAC
+    zoomRegion <- pgParams(
+      chrom = "chr2R",
+      chromstart = 24277315, chromend = 24284445,
+      assembly = "dm6"
+    )
+    
+    annoZoomLines(
+      plot = s1, params = zoomRegion,
+      y0 = (s1$y + s1$height / 2), x1 = c(s1$x, s1$x + s1$width), y1 = (ref_y + 0.9), extend = c(gb_height, 1.5),
+      default.units = "cm",
+      lty = 2
+    )
+    
+    
+    plotText(
+      label = "Twi S2 ChIP", params = small_text_params, fontface = "bold",
+      x = (ref_x + x_offset_browser_label), y = (ref_y + 1.25), just = c("right","center"), default.units = "cm"
+    )
+    
+    
+    plotText(
+      label = "S2 WT ATAC", params = small_text_params, fontface = "bold",
+      x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
+    )
+    
+    plotText(
+      label = "Twi ATAC", params = small_text_params, fontface = "bold",
+      x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
+    )
+    
+    
+    
+    
+    
+    `Twi_ChIP` <- readBigwig(file = Twi_ChIP_bw, 
+                             params = zoomRegion
+    )
+    
+    
+    `S2-WT_ATAC` <- readBigwig(file = Twi_WT_ATAC_bw, 
+                               params = zoomRegion
+    )
+    
+    `S2-Twi_ATAC` <- readBigwig(file = Twi_Twi_ATAC_bw, 
+                                params = zoomRegion
+    )
+    
+    ChIP_range <- signal_range(c(Twi_ChIP$score))
+    ATAC_range <- signal_range(c(`S2-WT_ATAC`$score, `S2-Twi_ATAC`$score))
+    
+    
+    s2 <- plotSignal(
+      data = `Twi_ChIP`, params = zoomRegion,
+      x = (ref_x + x_offset_browser), y = (ref_y + 1.25), width = 3.75, height = gb_height,
+      just = c("left", "center"), default.units = "cm",
+      linecolor = twi_color, fill = twi_color, baseline = FALSE, baseline.lwd = 0, baseline.color = twi_color,
+      range = ChIP_range
+    )
+    
+    annoYaxis(
+      plot = s2, at = round(ChIP_range, 1),
+      axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+    )
+    
+    
+    
+    s3 <- plotSignal(
+      data = `S2-WT_ATAC`, params = zoomRegion,
+      x = (ref_x + x_offset_browser), y = (ref_y + 1.75), width = 3.75, height = gb_height,
+      just = c("left", "center"), default.units = "cm",
+      linecolor = twi_color, fill = twi_color, baseline = FALSE, baseline.lwd = 0, baseline.color = twi_color,
+      range = ATAC_range
+    )
+    
+    annoYaxis(
+      plot = s3, at = round(ATAC_range, 1),
+      axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+    )
+    
+    
+    
+    s4 <- plotSignal(
+      data = `S2-Twi_ATAC`, params = zoomRegion,
+      x = (ref_x + x_offset_browser), y = (ref_y + 2.25), width = 3.75, height = gb_height,
+      just = c("left", "center"), default.units = "cm",
+      linecolor = twi_color, fill = twi_color, baseline = FALSE, baseline.lwd = 0, baseline.color = twi_color,
+      range = ATAC_range
+    )
+    
+    annoYaxis(
+      plot = s4, at = round(ATAC_range, 1),
+      axisLine = TRUE, fontsize = 5, lwd = 0.5, 
+    )
+    
+    plotGenes(
+      params = zoomRegion, assembly = "dm6",
+      x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
+      just = c("left", "top"),
+      default.units = "cm"
+    )
+    
+    
     
     
     # close graphics device ========================================================

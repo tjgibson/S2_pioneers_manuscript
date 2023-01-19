@@ -183,10 +183,10 @@ This enrichment of all three factors at highly active regions suggests that exog
 <!--# This model is supported by comparison to RNA-seq and ATAC-seq data, showing that binding to class I regions leads to few changes in chromatin accessibility and gene expression (Extended Data Fig. XX). -->
 
 Considering the enrichment of active chromatin at class I sites, we asked if there were any features of chromatin distinctive to class II or III regions.
-Analysis of published ChIP-seq data demonstrated that class II and III sites have low levels of many histone modifications, chromatin-associated proteins, and transcription factors (Extended Data Fig. 5).
+Analysis of published ChIP-seq data demonstrated that class II and III sites have low levels of many histone modifications, chromatin-associated proteins, and transcription factors (Extended Data Fig. 5a,c,e).
 These data are in agreement with previous observations that Oct4, Sox2 and Klf4 access binding sites in naïve chromatin that is inaccessible but devoid of most histone modifications [@Soufi2012].
 Interestingly, levels of H3 and H1 were higher at class III than at class II sites (Extended Data Fig. 5).
-Some class III sites also were within regions marked with the repressive histone modifications H3K27me3 or H3K9me3 (Extended Data Fig. 8a-c).
+Some class III sites also were within regions marked with the repressive histone modification H3K27me3 (Extended Data Fig. 5b,d,f).
 Together this suggests that Zld, Grh and Twi pioneer at regions within naïve or repressed chromatin.
 Based on these observations, the inability to open class II regions is unlikely to be due to differences in preexisting features of chromatin.
 
