@@ -24,7 +24,7 @@ bibliography: references.bib
 
 # Materials and Methods
 
-{{< include manuscript_sections/_05_Discussion.qmd >}}
+{{< include manuscript_sections/_05_Methods.qmd >}}
 
 # Figure Legends
 

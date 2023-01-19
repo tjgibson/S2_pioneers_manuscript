@@ -119,6 +119,17 @@ plotGG(
   default.units = "cm"
 )
 
+plotText(
+  label = "a", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+plotText(
+  label = "MNase-seq", params = large_text_params, fontface = "bold",
+  x = ref_x + 2.5, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+
 # panel B ======================================================================
 # reference points for positioning figure components
 ref_x <- 5.5
@@ -178,6 +189,11 @@ plotGG(
   default.units = "cm"
 )
 
+plotText(
+  label = "MNase-seq", params = large_text_params, fontface = "bold",
+  x = ref_x + 2.5, y = ref_y, just = "bottom", default.units = "cm"
+)
+
 # panel C ======================================================================
 # reference points for positioning figure components
 ref_x <- 10.5
@@ -235,6 +251,11 @@ plotGG(
   x = (ref_x + 0.25), y = (ref_y + 0.25),
   width = 4, height = 3, just = c("left", "top"),
   default.units = "cm"
+)
+
+plotText(
+  label = "MNase-seq", params = large_text_params, fontface = "bold",
+  x = ref_x + 2.5, y = ref_y, just = "bottom", default.units = "cm"
 )
 
 # panel D ======================================================================
@@ -328,6 +349,23 @@ plotGG(
   default.units = "cm"
 )
 
+plotText(
+  label = "MNase-seq", params = large_text_params, fontface = "bold",
+  x = ref_x + 2.5, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+plotText(
+  label = "class II", params = large_text_params, fontface = "bold",
+  x = ref_x + 0.5, y = ref_y + 1.5, just = "bottom", default.units = "cm", rot = 90,
+)
+
+
+plotText(
+  label = "class III", params = large_text_params, fontface = "bold",
+  x = ref_x + 0.5, y = ref_y + 5, just = "bottom", default.units = "cm", rot = 90,
+)
+
+
 # panel E ======================================================================
 # reference points for positioning figure components
 ref_x <- 5.5
@@ -418,6 +456,23 @@ plotGG(
   default.units = "cm"
 )
 
+plotText(
+  label = "MNase-seq", params = large_text_params, fontface = "bold",
+  x = ref_x + 2.5, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+plotText(
+  label = "class II", params = large_text_params, fontface = "bold",
+  x = ref_x + 0.5, y = ref_y + 1.5, just = "bottom", default.units = "cm", rot = 90,
+)
+
+
+plotText(
+  label = "class III", params = large_text_params, fontface = "bold",
+  x = ref_x + 0.5, y = ref_y + 5, just = "bottom", default.units = "cm", rot = 90,
+)
+
+
 # panel F ======================================================================
 # reference points for positioning figure components
 ref_x <- 10.5
@@ -506,6 +561,22 @@ plotGG(
   x = (ref_x + 0.75), y = (ref_y + 3.5),
   width = 3.5, height = 3, just = c("left", "top"),
   default.units = "cm"
+)
+
+plotText(
+  label = "MNase-seq", params = large_text_params, fontface = "bold",
+  x = ref_x + 2.5, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+plotText(
+  label = "class II", params = large_text_params, fontface = "bold",
+  x = ref_x + 0.5, y = ref_y + 1.5, just = "bottom", default.units = "cm", rot = 90,
+)
+
+
+plotText(
+  label = "class III", params = large_text_params, fontface = "bold",
+  x = ref_x + 0.5, y = ref_y + 5, just = "bottom", default.units = "cm", rot = 90,
 )
 
 

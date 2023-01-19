@@ -6,6 +6,7 @@ library(TxDb.Dmelanogaster.UCSC.dm6.ensGene)
 library(RColorBrewer)
 library(clusterProfiler)
 library(enrichplot)
+library(rtracklayer)
 
 
 # define input files ===========================================================
@@ -29,6 +30,10 @@ library(enrichplot)
 
 
 twi_RNAseq_results_fn <- "RNAseq/results/DEseq2/S2-Twi_RNAseq_S2-Twi-vs-S2-WT_results_annotated.tsv"
+twi_ATAC_results_fn <- "ATACseq/results/DEseq2_results_filtered/S2-Twi_ATACseq_S2-Twi-vs-S2-WT-40uM_results.tsv"
+
+twi_ChIP_peaks_fn <- "ChIPseq/results/peaks/final/S2-Twi_aTwi_IP.narrowPeak"
+
 
 # # create blank layout for plot ===============================================
 # pdf(snakemake@output[[1]], useDingbats = FALSE)
@@ -46,11 +51,69 @@ small_text_params <- pgParams(fontsize = 5)
 twi_color <- "#00A08A"
   
 
-
-
 # panel A ======================================================================
 # reference points for positioning figure components
 ref_x <- 0.5
+ref_y <- 0.5
+
+
+# read in ATAC-seq results
+twi_ATAC_results <- read_tsv(twi_ATAC_results_fn)
+
+# annotate ATAC peaks as overlapping a ChIP-seq peak
+twi_ChIP_peaks <- import(twi_ChIP_peaks_fn)
+
+twi_ATAC_gr <- twi_ATAC_results |> 
+  makeGRangesFromDataFrame()
+
+twi_ATAC_results$has_ChIP_peak <- FALSE
+overlaps <- findOverlaps(twi_ATAC_gr, twi_ChIP_peaks)@from
+twi_ATAC_results$has_ChIP_peak[overlaps] <- TRUE
+
+# define categories for coloring points
+twi_ATAC_results <- twi_ATAC_results |> 
+  mutate(diff_class = case_when(
+    is_diff & has_ChIP_peak ~ "twi bound",
+    is_diff & !has_ChIP_peak ~ "not twi bound",
+    !is_diff ~ "ns"
+  ))
+
+# volcano plot
+a_plot <- twi_ATAC_results |>
+  mutate(diff_class = fct_relevel(diff_class, c("ns", "not twi bound", "twi bound"))) |>
+  # mutate(diff_class = fct_rev(diff_class)) |>
+  ggplot(aes(x=log2FoldChange, y=-log10(padj), color = diff_class)) + 
+  geom_point(size = 0.1) + 
+  scale_color_manual(values = c("grey", "black", twi_color)) +
+  theme_classic(base_size = small_text_params$fontsize) +
+  theme(legend.key.size = unit(2, 'mm'),
+        legend.position = "bottom",
+        legend.title = element_blank(),
+        legend.margin=margin(0,0,0,0),
+        legend.box.margin=margin(-10,-10,-10,-10))
+
+# place plots on plotGardener page
+plotGG(
+  plot = a_plot,
+  x = (ref_x), y = (ref_y),
+  width = 4.5, height = 4, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# panel label
+plotText(
+  label = "a", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+plotText(
+  label = "ATAC-seq", params = large_text_params, fontface = "bold",
+  x = ref_x + 2.5, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+# panel B ======================================================================
+# reference points for positioning figure components
+ref_x <- 5.5
 ref_y <- 0.5
 
 
@@ -69,7 +132,7 @@ twi_RNAseq_results <- twi_RNAseq_results |>
   )
 
 # volcano plot
-a_plot <- twi_RNAseq_results |>
+b_plot <- twi_RNAseq_results |>
   mutate(diff_class = fct_relevel(diff_class, c("ns", "not Twi bound", "Twi bound"))) |>
   # mutate(diff_class = fct_rev(diff_class)) |>
   ggplot(aes(
@@ -80,11 +143,15 @@ a_plot <- twi_RNAseq_results |>
   geom_point(size = 0.1) +
   scale_color_manual(values = c("grey", "black", twi_color)) +
   theme_classic(base_size = small_text_params$fontsize) +
-  theme(legend.key.size = unit(2, 'mm'))
+  theme(legend.key.size = unit(2, 'mm'),
+        legend.position = "bottom",
+        legend.title = element_blank(),
+        legend.margin=margin(0,0,0,0),
+        legend.box.margin=margin(-10,-10,-10,-10))
 
 # place plots on plotGardener page
 plotGG(
-  plot = a_plot,
+  plot = b_plot,
   x = (ref_x),
   y = (ref_y),
   width = 4.5,
@@ -95,7 +162,7 @@ plotGG(
 
 # panel label
 plotText(
-  label = "a",
+  label = "b",
   params = panel_label_params,
   fontface = "bold",
   x = ref_x,
@@ -104,14 +171,20 @@ plotText(
   default.units = "cm"
 )
 
-# panel B ======================================================================
+plotText(
+  label = "RNA-seq", params = large_text_params, fontface = "bold",
+  x = ref_x + 2.5, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+
+# panel c ======================================================================
 # reference points for positioning figure components
-ref_x <- 5.5
+ref_x <- 10.5
 ref_y <- 0.5
 
 # panel label
 plotText(
-  label = "b",
+  label = "c",
   params = panel_label_params,
   fontface = "bold",
   x = ref_x,
@@ -137,12 +210,12 @@ ego <- enrichGO(
 
 
 # generate GO enrichment plot
-b_plot <- barplot(ego, showCategory = 10) +
+c_plot <- barplot(ego, showCategory = 10) +
   theme_minimal(base_size = small_text_params$fontsize) +
   theme(legend.key.size = unit(2, 'mm'))
 
 plotGG(
-  plot = b_plot,
+  plot = c_plot,
   x = (ref_x),
   y = (ref_y),
   width = 6,

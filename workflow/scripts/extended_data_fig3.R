@@ -113,6 +113,11 @@ plotText(
   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 )
 
+plotText(
+  label = "ATAC-seq", params = large_text_params, fontface = "bold",
+  x = ref_x + 2.5, y = ref_y, just = "bottom", default.units = "cm"
+)
+
 # panel B ======================================================================
 # reference points for positioning figure components
 ref_x <- 5.5
@@ -157,6 +162,11 @@ plotGG(
 plotText(
   label = "b", params = panel_label_params, fontface = "bold",
   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+plotText(
+  label = "RNA-seq", params = large_text_params, fontface = "bold",
+  x = ref_x + 2.5, y = ref_y, just = "bottom", default.units = "cm"
 )
 
 # panel C ======================================================================
@@ -251,6 +261,10 @@ plotText(
   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 )
 
+plotText(
+  label = "ATAC-seq", params = large_text_params, fontface = "bold",
+  x = ref_x + 2.5, y = ref_y, just = "bottom", default.units = "cm"
+)
 
 # panel E ======================================================================
 # reference points for positioning figure components
@@ -299,6 +313,10 @@ plotText(
   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 )
 
+plotText(
+  label = "RNA-seq", params = large_text_params, fontface = "bold",
+  x = ref_x + 2.5, y = ref_y, just = "bottom", default.units = "cm"
+)
 # panel F ======================================================================
 # reference points for positioning figure components
 ref_x <- 10.5
