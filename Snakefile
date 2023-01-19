@@ -196,6 +196,19 @@ rule filter_ATAC_results:
 	script:
 		"workflow/scripts/filter_ATAC_results.R"
 
+rule annotate_ATAC_peaks:
+	input:
+		"ATACseq/results/peaks/final/{sample}.bed"
+	output:
+		"ATACseq/results/peaks/final/{sample}_peak_annotations.tsv"
+# 	conda:
+# 		"workflow/envs/r_ChIPseeker.yaml"
+	params:
+		promoter_upstream= -500,
+		promoter_downstream= 100
+	script:
+		"workflow/scripts/annotate_peaks_ChIPseeker.R"
+
 # process CUT&RUN data
 module CUTandRUN:
 # 	snakefile: "https://github.com/tjgibson/NGS-workflow-CUTandRUN/raw/master/workflow/Snakefile"

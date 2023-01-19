@@ -29,3 +29,8 @@ bibliography: references.bib
 # Figure Legends
 
 {{< include manuscript_sections/_06_Figure_Legends.qmd >}}
+
+# References
+
+::: {#refs}
+:::

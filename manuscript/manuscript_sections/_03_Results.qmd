@@ -6,14 +6,6 @@ library(tidyverse)
 
 ## Ectopically expressed pioneer factors bind and open closed chromatin
 
--   ~~Establish system for ectopic expression of pioneer factors~~
-
--   ~~Identification of physiological expression levels~~
-
--   ~~Define binding classes I-III and describe characteristics (distribution, promoters/enhancers, etc.)~~
-
--   Time course and dynamics of binding to different classes (supplement)
-
 To investigate the mechanisms of chromatin binding and opening by pioneer factors, we generated stable cell lines inducibly expressing Zelda (Zld) and Grainy head (Grh) in Drosophila S2 cells (Extended Data Fig. 1a), where neither factor is endogenously expressed.
 We confirmed that Zld and Grh RNA (Extended Data Fig. 1b) and protein (Extended Data Fig. 1c,d) were not present in WT S2 cells.
 The stable cell lines express Zld or Grh under the control of the metallothionein promoter, which allows inducible and tunable expression with the addition of CuSO~4.~ To determine protein levels that would be approximately physiological, we compared Zld or Grh levels in cells with varying concentrations of CuSO~4~ to the levels of endogenous expression found in Drosophila embryos (Extended Data Fig. 1c,d).
@@ -78,7 +70,7 @@ grh_down <- (grh_ATAC_results$direction_of_change == "decreased") |>
 
 Having established that Zld and Grh can bind to thousands of sites in S2 cells, we performed ATAC-seq on WT cells or cells expressing Zld or Grh to determine if these factors bind and open closed chromatin in S2 cells.
 We performed differential accessibility analysis comparing Zld or Grh-expressing cells to WT cells.
-We detected `r zld_diff` differentially accessible regions for Zld (`r zld_up` increased, `r zld_down` decreased) and `r grh_diff` for Grh (`r grh_up` increased, `r grh_down` decreased) (Extended Data Fig. XX).
+We detected `r zld_diff` differentially accessible regions for Zld (`r zld_up` increased, `r zld_down` decreased) and `r grh_diff` for Grh (`r grh_up` increased, `r grh_down` decreased) (Extended Data Fig. 3a,d).
 <!--# Add more information here about sites with differential accessibility. Include percentage of increased and decreased sites that are bound by Zld or Grh. Comment on how much is specific vs. secondary effect, and justify defining ChIP peak classes that include only a subset of DA sites. -->
 
 To characterize the extent of chromatin opening by Zld and Grh, we integrated our ChIP-seq and ATAC-seq data and identified three classes of binding sites (Fig. 1a,b).
@@ -139,35 +131,29 @@ grh_down <- (grh_RNAseq_results$direction_of_change == "decreased") |>
 
 Having established that ectopically expressed Zld and Grh bind and open closed chromatin, we sought to determine if binding of these factors also led to transcriptional activation.
 To identify changes in gene expression upon Zld or Grh induction, we performed RNA-seq and compared induced cells to WT cells lacking Zld or Grh expression.
-Differential expression analysis using DESeq2 [@love2014] identified `r zld_diff` differentially expressed genes for Zld and `r grh_diff` for Grh (Extended Data Fig. XX).
-Upregulated genes were significantly enriched for Zld or Grh binding, while downregulated genes are not (Extended Data Fig. XX <!--# include statistics  -->), suggesting that binding of these factors mainly leads to transcriptional activation and not repression.
-<!--# Consider mentioning Grh as a repressor here and giving examples of genes where Grh may be repressing. Discuss if Grh-mediated transcriptional repression coincides with chromatin opening, chromatin closing, or neither --> Gene ontology (GO) analysis indicated that the genes activated by each factor are consistent with the endogenous functions of Zld and Grh (Extended Data Fig. XX).
+Differential expression analysis using DESeq2 [@love2014] identified `r zld_diff` differentially expressed genes for Zld and `r grh_diff` for Grh (Extended Data Fig. 3b,e).
+<!--# Upregulated genes were significantly enriched for Zld or Grh binding, while downregulated genes are not (Extended Data Fig. 3b,e  include statistics), suggesting that binding of these factors mainly leads to transcriptional activation and not repression. --> <!--# Consider mentioning Grh as a repressor here and giving examples of genes where Grh may be repressing. Discuss if Grh-mediated transcriptional repression coincides with chromatin opening, chromatin closing, or neither --> The genes activated by Grh were enriched for gene ontology (GO) terms related to cuticle and epithelial development, consistent with the endogenous function of Grh (Extended Data Fig. 3c).
+Genes activated by Zld expression were enriched for embryonic morphogenesis, consistent with the known function of Zld, as well as imaginal disc development, in which Zld has not been studied (Extended Data Fig. 3f).
 <!--# Add more detailed information on GO analysis here -->
 
 To better understand the relationship between chromatin opening and transcriptional activation, we directly compared our RNA-seq and ATAC-seq data.
 Overall, chromatin opening was correlated with transcriptional activation (Fig. 1i-l).
-sites with significantly increased chromatin accessibility, but not decreased or unchanged sites, had larger RNA-seq fold change values (Extended Data Fig. XX <!--# add statistics -->).
-When we classified our three classes of ChIP-seq based on changes in gene expression, we found that class III sites were most likely to be proximal to upregulated genes (Fig. 1j,l).
+<!--# Sites with significantly increased chromatin accessibility, but not decreased or unchanged sites, had larger RNA-seq fold change values (Extended Data Fig. XX). --> When we classified our three classes of ChIP-seq based on changes in gene expression, we found that class III sites were most likely to be proximal to upregulated genes (Fig. 1j,l).
 This was particularly evident at class III promoters, which were most likely to correspond to upregulated genes.
 Together, we conclude that while binding and chromatin opening can happen in the absence of transcriptional changes, chromatin opening is correlated with transcriptional activation.
 
 ## Twist binds closed chromatin extensively and opens chromatin at a subset of sites
 
--   ~~Introduce Twist and justify the comparison to Zld/Grh.~~
+```{r}
+twi_ChIP_classes <- here("results/ChIP_peak_classes/twi_ChIP_classes.tsv") |> 
+  read_tsv()
 
--   ~~Twi binds closed chromatin and opens at some sites.~~
+twi_closed <- twi_ChIP_classes |> 
+  filter(class == "ii" | class == "iii") |> 
+  nrow()
+```
 
--   Mention analysis of published Abd-A and Ubx cell lines.
-
--   ~~Class I-III sites, distribution, etc.~~
-
--   ~~Twi also promotes transcriptional activation~~
-
--   ~~Description of RNA-seq data: number of differential genes, overlap with ChIP data, GO analysis.~~
-
--   ~~Comparison of RNA-seq and ATAC~~
-
--   ~~Mention differences between Twi vs. Zld and Grh~~
+<!--# To do: Mention analysis of published Abd-A and Ubx cell lines. -->
 
 Despite the differences between Zld and Grh during Drosophila development, both proteins behaved similarly when expressed in our exogenous S2 cell system.
 To provide additional context to our findings, we performed additional experiments with the transcription factor Twist (Twi).
@@ -180,58 +166,31 @@ To test if Twi is a pioneer factor, we generated additional stable cell lines al
 We characterized Twi binding and activity using ChIP-seq, ATAC-seq, and RNA-seq.
 Comparison of Twi ChIP-seq and ATAC-seq data allowed for the identification of the same classes of binding sites that were found for Zld and Grh (Fig 2a,b).
 Similar to Zld and Grh, class I binding sites were enriched at promoters, while class II and III binding sites were mostly promoter-distal (Fig 2c).
-Twi bound extensively to closed chromatin, with XX% of binding sites lacking detectible chromatin accessibility (Fig. 2b).
+Twi bound extensively to closed chromatin, with `r twi_closed`% of binding sites lacking detectible chromatin accessibility (Fig. 2b).
 At a small subset of Twi binding sites, binding to closed chromatin resulted in chromatin opening (Fig 2a-c).
-Analysis of RNA-seq data revealed that Twi expression resulted in transcriptional activation of hundreds of genes (Extended Data Fig. XX).
-Upregulated genes were significantly enriched for Twi binding relative to unchanged genes ((Extended Data Fig. XX).
-GO analysis demonstrated that genes upregulated upon Twi expression are enriched for mesodermal and muscle-specific genes, consistent with the endogenous function of Twi (Extended Data Fig. XX).
-Despite the overall similar activities of Zld, Grh, and Twi in S2 cells, we observed several notable differences.
-The percentage of all closed binding sites that undergo chromatin opening is lower for Twi compared to Zld or Grh (Extended Data Fig. XX).
-Additionally, almost all of the genes upregulated upon Twi induction are also bound by Twi (Extended Data Fig. XX).
-This was in contrast to Zld and Grh, where induction results in the activation of many genes that are not directly bound by Zld or Grh.
-This suggests that Zld and Grh may activate many transcription factors, which go on to activate their own targets, leading to secondary effects in the RNA-seq data.
-Twi, by contrast, appears to directly activate genes required for mesodermal and muscle cell fate.
-<!--# Is this worth mentioning? Might require additional analysis of how many TFs are upregulated in RNA-seq data for each factor. Could also require additional motif analysis to identify/support secondary TFs and reason for nonspecific effects. --> Similar to Zld and Grh, transcriptional activation was correlated with chromatin opening (Extended Data Fig. XX).
-Together, our data show that Twi can act as a pioneer factor.
+Analysis of RNA-seq data revealed that Twi expression resulted in transcriptional activation of hundreds of genes (Extended Data Fig. 4a).
+<!--# Upregulated genes were significantly enriched for Twi binding relative to unchanged genes ((Extended Data Fig. XX). --> GO analysis demonstrated that genes upregulated upon Twi expression are enriched for mesodermal and muscle-specific genes, consistent with the endogenous function of Twi (Extended Data Fig. 4b).
+<!--# Despite the overall similar activities of Zld, Grh, and Twi in S2 cells, we observed several notable differences. The percentage of all closed binding sites that undergo chromatin opening is lower for Twi compared to Zld or Grh (Extended Data Fig. XX). Additionally, almost all of the genes upregulated upon Twi induction are also bound by Twi (Extended Data Fig. XX). This was in contrast to Zld and Grh, where induction results in the activation of many genes that are not directly bound by Zld or Grh. This suggests that Zld and Grh may activate many transcription factors, which go on to activate their own targets, leading to secondary effects in the RNA-seq data. Twi, by contrast, appears to directly activate genes required for mesodermal and muscle cell fate. --> <!--# Is this worth mentioning? Might require additional analysis of how many TFs are upregulated in RNA-seq data for each factor. Could also require additional motif analysis to identify/support secondary TFs and reason for nonspecific effects. --> <!--# Similar to Zld and Grh, transcriptional activation was correlated with chromatin opening (Extended Data Fig. XX). --> Together, our data show that Twi can act as a pioneer factor.
 
 ## Ectopically expressed transcription factors bind opportunistically to active chromatin
 
--   ~~Overlap of class I regions suggests nonspecific binding~~
-
--   ~~Analysis of published ChIP data shows that class I regions are within active chromatin~~
-
--   ~~RNA-seq and ATAC-seq for class I to show that the binding is not functional~~
-
--   ~~Analysis of chromatin at class II-III regions: mostly devoid of histone modifications~~
-
--   ~~Class III regions have higher H3 and H1 occupancy compared to class II~~
-
--   Where to put analysis of nucleosome positioning?
-
 While comparing ChIP-seq data for Zld, Grh, and Twi, we observed that many class I binding sites are shared across Zld, Grh, and Twi (Fig. 3a).
-This was in contrast to class II and III peaks, which were largely specific to each individual factor (Extended Data Fig. XX).
-Control IP experiments in WT S2 cells support that these peaks are not due to nonspecific immunoprecipitation (Extended Data Fig. XX).
-We hypothesized that these overlapping class I binding sites may occur at regulatory regions that are active in WT cells.
+This was in contrast to class II and III peaks, which were largely specific to each individual factor.
+<!--# Control IP experiments in WT S2 cells support that these peaks are not due to nonspecific immunoprecipitation (Extended Data Fig. XX). --> We hypothesized that these overlapping class I binding sites may occur at regulatory regions that are active in WT cells.
 To test this, we analyzed published ChIP-seq data from WT S2 cells for markers of active transcription: H3K27ac, CBP, H3K4me1, H3K4me3, and H2AV.
 Overlapping class I regions had high levels of chromatin marks associated with active regulatory regions (Fig. 3b).
 This enrichment of all three factors at highly active regions suggests that exogenously expressed factors may bind nonspecifically to active regions of the genome.
-This model is supported by comparison to RNA-seq and ATAC-seq data, showing that binding to class I regions leads to few changes in chromatin accessibility and gene expression (Extended Data Fig. XX).
+<!--# This model is supported by comparison to RNA-seq and ATAC-seq data, showing that binding to class I regions leads to few changes in chromatin accessibility and gene expression (Extended Data Fig. XX). -->
 
 Considering the enrichment of active chromatin at class I sites, we asked if there were any features of chromatin distinctive to class II or III regions.
-Analysis of published ChIP-seq data demonstrated that class II and III sites have low levels of many histone modifications, chromatin-associated proteins, and transcription factors (Extended Data Fig. XX).
+Analysis of published ChIP-seq data demonstrated that class II and III sites have low levels of many histone modifications, chromatin-associated proteins, and transcription factors (Extended Data Fig. 5).
 These data are in agreement with previous observations that Oct4, Sox2 and Klf4 access binding sites in naïve chromatin that is inaccessible but devoid of most histone modifications [@Soufi2012].
-Interestingly, levels of H3 and H1 were higher at class III than at class II sites (Extended Data Fig. XX).
-Some class III sites also were within regions marked with the repressive histone modifications H3K27me3 or H3K9me3 (Extended Data Fig. XX).
+Interestingly, levels of H3 and H1 were higher at class III than at class II sites (Extended Data Fig. 5).
+Some class III sites also were within regions marked with the repressive histone modifications H3K27me3 or H3K9me3 (Extended Data Fig. 8a-c).
 Together this suggests that Zld, Grh and Twi pioneer at regions within naïve or repressed chromatin.
 Based on these observations, the inability to open class II regions is unlikely to be due to differences in preexisting features of chromatin.
 
 ## Chromatin opening by pioneer factors is driven by motif content
-
--   De novo motif enrichment for ChIP peaks (supplemental)
-
--   ~~Motif analysis: percent with motif, average n motifs, motif quality~~
-
--   ~~Motif positioning around nucleosomes? (supplemental)~~
 
 To further test the specificity of binding within the three classes of ChIP-seq peaks, we analyzed the enrichment for the canonical Zld, Grh or Twi motifs.
 We calculated the percentage of class I, II or III peaks that contained an instance of the canonical motif for the respective factor (Fig. 3c).
@@ -245,10 +204,10 @@ For all three factors, class III sites tended to have stronger motifs than class
 Together, this analysis suggests that a combination of more motifs and stronger motifs at class III sites is what allows Zld, Grh, and Twi to open chromatin at these regions.
 <!--# Add description of de novo motif enrichment, put data in supplement. -->
 
-Previous work has shown that binding of some pioneer factors depends on how target motifs are positioned on nucleosomes (refs).
+Previous work has shown that binding of some pioneer factors depends on how target motifs are positioned on nucleosomes (REFs).
 <!--# Add a few sentences here with more details on past work --> To test if pioneering by Zld, Grh or Twi was associated with motif positioning on nucleosomes, we analyzed published MNase-seq data from WT S2 cells [@Chereji2019].
-Analysis of average MNase-seq signal at class I-III peaks indicated that class III sites have high levels of nucleosome occupancy that, on average, occur over the respective motif.
-Hierarchical clustering of MNase-seq data revealed that there was no preference for binding or chromatin opening at sites that had motifs in a particular orientation on nucleosomes (Extended Data Fig. XX).
+Analysis of average MNase-seq signal at class I-III peaks indicated that class III sites have high levels of nucleosome occupancy that, on average, occur over the respective motif (Extended Data Fig. 6a-c).
+Hierarchical clustering of MNase-seq data revealed that there was no preference for binding or chromatin opening at sites that had motifs in a particular orientation on nucleosomes (Extended Data Fig. 6d-f).
 For class II and III peaks, some motifs were positioned close to the nuclesome dyad, some motifs were at the edge of nucleosomes, and some motifs were in linker DNA.
 This analysis is complicated by the fact that MNase-seq is a bulk assay and may not accurately represent nucleosome positioning in individual cells, especially at regions with poorly positioned nucleosomes.
 To more directly assess the positioning of nucleosomes around motifs, we analyzed a previously published single-molecule dataset using methyltransferase footprinting to determine the locations of nucleosomes on individual chromatin fibers [@Stergachis2020].
@@ -260,26 +219,14 @@ However, the lack of strong nucleosome positioning at these regions makes it dif
 
 ## Ectopic Zld, Grh and Twi fail to access many endogenous binding sites
 
--   Z~~elda binding is more similar to the brain than the embryo~~
-
--   ~~Grh binding is stable across tissues~~
-
--   ~~Twi sites in S2 cells have low level binding in embryo, but strongest peaks from embryo are not bound~~
-
--   ~~Enrichment of repressive marks at sites bound in other tissues~~
-
--   ~~Results of Taz experiments~~
-
--   Comment on class VI sites that are not bound and lack repressive chromatin.
-
 Prior studies have extensively explored the *in vivo* binding sites of Zld, Grh, and Twi during normal Drosophila development.
 To better understand how cell-type specific variables affect pioneer-factor binding, we compared ChIP-seq data for our ectopically expressed factors to published datasets for endogenous Zld, Grh and Twi binding.
 We compared Zld binding sites in S2 cells to Zld ChIP-seq data from the early embryo ([@Harrison2011], nuclear cycle 14 embryos) and from larval neural stem cells [@Larson2021a].
-We identified many binding sites that would normally be bound by Zld in another tissue, but were not bound in S2 cells (Extended Data Fig. XX).
+We identified many binding sites that would normally be bound by Zld in another tissue, but were not bound in S2 cells (Extended Data Fig. 7a,b).
 Previous work has shown that regions resistant to pioneer-factor binding are enriched for the repressive histone modifications H3K9me3 and H3K27me3 [@Mayran2018a; @Soufi2012].
 To test if repressive marks were present at the resistant sites in S2 cells, we compared our data to published S2 cell ChIP-seq datasets for H3K27me3 [@Jain2020] and H3K9me3 [@Eastwood2021].
-Based on analysis of these datasets we divided the resistant sites into three additional classes of binding sites: class IV sites have high levels H3K27me3, class V sites have high levels of H3K9me3, and class VI have low levels of both repressive marks (Fig 4a).
-We performed the same comparison for Grh and Twi and identified these same classes (Fig 4b,c).
+Based on analysis of these datasets we divided the resistant sites into three additional classes of binding sites: class IV sites have high levels H3K27me3, class V sites have high levels of H3K9me3, and class VI have low levels of both repressive marks (Fig 4a; Extended Data Fig. 8d-f).
+We performed the same comparison for Grh and Twi and identified these same classes (Fig 4b,c; Extended Data Fig. 8e-l).
 We compared to Grh ChIP-seq data from late embryos (16-17 hours) and wing imaginal discs [@Nevil2017], and to Twi ChIP-seq data from early embryos (1-3 hours) [@Ozdemir2011].
 Despite the presence of class IV, V and VI binding sites for all three proteins, there were distinct patterns of binding across different tissues.
 Zld binding in S2 cells was more similar to that of neural stem cells than embryos, with many of the strongest binding sites in embryos remaining unbound in S2 cells (Fig. 4a).
@@ -297,14 +244,6 @@ Together, these data demonstrate that despite the correlation of H3K27me3 with r
 
 ## Pioneer-factor binding and chromatin opening is concentration dependent
 
--   ~~For all three factors, increased concentration results in increased binding and opening of class II and III sites.~~
-
--   ~~For all three factors, increased concentration leads to novel binding sites.~~
-
--   ~~For Zld and Twi, increased concentration is insufficient to allow binding to repressed sites.~~
-
--   ~~For Grh, increased concentration does allow binding and opening at repressed sites~~
-
 Previous studies have proposed that pioneer factor activity may depend on protein concentration [@Hansen2022; @Blassberg2022].
 Considering that tazemetostat treatment had limited effects on pioneer factor binding, we asked if varying the protein concentration of Zld, Grh, or Twi could affect binding and pioneering.
 We induced cells to express Zld, Grh and Twi at a range of protein concentrations: uninduced, subphysiological, physiological, or supraphysiological (Extended Data Fig. XX; see methods).
@@ -321,19 +260,9 @@ For Zld and Twi, supraphysiological concentrations led to an increase in class I
 For Grh, higher concentrations caused a dramatic increase in binding to closed chromatin, with the majority of these sites being falling in III (Fig. 5g).
 To assess the extent to which increased concentrations led to binding to new regions that were not bound at physiological concentrations, we overlapped the binding sites detected at physiological vs. supraphysiological concentrations (Fig. 5d,h,i).
 For all three proteins, there were novel binding sites that were bound only when expressed at the highest concentration.
-Together, these data demonstrate that both binding and chromatin opening by pioneer factors are concentration dependent, and that increasing protein concentration leads to novel binding sites, including some sites that are restistant to binding at physiological levls.
+Together, these data demonstrate that both binding and chromatin opening by pioneer factors are concentration dependent, and that increasing protein concentration leads to novel binding sites, including some sites that are restistant to binding at physiological levels.
 
 ## Regions outside the DNA-binding domain are required for binding and opening of closed chromatin
-
--   ~~Generation of stable cell lines to express DBDs at same concentration as FL proteins~~
-
--   ~~Zld DBD is totally unable to bind to closed sites.~~
-
--   ~~In supplement, show Zld DBD binding specifically at class II and III sites with CAGGTAG to support that this is not due to a loss of ZnF2~~
-
--   ~~Grh DBD has reduced ability to access closed chromatin~~
-
--   ~~Neither DBD is sufficient for chromatin opening.~~
 
 Prior work has shown that binding to nucleosomes by pioneer factors requires recognition of target motifs by DNA-binding domains (DBDs) (REFs).
 However, little is known about how regions outside the DBD may contribute to pioneering function.
@@ -341,9 +270,9 @@ However, little is known about how regions outside the DBD may contribute to pio
 To test if regions outside the DBD are required for pioneering activity, we performed ChIP-seq and ATAC-seq on stable cell lines expressing the Zld or Grh DBD at levels comparable to the full-length (FL) protein (Extended Data Fig. XX).
 Analysis of ChIP-seq signal at our previously defined class I-III regions revealed that the Zld DBD bound robustly to class I regions, but was totally unable to bind to class II or III regions (Fig. 6a,c).
 We had previously shown that in neural stem cells, Zld binds to many regions that lack a canonical Zld motif through a mechanism that is not understood [@Larson2021a].
-Because many Zld binding sites in S2 cells also lack a canonical CAGGTA motif (Fig. 3, Extended Data Fig XX), it is possible that expressing the DNA-binding domain alone also removed regions of the protein that are required for CAGGTA-independent binding.
+Because many Zld binding sites in S2 cells also lack a canonical CAGGTA motif (Fig. 3), it is possible that expressing the DNA-binding domain alone also removed regions of the protein that are required for CAGGTA-independent binding.
 To rule out this possibility, we analyzed DBD ChIP-seq signal only at regions containing a canonical motif.
-This analysis demonstrated that the DBD alone is unable to bind to these regions, suggesting that even for binding to canonical motifs, regions outside the DBD are required (Extended Data Fig. XX).
+This analysis demonstrated that the DBD alone is unable to bind to these regions, suggesting that even for binding to canonical motifs, regions outside the DBD are required (Extended Data Fig. 10a).
 Binding of the Grh DBD to class II-III regions was strongly reduced compared to the FL protein, although some closed regions retained low levels of binding (Fig. 6b,e).
 For either Zld or Grh, the DBD alone was insufficient to open chromatin (Fig 6d,f).
 Together, these experiments show that regions outside the DBD are essential for binding and opening of closed chromatin.

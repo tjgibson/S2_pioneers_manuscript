@@ -6,6 +6,7 @@ library(TxDb.Dmelanogaster.UCSC.dm6.ensGene)
 library(RColorBrewer)
 library(clusterProfiler)
 library(enrichplot)
+library(rtracklayer)
 
 
 # define input files ===========================================================
@@ -31,6 +32,14 @@ library(enrichplot)
 zld_RNAseq_results_fn <- "RNAseq/results/DEseq2/S2-Zld_RNAseq_S2-Zld-vs-S2-WT_results_annotated.tsv"
 grh_RNAseq_results_fn  <- "RNAseq/results/DEseq2/S2-Grh_RNAseq_S2-Grh-vs-S2-WT_results_annotated.tsv"
 
+zld_ATAC_results_fn <- "ATACseq/results/DEseq2_results_filtered/S2-Zld_ATACseq_S2-Zld-FL-vs-S2-WT_results.tsv"
+grh_ATAC_results_fn <- "ATACseq/results/DEseq2_results_filtered/S2-Grh_ATACseq_S2-Grh-FL-vs-S2-WT_results.tsv"
+
+zld_ATAC_results_annotated_fn <- "ATACseq/results/"
+
+zld_ChIP_peaks_fn <- "ChIPseq/results/peaks/final/S2-Zld_aZld_IP.narrowPeak"
+grh_ChIP_peaks_fn <- "ChIPseq/results/peaks/final/S2-Grh_aGrh_IP.narrowPeak"
+
 # # create blank layout for plot ===============================================
 # pdf(snakemake@output[[1]], useDingbats = FALSE)
 pdf("manuscript/figures/extended_data_fig3.pdf", useDingbats = FALSE)
@@ -49,19 +58,27 @@ grh_color <- "#F98400"
   
 
 
-
 # panel A ======================================================================
 # reference points for positioning figure components
 ref_x <- 0.5
 ref_y <- 0.5
 
 
-# read in RNAseq_results
-zld_RNAseq_results <- read_tsv(zld_RNAseq_results_fn)
+# read in ATAC-seq results
+zld_ATAC_results <- read_tsv(zld_ATAC_results_fn)
 
+# annotate ATAC peaks as overlapping a ChIP-seq peak
+zld_ChIP_peaks <- import(zld_ChIP_peaks_fn)
+
+zld_ATAC_gr <- zld_ATAC_results |> 
+  makeGRangesFromDataFrame()
+
+zld_ATAC_results$has_ChIP_peak <- FALSE
+overlaps <- findOverlaps(zld_ATAC_gr, zld_ChIP_peaks)@from
+zld_ATAC_results$has_ChIP_peak[overlaps] <- TRUE
 
 # define categories for coloring points
-zld_RNAseq_results <- zld_RNAseq_results |> 
+zld_ATAC_results <- zld_ATAC_results |> 
   mutate(diff_class = case_when(
     is_diff & has_ChIP_peak ~ "Zld bound",
     is_diff & !has_ChIP_peak ~ "not Zld bound",
@@ -69,14 +86,18 @@ zld_RNAseq_results <- zld_RNAseq_results |>
   ))
 
 # volcano plot
-a_plot <- zld_RNAseq_results |>
+a_plot <- zld_ATAC_results |>
   mutate(diff_class = fct_relevel(diff_class, c("ns", "not Zld bound", "Zld bound"))) |>
   # mutate(diff_class = fct_rev(diff_class)) |>
   ggplot(aes(x=log2FoldChange, y=-log10(padj), color = diff_class)) + 
   geom_point(size = 0.1) + 
   scale_color_manual(values = c("grey", "black", zld_color)) +
   theme_classic(base_size = small_text_params$fontsize) +
-  theme(legend.key.size = unit(2, 'mm'))
+  theme(legend.key.size = unit(2, 'mm'),
+        legend.position = "bottom",
+        legend.title = element_blank(),
+        legend.margin=margin(0,0,0,0),
+        legend.box.margin=margin(-10,-10,-10,-10))
 
 # place plots on plotGardener page
 plotGG(
@@ -97,9 +118,55 @@ plotText(
 ref_x <- 5.5
 ref_y <- 0.5
 
+
+# read in RNAseq_results
+zld_RNAseq_results <- read_tsv(zld_RNAseq_results_fn)
+
+
+# define categories for coloring points
+zld_RNAseq_results <- zld_RNAseq_results |> 
+  mutate(diff_class = case_when(
+    is_diff & has_ChIP_peak ~ "Zld bound",
+    is_diff & !has_ChIP_peak ~ "not Zld bound",
+    !is_diff ~ "ns"
+  ))
+
+# volcano plot
+b_plot <- zld_RNAseq_results |>
+  mutate(diff_class = fct_relevel(diff_class, c("ns", "not Zld bound", "Zld bound"))) |>
+  # mutate(diff_class = fct_rev(diff_class)) |>
+  ggplot(aes(x=log2FoldChange, y=-log10(padj), color = diff_class)) + 
+  geom_point(size = 0.1) + 
+  scale_color_manual(values = c("grey", "black", zld_color)) +
+  theme_classic(base_size = small_text_params$fontsize) +
+  theme(legend.key.size = unit(2, 'mm'),
+        legend.position = "bottom",
+        legend.title = element_blank(),
+        legend.margin=margin(0,0,0,0),
+        legend.box.margin=margin(-10,-10,-10,-10))
+
+# place plots on plotGardener page
+plotGG(
+  plot = b_plot,
+  x = (ref_x), y = (ref_y),
+  width = 4.5, height = 4, just = c("left", "top"),
+  default.units = "cm"
+)
+
 # panel label
 plotText(
   label = "b", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+# panel C ======================================================================
+# reference points for positioning figure components
+ref_x <- 10.5
+ref_y <- 0.5
+
+# panel label
+plotText(
+  label = "c", params = panel_label_params, fontface = "bold",
   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 )
 
@@ -118,20 +185,76 @@ ego <- enrichGO(gene          = test_genes,
 
 
 # generate GO enrichment plot
-b_plot <- barplot(ego, showCategory=10) +
+c_plot <- barplot(ego, showCategory=10) +
   theme_minimal(base_size = small_text_params$fontsize) +
   theme(legend.key.size = unit(2, 'mm'))
 
 plotGG(
-  plot = b_plot,
+  plot = c_plot,
   x = (ref_x), y = (ref_y),
   width = 6, height = 4, just = c("left", "top"),
   default.units = "cm"
 )
 
-# panel C ======================================================================
+# panel D ======================================================================
 # reference points for positioning figure components
 ref_x <- 0.5
+ref_y <- 5
+
+
+# read in ATAC-seq results
+grh_ATAC_results <- read_tsv(grh_ATAC_results_fn)
+
+# annotate ATAC peaks as overlapping a ChIP-seq peak
+grh_ChIP_peaks <- import(grh_ChIP_peaks_fn)
+
+grh_ATAC_gr <- grh_ATAC_results |> 
+  makeGRangesFromDataFrame()
+
+grh_ATAC_results$has_ChIP_peak <- FALSE
+overlaps <- findOverlaps(grh_ATAC_gr, grh_ChIP_peaks)@from
+grh_ATAC_results$has_ChIP_peak[overlaps] <- TRUE
+
+# define categories for coloring points
+grh_ATAC_results <- grh_ATAC_results |> 
+  mutate(diff_class = case_when(
+    is_diff & has_ChIP_peak ~ "grh bound",
+    is_diff & !has_ChIP_peak ~ "not grh bound",
+    !is_diff ~ "ns"
+  ))
+
+# volcano plot
+d_plot <- grh_ATAC_results |>
+  mutate(diff_class = fct_relevel(diff_class, c("ns", "not grh bound", "grh bound"))) |>
+  # mutate(diff_class = fct_rev(diff_class)) |>
+  ggplot(aes(x=log2FoldChange, y=-log10(padj), color = diff_class)) + 
+  geom_point(size = 0.1) + 
+  scale_color_manual(values = c("grey", "black", grh_color)) +
+  theme_classic(base_size = small_text_params$fontsize) +
+  theme(legend.key.size = unit(2, 'mm'),
+        legend.position = "bottom",
+        legend.title = element_blank(),
+        legend.margin=margin(0,0,0,0),
+        legend.box.margin=margin(-10,-10,-10,-10))
+
+# place plots on plotGardener page
+plotGG(
+  plot = d_plot,
+  x = (ref_x), y = (ref_y),
+  width = 4.5, height = 4, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# panel label
+plotText(
+  label = "d", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+
+# panel E ======================================================================
+# reference points for positioning figure components
+ref_x <- 5.5
 ref_y <- 5
 
 
@@ -148,18 +271,23 @@ grh_RNAseq_results <- grh_RNAseq_results |>
   ))
 
 # volcano plot
-c_plot <- grh_RNAseq_results |>
+e_plot <- grh_RNAseq_results |>
   mutate(diff_class = fct_relevel(diff_class, c("ns", "not Grh bound", "Grh bound"))) |>
   # mutate(diff_class = fct_rev(diff_class)) |>
   ggplot(aes(x=log2FoldChange, y=-log10(padj), color = diff_class)) + 
   geom_point(size = 0.1) + 
   scale_color_manual(values = c("grey", "black", grh_color)) +
   theme_classic(base_size = small_text_params$fontsize) +
-  theme(legend.key.size = unit(2, 'mm'))
+  theme(legend.key.size = unit(2, 'mm'),
+        legend.position = "bottom",
+        legend.title = element_blank(),
+        legend.margin=margin(0,0,0,0),
+        legend.box.margin=margin(-10,-10,-10,-10))
+
 
 # place plots on plotGardener page
 plotGG(
-  plot = c_plot,
+  plot = e_plot,
   x = (ref_x), y = (ref_y),
   width = 4.5, height = 4, just = c("left", "top"),
   default.units = "cm"
@@ -167,18 +295,18 @@ plotGG(
 
 # panel label
 plotText(
-  label = "c", params = panel_label_params, fontface = "bold",
+  label = "e", params = panel_label_params, fontface = "bold",
   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 )
 
-# panel D ======================================================================
+# panel F ======================================================================
 # reference points for positioning figure components
-ref_x <- 5.5
+ref_x <- 10.5
 ref_y <- 5
 
 # panel label
 plotText(
-  label = "d", params = panel_label_params, fontface = "bold",
+  label = "f", params = panel_label_params, fontface = "bold",
   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 )
 
@@ -197,12 +325,12 @@ ego <- enrichGO(gene          = test_genes,
 
 
 # generate GO enrichment plot
-b_plot <- barplot(ego, showCategory=10) +
+f_plot <- barplot(ego, showCategory=10) +
   theme_minimal(base_size = small_text_params$fontsize) +
   theme(legend.key.size = unit(2, 'mm'))
 
 plotGG(
-  plot = b_plot,
+  plot = f_plot,
   x = (ref_x), y = (ref_y),
   width = 6, height = 4, just = c("left", "top"),
   default.units = "cm"

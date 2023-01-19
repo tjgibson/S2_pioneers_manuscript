@@ -152,11 +152,3 @@ Shown for Zld **(a)** and Grh **(b)**.
 -   Examples of any novel DBD binding sites not detected for full-length proteins
 
 -   FL and DBD preference for motifs that are in open vs. closed chromatin: % of closed vs. open motifs bound, motif scores for accessible bound, accessible unbound, inaccessible bound, and inaccessible unbound.
-
-**Additional information to include in supplemental figures:**
-
--   De novo motif results
-
--   Analysis of promoter motifs
-
--   Analysis of deep learning models
