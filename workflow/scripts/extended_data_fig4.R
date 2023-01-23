@@ -7,7 +7,7 @@ library(RColorBrewer)
 library(clusterProfiler)
 library(enrichplot)
 library(rtracklayer)
-
+library(EBImage)
 
 # define input files ===========================================================
 # Zld_ChIP_bw <- snakemake@input[["Zld_ChIP_bw"]]
@@ -47,7 +47,6 @@ large_text_params <- pgParams(fontsize = 7)
 small_text_params <- pgParams(fontsize = 5)
 
 # colors
-# colors
 twi_color <- "#00A08A"
   
 
@@ -56,6 +55,154 @@ twi_color <- "#00A08A"
 ref_x <- 0.5
 ref_y <- 0.5
 
+# panel label
+plotText(
+  label = "a", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+# read in tiff of western blot
+blot_image <- readImage("data/immunoblot_raw_images/2021-9-13_Twi-vs-embryo/Twi-vs-embryos.tif")
+
+# rotate image
+blot_image <- blot_image |> 
+  rotate(89, bg.col = "white") |> 
+  flop()
+
+# crop image
+blot_image <- blot_image[1335:3074,830:1211]
+
+# place blot on page
+plotRaster(
+  blot_image,
+  x = ref_x + 1,
+  y = ref_y + 1.5,
+  width = 10,
+  height = 2.195402,
+  default.units = "cm",
+  just = c("left, top")
+  
+  )
+
+# add labels to western blot
+plotSegments(
+  x0 = ref_x + 1.1, y0 = ref_y + 0.25, x1 = ref_x + 4.7, y1 = ref_y + 0.25,
+  default.units = "cm",
+  lwd = 1
+)
+
+plotSegments(
+  x0 = ref_x + 4.9, y0 = ref_y + 0.25, x1 = ref_x + 8.3, y1 = ref_y + 0.25,
+  default.units = "cm",
+  lwd = 1
+)
+
+plotSegments(
+  x0 = ref_x + 8.6, y0 = ref_y + 0.25, x1 = ref_x + 10.6, y1 = ref_y + 0.25,
+  default.units = "cm",
+  lwd = 1
+)
+
+# panel label
+plotText(
+  label = "S2 Twi", params = large_text_params, fontface = "bold",
+  x = ref_x + 2.75, y = ref_y, just = "top", default.units = "cm"
+)
+
+plotText(
+  label = "S2 HA-Twi", params = large_text_params, fontface = "bold",
+  x = ref_x + 6.5, y = ref_y, just = "top", default.units = "cm"
+)
+
+plotText(
+  label = "3-4H embryos", params = large_text_params, fontface = "bold",
+  x = ref_x + 9.5, y = ref_y, just = "top", default.units = "cm"
+)
+
+plotText(
+  label = "[CuSO4]", params = large_text_params, fontface = "bold",
+  x = ref_x + 1, y = ref_y + 0.75, just = c("right","center"), default.units = "cm"
+)
+
+plotText(
+  label = "n embryos", params = large_text_params, fontface = "bold",
+  x = ref_x + 1, y = ref_y + 1.25, just = c("right","center"), default.units = "cm"
+)
+
+plotText(
+  label = "0", params = large_text_params, 
+  x = ref_x + 1.5, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "5", params = large_text_params, 
+  x = ref_x + 2.25, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "10", params = large_text_params, 
+  x = ref_x + 3, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "20", params = large_text_params, 
+  x = ref_x + 3.75, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "40", params = large_text_params, ,
+  x = ref_x + 4.5, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "0", params = large_text_params, 
+  x = ref_x + 5.25, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+
+plotText(
+  label = "5", params = large_text_params, 
+  x = ref_x + 6, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+
+plotText(
+  label = "10", params = large_text_params, 
+  x = ref_x + 6.65, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "20", params = large_text_params, 
+  x = ref_x + 7.4, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "40", params = large_text_params, 
+  x = ref_x + 8, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "5", params = large_text_params, 
+  x = ref_x + 8.75, y = ref_y + 1.25, just = c("center"), default.units = "cm"
+)
+
+
+plotText(
+  label = "10", params = large_text_params, 
+  x = ref_x + 9.6, y = ref_y + 1.25, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "20", params = large_text_params, 
+  x = ref_x + 10.45, y = ref_y + 1.25, just = c("center"), default.units = "cm"
+)
+
+
+
+# panel B ======================================================================
+# reference points for positioning figure components
+ref_x <- 12
+ref_y <- 0.5
 
 # read in ATAC-seq results
 twi_ATAC_results <- read_tsv(twi_ATAC_results_fn)
@@ -79,7 +226,7 @@ twi_ATAC_results <- twi_ATAC_results |>
   ))
 
 # volcano plot
-a_plot <- twi_ATAC_results |>
+b_plot <- twi_ATAC_results |>
   mutate(diff_class = fct_relevel(diff_class, c("ns", "not twi bound", "twi bound"))) |>
   # mutate(diff_class = fct_rev(diff_class)) |>
   ggplot(aes(x=log2FoldChange, y=-log10(padj), color = diff_class)) + 
@@ -94,7 +241,7 @@ a_plot <- twi_ATAC_results |>
 
 # place plots on plotGardener page
 plotGG(
-  plot = a_plot,
+  plot = b_plot,
   x = (ref_x), y = (ref_y),
   width = 4.5, height = 4, just = c("left", "top"),
   default.units = "cm"
@@ -102,7 +249,7 @@ plotGG(
 
 # panel label
 plotText(
-  label = "a", params = panel_label_params, fontface = "bold",
+  label = "b", params = panel_label_params, fontface = "bold",
   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 )
 
@@ -111,10 +258,10 @@ plotText(
   x = ref_x + 2.5, y = ref_y, just = "bottom", default.units = "cm"
 )
 
-# panel B ======================================================================
+# panel c ======================================================================
 # reference points for positioning figure components
-ref_x <- 5.5
-ref_y <- 0.5
+ref_x <- 0.5
+ref_y <- 5
 
 
 # read in RNAseq_results
@@ -132,7 +279,7 @@ twi_RNAseq_results <- twi_RNAseq_results |>
   )
 
 # volcano plot
-b_plot <- twi_RNAseq_results |>
+c_plot <- twi_RNAseq_results |>
   mutate(diff_class = fct_relevel(diff_class, c("ns", "not Twi bound", "Twi bound"))) |>
   # mutate(diff_class = fct_rev(diff_class)) |>
   ggplot(aes(
@@ -151,7 +298,7 @@ b_plot <- twi_RNAseq_results |>
 
 # place plots on plotGardener page
 plotGG(
-  plot = b_plot,
+  plot = c_plot,
   x = (ref_x),
   y = (ref_y),
   width = 4.5,
@@ -162,7 +309,7 @@ plotGG(
 
 # panel label
 plotText(
-  label = "b",
+  label = "c",
   params = panel_label_params,
   fontface = "bold",
   x = ref_x,
@@ -177,14 +324,14 @@ plotText(
 )
 
 
-# panel c ======================================================================
+# panel D ======================================================================
 # reference points for positioning figure components
-ref_x <- 10.5
-ref_y <- 0.5
+ref_x <- 5.5
+ref_y <- 5
 
 # panel label
 plotText(
-  label = "c",
+  label = "d",
   params = panel_label_params,
   fontface = "bold",
   x = ref_x,
@@ -218,7 +365,7 @@ plotGG(
   plot = c_plot,
   x = (ref_x),
   y = (ref_y),
-  width = 6,
+  width = 10,
   height = 4,
   just = c("left", "top"),
   default.units = "cm"

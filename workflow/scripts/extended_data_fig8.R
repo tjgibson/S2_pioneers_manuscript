@@ -10,49 +10,15 @@ source("workflow/scripts/utils.R")
 
 # define input files ===========================================================
 # Zld_ChIP_bw <- snakemake@input[["Zld_ChIP_bw"]]
-# Zld_WT_ATAC_bw <- snakemake@input[["Zld_WT_ATAC_bw"]]
-# Zld_Zld_ATAC_bw <- snakemake@input[["Zld_Zld_ATAC_bw"]]
-# Zld_WT_RNAseq_bw <- snakemake@input[["Zld_WT_RNAseq_bw"]]
-# Zld_Zld_RNAseq_bw <- snakemake@input[["Zld_Zld_RNAseq_bw"]]
-# 
-# Grh_ChIP_bw <- snakemake@input[["Grh_ChIP_bw"]]
-# Grh_WT_ATAC_bw <- snakemake@input[["Grh_WT_ATAC_bw"]]
-# Grh_Grh_ATAC_bw <- snakemake@input[["Grh_Grh_ATAC_bw"]]
-# Grh_WT_RNAseq_bw <- snakemake@input[["Grh_WT_RNAseq_bw"]]
-# Grh_Grh_RNAseq_bw <- snakemake@input[["Grh_Grh_RNAseq_bw"]]
-# 
-# zld_ChIP_classes_fn <- snakemake@input[["zld_ChIP_classes"]]
-# grh_ChIP_classes_fn <- snakemake@input[["grh_ChIP_classes"]]
-
-Zld_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw"
-Zld_WT_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/S2-WT_1000uM_small.bw"
-Zld_Zld_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/S2-Zld_1000uM_small.bw"
-
-Zld_nc14_ChIP_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/individual/embryo-nc14_aZld.bw"
-
-Grh_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw"
-Grh_WT_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/FL_ATAC_S2-WT_100uM_small.bw"
-Grh_Grh_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/S2-Grh_100uM_small.bw"
-
-Grh_embryo_ChIP_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-15-16H_aGrh.bw"
-
-Twi_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw"
-Twi_WT_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/Twi_ATAC_S2-WT_40uM_small.bw"
-Twi_Twi_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/S2-Twi_40uM_small.bw"
-
-Twi_embryo_ChIP_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-1-3H_aTwi.bw"
-
-H3K27me3_ChIP_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/individual/GSE151983_S2_aH3K27me3_IP.bw"
-H3K9me3_ChIP_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE160855_aH3K9me3.bw"
 
 CR_spikeIn_counts_fn <-"CUTandRUN/results/scaling_factors/epiCypher_barcode_counts.tsv"
 
 
 # open graphics device =========================================================
 # pdf(snakemake@output[[1]], useDingbats = FALSE)
-pdf("manuscript/figures/extended_data_fig8.pdf")
+# pdf("manuscript/figures/extended_data_fig8.pdf")
 # create blank layout for plot =================================================
-pageCreate(width = 18, height = 18, default.units = "cm", showGuides = FALSE)
+pageCreate(width = 18, height = 12, default.units = "cm", showGuides = TRUE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics
@@ -85,13 +51,13 @@ zld_color <- "#5BBCD6"
       
   
 
-# panel M ==================================================================
+# panel B ==================================================================
 # panel label
-ref_x <- 0.5
-ref_y <- 16.5
+ref_x <- 6.5
+ref_y <- 0.5
 
 plotText(
-  label = "m", params = panel_label_params, fontface = "bold",
+  label = "b", params = panel_label_params, fontface = "bold",
   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 )
 
@@ -161,7 +127,7 @@ target_order <- c(
 
 
 # generate plot
-m_plot <- AB_specificity |>
+a_plot <- AB_specificity |>
   mutate(sample_name = factor(sample_name, levels = sample_order)) |>
   mutate(sample_name = fct_rev(sample_name)) |>
   mutate(target = factor(target, levels = target_order)) |>
@@ -179,7 +145,7 @@ m_plot <- AB_specificity |>
 
 # place heatmap on page
 plotGG(
-  plot = m_plot,
+  plot = a_plot,
   x = (ref_x + 1),
   y = (ref_y),
   width = 4.5,
