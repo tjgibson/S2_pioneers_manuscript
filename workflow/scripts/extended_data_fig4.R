@@ -72,13 +72,20 @@ blot_image <- blot_image |>
 # crop image
 blot_image <- blot_image[1335:3074,830:1211]
 
+blot_dim <- dim(blot_image)
+blot_aspect_ratio <- blot_dim[2] / blot_dim[1]
+
+
+
 # place blot on page
+plot_width <- 10
+
 plotRaster(
   blot_image,
   x = ref_x + 1,
   y = ref_y + 1.5,
-  width = 10,
-  height = 2.195402,
+  width = plot_width,
+  height = plot_width * blot_aspect_ratio,
   default.units = "cm",
   just = c("left, top")
   

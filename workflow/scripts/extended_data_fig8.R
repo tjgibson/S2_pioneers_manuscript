@@ -4,6 +4,7 @@ library(tidyverse)
 library(org.Dm.eg.db)
 library(TxDb.Dmelanogaster.UCSC.dm6.ensGene)
 library(RColorBrewer)
+library(EBImage)
 
 source("workflow/scripts/plot_heatmap.R")
 source("workflow/scripts/utils.R")
@@ -13,12 +14,15 @@ source("workflow/scripts/utils.R")
 
 CR_spikeIn_counts_fn <-"CUTandRUN/results/scaling_factors/epiCypher_barcode_counts.tsv"
 
+taz_blot_aH3K27me3_image <- "data/immunoblot_raw_images/2021-06-29_taz/anti-H3K27me3_3.tif"
+taz_blot_aTub_image <- "data/immunoblot_raw_images/2021-06-29_taz/anti-tubulin_2.tif"
+
 
 # open graphics device =========================================================
 # pdf(snakemake@output[[1]], useDingbats = FALSE)
-# pdf("manuscript/figures/extended_data_fig8.pdf")
+pdf("manuscript/figures/extended_data_fig8.pdf")
 # create blank layout for plot =================================================
-pageCreate(width = 18, height = 12, default.units = "cm", showGuides = TRUE)
+pageCreate(width = 18, height = 12, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics
@@ -28,28 +32,136 @@ small_text_params <- pgParams(fontsize = 5)
 
 # colors
 zld_color <- "#5BBCD6"
-  grh_color <- "#F98400"
-    twi_color <- "#00A08A"
+grh_color <- "#F98400"
+twi_color <- "#00A08A"
+H3K27me3_color <- "gray40"      
       
-    H3K27me3_color <- "gray40"      
-      zld_heatmap_colors <- brewer.pal(9, "Blues")
-      grh_heatmap_colors <- brewer.pal(9, "Oranges")
-      twi_heatmap_colors <- brewer.pal(9, "GnBu")
-      
-      
-      # reference points for positioning figure components
-      x_offset_class_label <- 0.25
-      x_offset_browser_label <- 1
-      x_offset_browser <- 1.5
-      
-      # set genome browser height
-      gb_height <- 0.3
-      
-      # set heatmap parameters
-      hm_upstream <-  500
-      hm_downstream <-  500
-      
+zld_heatmap_colors <- brewer.pal(9, "Blues")
+grh_heatmap_colors <- brewer.pal(9, "Oranges")
+twi_heatmap_colors <- brewer.pal(9, "GnBu")
+
+
+# reference points for positioning figure components
+x_offset_class_label <- 0.25
+x_offset_browser_label <- 1
+x_offset_browser <- 1.5
+
+# set genome browser height
+gb_height <- 0.3
+
+# set heatmap parameters
+hm_upstream <-  500
+hm_downstream <-  500
+
+
+# panel A ==================================================================
+# panel label
+ref_x <- 0.5
+ref_y <- 0.5
+
+plotText(
+  label = "a", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+# import images of western blot of H3K27me3 and tubulin in DMSO or control cells
+# read in tiff of western blot
+H3K27me3_blot_image <- readImage(taz_blot_aH3K27me3_image)
+
+# rotate image
+H3K27me3_blot_image <- H3K27me3_blot_image |> 
+  rotate(91, bg.col = "white") |> 
+  flop()
+
+# crop image
+H3K27me3_blot_image <- H3K27me3_blot_image[3903:4555,744:966]
+
+# adjust brightness and contrast
+H3K27me3_blot_image <- (H3K27me3_blot_image * 0.7 + 0.2) 
+
+# anti-Tubulin
+tub_blot_image <- readImage(taz_blot_aTub_image)
+
+# rotate image
+tub_blot_image <- tub_blot_image |> 
+  rotate(91, bg.col = "white") |> 
+  flop()
+
+# crop image
+tub_blot_image <- tub_blot_image[3294:3946,1184:1406]
+
+# adjust brightness and contrast
+tub_blot_image <- (tub_blot_image - 0.3) 
+
+# get aspect ratio
+H3K27me3_blot_dim <- dim(H3K27me3_blot_image)
+H3K27me3_blot_aspect_ratio <- H3K27me3_blot_dim[2] / H3K27me3_blot_dim[1]
+
+tub_blot_dim <- dim(tub_blot_image)
+tub_blot_aspect_ratio <- tub_blot_dim[2] / tub_blot_dim[1]
+
+
+# check that images were cropped to the same width
+if (H3K27me3_blot_dim[1] != tub_blot_dim[1]) {stop("K27me3 and anti-tub blot are different widths")}
+
+
+# place blot on page
+plot_width <- 4
+
+plotRaster(
+  H3K27me3_blot_image,
+  x = ref_x + 1.5,
+  y = ref_y + 0.5,
+  width = plot_width,
+  height =  plot_width * H3K27me3_blot_aspect_ratio,
+  default.units = "cm",
+  just = c("left, top")
   
+)
+
+plotRaster(
+  tub_blot_image,
+  x = ref_x + 1.5,
+  y = ref_y + 2.25,
+  width = plot_width,
+  height =  plot_width * tub_blot_aspect_ratio,
+  default.units = "cm",
+  just = c("left, top")
+  
+)
+
+plotSegments(
+  x0 = ref_x + 1.75, y0 = ref_y + 0.25, x1 = ref_x + 3.25, y1 = ref_y + 0.25,
+  default.units = "cm",
+  lwd = 1
+)
+
+plotSegments(
+  x0 = ref_x + 3.5, y0 = ref_y + 0.25, x1 = ref_x + 5, y1 = ref_y + 0.25,
+  default.units = "cm",
+  lwd = 1
+)
+
+# panel label
+plotText(
+  label = "DMSO", params = large_text_params, fontface = "bold",
+  x = ref_x + 2.5, y = ref_y, just = "top", default.units = "cm"
+)
+
+plotText(
+  label = "taz", params = large_text_params, fontface = "bold",
+  x = ref_x + 4.25, y = ref_y, just = "top", default.units = "cm"
+)
+
+plotText(
+  label = "H3K27me3", params = large_text_params, fontface = "bold",
+  x = ref_x + 1.25, y = ref_y + 1.25, just = c("right","center"), default.units = "cm"
+)
+
+plotText(
+  label = "tubulin", params = large_text_params, fontface = "bold",
+  x = ref_x + 1.25, y = ref_y + 2.8, just = c("right","center"), default.units = "cm"
+)
 
 # panel B ==================================================================
 # panel label
@@ -80,18 +192,18 @@ AB_specificity <- AB_specificity |>
 sample_order <- c(
   "S2-Zld_DMSO_aH3K27me3_rep1",
   "S2-Zld_DMSO_aH3K27me3_rep2",
-   "S2-Grh_DMSO_aH3K27me3_rep1",
+  "S2-Grh_DMSO_aH3K27me3_rep1",
   "S2-Grh_DMSO_aH3K27me3_rep2",
   "S2-HA-Twi_DMSO_aH3K27me3_rep1",
   "S2-HA-Twi_DMSO_aH3K27me3_rep2",
-
+  
   "S2-Zld_Taz_aH3K27me3_rep1",
   "S2-Zld_Taz_aH3K27me3_rep2",
   "S2-Grh_Taz_aH3K27me3_rep1",
   "S2-Grh_Taz_aH3K27me3_rep2",
   "S2-HA-Twi_Taz_aH3K27me3_rep1",
   "S2-HA-Twi_Taz_aH3K27me3_rep2",
-
+  
   "S2-Zld_DMSO_IgG_rep1",
   "S2-Zld_DMSO_IgG_rep2",
   "S2-Grh_DMSO_IgG_rep1",
@@ -120,9 +232,9 @@ target_order <- c(
   "H3K36me1",
   "H3K36me2",
   "H3K36me3",
- "H4K20me1",
- "H4K20me2",
- "H4K20me3"
+  "H4K20me1",
+  "H4K20me2",
+  "H4K20me3"
 )
 
 
@@ -140,7 +252,7 @@ a_plot <- AB_specificity |>
     legend.position = "bottom",
     legend.margin=margin(0,0,0,0),
     legend.box.margin=margin(-10,-10,-10,-10)
-    ) +
+  ) +
   scale_y_discrete(labels = sample_labels)
 
 # place heatmap on page
@@ -165,16 +277,16 @@ plotSegments(
   default.units = "cm"
 )
 
- plotSegments(
+plotSegments(
   x0 = (ref_x + 0.25), y0 = (ref_y + 0.25), x1 = (ref_x + 0.25), y1 = (ref_y + 1.85),
   default.units = "cm"
 )
 
 
- plotSegments(
-   x0 = (ref_x + 0.25), y0 = (ref_y + 1.9), x1 = (ref_x + 0.25), y1 = (ref_y + 2.7),
-   default.units = "cm"
- )
+plotSegments(
+  x0 = (ref_x + 0.25), y0 = (ref_y + 1.9), x1 = (ref_x + 0.25), y1 = (ref_y + 2.7),
+  default.units = "cm"
+)
 
 plotText(
   label = "DMSO",
@@ -211,8 +323,7 @@ plotText(
   y = ref_y + 2.2,
   default.units = "cm"
 )
-      
-      # close graphics device ========================================================
-      dev.off()
-      
-      
+
+# close graphics device ========================================================
+dev.off()
+
