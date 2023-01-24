@@ -6,6 +6,7 @@ library(TxDb.Dmelanogaster.UCSC.dm6.ensGene)
 library(grImport)
 library(grid)
 library(RColorBrewer)
+library(EBImage)
 
 
 # define input files ===========================================================
@@ -26,9 +27,12 @@ library(RColorBrewer)
 
 RPKM_table_fn <- "RNAseq/results/count_tables/S2-Grh_RNAseq_RPKM.tsv"
 
+zld_blot_image <- "data/immunoblot_raw_images/2018-10-17_Zld_induction/2018-1018-144408_pub.tif"
+grh_blot_image <- "data/immunoblot_raw_images/2018-11-08_Grh_induction/2018-1108-132834_pub.tif"
+
 # # create blank layout for plot ===============================================
 # pdf(snakemake@output[[1]], useDingbats = FALSE)
-pdf("manuscript/figures/extended_data_fig1.pdf", useDingbats = FALSE)
+# pdf("manuscript/figures/extended_data_fig1.pdf", useDingbats = FALSE)
 pageCreate(width = 18, height = 18.5, default.units = "cm", showGuides = TRUE)
 
 # general figure settings ======================================================
@@ -227,8 +231,33 @@ plotText(
   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 )
 
-# placeholder for western blot
-plotRect(x = (ref_x + 0.25), y = (ref_y + 0.25), width = 8, height = 3, default.units = "cm", just = c("top","left"))
+# read in tiff of western blot in grayscale
+blot_image <- readImage(zld_blot_image) |> 
+  channel("gray")
+
+# crop image
+blot_image <- blot_image[511:1154,421:580]
+
+# get blot aspect ratio
+blot_dim <- dim(blot_image)
+blot_aspect_ratio <- blot_dim[2] / blot_dim[1]
+
+
+
+# place blot on page
+plot_width <- 7
+
+plotRaster(
+  blot_image,
+  x = ref_x + 1,
+  y = ref_y + 1,
+  width = plot_width,
+  height = plot_width * blot_aspect_ratio,
+  default.units = "cm",
+  just = c("left, top")
+  
+)
+
 
 # panel D ======================================================================
 # reference points for positioning figure components
@@ -241,33 +270,33 @@ plotText(
   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 )
 
-# placeholder for western blot
-plotRect(x = (ref_x + 0.25), y = (ref_y + 0.25), width = 8, height = 3, default.units = "cm", just = c("top","left"))
+# read in tiff of western blot in grayscale
+blot_image <- readImage(grh_blot_image) |> 
+  channel("gray")
 
-# panel D ======================================================================
-# reference points for positioning figure components
-ref_x <- 9.5
-ref_y <- 5.5
+# crop image
+blot_image <- blot_image[486:1101,432:625]
 
-# panel label
-plotText(
-  label = "d", params = panel_label_params, fontface = "bold",
-  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+# get blot aspect ratio
+blot_dim <- dim(blot_image)
+blot_aspect_ratio <- blot_dim[2] / blot_dim[1]
+
+
+
+# place blot on page
+plot_width <- 7
+
+plotRaster(
+  blot_image,
+  x = ref_x + 1,
+  y = ref_y + 1,
+  width = plot_width,
+  height = plot_width * blot_aspect_ratio,
+  default.units = "cm",
+  just = c("left, top")
+  
 )
 
-# placeholder for western blot
-plotRect(x = (ref_x + 0.25), y = (ref_y + 0.25), width = 8, height = 3, default.units = "cm", just = c("top","left"))
-
-# panel E ======================================================================
-# reference points for positioning figure components
-ref_x <- 0.5
-ref_y <- 9
-
-# panel label
-plotText(
-  label = "e", params = panel_label_params, fontface = "bold",
-  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
-)
 
 # close graphics device ========================================================
 dev.off()

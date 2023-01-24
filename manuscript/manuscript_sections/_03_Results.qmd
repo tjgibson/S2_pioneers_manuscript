@@ -241,7 +241,7 @@ Together, these data demonstrate that despite the correlation of H3K27me3 with r
 
 Previous studies have proposed that pioneer factor activity may depend on protein concentration [@Hansen2022; @Blassberg2022].
 Considering that tazemetostat treatment had limited effects on pioneer factor binding, we asked if varying the protein concentration of Zld, Grh, or Twi could affect binding and pioneering.
-We induced cells to express Zld, Grh and Twi at a range of protein concentrations: uninduced, subphysiological, physiological, or supraphysiological (Extended Data Fig. XX; see methods).
+We induced cells to express Zld, Grh and Twi at a range of protein concentrations: uninduced, subphysiological, physiological, or supraphysiological (Extended Data Fig. 9; see methods).
 We performed ChIP-seq and analyzed the data at our previously defined class I-VI binding sites.
 We found that binding and was concentration dependent (Fig. 5).
 At class II and III binding sites, subphysiological levels of Zld, Grh, and Twi were sufficient for some, albeit reduced binding (Fig. 5a,e,i).
