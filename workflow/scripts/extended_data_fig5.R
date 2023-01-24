@@ -803,7 +803,7 @@ zld_color <- "#5BBCD6"
     
     # panel label
     plotText(
-      label = "c",
+      label = "e",
       params = panel_label_params,
       fontface = "bold",
       x = ref_x,
@@ -961,13 +961,13 @@ zld_color <- "#5BBCD6"
     
   
     
-    # panel C ======================================================================
+    # panel F ======================================================================
     # panel label
     ref_x <- 11
     ref_y <- 8.5
     
     plotText(
-      label = "c", params = panel_label_params, fontface = "bold",
+      label = "f", params = panel_label_params, fontface = "bold",
       x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
     )
     
