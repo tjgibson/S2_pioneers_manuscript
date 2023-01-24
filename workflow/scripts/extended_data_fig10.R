@@ -40,7 +40,7 @@ grh_ChIP_classes <- grh_FL_ChIP_classes_fn |>
 # # create blank layout for plot ===============================================
 # pdf(snakemake@output[[1]], useDingbats = FALSE)
 pdf("manuscript/figures/extended_data_fig10.pdf", useDingbats = FALSE)
-pageCreate(width = 18, height = 16, default.units = "cm", showGuides = TRUE)
+pageCreate(width = 18, height = 16, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics

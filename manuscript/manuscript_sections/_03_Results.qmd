@@ -230,7 +230,7 @@ Twi binding sites in S2 cells had low levels of binding in embryos, but many of 
 
 To test the functional relevance of repressive chromatin to pioneer-factor binding, we used the chemical inhibitor tazemetostat to disrupt activity of the PRC2 complex responsible for depositing H3K27me3.
 We treated our stable cell lines with DMSO or tazemetostat for 7 days, inducing Zld, Grh, or Twi expression on day 5.
-We confirmed loss of H3K27me3 by westerm blot and CUT&RUN [@Skene2017] (Extended Data Fig. XX).
+We confirmed loss of H3K27me3 by westerm blot and CUT&RUN [@Skene2017] (Extended Data Fig. 8a).
 We used ChIP-seq to test if tazemetostat treatment resulted in changes to Zld, Grh, or Twi binding.
 Tazemetostat treatment did not result in global changes to Zld, Grh, or Twi binding when compared to DMSO controls (Fig. 4d-f).
 Despite a dramatic loss of H3K27me3, the majority of class IV binding sites remained unbound in tazemetostat-treated cells.
@@ -262,7 +262,7 @@ Together, these data demonstrate that both binding and chromatin opening by pion
 Prior work has shown that binding to nucleosomes by pioneer factors requires recognition of target motifs by DNA-binding domains (DBDs) (REFs).
 However, little is known about how regions outside the DBD may contribute to pioneering function.
 <!--# Consider toning down this statement, as the FoxA1 region that interacts with nucleosomes (Iwafuchi 2020 Nat. Genet. paper) is outside the DBD. See also new Zaret paper in NSMB looking at contribution of IDRs and activation domains to chromatin opening on nucleosome arrays in vitro -->.
-To test if regions outside the DBD are required for pioneering activity, we performed ChIP-seq and ATAC-seq on stable cell lines expressing the Zld or Grh DBD at levels comparable to the full-length (FL) protein (Extended Data Fig. XX).
+To test if regions outside the DBD are required for pioneering activity, we performed ChIP-seq and ATAC-seq on stable cell lines expressing the Zld or Grh DBD at levels comparable to the full-length (FL) protein (Extended Data Fig. 10a,b).
 Analysis of ChIP-seq signal at our previously defined class I-III regions revealed that the Zld DBD bound robustly to class I regions, but was totally unable to bind to class II or III regions (Fig. 6a,c).
 We had previously shown that in neural stem cells, Zld binds to many regions that lack a canonical Zld motif through a mechanism that is not understood [@Larson2021a].
 Because many Zld binding sites in S2 cells also lack a canonical CAGGTA motif (Fig. 3), it is possible that expressing the DNA-binding domain alone also removed regions of the protein that are required for CAGGTA-independent binding.
