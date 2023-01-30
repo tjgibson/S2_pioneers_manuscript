@@ -27,7 +27,7 @@ grh_n_ChIP_peaks <- nrow(grh_ChIP_classes)
 
 To determine how exogenous Zld and Grh interact with preexisting chromatin, we expressed each factor at approximately physiological levels and determined genome-wide binding sites using chromatin immunoprecipitation coupled with sequencing (ChIP-seq).
 We identified `r zld_n_ChIP_peaks` peaks for Zld and `r grh_n_ChIP_peaks` for Grh.
-Additional ChIP-seq experiments were performed in WT cells using anti-Zld, or anti-Grh to control for antibody specificity.
+Additional ChIP experiments were performed in WT cells using anti-Zld, or anti-Grh to control for antibody specificity.
 By excluding peaks that were called in these datasets, we ensured that subsequent analysis was performed on peaks that were detected only upon ectopic expression of Zld or Grh.
 <!--# Not sure the best way to discuss the control ChIP experiments. Should I mention how many peaks we detect in WT cells? What supplemental figures should I include? Should peak calling be done using IgG or WT cells as control instead of input? -->
 
@@ -78,7 +78,7 @@ Class II sites are inaccessible in WT cells.
 However, binding of Zld or Grh does not lead to chromatin opening.
 Class III sites are inaccessible in WT cells, but become accessible upon pioneer-factor binding.
 The majority of ChIP-seq peaks for Zld and Grh were class I sites.
-For each factor, only a subset of binding sites were closed chromatin, and at only a subset of these did the chromatin become accessible (Fig. 1c,f).
+For each factor, only a subset of binding sites were within closed chromatin, and at only a subset of these did the chromatin become accessible (Fig. 1c,f).
 While class I binding sites occured predominantly at promoters, the majority of class II and III sites were at promoter-distal sites (Fig. 1d,g).
 Genome-wide analysis of signal intensities at all class II and III sites confirmed that these sites lack ATAC signal in WT cells and that class III sites undergo robust chromatin opening upon Zld or Grh induction (Fig. 1e,h).
 Together, these data show that when expressed exogenously at physiolgical levels, Zld and Grh can bind and open closed chromatin at a subset of binding sites.
@@ -134,7 +134,7 @@ Genes activated by Zld expression were enriched for embryonic morphogenesis, con
 To better understand the relationship between chromatin opening and transcriptional activation, we directly compared our RNA-seq and ATAC-seq data.
 Overall, chromatin opening was correlated with transcriptional activation (Fig. 1i-l).
 <!--# Sites with significantly increased chromatin accessibility, but not decreased or unchanged sites, had larger RNA-seq fold change values (Extended Data Fig. XX). --> When we individually analyzed our three classes of binding sites for changes in gene expression, we found that class III sites were most likely to be proximal to upregulated genes (Fig. 1j,l).
-This was particularly evident at class III promoters, which were most likely to correspond to upregulated genes.
+This was particularly evident at class III promoters.
 Together, we conclude that while binding and chromatin opening were not always linked to changes in transcription, increases in chromatin accessibility are correlated with transcriptional activation.
 
 ## Twist binds extensively to closed chromatin and opens chromatin at a subset of sites
@@ -156,12 +156,12 @@ perc_twi_closed <- (twi_closed / nrow(twi_ChIP_classes) * 100) |>
 
 Because both Zld and Grh had previously been shown to have features of pioneer factors, we sought to test an additional transcription factor with distinctive features.
 For this purpose, we tested the effects of the expression of the master regulator of mesodermal cell fate, Twist (Twi), which was not expressed in our WT S2 cells.
-Although like Zld and Grh Twi is also essential for regulating Drosophila embryonic development, Twi has a number of properties that are distinct.
+Although like Zld and Grh, Twi is essential for regulating Drosophila embryonic development, Twi has a number of properties that are distinct.
 For example, many Twi-binding sites are developmentally dynamic and are not maintained through embryonic development [@Wilczynski2010a].
 Furthermore, Zld pioneering activity is required for Twi binding in the early embryo as mutations to Zld-binding sites disrupted Twi binding to the *cactus* enhancer [@Yáñez-Cuna2012].
 To test the properties of Twi in our system, we generated additional stable cell lines allowing inducible expression of Twi at approximately physiological levels (Extended Data Fig. 4a).
 We characterized Twi binding and activity using ChIP-seq, ATAC-seq, and RNA-seq.
-. Using these data, we identified the same three classes of binding sites that we described for Zld and Grh (Fig 2a,b).
+Using these data, we identified the same three classes of binding sites that we described for Zld and Grh (Fig 2a,b).
 Similar to Zld and Grh, class I binding sites were enriched at promoters, while class II and III binding sites were mostly promoter-distal (Fig 2c).
 Twi bound extensively to closed chromatin, with `r perc_twi_closed`% of binding sites lacking detectible chromatin accessibility (Fig. 2b).
 At a small subset of Twi-binding sites, binding to closed chromatin resulted in chromatin opening (Fig 2a-c; Extended Data Fig. 4b).
