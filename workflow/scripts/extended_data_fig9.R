@@ -24,7 +24,7 @@ twi_titration_blot_aTub <- "data/immunoblot_raw_images/2022-7-12_titration/Twi-t
 # pdf(snakemake@output[[1]], useDingbats = FALSE)
 pdf("manuscript/figures/extended_data_fig9.pdf")
 # create blank layout for plot =================================================
-pageCreate(width = 18, height = 12, default.units = "cm", showGuides = FALSE)
+pageCreate(width = 18.3, height = 12, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics

@@ -32,8 +32,8 @@ grh_blot_image <- "data/immunoblot_raw_images/2018-11-08_Grh_induction/2018-1108
 
 # # create blank layout for plot ===============================================
 # pdf(snakemake@output[[1]], useDingbats = FALSE)
-# pdf("manuscript/figures/extended_data_fig1.pdf", useDingbats = FALSE)
-pageCreate(width = 18, height = 18.5, default.units = "cm", showGuides = TRUE)
+pdf("manuscript/figures/extended_data_fig1.pdf", useDingbats = FALSE)
+pageCreate(width = 18, height = 18.5, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics
@@ -250,12 +250,128 @@ plot_width <- 7
 plotRaster(
   blot_image,
   x = ref_x + 1,
-  y = ref_y + 1,
+  y = ref_y + 1.5,
   width = plot_width,
   height = plot_width * blot_aspect_ratio,
   default.units = "cm",
   just = c("left, top")
   
+)
+
+# add labels to western blot
+plotSegments(
+  x0 = ref_x + 1.1, y0 = ref_y + 0.25, x1 = ref_x + 3.25, y1 = ref_y + 0.25,
+  default.units = "cm",
+  lwd = 1
+)
+
+plotSegments(
+  x0 = ref_x + 3.5, y0 = ref_y + 0.25, x1 = ref_x + 5.6, y1 = ref_y + 0.25,
+  default.units = "cm",
+  lwd = 1
+)
+
+plotSegments(
+  x0 = ref_x + 6, y0 = ref_y + 0.25, x1 = ref_x + 7.75, y1 = ref_y + 0.25,
+  default.units = "cm",
+  lwd = 1
+)
+
+plotText(
+  label = "S2 Zld line A", params = large_text_params, fontface = "bold",
+  x = ref_x + 2.15, y = ref_y, just = "top", default.units = "cm"
+)
+
+plotText(
+  label = "S2 Zld line B", params = large_text_params, fontface = "bold",
+  x = ref_x + 4.5, y = ref_y, just = "top", default.units = "cm"
+)
+
+plotText(
+  label = "2-3H embryos", params = large_text_params, fontface = "bold",
+  x = ref_x + 6.9, y = ref_y, just = "top", default.units = "cm"
+)
+
+plotText(
+  label = "[CuSO4]", params = large_text_params, fontface = "bold",
+  x = ref_x + 1, y = ref_y + 0.75, just = c("right","center"), default.units = "cm"
+)
+
+plotText(
+  label = "n embryos", params = large_text_params, fontface = "bold",
+  x = ref_x + 1, y = ref_y + 1.25, just = c("right","center"), default.units = "cm"
+)
+
+plotText(
+  label = "0", params = large_text_params, rot = 45,
+  x = ref_x + 1.4, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "750", params = large_text_params, rot = 45,
+  x = ref_x + 1.9, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "1000", params = large_text_params, rot = 45,
+  x = ref_x + 2.4, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "1250", params = large_text_params, rot = 45,
+  x = ref_x + 2.9, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "1500", params = large_text_params, rot = 45,
+  x = ref_x + 3.4, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "0", params = large_text_params, rot = 45,
+  x = ref_x + 3.8, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "750", params = large_text_params, rot = 45,
+  x = ref_x + 4.3, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "1000", params = large_text_params, rot = 45,
+  x = ref_x + 4.8, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "1250", params = large_text_params, rot = 45,
+  x = ref_x + 5.3, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "1500", params = large_text_params, rot = 45,
+  x = ref_x + 5.8, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+
+plotText(
+  label = "5", params = large_text_params, rot = 45,
+  x = ref_x + 6.2, y = ref_y + 1.25, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "5", params = large_text_params, rot = 45,
+  x = ref_x + 6.7, y = ref_y + 1.25, just = c("center"), default.units = "cm"
+)
+
+
+plotText(
+  label = "10", params = large_text_params, rot = 45,
+  x = ref_x + 7.3, y = ref_y + 1.25, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "10", params = large_text_params, rot = 45,
+  x = ref_x + 7.8, y = ref_y + 1.25, just = c("center"), default.units = "cm"
 )
 
 
@@ -289,13 +405,132 @@ plot_width <- 7
 plotRaster(
   blot_image,
   x = ref_x + 1,
-  y = ref_y + 1,
+  y = ref_y + 1.5,
   width = plot_width,
   height = plot_width * blot_aspect_ratio,
   default.units = "cm",
   just = c("left, top")
   
 )
+
+# panel label
+plotSegments(
+  x0 = ref_x + 1.1, y0 = ref_y + 0.25, x1 = ref_x + 3.25, y1 = ref_y + 0.25,
+  default.units = "cm",
+  lwd = 1
+)
+
+plotSegments(
+  x0 = ref_x + 3.5, y0 = ref_y + 0.25, x1 = ref_x + 5.6, y1 = ref_y + 0.25,
+  default.units = "cm",
+  lwd = 1
+)
+
+plotSegments(
+  x0 = ref_x + 6, y0 = ref_y + 0.25, x1 = ref_x + 7.75, y1 = ref_y + 0.25,
+  default.units = "cm",
+  lwd = 1
+)
+
+
+plotText(
+  label = "S2 Grh line A", params = large_text_params, fontface = "bold",
+  x = ref_x + 2.15, y = ref_y, just = "top", default.units = "cm"
+)
+
+plotText(
+  label = "S2 Grh line B", params = large_text_params, fontface = "bold",
+  x = ref_x + 4.5, y = ref_y, just = "top", default.units = "cm"
+)
+
+plotText(
+  label = "2-3H embryos", params = large_text_params, fontface = "bold",
+  x = ref_x + 6.9, y = ref_y, just = "top", default.units = "cm"
+)
+
+plotText(
+  label = "[CuSO4]", params = large_text_params, fontface = "bold",
+  x = ref_x + 1, y = ref_y + 0.75, just = c("right","center"), default.units = "cm"
+)
+
+plotText(
+  label = "n embryos", params = large_text_params, fontface = "bold",
+  x = ref_x + 1, y = ref_y + 1.25, just = c("right","center"), default.units = "cm"
+)
+
+plotText(
+  label = "0", params = large_text_params, rot = 45,
+  x = ref_x + 1.4, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "50", params = large_text_params, rot = 45,
+  x = ref_x + 1.9, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "100", params = large_text_params, rot = 45,
+  x = ref_x + 2.4, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "200", params = large_text_params, rot = 45,
+  x = ref_x + 2.9, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "400", params = large_text_params, rot = 45,
+  x = ref_x + 3.4, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "0", params = large_text_params, rot = 45,
+  x = ref_x + 3.8, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "50", params = large_text_params, rot = 45,
+  x = ref_x + 4.3, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "100", params = large_text_params, rot = 45,
+  x = ref_x + 4.8, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "200", params = large_text_params, rot = 45,
+  x = ref_x + 5.3, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "400", params = large_text_params, rot = 45,
+  x = ref_x + 5.8, y = ref_y + 0.75, just = c("center"), default.units = "cm"
+)
+
+
+plotText(
+  label = "5", params = large_text_params, rot = 45,
+  x = ref_x + 6.2, y = ref_y + 1.25, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "5", params = large_text_params, rot = 45,
+  x = ref_x + 6.7, y = ref_y + 1.25, just = c("center"), default.units = "cm"
+)
+
+
+plotText(
+  label = "10", params = large_text_params, rot = 45,
+  x = ref_x + 7.3, y = ref_y + 1.25, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "10", params = large_text_params, rot = 45,
+  x = ref_x + 7.8, y = ref_y + 1.25, just = c("center"), default.units = "cm"
+)
+
+
 
 
 # close graphics device ========================================================

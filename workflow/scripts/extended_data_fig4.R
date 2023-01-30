@@ -157,7 +157,7 @@ plotText(
 )
 
 plotText(
-  label = "40", params = large_text_params, ,
+  label = "40", params = large_text_params,
   x = ref_x + 4.5, y = ref_y + 0.75, just = c("center"), default.units = "cm"
 )
 

@@ -67,20 +67,21 @@ overlap_table <- overlap_table |>
   filter(!ns_sites)
 
 # # # generate random background regions ==================================================
-keep_chroms <- readLines(snakemake@input[["keep_chroms"]])
-# 
+# keep_chroms <- readLines(snakemake@input[["keep_chroms"]])
+# # 
 # tile_seq_info <- seqinfo(BSgenome.Dmelanogaster.UCSC.dm6)
 # tile_seq_info <- tile_seq_info[seqnames(tile_seq_info)[seqnames(tile_seq_info) %in% keep_chroms]]
 # 
 # genome_tiles <- tileGenome(tile_seq_info, tilewidth=500,
-#                            cut.last.tile.in.chrom=TRUE) |> 
-#   subsetByOverlaps(rtracklayer::import(ns_sites), invert = TRUE)
+#                            cut.last.tile.in.chrom=TRUE) |>
+#   subsetByOverlaps(rtracklayer::import(ns_sites), invert = TRUE) |> 
+#   subsetByOverlaps(makeGRangesFromDataFrame(overlap_table), invert = TRUE)
 # 
 # 
-# background_sites <- genome_tiles[sample(seq(genome_tiles), size = sum(overlap_table$all_peaks))] |> 
-#   as.data.frame() |> 
+# background_sites <- genome_tiles[sample(seq(genome_tiles), size = sum(overlap_table$all_peaks))] |>
+#   as.data.frame() |>
 #   add_column(class = "background")
-# 
+
 
 
 

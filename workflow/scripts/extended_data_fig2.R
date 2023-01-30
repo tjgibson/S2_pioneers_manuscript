@@ -4,6 +4,7 @@ library(tidyverse)
 library(org.Dm.eg.db)
 library(TxDb.Dmelanogaster.UCSC.dm6.ensGene)
 library(RColorBrewer)
+library(EBImage)
 
 source("workflow/scripts/plot_heatmap.R")
 
@@ -25,10 +26,13 @@ S2_Grh_CR_48H_bw <- "data/2021-03_CR/results/bigwigs/z_score_normalized/S2-Grh_a
 zld_ChIP_classes_fn <- "results/ChIP_peak_classes/zld_ChIP_classes.tsv"
 grh_ChIP_classes_fn <- "results/ChIP_peak_classes/grh_ChIP_classes.tsv"
 
+zld_blot_image <- "data/immunoblot_raw_images/2018-11-27_timecourse/zld_timecourse.tif"
+grh_blot_image <- "data/immunoblot_raw_images/2018-11-27_timecourse/grh_timecourse.tif"
+
 # # create blank layout for plot ===============================================
 # pdf(snakemake@output[[1]], useDingbats = FALSE)
 # pdf("manuscript/figures/extended_data_fig2.pdf", useDingbats = FALSE)
-pageCreate(width = 18, height = 18.5, default.units = "cm", showGuides = TRUE)
+pageCreate(width = 18, height = 12, default.units = "cm", showGuides = TRUE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics
@@ -64,10 +68,41 @@ plotText(
   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 )
 
-# placeholder for western blot
-plotRect(x = (ref_x + 0.25), y = (ref_y + 0.25), width = 8, height = 3, default.units = "cm", just = c("top","left"))
+# read in tiff of western blot in grayscale
+blot_image <- readImage(zld_blot_image) |> 
+  channel("gray")
 
-# panel b ======================================================================
+# rotate image
+blot_image <- blot_image |>
+  rotate(1, bg.col = "white")
+
+# adjust brightness and contrast
+blot_image <- (blot_image * 1.1 - 0.5)
+
+# crop image
+blot_image <- blot_image[501:776,393:518]
+
+# get blot aspect ratio
+blot_dim <- dim(blot_image)
+blot_aspect_ratio <- blot_dim[2] / blot_dim[1]
+
+
+
+# place blot on page
+plot_width <- 7
+
+plotRaster(
+  blot_image,
+  x = ref_x + 1,
+  y = ref_y + 1.5,
+  width = plot_width,
+  height = plot_width * blot_aspect_ratio,
+  default.units = "cm",
+  just = c("left, top")
+  
+)
+
+# panel B ======================================================================
 # reference points for positioning figure components
 ref_x <- 9
 ref_y <- 0.5
@@ -78,8 +113,39 @@ plotText(
   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 )
 
-# placeholder for western blot
-plotRect(x = (ref_x + 0.25), y = (ref_y + 0.25), width = 8, height = 3, default.units = "cm", just = c("top","left"))
+# read in tiff of western blot in grayscale
+blot_image <- readImage(grh_blot_image) |> 
+  channel("gray")
+
+# rotate image
+blot_image <- blot_image |>
+  rotate(1, bg.col = "white")
+
+# adjust brightness and contrast
+blot_image <- (blot_image - 0.1)
+
+# crop image
+blot_image <- blot_image[849:1131,577:744]
+
+# get blot aspect ratio
+blot_dim <- dim(blot_image)
+blot_aspect_ratio <- blot_dim[2] / blot_dim[1]
+
+
+
+# place blot on page
+plot_width <- 7
+
+plotRaster(
+  blot_image,
+  x = ref_x + 1,
+  y = ref_y + 1.5,
+  width = plot_width,
+  height = plot_width * blot_aspect_ratio,
+  default.units = "cm",
+  just = c("left, top")
+  
+)
 
 # Panel C ======================================================================
 # panel label
