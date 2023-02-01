@@ -147,6 +147,10 @@ Shown for Zld **(a)** and Grh **(b)**.
 
 **Extended Data Figure 10:**
 
+-   Western blots for determining DBD expression levels
+
+-   IF to confirm nuclear localization of DBDs.
+
 -   Analysis of Zld DBD ChIP only at CAGGTAG sites
 
 -   Examples of any novel DBD binding sites not detected for full-length proteins
