@@ -1,17 +1,70 @@
 # Discussion
 
-Major conclusions to emphasize:
+## outline:
 
--   Twist is a pioneer factor
+### Summary of study
 
--   PF activity occurs on a spectrum and is context-dependent.
+### Pioneer-factor activity occurs on a spectrum and is context dependent
 
--   Context-dependent PF activity can be regulated by both protein-intrinsic and extrinsic features.
+-   Twi is a PF
 
--   Preexisting active chromatin attracts TF binding, even with weaker motifs.
+-   In our study, we see a range of pioneering activities: Twi\<Zld\<Grh
 
--   Most functional binding occurs at canonical motifs in naïve chromatin
+### Pioneer factors are regulated by both protein-intrinsic and protein-extrinsic features Local chromatin.
 
--   Sequence composition is a main determinant of PF binding and activity
+-   **Active chromatin:**
 
--   Regions outside the DBD are essential for pioneering
+    -   promotes PF binding in the absence fo strong motifs.
+
+    -   H3K27me3, despite correlation, does not affect binding and pioneering
+
+-   **Protein concentration**:
+
+    -   Strong determinant of binding and chromatin opening in our study.
+
+    -   Different binding sites have different thresholds for binding and opening.
+        Some remain unbound even at high levels.
+
+-   **Cofactors**?
+
+-   Not explored extensively in our study.
+    How to discuss without inviting more experiments from reviewers?
+
+-   **Motif content**:
+
+    -   Strong predictor of binding and opening.
+
+-   **Protein domains**:
+
+    -   Required for stable binding and opening.
+
+    -   Allows uncoupling of binding from opening.
+
+### Model:
+
+-   PF activity requires high chromatin occupancy which can be achieved in a variety of ways.
+
+### Regions outside the DBD are essential for pioneering
+
+-   This and other recent evidence complicates the simple modular model of TF function
+
+-   Multiple possibilities for how IDRs or activation domains could impact pioneering:
+
+    -   multivalent interactions with nucleosomes stabilize binding (supported by in vitro evidence).
+
+    -   Recruitment/interaction with cofactors that stabilizes binding (chromatin opening via cofactors could provide positive feedback that stabilizes binding)
+
+    -   Allowing broader exploration of nuclear space, including repressed domains (supported by imaging data)
+
+    -   Clustering or phase separation that increases local concentration
+
+### Future directions we could mention:
+
+-   How do Zld, Grh, Twi and other PFs interact with nucleosomal targets?
+    TFs likely have diverse mechanisms of interaction, making it important to characterize for many factors.
+
+-   What are the mechanisms of chromatin opening for these factors?
+    Do they recruit remodelers?
+    Does binding alone destabilize nucleosomes?
+
+-   How do regions outside the DBD contribute to binding and opening?

@@ -43,13 +43,12 @@ Shown for Zld **(a)** and Grh **(b)**.
 
 **Figure 7: Pioneer-factor function requires stable chromatin occupancy.**
 
-**Extended Data Figure 1: Stable cell lines allow inducible expression of transcription factors at physiological concentrations.**
-
--   ~~Schematic of cell line generation.~~
-
--   ~~Western blots to determine physiological expression and lack of protein expression in WT cells.~~
-
--   ~~RNA-seq data to show leaky expression and strong induction of RNA levels.~~
+**Extended Data Figure 1: Stable cell lines allow inducible expression of transcription factors at physiological concentrations. a,** Schematic of generation of stable cell lines and induction of protein expression.
+**b,** mRNA levels of Zld and Grh in S2 cells.
+Top histogram shows the distribution of mRNA levels for all Drosophila genes.
+Vertical dashed line indicates a log~2~ RPKM value of 0 as a threshold for considering a gene to be expressed.
+**c-d,** Immunoblots showing titration of Zld **(c)** or Grh **(d)** protein levels in stable cell lines.
+Two independently generated cell lines are shown and compared to 2-3H embryos.
 
 **Extended Data Figure 2: Zld and Grh bind to chromatin rapidly after induction of protein expression**
 

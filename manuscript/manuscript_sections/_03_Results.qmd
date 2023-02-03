@@ -230,7 +230,9 @@ Twi binding was largely distinct in S2 cells and the embryo, with only a small s
 
 To test the functional relevance of repressive chromatin to pioneer-factor binding, we used the chemical inhibitor tazemetostat to disrupt activity of the PRC2 complex responsible for depositing H3K27me3.
 Despite causing dramtic reductions in H3K27me3 levels, tazemetostat treatment did not result in global changes to Zld, Grh, or Twi binding when compared to DMSO controls (Fig. 4d-f; Extended Data Fig. 8a).
-The majority of class IV binding sites remained unbound in tazemetostat-treated cells, demonstrating that loss of PRC2 activity is insufficient to promoted widespread binding. Thus, H3K27me3 is broadly restricting binding in S2 cells. However, we identified a few sites where tazemetostat treatment lead to a loss of K27me3 and a concomitant gain of Zld, Grh or Twi, binding (Extended Data Fig. XX).
+The majority of class IV binding sites remained unbound in tazemetostat-treated cells, demonstrating that loss of PRC2 activity is insufficient to promoted widespread binding.
+Thus, H3K27me3 is broadly restricting binding in S2 cells.
+However, we identified a few sites where tazemetostat treatment lead to a loss of K27me3 and a concomitant gain of Zld, Grh or Twi, binding (Extended Data Fig. XX).
 Together, these data demonstrate that despite the correlation of H3K27me3 with resistance to pioneer factor binding, loss of PRC2 activity is insufficient to promote widespread binding of Zld, Grh, or Twi to repressed binding sites.
 
 ## Pioneer-factor binding and chromatin opening is concentration dependent
@@ -240,7 +242,9 @@ Considering that tazemetostat treatment had limited effects on pioneer factor bi
 We performed ChIP-seq on cells induced to express Zld, Grh and Twi at a range of protein concentrations: uninduced, subphysiological, physiological, or supraphysiological (Extended Data Fig. 9; see methods).
 Analysis of our previously defined class I-VI binding sites showed that binding and was concentration dependent (Fig. 5).
 At class II and III binding sites, subphysiological levels of Zld, Grh, and Twi were sufficient for some, albeit reduced binding (Fig. 5a,e,i).
-Expression of supraphysiological protein levels resulted in increased ChIP intensity at class II and III sites (Fig. 5a,e,i). Thus, increased expression allowed pioneer factors access to previously unbound regions. To identify the relationship between pioneer-factor binding and chromatin accessibility, we performed ATAC-seq on cells induced with the same range in expression.
+Expression of supraphysiological protein levels resulted in increased ChIP intensity at class II and III sites (Fig. 5a,e,i).
+Thus, increased expression allowed pioneer factors access to previously unbound regions.
+To identify the relationship between pioneer-factor binding and chromatin accessibility, we performed ATAC-seq on cells induced with the same range in expression.
 Changes in chromatin accessibility were similarly concentration dependent, with more limited chromatin opening at lower concentrations and more robust opening at higher concentrations (Fig. 5b,f,j).
 Many class II binding sites became accessible when Zld, Grh, and Twi were expressed at the highest levels, suggesting that increased chromatin occupancy, as assayed by ChIP-seq, could result in chromatin accessibility.
 For Grh, but not for Zld or Twi, supraphysiological concentrations allowed some binding and opening to class IV-VI sites, which were not bound at lower concentrations (Fig. 5, Extended Data Fig. XX).
@@ -255,8 +259,7 @@ Together, these data demonstrate that both binding and chromatin opening by pion
 
 Prior work demonstrated that binding to nucleosomes by pioneer factors requires recognition of target motifs by DNA-binding domains (DBDs) (REFs).
 However, little is known about how regions outside the DBD may contribute to pioneering function.
-<!--# Consider toning down this statement, as the FoxA1 region that interacts with nucleosomes (Iwafuchi 2020 Nat. Genet. paper) is outside the DBD. See also new Zaret paper in NSMB looking at contribution of IDRs and activation domains to chromatin opening on nucleosome arrays in vitro -->
-To test if regions outside the DBD are required for pioneering activity, we performed ChIP-seq and ATAC-seq on stable cell lines expressing the Zld or Grh DBD at levels comparable to the full-length (FL) protein (Extended Data Fig. 10a,b).
+<!--# Consider toning down this statement, as the FoxA1 region that interacts with nucleosomes (Iwafuchi 2020 Nat. Genet. paper) is outside the DBD. See also new Zaret paper in NSMB looking at contribution of IDRs and activation domains to chromatin opening on nucleosome arrays in vitro --> To test if regions outside the DBD are required for pioneering activity, we performed ChIP-seq and ATAC-seq on stable cell lines expressing the Zld or Grh DBD at levels comparable to the full-length (FL) protein (Extended Data Fig. 10a,b).
 Analysis of ChIP-seq signal at our previously defined class I-III regions revealed that the Zld DBD bound robustly to class I regions, but was unable to bind closed chromatin at class II or III regions (Fig. 6a,c).
 We previously showed that in neural stem cells, Zld binds to many regions that lack a canonical Zld motif through a mechanism that is not understood [@Larson2021a].
 Because many Zld-binding sites in S2 cells also lack a canonical CAGGTA motif (Fig. 3), it is possible that expressing the DNA-binding domain alone also removed regions of the protein that are required for CAGGTA-independent binding.
