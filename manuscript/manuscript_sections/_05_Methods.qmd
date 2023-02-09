@@ -1,3 +1,9 @@
+---
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
 ## Reagents
 
 | Reagent                               | Source/vendor             | Catalog/accession \# | Notes                   |
@@ -122,6 +128,7 @@ Reads with a mapping quality \< 30 and reads aligning to the mitochondrial genom
 As described previously, only fragments \< 100bp were considered for downstream analysis [@Buenrostro2013].
 Reads were combined across all replicates and peak calling was performed using MACS2 with parameters -f BAMPE \--keep-dup all -g dm \--call-summits.
 featureCounts was used to count the number of reads aligning within 200bp (100bp upstream or downstream) of peak summits.
+Generation of z-score normalized bigWig files was performed as described above for ChIP-seq data.
 Differential accessibility analysis was performed using DESeq2.
 Regions with an adjusted p-value \< 0.05 were considered differentially accessible.
 
@@ -146,19 +153,11 @@ Sequencing was performed on the Illumina NovaSeq 6000 with 150bp paired-end read
 
 ## CUT&RUN analysis
 
-Trimming
-
-Alignment
-
-Filtering
-
-peak calling
-
-bigwigs
-
-z-score normalization
-
-spike-in normalization
+Trimming, alignment, and quality filtering of CUT&RUN reads was performed as described above for ATAC-seq data.
+Peak calling was performed using MACS2 with parameters --broad -f BAMPE --keep-dup all -g dm.
+Generation of z-score normalized bigWig files was performed as described above for ChIP-seq data.
+The percentage of reads containing barcoded Epicypher nucleosomes was calculated and 1 divided by this percentage was used as the scaling factor for spike-in normalization.
+The z-score normalized read depth was multiplied by these scaling factors to generate spike-in normalized bigWigs.
 
 ## Analysis of previously published data
 
