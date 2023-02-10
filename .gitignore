@@ -66,3 +66,7 @@ vignettes/*.pdf
 
 # raw data files for project
 data/
+
+# MS Word manuscript files
+manuscript/custom-reference-doc.docx
+manuscript/manuscript.docx

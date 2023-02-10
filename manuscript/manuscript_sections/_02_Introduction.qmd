@@ -1,8 +1,6 @@
 ---
-bibliography: references.bib
+#bibliography: references.bib
 ---
-
-# Introduction
 
 Transcription factors activate transcription by binding to specific DNA motifs and recruiting transcriptional machinery.
 The packaging of DNA into chromatin obstructs TFs from accessing their target motifs.
@@ -47,5 +45,3 @@ We demonstrate that when expressed ectopically, Zld and Grh bind to closed chrom
 We show that an additional TF, Twist (Twi), can act as a pioneer factor.
 Pioneering by Zld, Grh, and Twi depends on a combination of local chromatin structure, sequence context, and PF concentration and requires protein regions outside the DNA-binding domain.
 We propose that pioneering activity is not a binary feature intrinsic to a protein, but occurs on a spectrum and can be regulated by a variety of protein-intrinsic and cell-type specific features.
-
-<!--# Should I discuss what is known about DBDs, structural features, and how PFs engage chromatin? -->

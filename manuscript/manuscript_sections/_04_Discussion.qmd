@@ -1,11 +1,8 @@
 ---
 format: html
 editor: visual
-bibliography: ../references.bib
-#csl: nature.csl
+#bibliography: ../references.bib
 ---
-
-# Discussion
 
 In this study, we systematically explore chromatin binding and opening by the transcription factors Zld, Grh and Twi.
 Unlike many mammalian TFs, which have mostly been studied in cell culture, Zld, Grh and Twi have been extensively studied during normal Drosophila development.

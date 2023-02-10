@@ -1,14 +1,28 @@
 ---
 title: "Defining properties regulating pioneer-factor binding and function"
-format: html
+author:
+  - Tyler J. Gibson, Melissa M. Harrison
+  # - Melissa M. Harrison
+affiliations:
+  - name: Department of Biomolecular Chemistry, University of Wisconsin School of Medicine and Public Health
+    city: Madison
+    state: WI
+format:
+  docx:
+    reference-doc: custom-reference-doc.docx
 editor: visual
 bibliography: references.bib
-#csl: nature.csl
+csl: nsmb.csl
 ---
 
-# Abstract
 
-{{< include manuscript_sections/_01_Abstract.qmd >}}
+{{< pagebreak >}}
+
+<!-- # Abstract -->
+
+<!-- {{< include manuscript_sections/_01_Abstract.qmd >}} -->
+
+<!-- {{< pagebreak >}} -->
 
 # Introduction
 
@@ -22,15 +36,21 @@ bibliography: references.bib
 
 {{< include manuscript_sections/_04_Discussion.qmd >}}
 
+{{< pagebreak >}}
+
 # Materials and Methods
 
 {{< include manuscript_sections/_05_Methods.qmd >}}
 
-# Figure Legends
-
-{{< include manuscript_sections/_06_Figure_Legends.qmd >}}
+{{< pagebreak >}}
 
 # References
 
 ::: {#refs}
 :::
+
+{{< pagebreak >}}
+
+# Figure Legends
+
+{{< include manuscript_sections/_06_Figure_Legends.qmd >}}
