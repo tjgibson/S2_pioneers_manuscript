@@ -363,6 +363,7 @@ rule annotate_tissue_classes:
 	script:
 		"workflow/scripts/get_tissue_classes.R"
 
+
 # run bichrom
 include: "bichrom/workflow/rules/bichrom.smk"
 

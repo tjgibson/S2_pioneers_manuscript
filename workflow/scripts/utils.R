@@ -132,7 +132,7 @@ is_palindrome <- function(x) {
   return(ifelse(x == reverseComplement(x), TRUE, FALSE) )
 }
 
-# function to get range for browser tracks -------------------------------------
+# function to get range for browser tracks  ====================================
 signal_range <- function(x, extra = 0.05) {
   min <- floor(min(x))
   max <- ceiling(max(x))
@@ -142,10 +142,36 @@ signal_range <- function(x, extra = 0.05) {
   return(output)
 }
 
-# function to extract legend from ggplot ---------------------------------------
+# function to extract legend from ggplot  ======================================
 get_legend <- function(plot){ 
   tmp <- ggplot_gtable(ggplot_build(plot)) 
   leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box") 
   legend <- tmp$grobs[[leg]] 
   legend
 } 
+
+# function for RPKM normalization of count table ===============================
+# define RPKM function
+rpkm <- function(count_table, widths) {
+  require(tidyverse)
+  
+  row_names <- tibble(id = rownames(count_table))
+  
+  
+  # calculate rpkm
+  kb_widths <- widths / 10^3
+  
+  column_rpkm <- function(x, widths = kb_widths) {
+    cr <- (x / widths) / (sum(x) / 10^6 )
+    return(cr)
+  }
+  
+  all_rpkm <- count_table %>%
+    map(column_rpkm) %>%
+    as_tibble() %>%
+    bind_cols(row_names) %>%
+    column_to_rownames(var = "id")
+  
+  return(all_rpkm)
+  
+}

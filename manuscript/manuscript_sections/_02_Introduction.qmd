@@ -22,7 +22,7 @@ Cell-type specific binding is often associated with cell-type specific chromatin
 In some cases, inhibition of various chromatin modifiers can enhance the ability of PFs to promote cellular reprogramming [@Larson2021a; @Soufi2012], but the molecular basis of how this relates to PF binding is unclear.
 Thus, a more systematic exploration of how PF binding and activity is regulated is essential to understanding how these factors function in development and disease.
 
-Two well studied PFs that display context-dependent activity and Zelda (Zld) and Grainy head (Grh).
+Two well studied PFs that display context-dependent activity are Zelda (Zld) and Grainy head (Grh).
 Zld is essential for driving early embryonic development in Drosophila [@Liang2008; @Staudt2006].
 Immediately following fertilization, the zygotic genome is transcriptionally silent and development is controlled by maternally deposited mRNAs and proteins.
 Maternal products are gradually degraded as the zygotic genome is activated during a process known as the maternal-to-zygotic transition (MZT) [@Schulz2019; @Vastenhouw2019].
@@ -30,7 +30,7 @@ In Drosophila, the pioneering activity Zld is essential for driving the MZT[@Lia
 Zld was the first discovered activator of the zygotic genome, and work on Zld paved the way for the identification of analogous proteins in other species[@Lee2013; @Leichsenring2013; @Gassler2022].
 Our lab recently identified an additional function of Zld in promoting neural stem cell (NSC) fate in the developing larval brain[@Larson2021a].
 The majority of Zld binding sites are unique to either the embryo or NSCs, with only a subset of regions being bound in both tissues.
-How Zld is directed to distinct binding sites in the embryo and NSCs in unknown.
+How Zld is directed to distinct binding sites in the embryo and NSCs is unknown.
 
 Grh is a master regulator of epithelial cell fate that is conserved among metazoans [@Wang2012].
 In Drosophila, Grh acts as a pioneer factor in late embryos and larval tissues [@Jacobs2018; @Nevil2020].

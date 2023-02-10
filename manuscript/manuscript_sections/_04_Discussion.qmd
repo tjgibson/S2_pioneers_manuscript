@@ -1,48 +1,84 @@
+---
+format: html
+editor: visual
+bibliography: ../references.bib
+#csl: nature.csl
+---
+
 # Discussion
 
-## outline:
+In this study, we systematically explore chromatin binding and opening by the transcription factors Zld, Grh and Twi.
+Unlike many mammalian TFs, which have mostly been studied in cell culture, Zld, Grh and Twi have been extensively studied during normal Drosophila development.
+By comparing the results of TF induction in S2 cells to Zld, Grh and Twi activity during normal development, we are able to provide mechanistic insights that are relevant to the endogenous function of pioneer factors.
+Zld, Grh, and Twi displayed a range of abilities to bind and open closed chromatin, suggesting that pioneering activity occurs on a spectrum and is context dependent.
+Binding is separable from chromatin opening through the identification of class II sites that are bound by PFs but remain closed, or by the expression of the Grh DBD, which retains some binding but cannot promote chromatin opening.
+The separability of binding and opening suggests that additional downstream steps such as recruitment of chromatin remodelers are required for chromatin opening [@Judd2021; @King2017].
+Local restructuring of nucleosome-DNA interactions [@Michael2020; @Dodonova2020], if it occurs in the case of Zld, Grh, or Twi, may be insufficient for establishing NFRs and may instead stabilize PF binding to allow recruitment of cofactors.
+We propose that pioneering activity requires a high level of chromatin occupancy that can be achieved through both protein-intrinsic and protein-extrinsic features (Fig 7) such as local chromatin features, protein concentration, DNA motif content, and protein domains outside the DBD.
 
-### Summary of study
+Despite the ability of PFs to bind to closed chromatin, most PFs occupy only a subset of target motifs in the genome and PF binding and activity is often cell-type specific [@Larson2021].
+In many cases, the presence of active or repressive chromatin is an important determinant of transcription factor binding, but the extent to which this informs PF binding is unclear.
+For the reprogramming factors Oct4, Sox2 and Klf4, and c-Myc (OSKM), high levels of the repressive histone modification H3K9me3 mark regions that are resistant to OSKM binding.
+Depletion of H3K9 methyltransferases increases OSKM occupancy at these regions [@Soufi2012].
+In the case of Pax7, a PF important for specification of pituitary melanotropes, H3K27me3 is correlated with cell-type specific Pax7 binding [@Mayran2019].
+Zld, Grh and Twi binding showed similar correlations with local chromatin structure.
+Even when expressed at low levels, all three proteins bind to active, accessible regions with degenerate motifs or no detectable motifs at all.
+At approximately physiological levels, these factors bind to canonical motifs in naïve chromatin, and are largely excluded from repressed chromatin (bearing H3K9me3 or H3K27me3).
+When we depleted H3K27me3 with the polycomb inhibitor tazemetostat, we observed no effect on binding within these repressed regions.
+In contrast to taz treatment, expression of Zld and Grh, but not Twi, at higher levels allowed at least some binding to these repressed regions.
+These results suggest that despite the correlation with H3K27me3, protein concentration and affinity for target motifs may be more important than the presence of polycomb silencing for tissue-specific binding and emphasize the importance of functionally testing the importance of different chromatin marks to PF binding.
+Cooperative binding with cell-type specific cofactors can also stabilize PF binding to tissue-specific binding sites [@Donaghey2018].
+This may also be important for Zld, Grh, and Twi, and may explain the presence of class VI sites that are resistant to binding and lack any repressive histone modifications.
+Further exploration of how chromatin structure and cofactor expression influence PF binding and activity will be essential to developing a more complete understanding of how these factors function in development and disease.
 
-### Pioneer-factor activity occurs on a spectrum and is context dependent
+The strong concentration dependence of chromatin opening by Zld, Grh and Twi provides important context for the *in vivo* biological functions of these proteins.
+Zld, along with many other TFs, forms high concentration foci within the nucleus [@Mir2018].
+These foci may facilitate chromatin opening by pioneer factors by creating a high protein concentration at specific genomic regions or locations within the nucleus.
+Grh has pioneering activity in late drosophila embryos and larval tissues, but not in early embryos [@Nevil2020; @Jacobs2018].
+This could, in part, be accounted for by differences in Grh expression between tissues.
+Additionally, GRHL2, one the mammalian Grh orthologs, can act as either a tumor suppressor or an oncogene, depending on the context [@Reese2019].
+Considering Grh expression levels in different tissues, cell types, and cancer types will be important for determining these contradictory effects.
+This is especially relevant considering that GRHL2 is frequently subject to copy number amplification in various cancers, leading to overexpression [@Reese2019].
+Pioneering activity by other mammalian factors depends on protein concentration [@Hansen2022; @Blassberg2022], suggesting that this is likely a general feature of PFs.
 
--   Twi is a PF
+In addition to DBDs that provide sequence specificity, many transcription factors contain long intrinsically disordered regions (IDRs) that are frequently required for transcriptional activation [@Minezaki2006].
+Fusing different IDRs to the same DBD can dramatically change which genomic regions are bound by transcription factors [@Brodsky2020].
+This observation complicates the textbook model of modular transcription factors in which the DBD determines sequence specificity and additional domains carry out transcriptional activation.
+Both Zld and Grh contain long disordered domains.
+The requirement of the Zld and Grh DBDs for robust binding to close chromatin demonstrates that regions outside the DBD, potentially the IDRs, are also important for binding site selection by pioneer factors.
+Others have suggested that IDRs may contribute to transcription-factor binding through protein-protein interactions with other transcription factors, nonspecific interactions with DNA, or by driving condensate formation [@Brodsky2021; @Staller2022].
+In the case of pioneer factors, another possibility is that IDRs form multivalent interactions with nucleosomes that stabilize binding.
+This model is supported by the observation that *in vitro*, full-length Zelda binds nucleosomes with a higher affinity than the DBD alone [@McDaniel2019a].
+Recent work showed that like Zld and Grh, the DBDs of human pioneer factors FOXA1 and SOX2 are required for robust binding of closed chromatin [@lerner2022].
+Additionally, single-molecule tracking indicated that the DBDs alone showed reduced scanning of silent chromatin within the nucleus.
+Zld and Grh DBDs still bound to class I regions, despite the weaker motifs present at these sites.
+This suggests that the less specific binding to class I regions is not due to interactions between IDRs and other proteins present at active chromatin.
+This binding may instead be driven by the high affinity of the DBDs for nucleosome-free DNA.
+Further exploration of how IDRs contribute to PF binding and chromatin accessibility will be essential for a more complete understanding of how *cis-*regulatory regions are established.
 
--   In our study, we see a range of pioneering activities: Twi\<Zld\<Grh
+-   discuss Zld and Grh data
 
-### Pioneer factors are regulated by both protein-intrinsic and protein-extrinsic features Local chromatin.
+-   mention Barkai and Staller reviews and models of IDR specificity: interactions with DNA, condensate formation, protein-protein interactions
 
--   **Active chromatin:**
+-   propose that interactions with nucleosomes is another model for how IDRs affect specificty.
+    Support this with Kath's EMSA data for Zld.
+    Cite Zaret papers as additional examples.
+    Could mention Giraldez data as well.
 
-    -   promotes PF binding in the absence fo strong motifs.
+-   Wrap up by mentioning that future directions could more fully explore how IDRs contribute to binding and specificity of PFs and non-PFs.
 
-    -   H3K27me3, despite correlation, does not affect binding and pioneering
+**P1: advantages of our study, summary of findings and our model**
 
--   **Protein concentration**:
+**P2: The effect of chromatin on binding: contextualize with references to past work by Zaret, Drouin, Mahony, and Giraldez and Onitchouk. Emphasize the importance of functionally testing correlative relationships. Mention potential importance of cofactors.**
 
-    -   Strong determinant of binding and chromatin opening in our study.
+**P3: the effect of concetration on binding. Mention that this could explain differences in Grh pioneering during development. Mention that Grh is overexpressed in cancers, so this has disease relevance. Mention Cohen studies.**
 
-    -   Different binding sites have different thresholds for binding and opening.
-        Some remain unbound even at high levels.
+P4: Discussion of DBD and conclusion.
+Discuss potential models and mention importance for understanding disease and reprogramming.
+Mention Zaret, Barkai and Scholer reprogramming paper.
+Concluding statement and any comments on future directions.
 
--   **Cofactors**?
-
--   Not explored extensively in our study.
-    How to discuss without inviting more experiments from reviewers?
-
--   **Motif content**:
-
-    -   Strong predictor of binding and opening.
-
--   **Protein domains**:
-
-    -   Required for stable binding and opening.
-
-    -   Allows uncoupling of binding from opening.
-
-### Model:
-
--   PF activity requires high chromatin occupancy which can be achieved in a variety of ways.
+## 
 
 ### Regions outside the DBD are essential for pioneering
 
