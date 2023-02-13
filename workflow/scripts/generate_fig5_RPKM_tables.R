@@ -318,7 +318,7 @@ rpkm_counts |>
   rownames_to_column("peak_id") |> 
   left_join(peak_class) |> 
   select(-peak_id) |> 
-  write_tsv("results/ChIP_tissue_classes/grh_classes_titration_ATAC_rpkm.tsv")
+  write_tsv("results/ChIP_tissue_classes/twi_classes_titration_ChIP_rpkm.tsv")
 
 # Twi ATAC =====================================================================
 # import unit names
@@ -373,18 +373,11 @@ rpkm_counts <- rpkm(select(read_counts, -c("peak_width")), widths = read_counts$
 peak_class <- annotation |> 
   select(GeneID,Chr, Start, End) |> 
   dplyr::rename(peak_id = "GeneID", seqnames = "Chr", start = "Start", end = "End") |> 
-  left_join(twi_tissue_occupancy) |> 
-  select(peak_id, class)
+  left_join(twi_tissue_occupancy)
 
-# plot boxplot
+# prepare output table
 rpkm_counts |> 
   rownames_to_column("peak_id") |> 
   left_join(peak_class) |> 
-  pivot_longer(-c("peak_id", "class"), names_to = "sample_name", values_to = "RPKM") |> 
-  mutate(sample_name = factor(sample_name, levels = c("titration_S2-HA-Twi_0uM","titration_S2-HA-Twi_10uM", "titration_S2-HA-Twi_40uM", "titration_S2-HA-Twi_160uM"))) |> 
-  ggplot(aes(x = sample_name, y = log2(RPKM))) +
-  geom_boxplot(fill = twi_color) +
-  theme_bw(base_size = 24) +
-  theme(axis.text.x = element_text(angle = 45, hjust=1)) +
-  facet_grid(~class)
-
+  select(-peak_id) |> 
+  write_tsv("results/ChIP_tissue_classes/twi_classes_titration_ATAC_rpkm.tsv")

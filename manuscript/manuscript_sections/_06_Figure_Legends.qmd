@@ -50,33 +50,12 @@ Vertical dashed line indicates a log~2~ RPKM value of 0 as a threshold for consi
 **c-d,** Immunoblots showing titration of Zld **(c)** or Grh **(d)** protein levels in stable cell lines.
 Two independently generated cell lines are shown and compared to 2-3H embryos.
 
-**Extended Data Figure 2: Zld and Grh bind to chromatin rapidly after induction of protein expression**
+**Extended Data Figure 2: Zld and Grh bind to chromatin rapidly after induction of protein expression. a-b,** Immunoblots showing time course of Zld **(a)** or Grh **(b)** protein expression following induction of stable cell lines.
+**c-d,** Metaplots showing average z-score normalized CUT&RUN signal at class I, II or III sites at different time points following induction.
 
--   ~~Western blot time course of protein levels~~
-
--   CUT&RUN time course to show rapid binding
-
--   likely rules out dependence on DNA replication
-
-**Extended Data Figure 3: Ectopic expression of pioneer factors in S2 cells leads to widespread changes to chromatin accessibility and gene expression.**
-
--   volcano and/or MA plots with enrichment of binding
-
--   Analysis of nonspecific changes?
-
--   ~~RNA-seq volcano/MA plots~~
-
--   ~~RNA-seq GO analysis~~
-
--   Genome browser examples of specific and nonspecific accessibility changes?
-
--   motif enrichment for nonspecific changes?
-
--   \% of TFs bound and activated by Zld/Grh as indicator of nonspecific changes?
-
--   Should we include any analysis of decreased/downregulated sites for RNA-seq or ATAC?
-
--   Violin plots to emphasize correlation between ATAC and RNA-seq?
+**Extended Data Figure 3: Ectopic expression of pioneer factors in S2 cells leads to widespread changes to chromatin accessibility and gene expression. a,d,** Volcano plots showing changes in ATAC-seq signal in cells expressing Zld **(a)** or Grh **(d)** when compared to WT cells treated with the same concentration of CuSO~4~.
+**b,e,** RNA-seq volcano plots showing gene expression changes in cells expressing Zld **(a)** or Grh **(d)** when compared to WT cells treated with the same concentration of CuSO~4~.
+**c,f,** Bar plots showing enrichment of gene ontology terms in genes significantly upregulated upon expression of Zld **(c)** or Grh **(f)**.
 
 **Extended Data Figure 4: Twist binding leads to chromatin opening and transcriptional activation**
 
