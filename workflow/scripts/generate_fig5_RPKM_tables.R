@@ -64,7 +64,8 @@ peak_class <- annotation |>
 rpkm_counts |> 
   rownames_to_column("peak_id") |> 
   left_join(peak_class) |> 
-  select(-peak_id) |> 
+  select(-peak_id) |>
+  distinct() |> 
   write_tsv("results/ChIP_tissue_classes/zld_classes_titration_ChIP_rpkm.tsv")
 
 # Zld ATAC =====================================================================

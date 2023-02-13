@@ -44,20 +44,20 @@ input_files <- c(
 
 
 # Define potential binding sites ===============================================
-overlap_table <- input_files %>%
+overlap_table <- input_files |>
   map(rtracklayer::import) 
 
 overlap_table$motif_instances <- resize(overlap_table$motif_instances, width = 500, fix = "center")
 
-overlap_table <- overlap_table %>%
-  GRangesList() %>%
+overlap_table <- overlap_table |>
+  GRangesList() |>
   peak_overlap_table()
 
 # annotate motifs ==============================================================
 other_tissue_names <- names(other_tissue_bound_regions)
 
-overlap_table <- overlap_table %>%
-  mutate(n_tissues_bound = rowSums(select(., all_peaks, all_of(other_tissue_names)))) %>%
+overlap_table <- overlap_table |>
+  mutate(n_tissues_bound = rowSums(select(., all_peaks, all_of(other_tissue_names)))) |>
   mutate(class = case_when(
     (motif_instances & n_tissues_bound == 0) ~ "motif_never_bound",
     (motif_instances & !all_peaks & n_tissues_bound >= 1 & H3K27me3_peaks) ~ "repressed_H3K27me3",
@@ -66,8 +66,8 @@ overlap_table <- overlap_table %>%
     (class_I_peaks) ~ "class I",
     (class_II_peaks) ~ "class II",
     (class_III_peaks) ~ "class III"
-  )) %>%
-  filter(!is.na(class)) %>% 
+  )) |>
+  filter(!is.na(class)) |> 
   filter(!ns_sites)
 
 # # generate background regions ==================================================
@@ -77,12 +77,12 @@ tile_seq_info <- seqinfo(BSgenome.Dmelanogaster.UCSC.dm6)
 tile_seq_info <- tile_seq_info[seqnames(tile_seq_info)[seqnames(tile_seq_info) %in% keep_chroms]]
 
 genome_tiles <- tileGenome(tile_seq_info, tilewidth=500,
-                           cut.last.tile.in.chrom=TRUE) %>% 
+                           cut.last.tile.in.chrom=TRUE) |> 
   subsetByOverlaps(rtracklayer::import(ns_sites), invert = TRUE)
 
 
-background_sites <- genome_tiles[sample(seq(genome_tiles), size = sum(overlap_table$all_peaks))] %>% 
-  as.data.frame() %>% 
+background_sites <- genome_tiles[sample(seq(genome_tiles), size = sum(overlap_table$all_peaks))] |> 
+  as.data.frame() |> 
   add_column(class = "background")
 
 
@@ -90,14 +90,14 @@ background_sites <- genome_tiles[sample(seq(genome_tiles), size = sum(overlap_ta
 
 ## output all annotated sites ==================================================
 # get output sites
-out_sites <- overlap_table %>% 
-  bind_rows(background_sites) %>% 
+out_sites <- overlap_table |> 
+  bind_rows(background_sites) |> 
   select(seqnames, start, end, class)
 
 # filter out motifs within 500bp of chromosome end 
 # this will prevent errors when trying to get 500bp of sequence around motifs
-out_sites_gr <- out_sites %>% 
-  makeGRangesFromDataFrame() %>% 
+out_sites_gr <- out_sites |> 
+  makeGRangesFromDataFrame() |> 
   resize(width = snakemake@params[["bichrom_window_size"]], fix = "center")
 
 seqlevels(out_sites_gr) <- seqlevels(BSgenome.Dmelanogaster.UCSC.dm6)
@@ -127,6 +127,7 @@ if (length(OOB_sites) > 0) {
 
 
 # write output sites to file
-out_sites  %>%  
-  filter(seqnames %in% keep_chroms) %>% 
+out_sites  |>  
+  filter(seqnames %in% keep_chroms) |> 
+  distinct() |> 
   write_tsv(snakemake@output[[1]])

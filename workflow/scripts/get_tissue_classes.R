@@ -67,7 +67,7 @@ overlap_table <- overlap_table |>
   filter(!ns_sites)
 
 # # # generate random background regions ==================================================
-# keep_chroms <- readLines(snakemake@input[["keep_chroms"]])
+keep_chroms <- readLines(snakemake@input[["keep_chroms"]])
 # # 
 # tile_seq_info <- seqinfo(BSgenome.Dmelanogaster.UCSC.dm6)
 # tile_seq_info <- tile_seq_info[seqnames(tile_seq_info)[seqnames(tile_seq_info) %in% keep_chroms]]
@@ -94,4 +94,5 @@ out_sites <- overlap_table |>
 # write output sites to file
 out_sites  |>  
   filter(seqnames %in% keep_chroms) |> 
+  distinct() |> 
   write_tsv(snakemake@output[[1]])
