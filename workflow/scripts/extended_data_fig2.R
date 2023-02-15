@@ -31,24 +31,14 @@ grh_blot_image <- "data/immunoblot_raw_images/2018-11-27_timecourse/grh_timecour
 
 # # create blank layout for plot ===============================================
 # pdf(snakemake@output[[1]], useDingbats = FALSE)
-# pdf("manuscript/figures/extended_data_fig2.pdf", useDingbats = FALSE)
-pageCreate(width = 18, height = 12, default.units = "cm", showGuides = TRUE)
+pdf("manuscript/figures/extended_data_fig2.pdf", useDingbats = FALSE)
+pageCreate(width = 18.3, height = 15, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics
 panel_label_params <- pgParams(fontsize = 8)
 large_text_params <- pgParams(fontsize = 7)
 small_text_params <- pgParams(fontsize = 5)
-
-# colors
-zld_heatmap_colors <- brewer.pal(9, "Blues")
-grh_heatmap_colors <- brewer.pal(9, "Oranges")
-
-
-# set heatmap parameters
-hm_upstream <-  500
-hm_downstream <-  500
-
 
 # impor ChIP classes ===========================================================
 zld_ChIP_classes <- zld_ChIP_classes_fn |> 
@@ -77,7 +67,7 @@ blot_image <- blot_image |>
   rotate(1, bg.col = "white")
 
 # adjust brightness and contrast
-blot_image <- (blot_image * 1.1 - 0.5)
+blot_image <- (blot_image * 1.1 - 0.3)
 
 # crop image
 blot_image <- blot_image[501:776,393:518]
@@ -94,12 +84,42 @@ plot_width <- 7
 plotRaster(
   blot_image,
   x = ref_x + 1,
-  y = ref_y + 1.5,
+  y = ref_y + 0.5,
   width = plot_width,
   height = plot_width * blot_aspect_ratio,
   default.units = "cm",
   just = c("left, top")
   
+)
+
+plotText(
+  label = "0H", params = large_text_params,
+  x = ref_x + 1.8, y = ref_y + 0.25, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "1H", params = large_text_params,
+  x = ref_x + 2.9, y = ref_y + 0.25, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "4H", params = large_text_params, 
+  x = ref_x + 4, y = ref_y + 0.25, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "12H", params = large_text_params,
+  x = ref_x + 5.1, y = ref_y + 0.25, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "24H", params = large_text_params,
+  x = ref_x + 6.2, y = ref_y + 0.25, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "48H", params = large_text_params,
+  x = ref_x + 7.3, y = ref_y + 0.25, just = c("center"), default.units = "cm"
 )
 
 # panel B ======================================================================
@@ -139,7 +159,7 @@ plot_width <- 7
 plotRaster(
   blot_image,
   x = ref_x + 1,
-  y = ref_y + 1.5,
+  y = ref_y + 0.5,
   width = plot_width,
   height = plot_width * blot_aspect_ratio,
   default.units = "cm",
@@ -147,10 +167,40 @@ plotRaster(
   
 )
 
+plotText(
+  label = "0H", params = large_text_params,
+  x = ref_x + 1.8, y = ref_y + 0.25, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "1H", params = large_text_params,
+  x = ref_x + 2.9, y = ref_y + 0.25, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "4H", params = large_text_params, 
+  x = ref_x + 4, y = ref_y + 0.25, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "12H", params = large_text_params,
+  x = ref_x + 5, y = ref_y + 0.25, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "24H", params = large_text_params,
+  x = ref_x + 6.1, y = ref_y + 0.25, just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "48H", params = large_text_params,
+  x = ref_x + 7.1, y = ref_y + 0.25, just = c("center"), default.units = "cm"
+)
+
 # Panel C ======================================================================
 # panel label
 ref_x <- 0.5
-ref_y <- 4.5 
+ref_y <- 6
 
 # panel label
 plotText(
@@ -168,62 +218,344 @@ bw <- c(
 )
 
 
+# define regions to plot
 regions <- zld_ChIP_classes %>%
-  filter(class != "i") %>%
   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
 
-hm <- plot_heatmap_minimal(
-  bw, regions, 
-  upstream = hm_upstream, downstream = hm_downstream, 
-  colors  = zld_heatmap_colors, 
-  row_split = regions$class, 
-  return_heatmap_list = TRUE,
-  use_raster = TRUE, raster_by_magick = TRUE, raster_magick_filter = "Triangle",
-  border = "black",
-  border_gp = gpar(lwd = 0.5)
-  
+# plot metaplot 1
+plot_range <- c(-0.1,3.5)
+plot_colors <- c(
+  `i` = "#DEEBF7",
+  `ii` = "#9ECAE1",
+  `iii` = "#3182BD"
 )
 
-h_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 0, 0, 0), "mm")))
+metaplot_1 <- plot_average(bw[1], regions = regions, row_split = regions$class, line_width = 0.2) +
+  # scale_color_brewer(palette = "Blues") +
+  scale_color_manual(values = plot_colors) +
+  theme(text = element_text(size = 5),
+        line = element_line(size = 0.1),
+        axis.title.y = element_blank(),
+        plot.margin = margin(0,0,0,0),
+        legend.position = "none"
+        # legend.key.size = unit(2, 'mm'),
+        # legend.title = element_blank(),
+        # legend.position = "bottom",
+        # legend.margin=margin(-5,-5,-5,-5),
+        # legend.box.margin=margin(0,0,0,0)
+        
+  ) +
+  ylim(plot_range)
 
-
-# place heatmap on page
 plotGG(
-  plot = h_hm,
-  x = (ref_x + 0.75), y = (ref_y + 0.25),
-  width = 5.25, height = 3, just = c("left", "top"),
+  plot = metaplot_1,
+  x = (ref_x + 0.25), y = (ref_y + 0.25),
+  width = 3, height = 3, just = c("left", "top"),
   default.units = "cm"
 )
 
-# add axes to heatmaps
-seekViewport(name = "matrix_4_heatmap_body_2_1")
-grid.xaxis(at = c(0, 0.5, 1), label = c(paste0("-",hm_upstream / 1000, "KB"), "peak center", paste0("+",hm_downstream / 1000, "KB")), gp = gpar(lwd = 0.5, fontsize = small_text_params$fontsize))
-seekViewport(name = "page")
+# plot metaplot 2
+metaplot_2 <- plot_average(bw[2], regions = regions, row_split = regions$class, line_width = 0.2) +
+  # scale_color_brewer(palette = "Blues") +
+  scale_color_manual(values = plot_colors) +
+  theme(text = element_text(size = 5),
+        line = element_line(size = 0.1),
+        axis.title.y = element_blank(),
+        plot.margin = margin(0,0,0,0),
+        legend.position = "none"
+        # legend.key.size = unit(2, 'mm'),
+        # legend.title = element_blank(),
+        # legend.position = "bottom",
+        # legend.margin=margin(-5,-5,-5,-5),
+        # legend.box.margin=margin(0,0,0,0)
+        
+  ) +
+  ylim(plot_range)
 
-# heatmap labels
+plotGG(
+  plot = metaplot_2,
+  x = (ref_x + 3.75), y = (ref_y + 0.25),
+  width = 3, height = 3, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# plot metaplot 3
+metaplot_3 <- plot_average(bw[3], regions = regions, row_split = regions$class, line_width = 0.2) +
+  scale_color_manual(values = plot_colors) +
+  theme(text = element_text(size = 5),
+        line = element_line(size = 0.1),
+        axis.title.y = element_blank(),
+        plot.margin = margin(0,0,0,0),
+        legend.position = "none"
+  ) +
+  ylim(plot_range)
+
+plotGG(
+  plot = metaplot_3,
+  x = (ref_x + 7.25), y = (ref_y + 0.25),
+  width = 3, height = 3, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# plot metaplot 4
+metaplot_4 <- plot_average(bw[4], regions = regions, row_split = regions$class, line_width = 0.2) +
+  scale_color_manual(values = plot_colors) +
+  theme(text = element_text(size = 5),
+        line = element_line(size = 0.1),
+        axis.title.y = element_blank(),
+        plot.margin = margin(0,0,0,0),
+        legend.position = "none"
+  ) +
+  ylim(plot_range)
+
+plotGG(
+  plot = metaplot_4,
+  x = (ref_x + 10.75), y = (ref_y + 0.25),
+  width = 3, height = 3, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# plot metaplot 4
+metaplot_5 <- plot_average(bw[5], regions = regions, row_split = regions$class, line_width = 0.2) +
+  scale_color_manual(values = plot_colors) +
+  theme(text = element_text(size = 5),
+        line = element_line(size = 0.1),
+        axis.title.y = element_blank(),
+        plot.margin = margin(0,0,0,0),
+        legend.position = "none"
+  ) +
+  ylim(plot_range)
+
+plotGG(
+  plot = metaplot_5,
+  x = (ref_x + 14.25), y = (ref_y + 0.25),
+  width = 3, height = 3, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# add labels to plots
 plotText(
-  label = "S2 Grh ChIP", params = small_text_params, fontface = "bold",
-  x = (ref_x + 1.625), y = (ref_y), just = c("center"), default.units = "cm"
+  label = "CUT&RUN signal", params = small_text_params,
+  x = ref_x, y = (ref_y + 1.75), just = "center", default.units = "cm", rot = 90
 )
 
 plotText(
-  label = "S2 WT ATAC", params = small_text_params, fontface = "bold",
-  x = (ref_x + 3.375), y = (ref_y), just = c("center"), default.units = "cm"
+  label = "0H", params = large_text_params,
+  x = (ref_x + 1.75), y = (ref_y), just = "center", default.units = "cm"
 )
 
 plotText(
-  label = "S2 Grh ATAC", params = small_text_params, fontface = "bold",
-  x = (ref_x + 5.125), y = (ref_y), just = c("center"), default.units = "cm"
+  label = "4H", params = large_text_params,
+  x = (ref_x + 5.25), y = (ref_y), just = "center", default.units = "cm"
 )
 
 plotText(
-  label = "class II", params = small_text_params, fontface = "bold",
-  x = (ref_x + 0.5), y = (ref_y + 1.5), just = c("right", "center"), default.units = "cm"
+  label = "12H", params = large_text_params,
+  x = (ref_x + 8.75), y = (ref_y), just = "center", default.units = "cm"
 )
 
 plotText(
-  label = "class III", params = small_text_params, fontface = "bold",
-  x = (ref_x + 0.5), y = (ref_y + 3), just = c("right","center"), default.units = "cm"
+  label = "24H", params = large_text_params,
+  x = (ref_x + 12.25), y = (ref_y), just = "center", default.units = "cm"
+)
+
+plotText(
+  label = "48H", params = large_text_params,
+  x = (ref_x + 15.75), y = (ref_y), just = "center", default.units = "cm"
+)
+
+# add legend for metaplots
+plotLegend(
+  legend = names(plot_colors),
+  fill = plot_colors,
+  border = FALSE,
+  x = 16.8, y = 6.5, width = 1, height = 1,
+  just = c("center", "top"),
+  default.units = "cm",
+  fontsize = small_text_params$fontsize,
+  lty = 1,
+  orientation = "v"
+)
+
+
+# Panel D ======================================================================
+# panel label
+ref_x <- 0.5
+ref_y <- 9.75
+
+# panel label
+plotText(
+  label = "d", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+
+bw <- c(
+  S2_Grh_CR_0H = S2_Grh_CR_0H_bw,
+  S2_Grh_CR_4H = S2_Grh_CR_4H_bw,
+  S2_Grh_CR_4H = S2_Grh_CR_12H_bw, 
+  S2_Grh_CR_24H = S2_Grh_CR_24H_bw,
+  S2_Grh_CR_48H = S2_Grh_CR_48H_bw
+)
+
+
+# define regions to plot
+regions <- grh_ChIP_classes %>%
+  makeGRangesFromDataFrame(keep.extra.columns = TRUE)
+
+# plot metaplot 1
+plot_range <- c(-0.1,3)
+plot_colors <- c(
+  `i` = "#FEE6CE",
+  `ii` = "#FDAE6B",
+  `iii` = "#E6550D"
+)
+  
+metaplot_1 <- plot_average(bw[1], regions = regions, row_split = regions$class, line_width = 0.2) +
+  # scale_color_brewer(palette = "Blues") +
+  scale_color_manual(values = plot_colors) +
+  theme(text = element_text(size = 5),
+        line = element_line(size = 0.1),
+        axis.title.y = element_blank(),
+        plot.margin = margin(0,0,0,0),
+        legend.position = "none"
+        # legend.key.size = unit(2, 'mm'),
+        # legend.title = element_blank(),
+        # legend.position = "bottom",
+        # legend.margin=margin(-5,-5,-5,-5),
+        # legend.box.margin=margin(0,0,0,0)
+        
+  ) +
+  ylim(plot_range)
+
+plotGG(
+  plot = metaplot_1,
+  x = (ref_x + 0.25), y = (ref_y + 0.25),
+  width = 3, height = 3, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# plot metaplot 2
+metaplot_2 <- plot_average(bw[2], regions = regions, row_split = regions$class, line_width = 0.2) +
+  # scale_color_brewer(palette = "Blues") +
+  scale_color_manual(values = plot_colors) +
+  theme(text = element_text(size = 5),
+        line = element_line(size = 0.1),
+        axis.title.y = element_blank(),
+        plot.margin = margin(0,0,0,0),
+        legend.position = "none"
+        # legend.key.size = unit(2, 'mm'),
+        # legend.title = element_blank(),
+        # legend.position = "bottom",
+        # legend.margin=margin(-5,-5,-5,-5),
+        # legend.box.margin=margin(0,0,0,0)
+        
+  ) +
+  ylim(plot_range)
+
+plotGG(
+  plot = metaplot_2,
+  x = (ref_x + 3.75), y = (ref_y + 0.25),
+  width = 3, height = 3, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# plot metaplot 3
+metaplot_3 <- plot_average(bw[3], regions = regions, row_split = regions$class, line_width = 0.2) +
+  scale_color_manual(values = plot_colors) +
+  theme(text = element_text(size = 5),
+        line = element_line(size = 0.1),
+        axis.title.y = element_blank(),
+        plot.margin = margin(0,0,0,0),
+        legend.position = "none"
+  ) +
+  ylim(plot_range)
+
+plotGG(
+  plot = metaplot_3,
+  x = (ref_x + 7.25), y = (ref_y + 0.25),
+  width = 3, height = 3, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# plot metaplot 4
+metaplot_4 <- plot_average(bw[4], regions = regions, row_split = regions$class, line_width = 0.2) +
+  scale_color_manual(values = plot_colors) +
+  theme(text = element_text(size = 5),
+        line = element_line(size = 0.1),
+        axis.title.y = element_blank(),
+        plot.margin = margin(0,0,0,0),
+        legend.position = "none"
+  ) +
+  ylim(plot_range)
+
+plotGG(
+  plot = metaplot_4,
+  x = (ref_x + 10.75), y = (ref_y + 0.25),
+  width = 3, height = 3, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# plot metaplot 4
+metaplot_5 <- plot_average(bw[5], regions = regions, row_split = regions$class, line_width = 0.2) +
+  scale_color_manual(values = plot_colors) +
+  theme(text = element_text(size = 5),
+        line = element_line(size = 0.1),
+        axis.title.y = element_blank(),
+        plot.margin = margin(0,0,0,0),
+        legend.position = "none"
+  ) +
+  ylim(plot_range)
+
+plotGG(
+  plot = metaplot_5,
+  x = (ref_x + 14.25), y = (ref_y + 0.25),
+  width = 3, height = 3, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# add labels to plots
+plotText(
+  label = "CUT&RUN signal", params = small_text_params,
+  x = ref_x, y = (ref_y + 1.75), just = "center", default.units = "cm", rot = 90
+)
+
+plotText(
+  label = "0H", params = large_text_params,
+  x = (ref_x + 1.75), y = (ref_y), just = "center", default.units = "cm"
+)
+
+plotText(
+  label = "4H", params = large_text_params,
+  x = (ref_x + 5.25), y = (ref_y), just = "center", default.units = "cm"
+)
+
+plotText(
+  label = "12H", params = large_text_params,
+  x = (ref_x + 8.75), y = (ref_y), just = "center", default.units = "cm"
+)
+
+plotText(
+  label = "24H", params = large_text_params,
+  x = (ref_x + 12.25), y = (ref_y), just = "center", default.units = "cm"
+)
+
+plotText(
+  label = "48H", params = large_text_params,
+  x = (ref_x + 15.75), y = (ref_y), just = "center", default.units = "cm"
+)
+
+# add legend for metaplots
+plotLegend(
+  legend = names(plot_colors),
+  fill = plot_colors,
+  border = FALSE,
+  x = 16.8, y = 10.25, width = 1, height = 1,
+  just = c("center", "top"),
+  default.units = "cm",
+  fontsize = small_text_params$fontsize,
+  lty = 1,
+  orientation = "v"
 )
 
 
