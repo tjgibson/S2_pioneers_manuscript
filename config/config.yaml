@@ -282,17 +282,17 @@ ATACseq:
 ##########################################################################################
 ##########################################################################################
 ###                                                                                    ###
-###              CUT&RUN analysis configuration                                        ###
+###              histone CUT&RUN analysis configuration                                ###
 ###                                                                                    ###
 ##########################################################################################
 ##########################################################################################
-CUTandRUN:
+histone_CUTandRUN:
   # path or URL to sample sheet (TSV format, columns: sample, condition, ...)
   #samples: config/samples.tsv
   # path or URL to sequencing unit sheet (TSV format, columns: sample, unit, fq1, fq2)
   # Units are technical replicates (e.g. lanes, or resequencing of the same biological
   # sample).
-  units: config/CR_units.tsv
+  units: config/histone_CR_units.tsv
 
   # optional inclusion of certain rules -------------------------------------------------------
   mergeReads:
@@ -308,9 +308,60 @@ CUTandRUN:
     link: https://hgdownload.soe.ucsc.edu/goldenPath/dm6/bigZips/dm6.fa.gz
 
   # spike-in genome options ------------------------------------------------------------------
-  use_spikeIn: TRUE
-  epiCypher_spikeIn: TRUE
+  use_spikeIn: True
+  epiCypher_spikeIn: True
   epiCypher_barcodes: config/epicypher_met_panel_nuc_barcodes.csv
+
+  # changes to rule paramters ---------------------------------------------------------------
+  params:
+    bowtie2_index: ""
+    bowtie2_align: "-k 2 --very-sensitive --no-mixed --no-discordant -X 5000"
+    filter_multireads: "-f bam -F '(mapping_quality >= 30) and ([XS] == null)'" 
+    bigwigs_ind: "--binSize 10"
+    bigwigs_merged: "--binSize 10"
+    macs2_call_peaks_narrow: "-f BAMPE --keep-dup all -g dm --call-summits"
+    macs2_call_peaks_broad: "-f BAMPE --keep-dup all -g dm"
+    bigwigs_ind: "--binSize 10"
+    bigwigs_merged: "--binSize 10"
+    filter_peaks_by_replicates:
+      min_overlap: 10
+      replicate_threshold: 2
+
+##########################################################################################
+##########################################################################################
+###                                                                                    ###
+###              TF CUT&RUN analysis configuration                                     ###
+###                                                                                    ###
+##########################################################################################
+##########################################################################################
+TF_CUTandRUN:
+  # path or URL to sample sheet (TSV format, columns: sample, condition, ...)
+  #samples: config/samples.tsv
+  # path or URL to sequencing unit sheet (TSV format, columns: sample, unit, fq1, fq2)
+  # Units are technical replicates (e.g. lanes, or resequencing of the same biological
+  # sample).
+  units: config/TF_CR_units.tsv
+
+  # optional inclusion of certain rules -------------------------------------------------------
+  mergeReads:
+    activate: False
+
+  # text file containing list of chromosomes to keep when filtering ---------------------------
+  filter_chroms: True
+  keep_chroms: config/keep_chroms.txt
+
+  # reference genome options ------------------------------------------------------------------
+  ref_genome:
+    name: dm6
+    link: https://hgdownload.soe.ucsc.edu/goldenPath/dm6/bigZips/dm6.fa.gz
+
+  # spike-in genome options ------------------------------------------------------------------
+  use_spikeIn: True
+  epiCypher_spikeIn: False
+
+  spikeIn_genome:
+    name: yeast_w303
+    link: http://sgd-archive.yeastgenome.org/sequence/strains/W303/W303_SGD_2015_JRIU00000000/W303_SGD_2015_JRIU00000000.fsa.gz
 
   # changes to rule paramters ---------------------------------------------------------------
   params:

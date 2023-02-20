@@ -1,3 +1,11 @@
+##########################################################################################
+##########################################################################################
+###                                                                                    ###
+###                                 Setup                                              ###
+###                                                                                    ###
+##########################################################################################
+##########################################################################################
+
 from snakemake.utils import min_version
 
 ##### set minimum snakemake version #####
@@ -6,7 +14,14 @@ min_version("6.0")
 ##### specify config file #####
 configfile: 'config/config.yaml'
 
-# process ChIP-seq data from this study
+##########################################################################################
+##########################################################################################
+###                                                                                    ###
+###                          ChIP-seq analysis                                         ###
+###                                                                                    ###
+##########################################################################################
+##########################################################################################
+
 module ChIPseq:
     snakefile: "https://github.com/tjgibson/NGS-workflow-chipseq/raw/main/workflow/Snakefile"
 #     snakefile: "../../NGS_workflows/NGS-workflow-chipseq/workflow/Snakefile"
@@ -138,7 +153,14 @@ rule get_embryo_PWMs:
 		"workflow/scripts/get_motif_PWM.R"
 		
 
-# process RNA-seq data
+##########################################################################################
+##########################################################################################
+###                                                                                    ###
+###                           RNA-seq analysis                                         ###
+###                                                                                    ###
+##########################################################################################
+##########################################################################################
+
 module RNAseq:
     snakefile:
         "https://github.com/tjgibson/NGS-workflow-RNAseq/raw/main/workflow/Snakefile"
@@ -174,7 +196,14 @@ rule annotate_RNAseq_results:
 		"workflow/scripts/annotate_RNAseq_results.R"
 
 
-# process ATAC-seq data
+##########################################################################################
+##########################################################################################
+###                                                                                    ###
+###                          ATAC-seq analysis                                         ###
+###                                                                                    ###
+##########################################################################################
+##########################################################################################
+
 module ATACseq:
 	snakefile: "https://github.com/tjgibson/NGS-workflow-ATACseq/raw/main/workflow/Snakefile"
 # 	snakefile: "../../NGS_workflows/NGS-workflow-ATACseq/workflow/Snakefile"
@@ -209,13 +238,47 @@ rule annotate_ATAC_peaks:
 	script:
 		"workflow/scripts/annotate_peaks_ChIPseeker.R"
 
+##########################################################################################
+##########################################################################################
+###                                                                                    ###
+###                           histone CUT&RUN analysis                                 ###
+###                                                                                    ###
+##########################################################################################
+##########################################################################################
+
 # process CUT&RUN data
-module CUTandRUN:
-# 	snakefile: "https://github.com/tjgibson/NGS-workflow-CUTandRUN/raw/master/workflow/Snakefile"
-	snakefile: "../NGS_workflows/NGS-workflow-CUTandRUN/workflow/Snakefile"
-	config: config["CUTandRUN"]
-	prefix: "CUTandRUN"
-use rule * from CUTandRUN as CUTandRUN_*
+module histone_CUTandRUN:
+	snakefile: "https://github.com/tjgibson/NGS-workflow-CUTandRUN/raw/master/workflow/Snakefile"
+# 	snakefile: "../NGS_workflows/NGS-workflow-CUTandRUN/workflow/Snakefile"
+	config: config["histone_CUTandRUN"]
+	prefix: "histone_CUTandRUN"
+use rule * from histone_CUTandRUN as histone_CUTandRUN_*
+
+##########################################################################################
+##########################################################################################
+###                                                                                    ###
+###                             TF CUT&RUN analysis                                    ###
+###                                                                                    ###
+##########################################################################################
+##########################################################################################
+
+# process CUT&RUN data
+module TF_CUTandRUN:
+	snakefile: "https://github.com/tjgibson/NGS-workflow-CUTandRUN/raw/master/workflow/Snakefile"
+# 	snakefile: "../NGS_workflows/NGS-workflow-CUTandRUN/workflow/Snakefile"
+	config: config["TF_CUTandRUN"]
+	prefix: "TF_CUTandRUN"
+use rule * from TF_CUTandRUN as TF_CUTandRUN_*
+
+
+
+##########################################################################################
+##########################################################################################
+###                                                                                    ###
+###                          integrated analysis                                       ###
+###                                                                                    ###
+##########################################################################################
+##########################################################################################
 
 # Annotate ChIP classes
 # - Use output of above modules to annotate ChIP peaks as class I, II, or III
@@ -370,14 +433,15 @@ include: "bichrom/workflow/rules/bichrom.smk"
 # run BPnet
 include: "BPnet/workflow/rules/BPnet.smk"
 
-# module process_CUTandRUN:
-#     snakefile:
-#         "https://github.com/tjgibson/NGS-workflow-chipseq/raw/main/workflow/Snakefile"
-# 		config: config["process_CUTandRUN"]
-# 		prefix: "process_CUTandRUN"
-# use rule * from process_CUTandRUN as CUTandRUN_*
 
-# rules to generate final figures
+
+##########################################################################################
+##########################################################################################
+###                                                                                    ###
+###                        generate figures for MS                                     ###
+###                                                                                    ###
+##########################################################################################
+##########################################################################################
 rule figure_1:
 	input:
 		Zld_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw",
@@ -525,14 +589,23 @@ rule figure_6:
 	script:
 		"workflow/scripts/fig6.R"
 
-##### target rules #####
+
+
+##########################################################################################
+##########################################################################################
+###                                                                                    ###
+###                               target rules                                         ###
+###                                                                                    ###
+##########################################################################################
+##########################################################################################
 rule all:
     input:
     	rules.ChIPseq_all.input,
         rules.published_ChIPseq_all.input,
         rules.RNAseq_all.input,
         rules.ATACseq_all.input,
-        rules.CUTandRUN_all.input,
+        rules.histone_CUTandRUN_all.input,
+        rules.TF_CUTandRUN_all.input,
         "manuscript/figures/fig1.pdf",
         "manuscript/figures/fig2.pdf",
         "manuscript/figures/fig3.pdf",
