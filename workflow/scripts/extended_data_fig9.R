@@ -5,6 +5,7 @@ library(org.Dm.eg.db)
 library(TxDb.Dmelanogaster.UCSC.dm6.ensGene)
 library(RColorBrewer)
 library(EBImage)
+library(rtracklayer)
 
 source("workflow/scripts/plot_heatmap.R")
 source("workflow/scripts/utils.R")
@@ -20,11 +21,27 @@ grh_titration_blot_aTub <- "data/immunoblot_raw_images/2022-7-12_titration/Grh-t
 twi_titration_blot_aTwi <- "data/immunoblot_raw_images/2022-7-12_titration/Twi-titration_aTwi.tif"
 twi_titration_blot_aTub <- "data/immunoblot_raw_images/2022-7-12_titration/Twi-titration_aTub.tif"
 
+zld_tissue_classes <- read_tsv("results/ChIP_tissue_classes/zld_tissue_classes.tsv") |> 
+  mutate(class = replace(class, class == "repressed_H3K27me3", "class IV")) |> 
+  mutate(class = replace(class, class == "repressed_H3K9me3", "class V")) |> 
+  mutate(class = replace(class, class == "repressed_other", "class VI"))
+
+grh_tissue_classes <- read_tsv("results/ChIP_tissue_classes/grh_tissue_classes.tsv") |> 
+  mutate(class = replace(class, class == "repressed_H3K27me3", "class IV")) |> 
+  mutate(class = replace(class, class == "repressed_H3K9me3", "class V")) |> 
+  mutate(class = replace(class, class == "repressed_other", "class VI"))
+
+twi_tissue_classes <- read_tsv("results/ChIP_tissue_classes/twi_tissue_classes.tsv") |> 
+  mutate(class = replace(class, class == "repressed_H3K27me3", "class IV")) |> 
+  mutate(class = replace(class, class == "repressed_H3K9me3", "class V")) |> 
+  mutate(class = replace(class, class == "repressed_other", "class VI"))
+
+
 # open graphics device =========================================================
 # pdf(snakemake@output[[1]], useDingbats = FALSE)
 pdf("manuscript/figures/extended_data_fig9.pdf")
 # create blank layout for plot =================================================
-pageCreate(width = 18.3, height = 12, default.units = "cm", showGuides = FALSE)
+pageCreate(width = 18.3, height = 12.5, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics
@@ -362,6 +379,290 @@ plotText(
   x = ref_x + 1.25, y = ref_y + 2.25, just = c("right","center"), default.units = "cm"
 )
 
+# panel D ======================================================================
+# reference points for positioning figure components
+ref_x <- 0.5
+ref_y <- 5
 
+
+
+class_binding <- GRangesList(
+  zld_tissue_classes = makeGRangesFromDataFrame(zld_tissue_classes),
+  `0` = import("ChIPseq/results/peaks/merged/narrow/S2-Zld-0uM_aZld_IP_peaks.narrowPeak"),
+  `500` = import("ChIPseq/results/peaks/merged/narrow/S2-Zld-500uM_aZld_IP_peaks.narrowPeak"),
+  `1000` = import("ChIPseq/results/peaks/merged/narrow/S2-Zld-1000uM_aZld_IP_peaks.narrowPeak"),
+  `1500` = import("ChIPseq/results/peaks/merged/narrow/S2-Zld-1500uM_aZld_IP_peaks.narrowPeak")
+)  |> 
+  peak_overlap_table() |> 
+  dplyr::select(-c(width,strand))
+
+
+d_plot <- zld_tissue_classes |> 
+  left_join(class_binding) |> 
+  pivot_longer(`0`:`1500`, names_to = "CuSO4_conc", values_to = "has_ChIP_peak") |> 
+  mutate(CuSO4_conc = factor(CuSO4_conc, levels = c("0","500", "1000", "1500"))) |> 
+  group_by(class, CuSO4_conc) |> 
+  summarise(percent_bound =  100 *mean(has_ChIP_peak)) |> 
+  ggplot(aes(x = CuSO4_conc, y = percent_bound, group = class)) +
+  geom_bar(stat = "identity", fill = zld_color) +
+  xlab(bquote("[" ~ CuSO[4] ~ "]")) +
+  ylab("percent bound") +
+  theme_bw(base_size = small_text_params$fontsize) +
+  theme(axis.text.x = element_text(angle = 45, hjust=1)) +
+  # geom_line() +
+  facet_grid(cols = vars(class))
+
+
+
+plotGG(
+  plot = d_plot,
+  x = (ref_x), y = (ref_y),
+  width = 5.5,  height = 3, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# panel label
+plotText(
+  label = "d", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+# panel E ======================================================================
+# reference points for positioning figure components
+ref_x <- 6.5
+ref_y <- 5
+
+
+
+class_binding <- GRangesList(
+  grh_tissue_classes = makeGRangesFromDataFrame(grh_tissue_classes),
+  `0` = import("ChIPseq/results/peaks/merged/narrow/S2-Grh-0uM_aGrh_IP_peaks.narrowPeak"),
+  `25` = import("ChIPseq/results/peaks/merged/narrow/S2-Grh-25uM_aGrh_IP_peaks.narrowPeak"),
+  `100` = import("ChIPseq/results/peaks/merged/narrow/S2-Grh-100uM_aGrh_IP_peaks.narrowPeak"),
+  `400` = import("ChIPseq/results/peaks/merged/narrow/S2-Grh-400uM_aGrh_IP_peaks.narrowPeak")
+)  |> 
+  peak_overlap_table() |> 
+  dplyr::select(-c(width,strand))
+
+ 
+e_plot <- grh_tissue_classes |> 
+  left_join(class_binding) |> 
+  pivot_longer(`0`:`400`, names_to = "CuSO4_conc", values_to = "has_ChIP_peak") |> 
+  mutate(CuSO4_conc = factor(CuSO4_conc, levels = c("0","25", "100", "400"))) |> 
+  group_by(class, CuSO4_conc) |> 
+  summarise(percent_bound =  100 *mean(has_ChIP_peak)) |> 
+  ggplot(aes(x = CuSO4_conc, y = percent_bound, group = class)) +
+  geom_bar(stat = "identity", fill = grh_color) +
+  xlab(bquote("[" ~ CuSO[4] ~ "]")) +
+  ylab("percent bound") +
+  theme_bw(base_size = small_text_params$fontsize) +
+  theme(axis.text.x = element_text(angle = 45, hjust=1)) +
+  # geom_line() +
+  facet_grid(cols = vars(class))
+
+
+
+plotGG(
+  plot = e_plot,
+  x = (ref_x), y = (ref_y),
+  width = 5.5,  height = 3, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# panel label
+plotText(
+  label = "e", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+# panel F ======================================================================
+# reference points for positioning figure components
+ref_x <- 12.5
+ref_y <- 5
+
+
+
+class_binding <- GRangesList(
+  twi_tissue_classes = makeGRangesFromDataFrame(twi_tissue_classes),
+  `0` = import("ChIPseq/results/peaks/merged/narrow/S2-HA-Twi-0uM_aHA_IP_peaks.narrowPeak"),
+  `10` = import("ChIPseq/results/peaks/merged/narrow/S2-HA-Twi-10uM_aHA_IP_peaks.narrowPeak"),
+  `40` = import("ChIPseq/results/peaks/merged/narrow/S2-HA-Twi-40uM_aHA_IP_peaks.narrowPeak"),
+  `160` = import("ChIPseq/results/peaks/merged/narrow/S2-HA-Twi-160uM_aHA_IP_peaks.narrowPeak")
+)  |> 
+  peak_overlap_table() |> 
+  dplyr::select(-c(width,strand))
+
+
+f_plot <- twi_tissue_classes |> 
+  left_join(class_binding) |> 
+  
+  pivot_longer(`0`:`160`, names_to = "CuSO4_conc", values_to = "has_ChIP_peak") |> 
+  mutate(CuSO4_conc = factor(CuSO4_conc, levels = c("0","10", "40", "160"))) |> 
+  group_by(class, CuSO4_conc) |> 
+  summarise(percent_bound =  100 *mean(has_ChIP_peak)) |> 
+  ggplot(aes(x = CuSO4_conc, y = percent_bound, group = class)) +
+  geom_bar(stat = "identity", fill = twi_color) +
+  xlab(bquote("[" ~ CuSO[4] ~ "]")) +
+  ylab("percent bound") +
+  theme_bw(base_size = small_text_params$fontsize) +
+  theme(axis.text.x = element_text(angle = 45, hjust=1)) +
+  # geom_line() +
+  facet_grid(cols = vars(class))
+
+
+
+plotGG(
+  plot = f_plot,
+  x = (ref_x), y = (ref_y),
+  width = 5.5,  height = 3, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# panel label
+plotText(
+  label = "f", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+# panel G ======================================================================
+# reference points for positioning figure components
+ref_x <- 0.5
+ref_y <- 9
+
+
+class_accessibility <- GRangesList(
+  zld_tissue_classes = makeGRangesFromDataFrame(zld_tissue_classes),
+  `0` = import("ATACseq/results/peaks/merged_by_sample/titration_S2-Zld_0uM_peaks.narrowPeak"),
+  `500` = import("ATACseq/results/peaks/merged_by_sample/titration_S2-Zld_500uM_peaks.narrowPeak"),
+  `1000` = import("ATACseq/results/peaks/merged_by_sample/titration_S2-Zld_1000uM_peaks.narrowPeak"),
+  `1500` = import("ATACseq/results/peaks/merged_by_sample/titration_S2-Zld_1500uM_peaks.narrowPeak")
+)  |> 
+  peak_overlap_table() |> 
+  dplyr::select(-c(width,strand))
+
+
+
+g_plot <- zld_tissue_classes |> 
+  left_join(class_accessibility) |> 
+  pivot_longer(`0`:`1500`, names_to = "CuSO4_conc", values_to = "has_ATAC_peak") |> 
+  mutate(CuSO4_conc = factor(CuSO4_conc, levels = c("0","500", "1000", "1500"))) |> 
+  group_by(class, CuSO4_conc) |> 
+  summarise(percent_accessible =  100 *mean(has_ATAC_peak)) |> 
+  ggplot(aes(x = CuSO4_conc, y = percent_accessible, group = class)) +
+  geom_bar(stat = "identity", fill = zld_color) +
+  xlab(bquote("[" ~ CuSO[4] ~ "]")) +
+  ylab("percent accessible") +
+  theme_bw(base_size = small_text_params$fontsize) +
+  theme(axis.text.x = element_text(angle = 45, hjust=1)) +
+  # geom_line() +
+  facet_grid(cols = vars(class))
+
+
+
+plotGG(
+  plot = g_plot,
+  x = (ref_x), y = (ref_y),
+  width = 5.5,  height = 3, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# panel label
+plotText(
+  label = "g", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+# panel H ======================================================================
+# reference points for positioning figure components
+ref_x <- 6.5
+ref_y <- 9
+
+
+class_accessibility <- GRangesList(
+  grh_tissue_classes = makeGRangesFromDataFrame(grh_tissue_classes),
+  `0` = import("ATACseq/results/peaks/merged_by_sample/titration_S2-Grh_0uM_peaks.narrowPeak"),
+  `25` = import("ATACseq/results/peaks/merged_by_sample/titration_S2-Grh_25uM_peaks.narrowPeak"),
+  `100` = import("ATACseq/results/peaks/merged_by_sample/titration_S2-Grh_100uM_peaks.narrowPeak"),
+  `400` = import("ATACseq/results/peaks/merged_by_sample/titration_S2-Grh_400uM_peaks.narrowPeak")
+)  |> 
+  peak_overlap_table() |> 
+  dplyr::select(-c(width,strand))
+
+
+h_plot <- grh_tissue_classes |> 
+  left_join(class_accessibility) |> 
+  pivot_longer(`0`:`400`, names_to = "CuSO4_conc", values_to = "has_ATAC_peak") |> 
+  mutate(CuSO4_conc = factor(CuSO4_conc, levels = c("0","25", "100", "400"))) |> 
+  group_by(class, CuSO4_conc) |> 
+  summarise(percent_accessible =  100 *mean(has_ATAC_peak)) |> 
+  ggplot(aes(x = CuSO4_conc, y = percent_accessible, group = class)) +
+  geom_bar(stat = "identity", fill = grh_color) +
+  xlab(bquote("[" ~ CuSO[4] ~ "]")) +
+  ylab("percent accessible") +
+  theme_bw(base_size = small_text_params$fontsize) +
+  theme(axis.text.x = element_text(angle = 45, hjust=1)) +
+  # geom_line() +
+  facet_grid(cols = vars(class))
+
+
+
+plotGG(
+  plot = h_plot,
+  x = (ref_x), y = (ref_y),
+  width = 5.5,  height = 3, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# panel label
+plotText(
+  label = "h", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+# panel I ======================================================================
+# reference points for positioning figure components
+ref_x <- 12.5
+ref_y <- 9
+
+class_accessibility <- GRangesList(
+  twi_tissue_classes = makeGRangesFromDataFrame(twi_tissue_classes),
+  `0` = import("ATACseq/results/peaks/merged_by_sample/titration_S2-HA-Twi_0uM_peaks.narrowPeak"),
+  `10` = import("ATACseq/results/peaks/merged_by_sample/titration_S2-HA-Twi_10uM_peaks.narrowPeak"),
+  `40` = import("ATACseq/results/peaks/merged_by_sample/titration_S2-HA-Twi_40uM_peaks.narrowPeak"),
+  `160` = import("ATACseq/results/peaks/merged_by_sample/titration_S2-HA-Twi_160uM_peaks.narrowPeak")
+)  |> 
+  peak_overlap_table() |> 
+  dplyr::select(-c(width,strand))
+
+
+i_plot <- twi_tissue_classes |> 
+  left_join(class_accessibility) |> 
+  pivot_longer(`0`:`160`, names_to = "CuSO4_conc", values_to = "has_ATAC_peak") |> 
+  mutate(CuSO4_conc = factor(CuSO4_conc, levels = c("0","10", "40", "160"))) |> 
+  group_by(class, CuSO4_conc) |> 
+  summarise(percent_accessible =  100 *mean(has_ATAC_peak)) |> 
+  ggplot(aes(x = CuSO4_conc, y = percent_accessible, group = class)) +
+  geom_bar(stat = "identity", fill = twi_color) +
+  xlab(bquote("[" ~ CuSO[4] ~ "]")) +
+  ylab("percent accessible") +
+  theme_bw(base_size = small_text_params$fontsize) +
+  theme(axis.text.x = element_text(angle = 45, hjust=1)) +
+  # geom_line() +
+  facet_grid(cols = vars(class))
+
+
+
+plotGG(
+  plot = i_plot,
+  x = (ref_x), y = (ref_y),
+  width = 5.5,  height = 3, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# panel label
+plotText(
+  label = "i", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
 # close graphics device ========================================================
 dev.off()
