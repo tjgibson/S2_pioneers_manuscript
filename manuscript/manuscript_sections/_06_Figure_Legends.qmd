@@ -57,25 +57,7 @@ Two independently generated cell lines are shown and compared to 2-3H embryos.
 **b,e,** RNA-seq volcano plots showing gene expression changes in cells expressing Zld **(a)** or Grh **(d)** when compared to WT cells treated with the same concentration of CuSO~4~.
 **c,f,** Bar plots showing enrichment of gene ontology terms in genes significantly upregulated upon expression of Zld **(c)** or Grh **(f)**.
 
-**Extended Data Figure 4: Twist binding leads to chromatin opening and transcriptional activation**
-
--   Western blot of Twi induction
-
--   Twi volcano and examples
-
--   ~~TWI RNA-seq volcano and examples3~~
-
--   ~~Twi RNA-seq GO analysis~~
-
--   Genome browser examples of specific and nonspecific accessibility changes?
-
--   motif enrichment for nonspecific changes?
-
--   \% of TFs bound and activated by Zld/Grh as indicator of nonspecific changes?
-
--   Should we include any analysis of decreased/downregulated sites for RNA-seq or ATAC?
-
--   Violin plots to emphasize correlation between ATAC and RNA-seq?
+**Extended Data Figure 4: Twist binding leads to chromatin opening and transcriptional activation. a,** Immunoblot showing titration of Twi or HA-Twi protein levels in stable cell lines.
 
 **Extended Data Figure 5: Chromatin features associated with Zld, Grh and Twi binding sites**
 

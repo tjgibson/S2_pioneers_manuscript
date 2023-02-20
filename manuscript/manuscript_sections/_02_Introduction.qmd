@@ -1,24 +1,33 @@
 ---
-#bibliography: references.bib
+bibliography: ../references.bib
 ---
 
-Transcription factors activate transcription by binding to specific DNA motifs and recruiting transcriptional machinery.
-The packaging of DNA into chromatin obstructs TFs from accessing their target motifs.
-Thus, many TFs can only bind to motifs that fall within nucleosome-free regions (NFRs).
-One mechanism for how NFRs are established is through the action of pioneer transcription factors (PFs).
-PFs are defined by their ability to recognize target motifs on nucleosomes.
-PFs bind to nucleosomal targets, promote chromatin opening, and create NFRs that allow additional TFs to bind and activate transcription[@Iwafuchi-Doi2016].
+During animal development, the totipotent embryo divides and differentiates to give rise to the diverse cell and tissue types of the adult organism.
+The establishment of cell-type specific gene expression programs is driven by transcription factors that bind sequence-specifically to *cis*-regulatory elements and recruiting transcriptional machinery.
+The packaging of DNA into chromatin obstructs TFs from accessing their target motifs [@Luger1997].
+Thus, many TFs only bind the small subset of genomic motifs that fall within nucleosome-free regions (NFRs) [@Li2011].
+A specialized subset of transcription factors, termed pioneer factors (PFs), are defined by their ability to bind target motifs on nucleosomes, promote chromatin opening, and create NFRs that allow additional TFs to bind and activate transcription [@Iwafuchi-Doi2016; @Zaret2020].
 Through this activity, PFs drive cell-type specific gene expression programs that determine cell fate.
 Due to these properties, PFs are essential players in development, induced reprogramming, and disease [@Larson2021].
 
 Despite the importance of PFs to these diverse biological processes, how PFs select their binding sites in different biological contexts remains incompletely understood.
 Despite their ability to target inaccessible, nucleosomal binding sites, PFs do not bind to all genomic instances of their target motifs.
-Many PFs have also been shown to have cell-type specific patterns of binding and activity [@Soufi2012; @Donaghey2018].
+Many PFs have also been shown to have cell-type specific patterns of binding and activity [@Soufi2012; @Donaghey2018; @Chronis2017; @Buecker2014; @Cernilogar2019; @Lupien2008].
 How PF binding is restricted in different tissues or cellular contexts remains unclear.
 Many PFs bind primarily to naïve chromatin that is inaccessible, inactive, and lacks most histone modifications [@Soufi2012; @Donaghey2018].
-Cell-type specific binding is often associated with cell-type specific chromatin features [@Mayran2019], however many of these observations have been correlative, and this has not been extensively tested functionally.
+Cell-type specific binding is often associated with cell-type specific chromatin features [@Mayran2018a; @Lupien2008; @Cernilogar2019], however many of these observations have been correlative, and this has not been extensively tested functionally.
 In some cases, inhibition of various chromatin modifiers can enhance the ability of PFs to promote cellular reprogramming [@Larson2021a; @Soufi2012], but the molecular basis of how this relates to PF binding is unclear.
 Thus, a more systematic exploration of how PF binding and activity is regulated is essential to understanding how these factors function in development and disease.
+
+In addition to cell-type specific PF binding, the chromatin opening activity of PFs is also subject to regulation.
+Although PFs are defined by their ability to promote chromatin opening, many PFs are only required for chromatin accessibility at a subset of their binding sites.
+Upon depletion of the PFs Zelda, GAGA-factor, Oct4, or Sox2, chromatin accessibility is only lost at a subset of the binding sites for the respective factor [@Schulz2015; @Gaskill2021; @maresca2022].
+This suggests that PF binding does not necessarily translate to chromatin opening.
+Pax7, a PF important for specification of pituitary melanotropes, binds to thousands of regions where binding does not result in chromatin opening, which the authors term "pioneer primed" sites [@Mayran2018a].
+Additionally, a time course of Pax7 binding and chromatin accessibility indicated that there is a delay between Pax7 binding and chromatin opening.
+For GAGA-factor and Oct4, establishment of chromatin accessibility requires the activity of a nucleosome remodeler [@Judd2021; @King2017].
+In the case of Oct4, however, binding to nucleosomes does result in local remodeling of histone-DNA interactions, especially at the nucleosome entry-exit site [@Michael2020].
+Together, these observations highlight that the relationship between PF binding and activity is well understood.
 
 Two well studied PFs that display context-dependent activity are Zelda (Zld) and Grainy head (Grh).
 Zld is essential for driving early embryonic development in Drosophila [@Liang2008; @Staudt2006].
@@ -38,7 +47,7 @@ This intriguing combination of stable binding and cell-type specific activity ra
 Additionally, overexpression of Grh is a hallmark of many epithelial cancers.
 The role of Grh in cancer is not well understood, as Grh can either inhibit or promote tumorigenesis, depending on the context[@Reese2019].
 
-The essential roles of Zld and Grh in diverse biological processes and the well documented context-dependent binding and activity of these factors makes them excellent models to explore how PF binding and activity are regulated.
+The essential roles of Zld and Grh in diverse biological processes and the well documented context-dependent binding and activity of these factors makes them excellent models to explore how PF binding is regulated during development, and how PF binding relates to chromatin opening.
 Because many previous studies have relied on loss-of-function experiments, it has been difficult to unravel causal relationships between chromatin structure and PF activity.
 We therefore expressed Zld and Grh in Drosophila S2 cells, where neither factor is endogenously expressed.
 We demonstrate that when expressed ectopically, Zld and Grh bind to closed chromatin, establish NFRs, and promote transcriptional activation.

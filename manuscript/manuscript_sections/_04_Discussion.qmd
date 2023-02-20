@@ -17,7 +17,7 @@ Despite the ability of PFs to bind to closed chromatin, most PFs occupy only a s
 In many cases, the presence of active or repressive chromatin is an important determinant of transcription factor binding, but the extent to which this informs PF binding is unclear.
 For the reprogramming factors Oct4, Sox2 and Klf4, and c-Myc (OSKM), high levels of the repressive histone modification H3K9me3 mark regions that are resistant to OSKM binding.
 Depletion of H3K9 methyltransferases increases OSKM occupancy at these regions [@Soufi2012].
-In the case of Pax7, a PF important for specification of pituitary melanotropes, H3K27me3 is correlated with cell-type specific Pax7 binding [@Mayran2019].
+In the case of Pax7, H3K27me3 is correlated with cell-type specific Pax7 binding [@Mayran2019].
 Zld, Grh and Twi binding showed similar correlations with local chromatin structure.
 Even when expressed at low levels, all three proteins bind to active, accessible regions with degenerate motifs or no detectable motifs at all.
 At approximately physiological levels, these factors bind to canonical motifs in naïve chromatin, and are largely excluded from repressed chromatin (bearing H3K9me3 or H3K27me3).
