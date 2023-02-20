@@ -589,6 +589,15 @@ rule figure_6:
 	script:
 		"workflow/scripts/fig6.R"
 
+rule extended_data_fig_1:
+	input:
+  		RPKM_table_fn = "RNAseq/results/count_tables/S2-Grh_RNAseq_RPKM.tsv",
+		zld_blot_image = "data/immunoblot_raw_images/2018-10-17_Zld_induction/2018-1018-144408_pub.tif",
+		grh_blot_image = "data/immunoblot_raw_images/2018-11-08_Grh_induction/2018-1108-132834_pub.tif",
+	output:
+		"manuscript/figures/extended_data_fig1.pdf"
+	script:
+		"workflow/scripts/extended_data_fig1.R"
 
 
 ##########################################################################################
@@ -612,4 +621,5 @@ rule all:
         "manuscript/figures/fig4.pdf",
         "manuscript/figures/fig5.pdf",
         "manuscript/figures/fig6.pdf",
+        "manuscript/figures/extended_data_fig1.pdf",
     default_target: True

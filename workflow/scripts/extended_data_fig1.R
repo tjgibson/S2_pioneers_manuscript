@@ -10,29 +10,22 @@ library(EBImage)
 
 
 # define input files ===========================================================
-# Zld_ChIP_bw <- snakemake@input[["Zld_ChIP_bw"]]
-# Zld_WT_ATAC_bw <- snakemake@input[["Zld_WT_ATAC_bw"]]
-# Zld_Zld_ATAC_bw <- snakemake@input[["Zld_Zld_ATAC_bw"]]
-# Zld_WT_RNAseq_bw <- snakemake@input[["Zld_WT_RNAseq_bw"]]
-# Zld_Zld_RNAseq_bw <- snakemake@input[["Zld_Zld_RNAseq_bw"]]
+# for testing script
+# RPKM_table_fn <- "RNAseq/results/count_tables/S2-Grh_RNAseq_RPKM.tsv"
 # 
-# Grh_ChIP_bw <- snakemake@input[["Grh_ChIP_bw"]]
-# Grh_WT_ATAC_bw <- snakemake@input[["Grh_WT_ATAC_bw"]]
-# Grh_Grh_ATAC_bw <- snakemake@input[["Grh_Grh_ATAC_bw"]]
-# Grh_WT_RNAseq_bw <- snakemake@input[["Grh_WT_RNAseq_bw"]]
-# Grh_Grh_RNAseq_bw <- snakemake@input[["Grh_Grh_RNAseq_bw"]]
-# 
-# zld_ChIP_classes_fn <- snakemake@input[["zld_ChIP_classes"]]
-# grh_ChIP_classes_fn <- snakemake@input[["grh_ChIP_classes"]]
+# zld_blot_image <- "data/immunoblot_raw_images/2018-10-17_Zld_induction/2018-1018-144408_pub.tif"
+# grh_blot_image <- "data/immunoblot_raw_images/2018-11-08_Grh_induction/2018-1108-132834_pub.tif"
 
-RPKM_table_fn <- "RNAseq/results/count_tables/S2-Grh_RNAseq_RPKM.tsv"
+# get input from snakemake
+RPKM_table_fn <- snakemake@input[["RPKM_table_fn"]]
 
-zld_blot_image <- "data/immunoblot_raw_images/2018-10-17_Zld_induction/2018-1018-144408_pub.tif"
-grh_blot_image <- "data/immunoblot_raw_images/2018-11-08_Grh_induction/2018-1108-132834_pub.tif"
+zld_blot_image <- snakemake@input[["zld_blot_image"]]
+grh_blot_image <- snakemake@input[["grh_blot_image"]]
+
 
 # # create blank layout for plot ===============================================
-# pdf(snakemake@output[[1]], useDingbats = FALSE)
-pdf("manuscript/figures/extended_data_fig1.pdf", useDingbats = FALSE)
+pdf(snakemake@output[[1]], useDingbats = FALSE)
+# pdf("manuscript/figures/extended_data_fig1.pdf", useDingbats = FALSE)
 pageCreate(width = 18, height = 18.5, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
@@ -65,81 +58,12 @@ PostScriptTrace(
   charpos = FALSE
 )
 schematic <- readPicture("manuscript/figures/models/system_schematic.eps.xml")
-# grid.picture(schematic)
-# schematic_grob <- pictureGrob(schematic, exp = 0)
 schematic_gtree <- grid.grabExpr(grid.picture(schematic))
 
 
 # plot model on page
 plotGG(schematic_gtree, x = 0.1, y = 0.5, width = 12, height = 4.8, default.units = "cm")
 
-# # panel B ======================================================================
-# # reference points for positioning figure components
-# ref_x <- 7
-# ref_y <- 0.5
-# 
-# # panel label
-# plotText(
-#   label = "b", params = panel_label_params, fontface = "bold",
-#   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
-# )
-# 
-# # read in RPKM data
-# WT_RPKM_table <- RPKM_table_fn |> 
-#   read_tsv() |> 
-#   dplyr::select(gene_id, gene_symbol, starts_with("S2-WT_noCuSO4")) |> 
-#   pivot_longer(3:4, names_to = "sample", values_to = "RPKM")
-# 
-# # define S2 marker genes 
-# s2_markers <- c("FBgn0263772", "FBgn0263772", "FBgn0038294")
-# kc_markers <- c("FBgn0259175", "FBgn0261987")
-# markers <- c(s2_markers, kc_markers)
-# 
-# b_plot <- WT_RPKM_table |> 
-#   filter(gene_id %in% markers) |>
-#   mutate(marker_type = case_when(gene_id %in% s2_markers ~ "S2 markers",
-#                                  gene_id %in% kc_markers ~ "Kc markers")) |> 
-#   
-#   
-#   ggplot(aes(x = gene_symbol, y = RPKM)) + 
-#   geom_boxplot() +
-#   coord_flip() +
-#   theme_classic(base_size = small_text_params$fontsize) +
-#   theme(axis.title.y = element_blank())
-# 
-# plotGG(
-#   plot = b_plot,
-#   x = (ref_x + 0.8), y = (ref_y),
-#   width = 3.5, height = 2.5, just = c("left", "top"),
-#   default.units = "cm"
-# )
-# 
-# # add additional label to plot
-# plotSegments(
-#   x0 = (ref_x + 0.75), y0 = (ref_y + 0.1), x1 = (ref_x + 0.75), y1 = (ref_y + 0.9),
-#   default.units = "cm",
-#   lwd = 1
-# )
-# 
-# plotSegments(
-#   x0 = (ref_x + 0.75), y0 = (ref_y + 1.1), x1 = (ref_x + 0.75), y1 = (ref_y + 1.9),
-#   default.units = "cm",
-#   lwd = 1
-# )
-# 
-# plotText(
-#   label = paste0("Kc cell", "\n", "markers"), 
-#   x = (ref_x + 0.25), y = (ref_y + 0.5),
-#   default.units = "cm", 
-#   fontsize = small_text_params$fontsize
-# )
-# 
-# plotText(
-#   label = paste0("S2 cell", "\n", "markers"), 
-#   x = (ref_x + 0.25), y = (ref_y + 1.5),
-#   default.units = "cm", 
-#   fontsize = small_text_params$fontsize
-# )
 
 # panel B ======================================================================
 # reference points for positioning figure components
@@ -529,9 +453,6 @@ plotText(
   label = "10", params = large_text_params, rot = 45,
   x = ref_x + 7.8, y = ref_y + 1.25, just = c("center"), default.units = "cm"
 )
-
-
-
 
 # close graphics device ========================================================
 dev.off()
