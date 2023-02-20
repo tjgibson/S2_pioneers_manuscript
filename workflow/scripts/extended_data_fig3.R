@@ -10,39 +10,29 @@ library(rtracklayer)
 
 
 # define input files ===========================================================
-# Zld_ChIP_bw <- snakemake@input[["Zld_ChIP_bw"]]
-# Zld_WT_ATAC_bw <- snakemake@input[["Zld_WT_ATAC_bw"]]
-# Zld_Zld_ATAC_bw <- snakemake@input[["Zld_Zld_ATAC_bw"]]
-# Zld_WT_RNAseq_bw <- snakemake@input[["Zld_WT_RNAseq_bw"]]
-# Zld_Zld_RNAseq_bw <- snakemake@input[["Zld_Zld_RNAseq_bw"]]
+# define input files explicitly for testing
+# zld_RNAseq_results_fn <- "RNAseq/results/DEseq2/S2-Zld_RNAseq_S2-Zld-vs-S2-WT_results_annotated.tsv"
+# grh_RNAseq_results_fn  <- "RNAseq/results/DEseq2/S2-Grh_RNAseq_S2-Grh-vs-S2-WT_results_annotated.tsv"
 # 
-# Grh_ChIP_bw <- snakemake@input[["Grh_ChIP_bw"]]
-# Grh_WT_ATAC_bw <- snakemake@input[["Grh_WT_ATAC_bw"]]
-# Grh_Grh_ATAC_bw <- snakemake@input[["Grh_Grh_ATAC_bw"]]
-# Grh_WT_RNAseq_bw <- snakemake@input[["Grh_WT_RNAseq_bw"]]
-# Grh_Grh_RNAseq_bw <- snakemake@input[["Grh_Grh_RNAseq_bw"]]
+# zld_ATAC_results_fn <- "ATACseq/results/DEseq2_results_filtered/S2-Zld_ATACseq_S2-Zld-FL-vs-S2-WT_results.tsv"
+# grh_ATAC_results_fn <- "ATACseq/results/DEseq2_results_filtered/S2-Grh_ATACseq_S2-Grh-FL-vs-S2-WT_results.tsv"
 # 
-# zld_ChIP_classes_fn <- snakemake@input[["zld_ChIP_classes"]]
-# grh_ChIP_classes_fn <- snakemake@input[["grh_ChIP_classes"]]
+# zld_ChIP_peaks_fn <- "ChIPseq/results/peaks/final/S2-Zld_aZld_IP.narrowPeak"
+# grh_ChIP_peaks_fn <- "ChIPseq/results/peaks/final/S2-Grh_aGrh_IP.narrowPeak"
 
-# zld_ATAC_results_fn <- "RNAseq/results/DEseq2/S2-Zld_RNAseq_S2-Zld-vs-S2-WT_results_annotated.tsv"
-# grh_ATAC_results_fn  <- "RNAseq/results/DEseq2/S2-Grh_RNAseq_S2-Grh-vs-S2-WT_results_annotated.tsv"
+# get input files from snakemake
+zld_RNAseq_results_fn <- snakemake@input[["zld_RNAseq_results_fn"]]
+grh_RNAseq_results_fn  <- snakemake@input[["grh_RNAseq_results_fn"]]
 
+zld_ATAC_results_fn <- snakemake@input[["zld_ATAC_results_fn"]]
+grh_ATAC_results_fn <- snakemake@input[["grh_ATAC_results_fn"]]
 
-zld_RNAseq_results_fn <- "RNAseq/results/DEseq2/S2-Zld_RNAseq_S2-Zld-vs-S2-WT_results_annotated.tsv"
-grh_RNAseq_results_fn  <- "RNAseq/results/DEseq2/S2-Grh_RNAseq_S2-Grh-vs-S2-WT_results_annotated.tsv"
-
-zld_ATAC_results_fn <- "ATACseq/results/DEseq2_results_filtered/S2-Zld_ATACseq_S2-Zld-FL-vs-S2-WT_results.tsv"
-grh_ATAC_results_fn <- "ATACseq/results/DEseq2_results_filtered/S2-Grh_ATACseq_S2-Grh-FL-vs-S2-WT_results.tsv"
-
-zld_ATAC_results_annotated_fn <- "ATACseq/results/"
-
-zld_ChIP_peaks_fn <- "ChIPseq/results/peaks/final/S2-Zld_aZld_IP.narrowPeak"
-grh_ChIP_peaks_fn <- "ChIPseq/results/peaks/final/S2-Grh_aGrh_IP.narrowPeak"
+zld_ChIP_peaks_fn <- snakemake@input[["zld_ChIP_peaks_fn"]]
+grh_ChIP_peaks_fn <- snakemake@input[["grh_ChIP_peaks_fn"]]
 
 # # create blank layout for plot ===============================================
-# pdf(snakemake@output[[1]], useDingbats = FALSE)
-pdf("manuscript/figures/extended_data_fig3.pdf", useDingbats = FALSE)
+pdf(snakemake@output[[1]], useDingbats = FALSE)
+# pdf("manuscript/figures/extended_data_fig3.pdf", useDingbats = FALSE)
 pageCreate(width = 18, height = 12, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================

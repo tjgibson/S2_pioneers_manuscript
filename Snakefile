@@ -599,6 +599,19 @@ rule extended_data_fig_1:
 	script:
 		"workflow/scripts/extended_data_fig1.R"
 
+rule extended_data_fig_3:
+	input:
+  		zld_RNAseq_results_fn = "RNAseq/results/DEseq2/S2-Zld_RNAseq_S2-Zld-vs-S2-WT_results_annotated.tsv",
+		grh_RNAseq_results_fn  = "RNAseq/results/DEseq2/S2-Grh_RNAseq_S2-Grh-vs-S2-WT_results_annotated.tsv",
+		zld_ATAC_results_fn = "ATACseq/results/DEseq2_results_filtered/S2-Zld_ATACseq_S2-Zld-FL-vs-S2-WT_results.tsv",
+		grh_ATAC_results_fn = "ATACseq/results/DEseq2_results_filtered/S2-Grh_ATACseq_S2-Grh-FL-vs-S2-WT_results.tsv",
+		zld_ChIP_peaks_fn = "ChIPseq/results/peaks/final/S2-Zld_aZld_IP.narrowPeak",
+		grh_ChIP_peaks_fn = "ChIPseq/results/peaks/final/S2-Grh_aGrh_IP.narrowPeak",
+	output:
+		"manuscript/figures/extended_data_fig3.pdf"
+	script:
+		"workflow/scripts/extended_data_fig3.R"
+
 
 ##########################################################################################
 ##########################################################################################
@@ -622,4 +635,5 @@ rule all:
         "manuscript/figures/fig5.pdf",
         "manuscript/figures/fig6.pdf",
         "manuscript/figures/extended_data_fig1.pdf",
+        "manuscript/figures/extended_data_fig3.pdf",
     default_target: True

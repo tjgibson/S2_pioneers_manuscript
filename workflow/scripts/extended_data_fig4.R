@@ -10,29 +10,15 @@ library(rtracklayer)
 library(EBImage)
 
 # define input files ===========================================================
-# Zld_ChIP_bw <- snakemake@input[["Zld_ChIP_bw"]]
-# Zld_WT_ATAC_bw <- snakemake@input[["Zld_WT_ATAC_bw"]]
-# Zld_Zld_ATAC_bw <- snakemake@input[["Zld_Zld_ATAC_bw"]]
-# Zld_WT_RNAseq_bw <- snakemake@input[["Zld_WT_RNAseq_bw"]]
-# Zld_Zld_RNAseq_bw <- snakemake@input[["Zld_Zld_RNAseq_bw"]]
-# 
-# Grh_ChIP_bw <- snakemake@input[["Grh_ChIP_bw"]]
-# Grh_WT_ATAC_bw <- snakemake@input[["Grh_WT_ATAC_bw"]]
-# Grh_Grh_ATAC_bw <- snakemake@input[["Grh_Grh_ATAC_bw"]]
-# Grh_WT_RNAseq_bw <- snakemake@input[["Grh_WT_RNAseq_bw"]]
-# Grh_Grh_RNAseq_bw <- snakemake@input[["Grh_Grh_RNAseq_bw"]]
-# 
-# zld_ChIP_classes_fn <- snakemake@input[["zld_ChIP_classes"]]
-# grh_ChIP_classes_fn <- snakemake@input[["grh_ChIP_classes"]]
+# specify input files explicitly for testing 
+# twi_RNAseq_results_fn <- "RNAseq/results/DEseq2/S2-Twi_RNAseq_S2-Twi-vs-S2-WT_results_annotated.tsv"
+# twi_ATAC_results_fn <- "ATACseq/results/DEseq2_results_filtered/S2-Twi_ATACseq_S2-Twi-vs-S2-WT-40uM_results.tsv"
+# twi_ChIP_peaks_fn <- "ChIPseq/results/peaks/final/S2-Twi_aTwi_IP.narrowPeak"
 
-# zld_ATAC_results_fn <- "RNAseq/results/DEseq2/S2-Zld_RNAseq_S2-Zld-vs-S2-WT_results_annotated.tsv"
-# grh_ATAC_results_fn  <- "RNAseq/results/DEseq2/S2-Grh_RNAseq_S2-Grh-vs-S2-WT_results_annotated.tsv"
-
-
-twi_RNAseq_results_fn <- "RNAseq/results/DEseq2/S2-Twi_RNAseq_S2-Twi-vs-S2-WT_results_annotated.tsv"
-twi_ATAC_results_fn <- "ATACseq/results/DEseq2_results_filtered/S2-Twi_ATACseq_S2-Twi-vs-S2-WT-40uM_results.tsv"
-
-twi_ChIP_peaks_fn <- "ChIPseq/results/peaks/final/S2-Twi_aTwi_IP.narrowPeak"
+# get input files from snakemake
+twi_RNAseq_results_fn <- snakemake@input[["twi_RNAseq_results_fn"]]
+twi_ATAC_results_fn <- snakemake@input[["twi_RNAseq_results_fn"]]
+twi_ChIP_peaks_fn <- snakemake@input[["twi_ChIP_peaks_fn"]]
 
 
 # # create blank layout for plot ===============================================
