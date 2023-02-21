@@ -7,7 +7,7 @@ editor:
 ## Reagents
 
 | Reagent                               | Source/vendor             | Catalog/accession \# | Notes                   |
-|-------------------|------------------|------------------|------------------|
+|---------------------------------------|---------------------------|----------------------|-------------------------|
 | pMT-puro                              | AddGene                   | 17923                |                         |
 | Gibson Cloning                        | New England Biolabs       | E2611                |                         |
 | Schneider's Medium                    | Thermo Fisher Scientific  | 21720001             |                         |

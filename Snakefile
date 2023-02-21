@@ -612,6 +612,105 @@ rule extended_data_fig_3:
 	script:
 		"workflow/scripts/extended_data_fig3.R"
 
+rule extended_data_fig_4:
+	input:
+  		twi_RNAseq_results_fn = "RNAseq/results/DEseq2/S2-Twi_RNAseq_S2-Twi-vs-S2-WT_results_annotated.tsv",
+		twi_ATAC_results_fn = "ATACseq/results/DEseq2_results_filtered/S2-Twi_ATACseq_S2-Twi-vs-S2-WT-40uM_results.tsv",
+		twi_ChIP_peaks_fn = "ChIPseq/results/peaks/final/S2-Twi_aTwi_IP.narrowPeak",
+	output:
+		"manuscript/figures/extended_data_fig4.pdf"
+	script:
+		"workflow/scripts/extended_data_fig4.R"
+		
+rule extended_data_fig_5:
+	input:
+		H3K27ac_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K27ac.bw",
+		Nej_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE64464_aNej.bw",
+		H3K4me1_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K4me1.bw",
+		H3K4me3_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K4me3.bw",
+		H4K16ac_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE37865_aH4K16ac.bw",
+		H2AV_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_H2Av_IP.bw",
+		Rpb3_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_Rpb3_IP.bw",
+		PolII_pS2_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_PolII_phosphoSer2_IP.bw",
+		H3K36me3_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_H3K36me3_IP.bw",
+		SSRP1_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_SSRP1_IP.bw",
+		Spt16_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_Spt16_IP.bw",
+		H3_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_H3_IP.bw",
+		H1_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE127227_aH1.bw",
+		Pho_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE84502_aPho_IP.bw",
+		Ez_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_Ez_IP.bw",
+		Pc_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE24521_Pc_IP.bw",
+		Psc_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE24521_Psc_IP.bw",
+		Ph_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE24521_Ph_IP.bw",
+		dRing_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_dRing_IP.bw",
+		H3K27me3_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE151983_S2_aH3K27me3_IP.bw",
+		H3K9me3_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE160855_aH3K9me3.bw",
+		HP1a_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE56101_aHP1a.bw",
+		M1BP_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_M1BP_IP.bw",
+		GAF_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_GAGA_IP.bw",
+		BEAF32_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE52887_aBEAF32_IP.bw",
+		CTCF_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aCTCF.bw",
+		CP190_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aCP190_IP.bw",
+		Su_hw_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aSu-Hw_IP.bw",
+		Mod_mdg4_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aMod-mdg4.bw",
+		zld_chip_classes = "results/ChIP_peak_classes/zld_ChIP_classes.tsv",
+		grh_chip_classes = "results/ChIP_peak_classes/grh_ChIP_classes.tsv",
+		twi_chip_classes = "results/ChIP_peak_classes/twi_ChIP_classes.tsv",
+		Zld_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw",
+		Zld_WT_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/S2-WT_1000uM_small.bw",
+		Zld_Zld_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/S2-Zld_1000uM_small.bw",
+		Grh_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw",
+		Grh_WT_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/FL_ATAC_S2-WT_100uM_small.bw",
+		Grh_Grh_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/S2-Grh_100uM_small.bw",
+		Twi_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw",
+		Twi_WT_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/Twi_ATAC_S2-WT_40uM_small.bw",
+		Twi_Twi_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/S2-Twi_40uM_small.bw",
+		H3K27me3_ChIP_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/individual/GSE151983_S2_aH3K27me3_IP.bw",
+
+	output:
+		"manuscript/figures/extended_data_fig5.pdf"
+	script:
+		"workflow/scripts/extended_data_fig5.R"
+		
+# rule extended_data_fig_6:
+# 	input:
+#   		
+# 	output:
+# 		"manuscript/figures/extended_data_fig6.pdf"
+# 	script:
+# 		"workflow/scripts/extended_data_fig6.R"
+# 		
+# rule extended_data_fig_7:
+# 	input:
+#   		
+# 	output:
+# 		"manuscript/figures/extended_data_fig7.pdf"
+# 	script:
+# 		"workflow/scripts/extended_data_fig7.R"
+# 		
+# rule extended_data_fig_8:
+# 	input:
+#   		
+# 	output:
+# 		"manuscript/figures/extended_data_fig8.pdf"
+# 	script:
+# 		"workflow/scripts/extended_data_fig8.R"
+# 		
+# rule extended_data_fig_9:
+# 	input:
+#   		
+# 	output:
+# 		"manuscript/figures/extended_data_fig9.pdf"
+# 	script:
+# 		"workflow/scripts/extended_data_fig9.R"
+# 		
+# rule extended_data_fig_10:
+# 	input:
+#   		
+# 	output:
+# 		"manuscript/figures/extended_data_fig10.pdf"
+# 	script:
+# 		"workflow/scripts/extended_data_fig10.R"
 
 ##########################################################################################
 ##########################################################################################
@@ -635,5 +734,13 @@ rule all:
         "manuscript/figures/fig5.pdf",
         "manuscript/figures/fig6.pdf",
         "manuscript/figures/extended_data_fig1.pdf",
+#         "manuscript/figures/extended_data_fig2.pdf",
         "manuscript/figures/extended_data_fig3.pdf",
+        "manuscript/figures/extended_data_fig4.pdf",
+        "manuscript/figures/extended_data_fig5.pdf",
+#         "manuscript/figures/extended_data_fig6.pdf",
+#         "manuscript/figures/extended_data_fig7.pdf",
+#         "manuscript/figures/extended_data_fig8.pdf",
+#         "manuscript/figures/extended_data_fig9.pdf",
+#         "manuscript/figures/extended_data_fig10.pdf",
     default_target: True

@@ -10,45 +10,140 @@ source("workflow/scripts/plot_heatmap.R")
 source("workflow/scripts/utils.R")
 
 # define input files ===========================================================
-# Zld_ChIP_bw <- snakemake@input[["Zld_ChIP_bw"]]
+# define input files explicitly for testing
+# bw <- c(
+#   H3K27ac = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K27ac.bw",
+#   Nej = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE64464_aNej.bw",
+#   H3K4me1 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K4me1.bw",
+#   H3K4me3 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K4me3.bw",
+#   H4K16ac = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE37865_aH4K16ac.bw",
+#   H2AV = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_H2Av_IP.bw",
+#   
+#   Rpb3 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_Rpb3_IP.bw",
+#   `PolII-pS2` = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_PolII_phosphoSer2_IP.bw",
+#   H3K36me3 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_H3K36me3_IP.bw",
+#   SSRP1 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_SSRP1_IP.bw",
+#   Spt16 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_Spt16_IP.bw",
+#   
+#   H3 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_H3_IP.bw",
+#   H1 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE127227_aH1.bw",
+#   
+#   Pho = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE84502_aPho_IP.bw",
+#   Ez = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_Ez_IP.bw",
+#   Pc = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE24521_Pc_IP.bw",
+#   Psc = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE24521_Psc_IP.bw",
+#   Ph = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE24521_Ph_IP.bw",
+#   dRing = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_dRing_IP.bw",
+#   H3K27me3 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE151983_S2_aH3K27me3_IP.bw",
+#   
+#   H3K9me3 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE160855_aH3K9me3.bw",
+#   HP1a = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE56101_aHP1a.bw",
+#   
+#   M1BP = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_M1BP_IP.bw",
+#   GAF = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_GAGA_IP.bw",
+#   BEAF32 =
+#     "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE52887_aBEAF32_IP.bw",
+#   
+#   CTCF = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aCTCF.bw",
+#   CP190 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aCP190_IP.bw",
+#   Su_hw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aSu-Hw_IP.bw",
+#   Mod_mdg4 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aMod-mdg4.bw"
+#   
+# )
+# 
+# feature_types <- list(
+#   active = c("H3K27ac",
+#              "Nej",
+#              "H3K4me1",
+#              "H3K4me3" ,
+#              "H4K16ac" ,
+#              "H2AV"),
+#   
+#   Pol_II = c("Rpb3",
+#              "PolII.pS2",
+#              "H3K36me3",
+#              "SSRP1",
+#              "Spt16"),
+#   
+#   histones = c("H3", "H1"),
+#   
+#   polycomb = c("Pho" ,
+#                "Ez" ,
+#                "Pc" ,
+#                "Psc",
+#                "Ph" ,
+#                "dRing" ,
+#                "H3K27me3"),
+#   
+#   heterochromatin = c("H3K9me3",
+#                       "HP1a"),
+#   
+#   TF = c("M1BP",
+#          "GAF",
+#          "BEAF32"),
+#   
+#   insulator = c("CTCF" ,
+#                 "CP190",
+#                 "Su_hw",
+#                 "Mod_mdg4")
+# )
+# 
+# zld_chip_classes <- read_tsv("results/ChIP_peak_classes/zld_ChIP_classes.tsv")
+# grh_chip_classes <- read_tsv("results/ChIP_peak_classes/grh_ChIP_classes.tsv")
+# twi_chip_classes <- read_tsv("results/ChIP_peak_classes/twi_ChIP_classes.tsv")
+# 
+# Zld_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw"
+# Zld_WT_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/S2-WT_1000uM_small.bw"
+# Zld_Zld_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/S2-Zld_1000uM_small.bw"
+# 
+# Grh_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw"
+# Grh_WT_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/FL_ATAC_S2-WT_100uM_small.bw"
+# Grh_Grh_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/S2-Grh_100uM_small.bw"
+# 
+# Twi_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw"
+# Twi_WT_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/Twi_ATAC_S2-WT_40uM_small.bw"
+# Twi_Twi_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/S2-Twi_40uM_small.bw"
+# 
+# H3K27me3_ChIP_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/individual/GSE151983_S2_aH3K27me3_IP.bw"
+# H3K9me3_ChIP_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE160855_aH3K9me3.bw"
 
+# get input files from snakemake
 bw <- c(
-  H3K27ac = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K27ac.bw",
-  Nej = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE64464_aNej.bw",
-  H3K4me1 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K4me1.bw",
-  H3K4me3 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K4me3.bw",
-  H4K16ac = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE37865_aH4K16ac.bw",
-  H2AV = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_H2Av_IP.bw",
+  H3K27ac = snakemake@input[["H3K27ac_bw"]],
+  Nej = snakemake@input[["Nej_bw"]],
+  H3K4me1 = snakemake@input[["H3K4me1_bw"]],
+  H3K4me3 = snakemake@input[["H3K4me3_bw"]],
+  H4K16ac = snakemake@input[["H4K16ac_bw"]],
+  H2AV = snakemake@input[["H2AV_bw"]],
   
-  Rpb3 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_Rpb3_IP.bw",
-  `PolII-pS2` = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_PolII_phosphoSer2_IP.bw",
-  H3K36me3 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_H3K36me3_IP.bw",
-  SSRP1 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_SSRP1_IP.bw",
-  Spt16 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_Spt16_IP.bw",
+  Rpb3 = snakemake@input[["Rpb3_bw"]],
+  `PolII-pS2` = snakemake@input[["PolII_pS2_bw"]],
+  H3K36me3 = snakemake@input[["H3K36me3_bw"]],
+  SSRP1 = snakemake@input[["SSRP1_bw"]],
+  Spt16 = snakemake@input[["Spt16_bw"]],
   
-  H3 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_H3_IP.bw",
-  H1 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE127227_aH1.bw",
+  H3 = snakemake@input[["H3_bw"]],
+  H1 = snakemake@input[["H1_bw"]],
   
-  Pho = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE84502_aPho_IP.bw",
-  Ez = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_Ez_IP.bw",
-  Pc = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE24521_Pc_IP.bw",
-  Psc = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE24521_Psc_IP.bw",
-  Ph = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE24521_Ph_IP.bw",
-  dRing = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_dRing_IP.bw",
-  H3K27me3 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE151983_S2_aH3K27me3_IP.bw",
+  Pho = snakemake@input[["Pho_bw"]],
+  Ez = snakemake@input[["Ez_bw"]],
+  Pc = snakemake@input[["Pc_bw"]],
+  Psc = snakemake@input[["Psc_bw"]],
+  Ph = snakemake@input[["Ph_bw"]],
+  dRing =snakemake@input[["dRing_bw"]],
+  H3K27me3 = snakemake@input[["H3K27me3_bw"]],
   
-  H3K9me3 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE160855_aH3K9me3.bw",
-  HP1a = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE56101_aHP1a.bw",
+  H3K9me3 = snakemake@input[["H3K9me3_bw"]],
+  HP1a = snakemake@input[["HP1a_bw"]],
   
-  M1BP = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_M1BP_IP.bw",
-  GAF = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_GAGA_IP.bw",
-  BEAF32 =
-    "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE52887_aBEAF32_IP.bw",
+  M1BP = snakemake@input[["M1BP_bw"]],
+  GAF = snakemake@input[["GAF_bw"]],
+  BEAF32 = snakemake@input[["BEAF32_bw"]],
   
-  CTCF = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aCTCF.bw",
-  CP190 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aCP190_IP.bw",
-  Su_hw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aSu-Hw_IP.bw",
-  Mod_mdg4 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aMod-mdg4.bw"
+  CTCF =snakemake@input[["CTCF_bw"]],
+  CP190 = snakemake@input[["CP190_bw"]],
+  Su_hw = snakemake@input[["Su_hw_bw"]],
+  Mod_mdg4 = snakemake@input[["Mod_mdg4_bw"]],
   
 )
 
@@ -89,30 +184,31 @@ feature_types <- list(
                 "Mod_mdg4")
 )
 
-zld_chip_classes <- read_tsv("results/ChIP_peak_classes/zld_ChIP_classes.tsv")
-grh_chip_classes <- read_tsv("results/ChIP_peak_classes/grh_ChIP_classes.tsv")
-twi_chip_classes <- read_tsv("results/ChIP_peak_classes/twi_ChIP_classes.tsv")
+zld_chip_classes <- read_tsv(snakemake@input[["zld_chip_classes"]])
+grh_chip_classes <- read_tsv(snakemake@input[["grh_chip_classes"]])
+twi_chip_classes <- read_tsv(snakemake@input[["twi_chip_classes"]])
 
-Zld_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw"
-Zld_WT_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/S2-WT_1000uM_small.bw"
-Zld_Zld_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/S2-Zld_1000uM_small.bw"
+Zld_ChIP_bw <- snakemake@input[["Zld_ChIP_bw"]]
+Zld_WT_ATAC_bw <- snakemake@input[["Zld_WT_ATAC_bw"]]
+Zld_Zld_ATAC_bw <- snakemake@input[["Zld_Zld_ATAC_bw"]]
 
-Grh_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw"
-Grh_WT_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/FL_ATAC_S2-WT_100uM_small.bw"
-Grh_Grh_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/S2-Grh_100uM_small.bw"
+Grh_ChIP_bw <- snakemake@input[["Grh_ChIP_bw"]]
+Grh_WT_ATAC_bw <- snakemake@input[["Grh_WT_ATAC_bw"]]
+Grh_Grh_ATAC_bw <-snakemake@input[["Grh_Grh_ATAC_bw"]]
 
-Twi_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw"
-Twi_WT_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/Twi_ATAC_S2-WT_40uM_small.bw"
-Twi_Twi_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/S2-Twi_40uM_small.bw"
+Twi_ChIP_bw <- snakemake@input[["Twi_ChIP_bw"]]
+Twi_WT_ATAC_bw <- snakemake@input[["Twi_WT_ATAC_bw"]]
+Twi_Twi_ATAC_bw <- snakemake@input[["Twi_Twi_ATAC_bw"]]
 
-H3K27me3_ChIP_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/individual/GSE151983_S2_aH3K27me3_IP.bw"
-H3K9me3_ChIP_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE160855_aH3K9me3.bw"
+H3K27me3_ChIP_bw <- snakemake@input[["H3K27me3_ChIP_bw"]]
+H3K9me3_ChIP_bw <- snakemake@input[["H3K9me3_ChIP_bw"]]
+
 
 
 
 # # create blank layout for plot ===============================================
-# pdf(snakemake@output[[1]], useDingbats = FALSE)
-pdf("manuscript/figures/extended_data_fig5.pdf", useDingbats = FALSE)
+pdf(snakemake@output[[1]], useDingbats = FALSE)
+# pdf("manuscript/figures/extended_data_fig5.pdf", useDingbats = FALSE)
 pageCreate(
   width = 18,
   height = 12.5,

@@ -58,42 +58,26 @@ Two independently generated cell lines are shown and compared to 2-3H embryos.
 **c,f,** Bar plots showing enrichment of gene ontology terms in genes significantly upregulated upon expression of Zld **(c)** or Grh **(f)**.
 
 **Extended Data Figure 4: Twist binding leads to chromatin opening and transcriptional activation. a,** Immunoblot showing titration of Twi or HA-Twi protein levels in stable cell lines.
+Protein levels in stable cell lines are compared to 3-4 hour old embryos.
+**b,** Volcano plots showing changes in ATAC-seq signal in cells expressing Twi when compared to WT cells treated with the same concentration of CuSO~4~.
+**c,** RNA-seq volcano plots showing gene expression changes in cells expressing Twi when compared to WT cells treated with the same concentration of CuSO~4~.
+**d,** Bar plots showing enrichment of gene ontology terms in genes significantly upregulated upon expression of Twi.
 
-**Extended Data Figure 5: Chromatin features associated with Zld, Grh and Twi binding sites**
+**Extended Data Figure 5: Chromatin features associated with Zld, Grh and Twi binding sites. a,c,e,** Heatmaps showing the levels of different chromatin marks in class I, II or III regions for Zld (a), Grh (c) or Twi (e).
+The color represents the average z-score normalized read depth across a 1 KB region surrounding the center of class I, II or III ChIP-seq peaks.
+**b,d,f,** Example genome browser tracks for class III regions with high levels of H3K27me3 for Zld (b), Grh (d), or Twi (f).
 
--   analysis of published ChIP datasets not shown in main figure
+**Extended Data Figure 6: Zld, Grh and Twi do not bind preferentially to motifs in a particular position on nucleosomes. a-c,** Metaplots showing average MNase signal at motifs within class I, II, or III regions for Zld (a), Grh (b), or Twi (c).
+**d-f,** Heatmaps showing MNase signal at motifs within class II and III regions for Zld (d), Grh (e), or Twi (f).
+Rows are ordered based on hierarchical clustering to highlight the various patterns of MNase signal around motifs.
 
--   comparison of class I-III sites to show that class II-III sites are devoid of most histone mods
+**Extended Data Figure 7: Zld, Grh and Twi display cell-type specific binding. a-c,** Venn diagrams showing overlap between ChIP-seq peaks identified in different tissues for Zld (a), Grh (b) or Twi (c).
+**d-l,** Genome browser tracks showing examples of class IV, V, and VI regions for Zld (d-f), Grh (g-i) or Twi (j-l).
+For each example, the top tracks show H3K27me3 and H3K9me3 signal over a larger region.
+Dashed gray lines indicate a zoomed-in region where Zld, Grh or Twi ChIP-seq signal is shown in S2 cells or in embryos.
 
--   Class III sites have higher levels of H1 and H3 than class II sites.
-
-**Extended Data Figure 6: Zld, Grh and Twi do not bind preferentially to motifs in a particular position on nucleosomes**
-
--   De novo motif enrichment for each factor
-
--   MNase data to show enrichment of nucleosomes around target motifs
-
--   Clustering of MNase data to show that there is no preferred nucleosome position relative to motifs
-
--   additional analysis of Fiber-seq data to show that nucleosomes at these regions are poorly positioned
-
-**Extended Data Figure 7: Zld, Grh and Twi display cell-type specific binding**
-
--   comparison to other tissues
-
--   analysis of motifs across tissues?
-
-**Extended Data Figure 8: PRC2 inhibition is insufficient to promote Zld, Grh, and Twi binding to repressed targets**
-
--   Examples of class III regions with H3K27me3
-
--   examples of class IV-VI regions
-
--   Spike-in validation of H3K27me3 antibody
-
--   Genome browsers showing loss of H3K27me3 in taz-treated cells without changes in binding.
-
--   Individual examples of sites that are gained in taz-treated cells
+**Extended Data Figure 8: PRC2 inhibition is insufficient to promote Zld, Grh, and Twi binding to repressed targets. a,** Immunoblot showing H3K27me3 levels in two replicates of DMSO- or tazemetostat-treated cells.
+Tubulin levels are shown as a loading control.
 
 **Extended Data Figure 9: Expression of Zld, Grh, or Twi at supraphysiological levels results in novel binding sites**
 

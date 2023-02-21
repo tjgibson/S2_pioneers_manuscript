@@ -22,8 +22,8 @@ twi_ChIP_peaks_fn <- snakemake@input[["twi_ChIP_peaks_fn"]]
 
 
 # # create blank layout for plot ===============================================
-# pdf(snakemake@output[[1]], useDingbats = FALSE)
-pdf("manuscript/figures/extended_data_fig4.pdf", useDingbats = FALSE)
+pdf(snakemake@output[[1]], useDingbats = FALSE)
+# pdf("manuscript/figures/extended_data_fig4.pdf", useDingbats = FALSE)
 pageCreate(width = 18, height = 12, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
