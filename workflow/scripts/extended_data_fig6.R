@@ -10,20 +10,33 @@ library(rtracklayer)
 source("workflow/scripts/plot_heatmap.R")
 
 # define input files ===========================================================
-# Zld_ChIP_bw <- snakemake@input[["Zld_ChIP_bw"]]
+# define input files explicitly for interactively testing script
+# S2_Zld_ChIP_bw <-   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw"
+# S2_Grh_ChIP_bw <-   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw"
+# S2_Twi_ChIP_bw <-   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw"
+# MNase_seq_bw <-  "data/published_datasets/Chereji_2019/GSE128689_RAW/GSM3934479_S2_exp2_seq1_40min.bw"
+# 
+# zld_ChIP_classes_fn <- "results/ChIP_peak_classes/zld_ChIP_classes.tsv"
+# grh_ChIP_classes_fn <- "results/ChIP_peak_classes/grh_ChIP_classes.tsv"
+# twi_ChIP_classes_fn <- "results/ChIP_peak_classes/twi_ChIP_classes.tsv"
+# 
+# zld_motif_instances_fn <- "results/motif_instances/zld_motifs.bed"
+# grh_motif_instances_fn <- "results/motif_instances/grh_motifs.bed"
+# twi_motif_instances_fn <- "results/motif_instances/twi_motifs.bed"
 
-S2_Zld_ChIP_bw <-   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw"
-S2_Grh_ChIP_bw <-   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw"
-S2_Twi_ChIP_bw <-   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw"
-MNase_seq_bw <-  "data/published_datasets/Chereji_2019/GSE128689_RAW/GSM3934479_S2_exp2_seq1_40min.bw"
+# get input files from snakemake
+S2_Zld_ChIP_bw <-   snakemake@input[["S2_Zld_ChIP_bw"]]
+S2_Grh_ChIP_bw <-   snakemake@input[["S2_Grh_ChIP_bw"]]
+S2_Twi_ChIP_bw <-   snakemake@input[["S2_Twi_ChIP_bw"]]
+MNase_seq_bw <-  snakemake@input[["MNase_seq_bw"]]
 
-zld_ChIP_classes_fn <- "results/ChIP_peak_classes/zld_ChIP_classes.tsv"
-grh_ChIP_classes_fn <- "results/ChIP_peak_classes/grh_ChIP_classes.tsv"
-twi_ChIP_classes_fn <- "results/ChIP_peak_classes/twi_ChIP_classes.tsv"
+zld_ChIP_classes_fn <- snakemake@input[["zld_ChIP_classes_fn"]]
+grh_ChIP_classes_fn <- snakemake@input[["grh_ChIP_classes_fn"]]
+twi_ChIP_classes_fn <- snakemake@input[["twi_ChIP_classes_fn"]]
 
-zld_motif_instances_fn <- "results/motif_instances/zld_motifs.bed"
-grh_motif_instances_fn <- "results/motif_instances/grh_motifs.bed"
-twi_motif_instances_fn <- "results/motif_instances/twi_motifs.bed"
+zld_motif_instances_fn <- snakemake@input[["zld_motif_instances_fn"]]
+grh_motif_instances_fn <- snakemake@input[["grh_motif_instances_fn"]]
+twi_motif_instances_fn <- snakemake@input[["twi_motif_instances_fn"]]
 
 # impor ChIP classes ===========================================================
 zld_ChIP_classes <- zld_ChIP_classes_fn |> 
@@ -37,8 +50,8 @@ twi_ChIP_classes <- twi_ChIP_classes_fn |>
 
 
 # # create blank layout for plot ===============================================
-# pdf(snakemake@output[[1]], useDingbats = FALSE)
-pdf("manuscript/figures/extended_data_fig6.pdf", useDingbats = FALSE)
+pdf(snakemake@output[[1]], useDingbats = FALSE)
+# pdf("manuscript/figures/extended_data_fig6.pdf", useDingbats = FALSE)
 pageCreate(width = 18, height = 12, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================

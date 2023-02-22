@@ -11,38 +11,58 @@ source("workflow/scripts/plot_heatmap.R")
 source("../useful_functions/peak_processing.R")
 
 # define input files ===========================================================
-# Zld input files
-S2_Zld_ChIP_fn <- "ChIPseq/results/peaks/final/S2-Zld_aZld_IP.bed"
-nc14_Zld_ChIP_fn <- "published_ChIPseq/results/peaks/individual/narrow/embryo-nc14_aZld_summits.bed"
-brain_Zld_ChIP_fn <-  "../S2_pioneers/results/bed_files/peaks/brain_aZld.bed"
+# define input files explicitly for interactively testing script
+# S2_Zld_ChIP_fn <- "ChIPseq/results/peaks/final/S2-Zld_aZld_IP.bed"
+# nc14_Zld_ChIP_fn <- "published_ChIPseq/results/peaks/individual/narrow/embryo-nc14_aZld_summits.bed"
+# brain_Zld_ChIP_fn <-  "../S2_pioneers/results/bed_files/peaks/brain_aZld.bed"
+# 
+# Zld_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw"
+# Zld_nc14_ChIP_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/individual/embryo-nc14_aZld.bw"
+# 
+# S2_Grh_ChIP_fn <- "ChIPseq/results/peaks/final/S2-Grh_aGrh_IP.bed"
+# embryo_Grh_ChIP_fn <- "published_ChIPseq/results/peaks/individual/narrow/embryo-15-16H_aGrh_summits.bed"
+# wing_Grh_ChIP_fn <- "published_ChIPseq/results/peaks/individual/narrow/wing-disc_aGrh_summits.bed"
+# 
+# Grh_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw"
+# Grh_embryo_ChIP_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-15-16H_aGrh.bw"
+# 
+# S2_twi_ChIP_fn <- "ChIPseq/results/peaks/final/S2-Twi_aTwi_IP.bed"
+# embryo_twi_ChIP_fn <- "published_ChIPseq/results/peaks/merged/narrow/embryo-1-3H_aTwi_summits.bed"
+# 
+# Twi_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw"
+# Twi_embryo_ChIP_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-1-3H_aTwi.bw"
+# 
+# H3K27me3_ChIP_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/individual/GSE151983_S2_aH3K27me3_IP.bw"
+# H3K9me3_ChIP_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE160855_aH3K9me3.bw"
 
-Zld_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw"
-Zld_nc14_ChIP_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/individual/embryo-nc14_aZld.bw"
+# get input files from snakemake
+S2_Zld_ChIP_fn <- snakemake@input[["S2_Zld_ChIP_fn"]]
+nc14_Zld_ChIP_fn <- snakemake@input[["nc14_Zld_ChIP_fn"]]
+brain_Zld_ChIP_fn <-  snakemake@input[["brain_Zld_ChIP_fn"]]
 
-# Grh input files
-S2_Grh_ChIP_fn <- "ChIPseq/results/peaks/final/S2-Grh_aGrh_IP.bed"
-embryo_Grh_ChIP_fn <- "published_ChIPseq/results/peaks/individual/narrow/embryo-15-16H_aGrh_summits.bed"
-wing_Grh_ChIP_fn <- "published_ChIPseq/results/peaks/individual/narrow/wing-disc_aGrh_summits.bed"
+Zld_ChIP_bw <- snakemake@input[["Zld_ChIP_bw"]]
+Zld_nc14_ChIP_bw <- snakemake@input[["Zld_nc14_ChIP_bw"]]
 
-Grh_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw"
-Grh_embryo_ChIP_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-15-16H_aGrh.bw"
+S2_Grh_ChIP_fn <- snakemake@input[["S2_Grh_ChIP_fn"]]
+embryo_Grh_ChIP_fn <- snakemake@input[["embryo_Grh_ChIP_fn"]]
+wing_Grh_ChIP_fn <- snakemake@input[["wing_Grh_ChIP_fn"]]
 
-# Twi input files
-S2_twi_ChIP_fn <- "ChIPseq/results/peaks/final/S2-Twi_aTwi_IP.bed"
-embryo_twi_ChIP_fn <- "published_ChIPseq/results/peaks/merged/narrow/embryo-1-3H_aTwi_summits.bed"
+Grh_ChIP_bw <- snakemake@input[["Grh_ChIP_bw"]]
+Grh_embryo_ChIP_bw <- snakemake@input[["Grh_embryo_ChIP_bw"]]
 
-Twi_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw"
-Twi_embryo_ChIP_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-1-3H_aTwi.bw"
+S2_twi_ChIP_fn <- snakemake@input[["S2_twi_ChIP_fn"]]
+embryo_twi_ChIP_fn <- snakemake@input[["embryo_twi_ChIP_fn"]]
 
+Twi_ChIP_bw <- snakemake@input[["Twi_ChIP_bw"]]
+Twi_embryo_ChIP_bw <- snakemake@input[["Twi_embryo_ChIP_bw"]]
 
-
-H3K27me3_ChIP_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/individual/GSE151983_S2_aH3K27me3_IP.bw"
-H3K9me3_ChIP_bw <- "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE160855_aH3K9me3.bw"
+H3K27me3_ChIP_bw <- snakemake@input[["H3K27me3_ChIP_bw"]]
+H3K9me3_ChIP_bw <- snakemake@input[["H3K9me3_ChIP_bw"]]
 
 
 # # create blank layout for plot ===============================================
-# pdf(snakemake@output[[1]], useDingbats = FALSE)
-pdf("manuscript/figures/extended_data_fig7.pdf", useDingbats = FALSE)
+pdf(snakemake@output[[1]], useDingbats = FALSE)
+# pdf("manuscript/figures/extended_data_fig7.pdf", useDingbats = FALSE)
 pageCreate(width = 18, height = 18, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================

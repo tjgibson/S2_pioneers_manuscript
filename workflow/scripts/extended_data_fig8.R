@@ -10,17 +10,21 @@ source("workflow/scripts/plot_heatmap.R")
 source("workflow/scripts/utils.R")
 
 # define input files ===========================================================
-# Zld_ChIP_bw <- snakemake@input[["Zld_ChIP_bw"]]
+# define input files explicitly for interactively testing script
+# CR_spikeIn_counts_fn <-"CUTandRUN/results/scaling_factors/epiCypher_barcode_counts.tsv"
+# 
+# taz_blot_aH3K27me3_image <- "data/immunoblot_raw_images/2021-06-29_taz/anti-H3K27me3_3.tif"
+# taz_blot_aTub_image <- "data/immunoblot_raw_images/2021-06-29_taz/anti-tubulin_2.tif"
 
-CR_spikeIn_counts_fn <-"CUTandRUN/results/scaling_factors/epiCypher_barcode_counts.tsv"
-
-taz_blot_aH3K27me3_image <- "data/immunoblot_raw_images/2021-06-29_taz/anti-H3K27me3_3.tif"
-taz_blot_aTub_image <- "data/immunoblot_raw_images/2021-06-29_taz/anti-tubulin_2.tif"
+# get input files from snakemake
+CR_spikeIn_counts_fn <-snakemake@input[["CR_spikeIn_counts_fn"]]
+taz_blot_aH3K27me3_image <- snakemake@input[["taz_blot_aH3K27me3_image"]]
+taz_blot_aTub_image <- snakemake@input[["taz_blot_aTub_image"]]
 
 
 # open graphics device =========================================================
-# pdf(snakemake@output[[1]], useDingbats = FALSE)
-pdf("manuscript/figures/extended_data_fig8.pdf")
+pdf(snakemake@output[[1]], useDingbats = FALSE)
+# pdf("manuscript/figures/extended_data_fig8.pdf")
 # create blank layout for plot =================================================
 pageCreate(width = 18, height = 12, default.units = "cm", showGuides = FALSE)
 

@@ -11,24 +11,39 @@ library(EBImage)
 source("workflow/scripts/plot_heatmap.R")
 
 # define input files ===========================================================
-# Zld_ChIP_bw <- snakemake@input[["Zld_ChIP_bw"]]
+# define input files explicitly for interactively testing script
+# zld_DBD_blot <- "data/immunoblot_raw_images/2021-10-14_Zld-DBD/Zld-Grh-DBDs.tif"
+# 
+# grh_DBD_blot <- "data/immunoblot_raw_images/2021-08-19_Grh-DBD/Grh-DBD.tif"
+# 
+# zld_FL_ChIP_classes_fn <- "results/ChIP_peak_classes/zld_ChIP_classes.tsv"
+# zld_DBD_peaks_fn <- "ChIPseq/results/peaks/filtered/S2-Zld-DBD_aZld_IP.narrowPeak"
+# 
+# grh_FL_ChIP_classes_fn <- "results/ChIP_peak_classes/grh_ChIP_classes.tsv"
+# grh_DBD_peaks_fn <- "ChIPseq/results/peaks/filtered/S2-Grh-DBD_aGrh_IP.narrowPeak"
+# 
+# zld_FL_bw <-  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw"
+# zld_DBD_bw <-  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld-DBD_aZld_IP.bw"
+# 
+# grh_FL_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw"
+# grh_DBD_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh-DBD_aGrh_IP.bw"
 
-zld_DBD_blot <- "data/immunoblot_raw_images/2021-10-14_Zld-DBD/Zld-Grh-DBDs.tif"
+# get input files from snakemake
+zld_DBD_blot <- snakemake@input[["zld_DBD_blot"]]
 
-grh_DBD_blot <- "data/immunoblot_raw_images/2021-08-19_Grh-DBD/Grh-DBD.tif"
+grh_DBD_blot <- snakemake@input[["grh_DBD_blot"]]
 
-zld_FL_ChIP_classes_fn <- "results/ChIP_peak_classes/zld_ChIP_classes.tsv"
-zld_DBD_peaks_fn <- "ChIPseq/results/peaks/filtered/S2-Zld-DBD_aZld_IP.narrowPeak"
+zld_FL_ChIP_classes_fn <- snakemake@input[["zld_FL_ChIP_classes_fn"]]
+zld_DBD_peaks_fn <- snakemake@input[["zld_DBD_peaks_fn"]]
 
-grh_FL_ChIP_classes_fn <- "results/ChIP_peak_classes/grh_ChIP_classes.tsv"
-grh_DBD_peaks_fn <- "ChIPseq/results/peaks/filtered/S2-Grh-DBD_aGrh_IP.narrowPeak"
+grh_FL_ChIP_classes_fn <- snakemake@input[["grh_FL_ChIP_classes_fn"]]
+grh_DBD_peaks_fn <- snakemake@input[["grh_DBD_peaks_fn"]]
 
-zld_FL_bw <-  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw"
-zld_DBD_bw <-  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld-DBD_aZld_IP.bw"
+zld_FL_bw <-  snakemake@input[["zld_FL_bw"]]
+zld_DBD_bw <-  snakemake@input[["zld_DBD_bw"]]
 
-grh_FL_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw"
-grh_DBD_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh-DBD_aGrh_IP.bw"
-
+grh_FL_bw <- snakemake@input[["grh_FL_bw"]]
+grh_DBD_bw <- snakemake@input[["grh_DBD_bw"]]
 
 # impor ChIP classes ===========================================================
 zld_ChIP_classes <- zld_FL_ChIP_classes_fn |> 

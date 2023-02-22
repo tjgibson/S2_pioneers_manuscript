@@ -11,35 +11,57 @@ source("workflow/scripts/plot_heatmap.R")
 source("workflow/scripts/utils.R")
 
 # define input files ===========================================================
-# Zld_ChIP_bw <- snakemake@input[["Zld_ChIP_bw"]]
+# define input files explicitly for interactively testing script
+# zld_titration_blot_aZld <- "data/immunoblot_raw_images/2022-7-12_titration/Zld-titration_aZld.tif"
+# 
+# grh_titration_blot_aGrh <- "data/immunoblot_raw_images/2022-7-12_titration/Grh-titration_aGrh_short.tif"
+# grh_titration_blot_aTub <- "data/immunoblot_raw_images/2022-7-12_titration/Grh-titration_aTub.tif"
+# 
+# twi_titration_blot_aTwi <- "data/immunoblot_raw_images/2022-7-12_titration/Twi-titration_aTwi.tif"
+# twi_titration_blot_aTub <- "data/immunoblot_raw_images/2022-7-12_titration/Twi-titration_aTub.tif"
+# 
+# zld_tissue_classes <- read_tsv("results/ChIP_tissue_classes/zld_tissue_classes.tsv") |> 
+#   mutate(class = replace(class, class == "repressed_H3K27me3", "class IV")) |> 
+#   mutate(class = replace(class, class == "repressed_H3K9me3", "class V")) |> 
+#   mutate(class = replace(class, class == "repressed_other", "class VI"))
+# 
+# grh_tissue_classes <- read_tsv("results/ChIP_tissue_classes/grh_tissue_classes.tsv") |> 
+#   mutate(class = replace(class, class == "repressed_H3K27me3", "class IV")) |> 
+#   mutate(class = replace(class, class == "repressed_H3K9me3", "class V")) |> 
+#   mutate(class = replace(class, class == "repressed_other", "class VI"))
+# 
+# twi_tissue_classes <- read_tsv("results/ChIP_tissue_classes/twi_tissue_classes.tsv") |> 
+#   mutate(class = replace(class, class == "repressed_H3K27me3", "class IV")) |> 
+#   mutate(class = replace(class, class == "repressed_H3K9me3", "class V")) |> 
+#   mutate(class = replace(class, class == "repressed_other", "class VI"))
 
-zld_titration_blot_aZld <- "data/immunoblot_raw_images/2022-7-12_titration/Zld-titration_aZld.tif"
+# get input files from snakemake
+zld_titration_blot_aZld <- snakemake@input[["zld_titration_blot_aZld"]]
 
-grh_titration_blot_aGrh <- "data/immunoblot_raw_images/2022-7-12_titration/Grh-titration_aGrh_short.tif"
-grh_titration_blot_aTub <- "data/immunoblot_raw_images/2022-7-12_titration/Grh-titration_aTub.tif"
+grh_titration_blot_aGrh <- snakemake@input[["grh_titration_blot_aGrh"]]
+grh_titration_blot_aTub <- snakemake@input[["grh_titration_blot_aTub"]]
 
-twi_titration_blot_aTwi <- "data/immunoblot_raw_images/2022-7-12_titration/Twi-titration_aTwi.tif"
-twi_titration_blot_aTub <- "data/immunoblot_raw_images/2022-7-12_titration/Twi-titration_aTub.tif"
+twi_titration_blot_aTwi <- snakemake@input[["twi_titration_blot_aTwi"]]
+twi_titration_blot_aTub <- snakemake@input[["twi_titration_blot_aTub"]]
 
-zld_tissue_classes <- read_tsv("results/ChIP_tissue_classes/zld_tissue_classes.tsv") |> 
+zld_tissue_classes <- read_tsv(snakemake@input[["zld_tissue_classes_fn"]]) |> 
   mutate(class = replace(class, class == "repressed_H3K27me3", "class IV")) |> 
   mutate(class = replace(class, class == "repressed_H3K9me3", "class V")) |> 
   mutate(class = replace(class, class == "repressed_other", "class VI"))
 
-grh_tissue_classes <- read_tsv("results/ChIP_tissue_classes/grh_tissue_classes.tsv") |> 
+grh_tissue_classes <- read_tsv(snakemake@input[["grh_tissue_classes_fn"]]) |> 
   mutate(class = replace(class, class == "repressed_H3K27me3", "class IV")) |> 
   mutate(class = replace(class, class == "repressed_H3K9me3", "class V")) |> 
   mutate(class = replace(class, class == "repressed_other", "class VI"))
 
-twi_tissue_classes <- read_tsv("results/ChIP_tissue_classes/twi_tissue_classes.tsv") |> 
+twi_tissue_classes <- read_tsv(snakemake@input[["twi_tissue_classes_fn"]]) |> 
   mutate(class = replace(class, class == "repressed_H3K27me3", "class IV")) |> 
   mutate(class = replace(class, class == "repressed_H3K9me3", "class V")) |> 
   mutate(class = replace(class, class == "repressed_other", "class VI"))
-
 
 # open graphics device =========================================================
-# pdf(snakemake@output[[1]], useDingbats = FALSE)
-pdf("manuscript/figures/extended_data_fig9.pdf")
+pdf(snakemake@output[[1]], useDingbats = FALSE)
+# pdf("manuscript/figures/extended_data_fig9.pdf")
 # create blank layout for plot =================================================
 pageCreate(width = 18.3, height = 12.5, default.units = "cm", showGuides = FALSE)
 

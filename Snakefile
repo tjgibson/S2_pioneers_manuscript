@@ -672,45 +672,81 @@ rule extended_data_fig_5:
 	script:
 		"workflow/scripts/extended_data_fig5.R"
 		
-# rule extended_data_fig_6:
-# 	input:
-#   		
-# 	output:
-# 		"manuscript/figures/extended_data_fig6.pdf"
-# 	script:
-# 		"workflow/scripts/extended_data_fig6.R"
-# 		
-# rule extended_data_fig_7:
-# 	input:
-#   		
-# 	output:
-# 		"manuscript/figures/extended_data_fig7.pdf"
-# 	script:
-# 		"workflow/scripts/extended_data_fig7.R"
-# 		
-# rule extended_data_fig_8:
-# 	input:
-#   		
-# 	output:
-# 		"manuscript/figures/extended_data_fig8.pdf"
-# 	script:
-# 		"workflow/scripts/extended_data_fig8.R"
-# 		
-# rule extended_data_fig_9:
-# 	input:
-#   		
-# 	output:
-# 		"manuscript/figures/extended_data_fig9.pdf"
-# 	script:
-# 		"workflow/scripts/extended_data_fig9.R"
-# 		
-# rule extended_data_fig_10:
-# 	input:
-#   		
-# 	output:
-# 		"manuscript/figures/extended_data_fig10.pdf"
-# 	script:
-# 		"workflow/scripts/extended_data_fig10.R"
+rule extended_data_fig_6:
+	input:
+		S2_Zld_ChIP_bw =   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw",
+		S2_Grh_ChIP_bw =   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw",
+		S2_Twi_ChIP_bw =   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw",
+		MNase_seq_bw =  "data/published_datasets/Chereji_2019/GSE128689_RAW/GSM3934479_S2_exp2_seq1_40min.bw",
+		zld_ChIP_classes_fn = "results/ChIP_peak_classes/zld_ChIP_classes.tsv",
+		grh_ChIP_classes_fn = "results/ChIP_peak_classes/grh_ChIP_classes.tsv",
+		twi_ChIP_classes_fn = "results/ChIP_peak_classes/twi_ChIP_classes.tsv",
+		zld_motif_instances_fn = "results/motif_instances/zld_motifs.bed",
+		grh_motif_instances_fn = "results/motif_instances/grh_motifs.bed",
+		twi_motif_instances_fn = "results/motif_instances/twi_motifs.bed",
+	output:
+		"manuscript/figures/extended_data_fig6.pdf"
+	script:
+		"workflow/scripts/extended_data_fig6.R"
+ 		
+rule extended_data_fig_7:
+	input:
+		S2_Zld_ChIP_bw =   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw",
+		S2_Grh_ChIP_bw =   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw",
+		S2_Twi_ChIP_bw =   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw",
+		MNase_seq_bw =  "data/published_datasets/Chereji_2019/GSE128689_RAW/GSM3934479_S2_exp2_seq1_40min.bw",
+		zld_ChIP_classes_fn = "results/ChIP_peak_classes/zld_ChIP_classes.tsv",
+		grh_ChIP_classes_fn = "results/ChIP_peak_classes/grh_ChIP_classes.tsv",
+		twi_ChIP_classes_fn = "results/ChIP_peak_classes/twi_ChIP_classes.tsv",
+		zld_motif_instances_fn = "results/motif_instances/zld_motifs.bed",
+		grh_motif_instances_fn = "results/motif_instances/grh_motifs.bed",
+		twi_motif_instances_fn = "results/motif_instances/twi_motifs.bed",
+	output:
+		"manuscript/figures/extended_data_fig7.pdf"
+	script:
+		"workflow/scripts/extended_data_fig7.R"
+		
+rule extended_data_fig_8:
+	input:
+		CR_spikeIn_counts_fn ="CUTandRUN/results/scaling_factors/epiCypher_barcode_counts.tsv",
+		taz_blot_aH3K27me3_image = "data/immunoblot_raw_images/2021-06-29_taz/anti-H3K27me3_3.tif",
+		taz_blot_aTub_image = "data/immunoblot_raw_images/2021-06-29_taz/anti-tubulin_2.tif",
+	output:
+		"manuscript/figures/extended_data_fig8.pdf"
+	script:
+		"workflow/scripts/extended_data_fig8.R"
+		
+rule extended_data_fig_9:
+	input:
+		zld_titration_blot_aZld = "data/immunoblot_raw_images/2022-7-12_titration/Zld-titration_aZld.tif",
+		grh_titration_blot_aGrh = "data/immunoblot_raw_images/2022-7-12_titration/Grh-titration_aGrh_short.tif",
+		grh_titration_blot_aTub = "data/immunoblot_raw_images/2022-7-12_titration/Grh-titration_aTub.tif",
+		twi_titration_blot_aTwi = "data/immunoblot_raw_images/2022-7-12_titration/Twi-titration_aTwi.tif",
+		twi_titration_blot_aTub = "data/immunoblot_raw_images/2022-7-12_titration/Twi-titration_aTub.tif",
+		zld_tissue_classes_fn = "results/ChIP_tissue_classes/zld_tissue_classes.tsv",
+		grh_tissue_classes_fn = "results/ChIP_tissue_classes/grh_tissue_classes.tsv",
+		twi_tissue_classes_fn = "results/ChIP_tissue_classes/twi_tissue_classes.tsv",
+	output:
+		"manuscript/figures/extended_data_fig9.pdf"
+	script:
+		"workflow/scripts/extended_data_fig9.R"
+		
+rule extended_data_fig_10:
+	input:
+		zld_DBD_blot = "data/immunoblot_raw_images/2021-10-14_Zld-DBD/Zld-Grh-DBDs.tif",
+		grh_DBD_blot = "data/immunoblot_raw_images/2021-08-19_Grh-DBD/Grh-DBD.tif",
+		zld_FL_ChIP_classes_fn = "results/ChIP_peak_classes/zld_ChIP_classes.tsv",
+		zld_DBD_peaks_fn = "ChIPseq/results/peaks/filtered/S2-Zld-DBD_aZld_IP.narrowPeak",
+		grh_FL_ChIP_classes_fn = "results/ChIP_peak_classes/grh_ChIP_classes.tsv",
+		grh_DBD_peaks_fn = "ChIPseq/results/peaks/filtered/S2-Grh-DBD_aGrh_IP.narrowPeak",
+		zld_FL_bw =  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw",
+		zld_DBD_bw =  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld-DBD_aZld_IP.bw",
+		grh_FL_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw",
+		grh_DBD_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh-DBD_aGrh_IP.bw",	
+	output:
+		"manuscript/figures/extended_data_fig10.pdf"
+	script:
+		"workflow/scripts/extended_data_fig10.R"
 
 ##########################################################################################
 ##########################################################################################
@@ -738,9 +774,9 @@ rule all:
         "manuscript/figures/extended_data_fig3.pdf",
         "manuscript/figures/extended_data_fig4.pdf",
         "manuscript/figures/extended_data_fig5.pdf",
-#         "manuscript/figures/extended_data_fig6.pdf",
-#         "manuscript/figures/extended_data_fig7.pdf",
-#         "manuscript/figures/extended_data_fig8.pdf",
-#         "manuscript/figures/extended_data_fig9.pdf",
-#         "manuscript/figures/extended_data_fig10.pdf",
+        "manuscript/figures/extended_data_fig6.pdf",
+        "manuscript/figures/extended_data_fig7.pdf",
+        "manuscript/figures/extended_data_fig8.pdf",
+        "manuscript/figures/extended_data_fig9.pdf",
+        "manuscript/figures/extended_data_fig10.pdf",
     default_target: True
