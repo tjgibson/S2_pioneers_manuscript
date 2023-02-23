@@ -143,7 +143,7 @@ bw <- c(
   CTCF =snakemake@input[["CTCF_bw"]],
   CP190 = snakemake@input[["CP190_bw"]],
   Su_hw = snakemake@input[["Su_hw_bw"]],
-  Mod_mdg4 = snakemake@input[["Mod_mdg4_bw"]],
+  Mod_mdg4 = snakemake@input[["Mod_mdg4_bw"]]
   
 )
 

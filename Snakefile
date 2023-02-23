@@ -691,16 +691,22 @@ rule extended_data_fig_6:
  		
 rule extended_data_fig_7:
 	input:
-		S2_Zld_ChIP_bw =   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw",
-		S2_Grh_ChIP_bw =   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw",
-		S2_Twi_ChIP_bw =   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw",
-		MNase_seq_bw =  "data/published_datasets/Chereji_2019/GSE128689_RAW/GSM3934479_S2_exp2_seq1_40min.bw",
-		zld_ChIP_classes_fn = "results/ChIP_peak_classes/zld_ChIP_classes.tsv",
-		grh_ChIP_classes_fn = "results/ChIP_peak_classes/grh_ChIP_classes.tsv",
-		twi_ChIP_classes_fn = "results/ChIP_peak_classes/twi_ChIP_classes.tsv",
-		zld_motif_instances_fn = "results/motif_instances/zld_motifs.bed",
-		grh_motif_instances_fn = "results/motif_instances/grh_motifs.bed",
-		twi_motif_instances_fn = "results/motif_instances/twi_motifs.bed",
+		S2_Zld_ChIP_fn = "ChIPseq/results/peaks/final/S2-Zld_aZld_IP.bed",
+		nc14_Zld_ChIP_fn = "published_ChIPseq/results/peaks/individual/narrow/embryo-nc14_aZld_summits.bed",
+		brain_Zld_ChIP_fn =  "../S2_pioneers/results/bed_files/peaks/brain_aZld.bed",
+		Zld_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw",
+		Zld_nc14_ChIP_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/individual/embryo-nc14_aZld.bw",
+		S2_Grh_ChIP_fn = "ChIPseq/results/peaks/final/S2-Grh_aGrh_IP.bed",
+		embryo_Grh_ChIP_fn = "published_ChIPseq/results/peaks/individual/narrow/embryo-15-16H_aGrh_summits.bed",
+		wing_Grh_ChIP_fn = "published_ChIPseq/results/peaks/individual/narrow/wing-disc_aGrh_summits.bed",
+		Grh_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw",
+		Grh_embryo_ChIP_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-15-16H_aGrh.bw",
+		S2_twi_ChIP_fn = "ChIPseq/results/peaks/final/S2-Twi_aTwi_IP.bed",
+		embryo_twi_ChIP_fn = "published_ChIPseq/results/peaks/merged/narrow/embryo-1-3H_aTwi_summits.bed",
+		Twi_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw",
+		Twi_embryo_ChIP_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-1-3H_aTwi.bw",
+		H3K27me3_ChIP_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/individual/GSE151983_S2_aH3K27me3_IP.bw",
+		H3K9me3_ChIP_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE160855_aH3K9me3.bw",
 	output:
 		"manuscript/figures/extended_data_fig7.pdf"
 	script:
