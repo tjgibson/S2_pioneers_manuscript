@@ -599,6 +599,28 @@ rule extended_data_fig_1:
 	script:
 		"workflow/scripts/extended_data_fig1.R"
 
+rule extended_data_fig_2:
+	input:
+		S2_Zld_CR_0H_bw = "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_0H_small.bw",
+		S2_Zld_CR_4H_bw = "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_4H_small.bw",
+		S2_Zld_CR_12H_bw = "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_12H_small.bw",
+		S2_Zld_CR_24H_bw = "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_24H_small.bw",
+		S2_Zld_CR_48H_bw = "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_48H_small.bw",
+		S2_Grh_CR_0H_bw = "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_0H_small.bw",
+		S2_Grh_CR_4H_bw = "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_4H_small.bw",
+		S2_Grh_CR_12H_bw = "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_12H_small.bw",
+		S2_Grh_CR_24H_bw = "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_24H_small.bw",
+		S2_Grh_CR_48H_bw = "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_48H_small.bw",
+		zld_ChIP_classes_fn = "results/ChIP_peak_classes/zld_ChIP_classes.tsv",
+		grh_ChIP_classes_fn = "results/ChIP_peak_classes/grh_ChIP_classes.tsv",
+		zld_blot_image = "data/immunoblot_raw_images/2018-11-27_timecourse/zld_timecourse.tif",
+		grh_blot_image = "data/immunoblot_raw_images/2018-11-27_timecourse/grh_timecourse.tif",
+	output:
+		"manuscript/figures/extended_data_fig2.pdf"
+	script:
+		"workflow/scripts/extended_data_fig2.R"
+
+
 rule extended_data_fig_3:
 	input:
   		zld_RNAseq_results_fn = "RNAseq/results/DEseq2/S2-Zld_RNAseq_S2-Zld-vs-S2-WT_results_annotated.tsv",
@@ -617,6 +639,7 @@ rule extended_data_fig_4:
   		twi_RNAseq_results_fn = "RNAseq/results/DEseq2/S2-Twi_RNAseq_S2-Twi-vs-S2-WT_results_annotated.tsv",
 		twi_ATAC_results_fn = "ATACseq/results/DEseq2_results_filtered/S2-Twi_ATACseq_S2-Twi-vs-S2-WT-40uM_results.tsv",
 		twi_ChIP_peaks_fn = "ChIPseq/results/peaks/final/S2-Twi_aTwi_IP.narrowPeak",
+		twi_blot_image = "data/immunoblot_raw_images/2021-9-13_Twi-vs-embryo/Twi-vs-embryos.tif",
 	output:
 		"manuscript/figures/extended_data_fig4.pdf"
 	script:

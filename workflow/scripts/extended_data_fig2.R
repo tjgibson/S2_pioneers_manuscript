@@ -9,29 +9,48 @@ library(EBImage)
 source("workflow/scripts/plot_heatmap.R")
 
 # define input files ===========================================================
-# Zld_ChIP_bw <- snakemake@input[["Zld_ChIP_bw"]]
+# specify input files explicitly for testing script interactively
+# S2_Zld_CR_0H_bw <- "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_0H_small.bw"
+# S2_Zld_CR_4H_bw <- "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_4H_small.bw"
+# S2_Zld_CR_12H_bw <- "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_12H_small.bw"
+# S2_Zld_CR_24H_bw <- "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_24H_small.bw"
+# S2_Zld_CR_48H_bw <- "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_48H_small.bw"
+# 
+# S2_Grh_CR_0H_bw <- "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_0H_small.bw"
+# S2_Grh_CR_4H_bw <- "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_4H_small.bw"
+# S2_Grh_CR_12H_bw <- "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_12H_small.bw"
+# S2_Grh_CR_24H_bw <- "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_24H_small.bw"
+# S2_Grh_CR_48H_bw <- "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_48H_small.bw"
 
-S2_Zld_CR_0H_bw <- "data/2021-03_CR/results/bigwigs/z_score_normalized/S2-Zld_aZld_0H_accessble_zscore.bw"
-S2_Zld_CR_4H_bw <- "data/2021-03_CR/results/bigwigs/z_score_normalized/S2-Zld_aZld_4H_accessble_zscore.bw"
-S2_Zld_CR_12H_bw <- "data/2021-03_CR/results/bigwigs/z_score_normalized/S2-Zld_aZld_12H_accessble_zscore.bw"
-S2_Zld_CR_24H_bw <- "data/2021-03_CR/results/bigwigs/z_score_normalized/S2-Zld_aZld_24H_accessble_zscore.bw"
-S2_Zld_CR_48H_bw <- "data/2021-03_CR/results/bigwigs/z_score_normalized/S2-Zld_aZld_48H_accessble_zscore.bw"
 
-S2_Grh_CR_0H_bw <- "data/2021-03_CR/results/bigwigs/z_score_normalized/S2-Grh_aGrh_0H_accessble_zscore.bw"
-S2_Grh_CR_4H_bw <- "data/2021-03_CR/results/bigwigs/z_score_normalized/S2-Grh_aGrh_4H_accessble_zscore.bw"
-S2_Grh_CR_12H_bw <- "data/2021-03_CR/results/bigwigs/z_score_normalized/S2-Grh_aGrh_12H_accessble_zscore.bw"
-S2_Grh_CR_24H_bw <- "data/2021-03_CR/results/bigwigs/z_score_normalized/S2-Grh_aGrh_24H_accessble_zscore.bw"
-S2_Grh_CR_48H_bw <- "data/2021-03_CR/results/bigwigs/z_score_normalized/S2-Grh_aGrh_48H_accessble_zscore.bw"
+# zld_ChIP_classes_fn <- "results/ChIP_peak_classes/zld_ChIP_classes.tsv"
+# grh_ChIP_classes_fn <- "results/ChIP_peak_classes/grh_ChIP_classes.tsv"
+# 
+# zld_blot_image <- "data/immunoblot_raw_images/2018-11-27_timecourse/zld_timecourse.tif"
+# grh_blot_image <- "data/immunoblot_raw_images/2018-11-27_timecourse/grh_timecourse.tif"
 
-zld_ChIP_classes_fn <- "results/ChIP_peak_classes/zld_ChIP_classes.tsv"
-grh_ChIP_classes_fn <- "results/ChIP_peak_classes/grh_ChIP_classes.tsv"
+# get input files from snakemake
+S2_Zld_CR_0H_bw <- snakemake@input[["S2_Zld_CR_0H_bw"]]
+S2_Zld_CR_4H_bw <- snakemake@input[["S2_Zld_CR_4H_bw"]]
+S2_Zld_CR_12H_bw <- snakemake@input[["S2_Zld_CR_12H_bw"]]
+S2_Zld_CR_24H_bw <- snakemake@input[["S2_Zld_CR_24H_bw"]]
+S2_Zld_CR_48H_bw <- snakemake@input[["S2_Zld_CR_48H_bw"]]
 
-zld_blot_image <- "data/immunoblot_raw_images/2018-11-27_timecourse/zld_timecourse.tif"
-grh_blot_image <- "data/immunoblot_raw_images/2018-11-27_timecourse/grh_timecourse.tif"
+S2_Grh_CR_0H_bw <- snakemake@input[["S2_Grh_CR_0H_bw"]]
+S2_Grh_CR_4H_bw <- snakemake@input[["S2_Grh_CR_4H_bw"]]
+S2_Grh_CR_12H_bw <- snakemake@input[["S2_Grh_CR_12H_bw"]]
+S2_Grh_CR_24H_bw <- snakemake@input[["S2_Grh_CR_24H_bw"]]
+S2_Grh_CR_48H_bw <- snakemake@input[["S2_Grh_CR_48H_bw"]]
+
+zld_ChIP_classes_fn <- snakemake@input[["zld_ChIP_classes_fn"]]
+grh_ChIP_classes_fn <- snakemake@input[["grh_ChIP_classes_fn"]]
+
+zld_blot_image <- snakemake@input[["zld_blot_image"]]
+grh_blot_image <- snakemake@input[["grh_blot_image"]]
 
 # # create blank layout for plot ===============================================
-# pdf(snakemake@output[[1]], useDingbats = FALSE)
-pdf("manuscript/figures/extended_data_fig2.pdf", useDingbats = FALSE)
+pdf(snakemake@output[[1]], useDingbats = FALSE)
+# pdf("manuscript/figures/extended_data_fig2.pdf", useDingbats = FALSE)
 pageCreate(width = 18.3, height = 15, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================

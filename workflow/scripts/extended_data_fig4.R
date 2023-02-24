@@ -10,15 +10,17 @@ library(rtracklayer)
 library(EBImage)
 
 # define input files ===========================================================
-# specify input files explicitly for testing 
+# specify input files explicitly for testing script interactively 
 # twi_RNAseq_results_fn <- "RNAseq/results/DEseq2/S2-Twi_RNAseq_S2-Twi-vs-S2-WT_results_annotated.tsv"
 # twi_ATAC_results_fn <- "ATACseq/results/DEseq2_results_filtered/S2-Twi_ATACseq_S2-Twi-vs-S2-WT-40uM_results.tsv"
 # twi_ChIP_peaks_fn <- "ChIPseq/results/peaks/final/S2-Twi_aTwi_IP.narrowPeak"
+# twi_blot_image <- "data/immunoblot_raw_images/2021-9-13_Twi-vs-embryo/Twi-vs-embryos.tif"
 
 # get input files from snakemake
 twi_RNAseq_results_fn <- snakemake@input[["twi_RNAseq_results_fn"]]
-twi_ATAC_results_fn <- snakemake@input[["twi_RNAseq_results_fn"]]
+twi_ATAC_results_fn <- snakemake@input[["twi_ATAC_results_fn"]]
 twi_ChIP_peaks_fn <- snakemake@input[["twi_ChIP_peaks_fn"]]
+twi_blot_image <- snakemake@input[["twi_blot_image"]]
 
 
 # # create blank layout for plot ===============================================
@@ -48,7 +50,7 @@ plotText(
 )
 
 # read in tiff of western blot
-blot_image <- readImage("data/immunoblot_raw_images/2021-9-13_Twi-vs-embryo/Twi-vs-embryos.tif")
+blot_image <- readImage(twi_blot_image)
 
 # rotate image
 blot_image <- blot_image |> 
