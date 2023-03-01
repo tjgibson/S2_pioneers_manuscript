@@ -175,3 +175,54 @@ rpkm <- function(count_table, widths) {
   return(all_rpkm)
   
 }
+
+# define function for processing IF images =====================================
+# x: named list of EBImage Image objects corresponding to fluorescence channels
+# coordinates: named list of x,y coordinates for cropping images. e.g coordinates = list(x=1:100, y=1:100)
+# normalize: if true, will apply linear histogram normalization
+# intensity range: list with same names as x. Each element should be a numeric vector that will be passed to EBImage::normalize as the inputRange parameter
+process_IF_images <- function(x, coordinates = NULL, normalize = FALSE, intensity_range = NULL) {
+  require(EBImage)
+  # check input files
+  if (is.null(names(x))) stop("x should be a named list, set names for x")
+  
+  if (!all(unlist(lapply(images,class)) == "Image")) stop("x should be a list of Image objects")
+  
+  if (!is.null(coordinates)) {
+    if (!(identical(names(coordinates),c("x","y")) | identical(names(coordinates),c("y","x")))) stop("coordinates should be a named list with elements 'x' and 'y'")
+  }
+  
+  if (!is.null(intensity_range)) {
+    if (!identical(names(x), names(intensity_range))) stop("`intensity_range` should have same names as 'x'")
+  }
+  
+  # crop images
+  if (!is.null(coordinates)) {
+    for (channel in names(x)) {
+      # crop image to show cell of interest
+      x[[channel]] <- x[[channel]][coordinates$x,coordinates$y,]
+    }
+  }
+  
+  # convert images to grayscale
+  if (!is.null(coordinates)) {
+    for (channel in names(x)) {
+      # crop image to show cell of interest
+      x[[channel]] <- channel(x[[channel]], mode = "gray")
+    }
+  }
+  
+  # perform histogram normalization
+  if (normalize) {
+    if(is.null(intensity_range)) {
+      for (channel in names(x)) {
+        x[[channel]] <- normalize(x[[channel]])
+      }
+    } else {
+      for (channel in names(x)) {
+        x[[channel]] <- normalize(x[[channel]], inputRange = intensity_range[[channel]])
+      }
+    }
+  }  
+  return(x) 
+}

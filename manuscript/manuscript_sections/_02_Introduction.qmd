@@ -1,5 +1,5 @@
 ---
-bibliography: ../references.bib
+# bibliography: ../references.bib
 ---
 
 During animal development, the totipotent embryo divides and differentiates to give rise to the diverse cell and tissue types of the adult organism.

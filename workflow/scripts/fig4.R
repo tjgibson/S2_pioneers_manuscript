@@ -45,20 +45,20 @@ wing_disc_Grh_ChIP_bw <-  snakemake@input[["wing_disc_Grh_ChIP_bw"]]
 S2_Twi_ChIP_bw <-  snakemake@input[["S2_Twi_ChIP_bw"]]
 embryo_Twi_ChIP_bw <-  snakemake@input[["embryo_Twi_ChIP_bw"]]
 
-S2_Zld_ChIP_DMSO <- snakemake@input[["S2_Zld_ChIP_DMSO_bw"]]
-S2_Zld_ChIP_taz  <- snakemake@input[["S2_Zld_ChIP_taz_bw"]]
-S2_Zld_H3K27me3_DMSO <-  snakemake@input[["S2_Zld_H3K27me3_DMSO_bw"]]
-S2_Zld_H3K27me3_taz <-  snakemake@input[["S2_Zld_H3K27me3_taz_bw"]]
+S2_Zld_ChIP_DMSO_bw <- snakemake@input[["S2_Zld_ChIP_DMSO_bw"]]
+S2_Zld_ChIP_taz_bw  <- snakemake@input[["S2_Zld_ChIP_taz_bw"]]
+S2_Zld_H3K27me3_DMSO_bw <-  snakemake@input[["S2_Zld_H3K27me3_DMSO_bw"]]
+S2_Zld_H3K27me3_taz_bw <-  snakemake@input[["S2_Zld_H3K27me3_taz_bw"]]
 
-S2_Grh_ChIP_DMSO <-   snakemake@input[["S2_Grh_ChIP_DMSO_bw"]]
-S2_Grh_ChIP_taz <-  snakemake@input[["S2_Grh_ChIP_taz_bw"]]
-S2_Grh_H3K27me3_DMSO <-  snakemake@input[["S2_Grh_H3K27me3_DMSO_bw"]]
-S2_Grh_H3K27me3_taz <-  snakemake@input[["S2_Grh_H3K27me3_taz_bw"]]
+S2_Grh_ChIP_DMSO_bw <-   snakemake@input[["S2_Grh_ChIP_DMSO_bw"]]
+S2_Grh_ChIP_taz_bw <-  snakemake@input[["S2_Grh_ChIP_taz_bw"]]
+S2_Grh_H3K27me3_DMSO_bw <-  snakemake@input[["S2_Grh_H3K27me3_DMSO_bw"]]
+S2_Grh_H3K27me3_taz_bw <-  snakemake@input[["S2_Grh_H3K27me3_taz_bw"]]
 
-S2_Twi_ChIP_DMSO <-   snakemake@input[["S2_Twi_ChIP_DMSO_bw"]]
-S2_Twi_ChIP_taz <-  snakemake@input[["S2_Twi_ChIP_taz_bw"]]
-S2_Twi_H3K27me3_DMSO <-  snakemake@input[["S2_Twi_H3K27me3_DMSO_bw"]]
-S2_Twi_H3K27me3_taz <-  snakemake@input[["S2_Twi_H3K27me3_taz_bw"]]
+S2_Twi_ChIP_DMSO_bw <-   snakemake@input[["S2_Twi_ChIP_DMSO_bw"]]
+S2_Twi_ChIP_taz_bw <-  snakemake@input[["S2_Twi_ChIP_taz_bw"]]
+S2_Twi_H3K27me3_DMSO_bw <-  snakemake@input[["S2_Twi_H3K27me3_DMSO_bw"]]
+S2_Twi_H3K27me3_taz_bw <-  snakemake@input[["S2_Twi_H3K27me3_taz_bw"]]
 
 ## create blank layout for plot =================================================
 pdf(snakemake@output[[1]], useDingbats = FALSE)
@@ -451,10 +451,10 @@ plotText(
 
 
 bw <- c(
-  S2_Zld_ChIP_DMSO =  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_DMSO_aZld.bw",
-  S2_Zld_ChIP_taz = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_taz_aZld.bw",
-  S2_Zld_H3K27me3_DMSO = "CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Zld_DMSO_aH3K27me3.bw",
-  S2_Zld_H3K27me3_taz = "CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Zld_Taz_aH3K27me3.bw" 
+  S2_Zld_ChIP_DMSO =  S2_Zld_ChIP_DMSO_bw,
+  S2_Zld_ChIP_taz = S2_Zld_ChIP_taz_bw,
+  S2_Zld_H3K27me3_DMSO = S2_Zld_H3K27me3_DMSO_bw,
+  S2_Zld_H3K27me3_taz = S2_Zld_H3K27me3_taz_bw 
 )
 
 
@@ -562,10 +562,10 @@ plotText(
 
 
 bw <- c(
-  S2_Grh_ChIP_DMSO =  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_DMSO_aGrh.bw",
-  S2_Grh_ChIP_taz = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_taz_aGrh.bw",
-  S2_Grh_H3K27me3_DMSO = "CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Grh_DMSO_aH3K27me3.bw",
-  S2_Grh_H3K27me3_taz = "CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Grh_Taz_aH3K27me3.bw" 
+  S2_Grh_ChIP_DMSO =  S2_Grh_ChIP_DMSO_bw,
+  S2_Grh_ChIP_taz = S2_Grh_ChIP_taz_bw,
+  S2_Grh_H3K27me3_DMSO = S2_Grh_H3K27me3_DMSO_bw,
+  S2_Grh_H3K27me3_taz = S2_Grh_H3K27me3_taz_bw
 )
 
 
@@ -674,10 +674,10 @@ plotText(
 
 
 bw <- c(
-  S2_Twi_ChIP_DMSO =  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-HA-Twi_DMSO_aHA.bw",
-  S2_Twi_ChIP_taz = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-HA-Twi_taz_aHA.bw",
-  S2_Twi_H3K27me3_DMSO = "CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-HA-Twi_DMSO_aH3K27me3.bw",
-  S2_Twi_H3K27me3_taz = "CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-HA-Twi_Taz_aH3K27me3.bw" 
+  S2_Twi_ChIP_DMSO =  S2_Twi_ChIP_DMSO_bw,
+  S2_Twi_ChIP_taz = S2_Twi_ChIP_taz_bw,
+  S2_Twi_H3K27me3_DMSO = S2_Twi_H3K27me3_DMSO_bw,
+  S2_Twi_H3K27me3_taz = S2_Twi_H3K27me3_taz_bw
 )
 
 

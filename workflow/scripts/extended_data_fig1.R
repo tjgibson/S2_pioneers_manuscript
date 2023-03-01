@@ -8,19 +8,56 @@ library(grid)
 library(RColorBrewer)
 library(EBImage)
 
+source("workflow/scripts/plot_heatmap.R")
 
 # define input files ===========================================================
-# for testing script
+# define input files explicitly for interactve testing
 # RPKM_table_fn <- "RNAseq/results/count_tables/S2-Grh_RNAseq_RPKM.tsv"
 # 
 # zld_blot_image <- "data/immunoblot_raw_images/2018-10-17_Zld_induction/2018-1018-144408_pub.tif"
 # grh_blot_image <- "data/immunoblot_raw_images/2018-11-08_Grh_induction/2018-1108-132834_pub.tif"
+
+# S2_Zld_aZld_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw"
+# S2_WT_aZld_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-WT_aZld_IP.bw"
+# S2_Zld_IgG_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2_Zld_aIgG_IP.bw"
+# 
+# zld_ChIP_classes_fn <- "results/ChIP_peak_classes/zld_ChIP_classes.tsv"
+# 
+# S2_Grh_aGrh_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw"
+# S2_WT_aGrh_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-WT_aGrh_IP.bw"
+# S2_Grh_IgG_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2_Grh_aIgG_IP.bw"
+# 
+# grh_ChIP_classes_fn <- "results/ChIP_peak_classes/grh_ChIP_classes.tsv"
+# 
+# S2_Twi_aTwi_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw"
+# S2_WT_aTwi_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-WT_aTwi.bw"
+# S2_Twi_IgG_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2_Zld_aIgG_IP.bw"
+# 
+# twi_ChIP_classes_fn <- "results/ChIP_peak_classes/twi_ChIP_classes.tsv"
 
 # get input from snakemake
 RPKM_table_fn <- snakemake@input[["RPKM_table_fn"]]
 
 zld_blot_image <- snakemake@input[["zld_blot_image"]]
 grh_blot_image <- snakemake@input[["grh_blot_image"]]
+
+S2_Zld_aZld_ChIP_bw <- snakemake@input[["S2_Zld_aZld_ChIP_bw"]]
+S2_WT_aZld_ChIP_bw <- snakemake@input[["S2_WT_aZld_ChIP_bw"]]
+S2_Zld_IgG_ChIP_bw <- snakemake@input[["S2_Zld_IgG_ChIP_bw"]]
+
+zld_ChIP_classes_fn <- snakemake@input[["zld_ChIP_classes_fn"]]
+
+S2_Grh_aGrh_ChIP_bw <- snakemake@input[["S2_Grh_aGrh_ChIP_bw"]]
+S2_WT_aGrh_ChIP_bw <- snakemake@input[["S2_WT_aGrh_ChIP_bw"]]
+S2_Grh_IgG_ChIP_bw <- snakemake@input[["S2_Grh_IgG_ChIP_bw"]]
+
+grh_ChIP_classes_fn <- snakemake@input[["grh_ChIP_classes_fn"]]
+
+S2_Twi_aTwi_ChIP_bw <- snakemake@input[["S2_Twi_aTwi_ChIP_bw"]]
+S2_WT_aTwi_ChIP_bw <- snakemake@input[["S2_WT_aTwi_ChIP_bw"]]
+S2_Twi_IgG_ChIP_bw <- snakemake@input[["S2_Twi_IgG_ChIP_bw"]]
+
+twi_ChIP_classes_fn <- snakemake@input[["twi_ChIP_classes_fn"]]
 
 
 # # create blank layout for plot ===============================================
@@ -35,8 +72,13 @@ large_text_params <- pgParams(fontsize = 7)
 small_text_params <- pgParams(fontsize = 5)
 
 # colors
+zld_heatmap_colors <- brewer.pal(9, "Blues")
+grh_heatmap_colors <- brewer.pal(9, "Oranges")
+twi_heatmap_colors <- brewer.pal(9, "GnBu")
 
-
+# set heatmap parameters
+hm_upstream <-  1000
+hm_downstream <-  1000
 
 
 # panel A ======================================================================
@@ -453,6 +495,276 @@ plotText(
   label = "10", params = large_text_params, rot = 45,
   x = ref_x + 7.8, y = ref_y + 1.25, just = c("center"), default.units = "cm"
 )
+
+# panel E ======================================================================
+# reference points for positioning figure components
+ref_x <- 0.5
+ref_y <- 10
+
+# panel label
+plotText(
+  label = "e", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+# define bigWig files to use for heatmap
+bw <- c(
+  S2_ZLD_ChIP =  S2_Zld_aZld_ChIP_bw,
+  S2_WT_aZld_ChIP = S2_WT_aZld_ChIP_bw,
+  S2_Zld_IgG_ChIP = S2_Zld_IgG_ChIP_bw
+)
+
+# define regions to use for heatmap
+regions <- zld_ChIP_classes_fn %>%
+  read_tsv() |> 
+  makeGRangesFromDataFrame(keep.extra.columns = TRUE)
+
+
+hm <- plot_heatmap_minimal(
+  bw, regions, 
+  upstream = hm_upstream, downstream = hm_downstream, 
+  colors  = zld_heatmap_colors, 
+  row_split = regions$class, 
+  # order_by_samples = 1, 
+  individual_scales = FALSE,
+  use_raster = TRUE, raster_by_magick = TRUE, raster_magick_filter = "Triangle",
+  border = "black",
+  border_gp = gpar(lwd = 0.5),
+  show_heatmap_legend = FALSE,
+  return_heatmap_list = TRUE
+)
+
+e_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 0, 0, 0), "mm")))
+
+# place heatmap on page
+plotGG(
+  plot = e_hm,
+  x = (ref_x + 0.25), y = (ref_y + 0.25),
+  width = 5, height = 5, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# add axes to heatmaps
+seekViewport(name = "matrix_1_heatmap_body_3_1")
+grid.xaxis(at = c(0, 1), label = c(paste0("-", hm_upstream / 1000, "KB"), paste0("+",hm_downstream / 1000, "KB")), gp = gpar(lwd = 0.5, fontsize = small_text_params$fontsize))
+seekViewport(name = "page")
+
+# heatmap labels
+plotText(
+  label = paste0("S2-Zld", "\n", "anti-Zld"), params = small_text_params, fontface = "bold", 
+  x = (ref_x + 1), y = (ref_y), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = paste0("S2-WT", "\n", "anti-Zld"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 2.75), y = (ref_y), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "IgG", params = small_text_params, fontface = "bold",
+  x = (ref_x + 4.5), y = (ref_y), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "class:", params = small_text_params, fontface = "bold",
+  x = (ref_x - 0.1), y = (ref_y + 0.2), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "I", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 2.5), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "II", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 4.75), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "III", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 5.2), just = c("center"), default.units = "cm"
+)
+
+# panel F ======================================================================
+# reference points for positioning figure components
+ref_x <- 6.5
+ref_y <- 10
+
+# panel label
+plotText(
+  label = "f", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+# define bigWig files to use for heatmap
+bw <- c(
+  S2_Grh_ChIP =  S2_Grh_aGrh_ChIP_bw,
+  S2_WT_aGrh_ChIP = S2_WT_aGrh_ChIP_bw,
+  S2_Grh_IgG_ChIP = S2_Grh_IgG_ChIP_bw
+)
+
+# define regions for heatmap
+regions <- grh_ChIP_classes_fn %>%
+  read_tsv() |> 
+  makeGRangesFromDataFrame(keep.extra.columns = TRUE)
+
+
+hm <- plot_heatmap_minimal(
+  bw, regions, 
+  upstream = hm_upstream, downstream = hm_downstream, 
+  colors  = grh_heatmap_colors, 
+  row_split = regions$class, 
+  # order_by_samples = 1, 
+  individual_scales = FALSE,
+  use_raster = TRUE, raster_by_magick = TRUE, raster_magick_filter = "Triangle",
+  border = "black",
+  border_gp = gpar(lwd = 0.5),
+  show_heatmap_legend = FALSE,
+  return_heatmap_list = TRUE
+)
+
+f_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 0, 0, 0), "mm")))
+
+# place heatmap on page
+plotGG(
+  plot = f_hm,
+  x = (ref_x + 0.25), y = (ref_y + 0.25),
+  width = 5, height = 5, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# add axes to heatmaps
+seekViewport(name = "matrix_4_heatmap_body_3_1")
+grid.xaxis(at = c(0, 1), label = c(paste0("-", hm_upstream / 1000, "KB"), paste0("+",hm_downstream / 1000, "KB")), gp = gpar(lwd = 0.5, fontsize = small_text_params$fontsize))
+seekViewport(name = "page")
+
+# heatmap labels
+plotText(
+  label = paste0("S2-Grh", "\n", "anti-Grh"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 1), y = (ref_y), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = paste0("S2-Grh", "\n", "anti-Zld"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 2.75), y = (ref_y), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "IgG", params = small_text_params, fontface = "bold",
+  x = (ref_x + 4.5), y = (ref_y), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "class:", params = small_text_params, fontface = "bold",
+  x = (ref_x - 0.1), y = (ref_y + 0.2), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "I", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 2), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "II", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 4.35), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "III", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 5.1), just = c("center"), default.units = "cm"
+)
+
+# panel G ======================================================================
+# reference points for positioning figure components
+ref_x <- 12.5
+ref_y <- 10
+
+# panel label
+plotText(
+  label = "g", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+# define bigWigs to use for heatmap
+bw <- c(
+  S2_Twi_ChIP =  S2_Twi_aTwi_ChIP_bw,
+  S2_WT_aTwi_ChIP = S2_WT_aTwi_ChIP_bw,
+  S2_Twi_IgG_ChIP = S2_Twi_IgG_ChIP_bw
+)
+
+# define regions to use for heatmap
+regions <- twi_ChIP_classes_fn %>%
+  read_tsv() |> 
+  makeGRangesFromDataFrame(keep.extra.columns = TRUE)
+
+
+
+
+hm <- plot_heatmap_minimal(
+  bw, regions, 
+  upstream = hm_upstream, downstream = hm_downstream, 
+  colors  = twi_heatmap_colors, 
+  row_split = regions$class, 
+  # order_by_samples = 1, 
+  individual_scales = FALSE,
+  use_raster = TRUE, raster_by_magick = TRUE, raster_magick_filter = "Triangle",
+  border = "black",
+  border_gp = gpar(lwd = 0.5),
+  show_heatmap_legend = FALSE,
+  return_heatmap_list = TRUE
+)
+
+f_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 0, 0, 0), "mm")))
+
+# place heatmap on page
+plotGG(
+  plot = f_hm,
+  x = (ref_x + 0.25), y = (ref_y + 0.25),
+  width = 5, height = 5, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# add axes to heatmaps
+seekViewport(name = "matrix_7_heatmap_body_3_1")
+grid.xaxis(at = c(0, 1), label = c(paste0("-", hm_upstream / 1000, "KB"), paste0("+",hm_downstream / 1000, "KB")), gp = gpar(lwd = 0.5, fontsize = small_text_params$fontsize))
+seekViewport(name = "page")
+
+# heatmap labels
+plotText(
+  label = paste0("S2-Twi", "\n", "anti-Twi"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 1), y = (ref_y), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = paste0("S2-WT", "\n", "anti-Twi"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 2.75), y = (ref_y), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "IgG", params = small_text_params, fontface = "bold",
+  x = (ref_x + 4.5), y = (ref_y), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "class:", params = small_text_params, fontface = "bold",
+  x = (ref_x - 0.1), y = (ref_y + 0.2), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "I", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 2), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "II", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 4.5), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "III", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 5.2), just = c("center"), default.units = "cm"
+)
+
 
 # close graphics device ========================================================
 dev.off()

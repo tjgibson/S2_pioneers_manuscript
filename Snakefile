@@ -54,6 +54,7 @@ rule regions_to_exclude:
 	input:
 		"ChIPseq/results/peaks/filtered/S2-WT_aZld_IP.narrowPeak",
 		"ChIPseq/results/peaks/filtered/S2-WT_aGrh_IP.narrowPeak",
+		"ChIPseq/results/peaks/filtered/S2-WT_aTwi.narrowPeak",
 	output:
 		"resources/zld_regions_to_exclude.bed",
 		"resources/grh_regions_to_exclude.bed",
@@ -427,6 +428,65 @@ rule annotate_tissue_classes:
 		"workflow/scripts/get_tissue_classes.R"
 
 
+rule annotate_titration_classes:
+	input:
+		"ChIPseq/results/peaks/filtered/S2-Zld-500uM_aZld_IP.narrowPeak",
+		"ATACseq/results/peaks/merged_by_sample/S2-WT_1000uM_summits.bed",
+		"ATACseq/results/DEseq2/S2-Zld-titration_ATACseq_S2-Zld-500uM-vs-0uM_results.tsv",
+		"ChIPseq/results/peaks/filtered/S2-Zld-1000uM_aZld_IP.narrowPeak",
+		"ATACseq/results/peaks/merged_by_sample/S2-WT_1000uM_summits.bed",
+		"ATACseq/results/DEseq2/S2-Zld-titration_ATACseq_S2-Zld-1000uM-vs-0uM_results.tsv",
+		"ChIPseq/results/peaks/filtered/S2-Zld-1500uM_aZld_IP.narrowPeak",
+		"ATACseq/results/peaks/merged_by_sample/S2-WT_1000uM_summits.bed",
+		"ATACseq/results/DEseq2/S2-Zld-titration_ATACseq_S2-Zld-1500uM-vs-0uM_results.tsv",
+		"ChIPseq/results/peaks/filtered/S2-Grh-25uM_aGrh_IP.narrowPeak",
+		"ATACseq/results/peaks/merged_by_sample/FL_ATAC_S2-WT_100uM_summits.bed",
+		"ATACseq/results/DEseq2/S2-Grh-titration_ATACseq_S2-Grh-25uM-vs-0uM_results.tsv",
+		"ChIPseq/results/peaks/filtered/S2-Grh-100uM_aGrh_IP.narrowPeak",
+		"ATACseq/results/peaks/merged_by_sample/FL_ATAC_S2-WT_100uM_summits.bed",
+		"ATACseq/results/DEseq2/S2-Grh-titration_ATACseq_S2-Grh-100uM-vs-0uM_results.tsv",
+		"ChIPseq/results/peaks/filtered/S2-Grh-400uM_aGrh_IP.narrowPeak",
+		"ATACseq/results/peaks/merged_by_sample/FL_ATAC_S2-WT_100uM_summits.bed",
+		"ATACseq/results/DEseq2/S2-Grh-titration_ATACseq_S2-Grh-400uM-vs-0uM_results.tsv",
+		"ChIPseq/results/peaks/filtered/S2-HA-Twi-10uM_aHA_IP.narrowPeak",
+		"ATACseq/results/peaks/merged_by_sample/Twi_ATAC_S2-WT_40uM_summits.bed",
+		"ATACseq/results/DEseq2/S2-HA-Twi-titration_ATACseq_S2-HA-Twi-10uM-vs-0uM_results.tsv",
+		"ChIPseq/results/peaks/filtered/S2-HA-Twi-40uM_aHA_IP.narrowPeak",
+		"ATACseq/results/peaks/merged_by_sample/Twi_ATAC_S2-WT_40uM_summits.bed",
+		"ATACseq/results/DEseq2/S2-HA-Twi-titration_ATACseq_S2-HA-Twi-40uM-vs-0uM_results.tsv",
+		"ChIPseq/results/peaks/filtered/S2-HA-Twi-160uM_aHA_IP.narrowPeak",
+		"ATACseq/results/peaks/merged_by_sample/Twi_ATAC_S2-WT_40uM_summits.bed",
+		"ATACseq/results/DEseq2/S2-HA-Twi-titration_ATACseq_S2-HA-Twi-160uM-vs-0uM_results.tsv",
+	output:
+		"results/ChIP_titration_classes/zld_titration_classes.tsv",
+		"results/ChIP_titration_classes/grh_titration_classes.tsv",
+		"results/ChIP_titration_classes/twi_titration_classes.tsv",
+	script:
+		"workflow/scripts/define_titration_classes.R"
+
+rule generate_fig5_RPKM_tables:
+	input:
+		"results/ChIP_tissue_classes/zld_tissue_classes.tsv",
+		"results/ChIP_tissue_classes/grh_tissue_classes.tsv",
+		"results/ChIP_tissue_classes/twi_tissue_classes.tsv",
+		rules.ChIPseq_all.input,
+	output:
+		"results/ChIP_tissue_classes/zld_classes_titration_ChIP_rpkm.tsv",
+		"results/ChIP_tissue_classes/zld_classes_titration_ATAC_rpkm.tsv",
+		"results/ChIP_tissue_classes/grh_classes_titration_ChIP_rpkm.tsv",
+		"results/ChIP_tissue_classes/grh_classes_titration_ATAC_rpkm.tsv",
+		"results/ChIP_tissue_classes/twi_classes_titration_ChIP_rpkm.tsv",
+		"results/ChIP_tissue_classes/twi_classes_titration_ATAC_rpkm.tsv",
+	script:
+		"workflow/scripts/generate_fig5_RPKM_tables.R"
+
+##########################################################################################
+##########################################################################################
+###                                                                                    ###
+###                        train deep learning models                                  ###
+###                                                                                    ###
+##########################################################################################
+##########################################################################################
 # run bichrom
 include: "bichrom/workflow/rules/bichrom.smk"
 
@@ -529,16 +589,16 @@ rule figure_4:
 		embryo_Twi_ChIP_bw =  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-1-3H_aTwi.bw",
 		S2_Zld_ChIP_DMSO_bw =  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_DMSO_aZld.bw",
 		S2_Zld_ChIP_taz_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_taz_aZld.bw",
-		S2_Zld_H3K27me3_DMSO_bw = "CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Zld_DMSO_aH3K27me3.bw",
-		S2_Zld_H3K27me3_taz_bw = "CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Zld_Taz_aH3K27me3.bw",
+		S2_Zld_H3K27me3_DMSO_bw = "histone_CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Zld_DMSO_aH3K27me3_large.bw",
+		S2_Zld_H3K27me3_taz_bw = "histone_CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Zld_Taz_aH3K27me3_large.bw",
 		S2_Grh_ChIP_DMSO_bw =  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_DMSO_aGrh.bw",
 		S2_Grh_ChIP_taz_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_taz_aGrh.bw",
-		S2_Grh_H3K27me3_DMSO_bw = "CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Grh_DMSO_aH3K27me3.bw",
-		S2_Grh_H3K27me3_taz_bw = "CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Grh_Taz_aH3K27me3.bw",
+		S2_Grh_H3K27me3_DMSO_bw = "histone_CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Grh_DMSO_aH3K27me3_large.bw",
+		S2_Grh_H3K27me3_taz_bw = "histone_CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Grh_Taz_aH3K27me3_large.bw",
 		S2_Twi_ChIP_DMSO_bw =  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-HA-Twi_DMSO_aHA.bw",
 		S2_Twi_ChIP_taz_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-HA-Twi_taz_aHA.bw",
-		S2_Twi_H3K27me3_DMSO_bw = "CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-HA-Twi_DMSO_aH3K27me3.bw",
-		S2_Twi_H3K27me3_taz_bw = "CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-HA-Twi_Taz_aH3K27me3.bw",
+		S2_Twi_H3K27me3_DMSO_bw = "histone_CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-HA-Twi_DMSO_aH3K27me3_large.bw",
+		S2_Twi_H3K27me3_taz_bw = "histone_CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-HA-Twi_Taz_aH3K27me3_large.bw",
 	output:
 		"manuscript/figures/fig4.pdf"
 	script:
@@ -594,6 +654,18 @@ rule extended_data_fig_1:
   		RPKM_table_fn = "RNAseq/results/count_tables/S2-Grh_RNAseq_RPKM.tsv",
 		zld_blot_image = "data/immunoblot_raw_images/2018-10-17_Zld_induction/2018-1018-144408_pub.tif",
 		grh_blot_image = "data/immunoblot_raw_images/2018-11-08_Grh_induction/2018-1108-132834_pub.tif",
+		S2_Zld_aZld_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw",
+		S2_WT_aZld_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-WT_aZld_IP.bw",
+		S2_Zld_IgG_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2_Zld_aIgG_IP.bw",
+		zld_ChIP_classes_fn = "results/ChIP_peak_classes/zld_ChIP_classes.tsv",
+		S2_Grh_aGrh_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw",
+		S2_WT_aGrh_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-WT_aGrh_IP.bw",
+		S2_Grh_IgG_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2_Grh_aIgG_IP.bw",
+		grh_ChIP_classes_fn = "results/ChIP_peak_classes/grh_ChIP_classes.tsv",
+		S2_Twi_aTwi_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw",
+		S2_WT_aTwi_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-WT_aTwi.bw",
+		S2_Twi_IgG_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2_Zld_aIgG_IP.bw",
+		twi_ChIP_classes_fn = "results/ChIP_peak_classes/twi_ChIP_classes.tsv",
 	output:
 		"manuscript/figures/extended_data_fig1.pdf"
 	script:
@@ -737,7 +809,7 @@ rule extended_data_fig_7:
 		
 rule extended_data_fig_8:
 	input:
-		CR_spikeIn_counts_fn ="CUTandRUN/results/scaling_factors/epiCypher_barcode_counts.tsv",
+		CR_spikeIn_counts_fn ="histone_CUTandRUN/results/scaling_factors/epiCypher_barcode_counts.tsv",
 		taz_blot_aH3K27me3_image = "data/immunoblot_raw_images/2021-06-29_taz/anti-H3K27me3_3.tif",
 		taz_blot_aTub_image = "data/immunoblot_raw_images/2021-06-29_taz/anti-tubulin_2.tif",
 	output:
@@ -772,6 +844,24 @@ rule extended_data_fig_10:
 		zld_DBD_bw =  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld-DBD_aZld_IP.bw",
 		grh_FL_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw",
 		grh_DBD_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh-DBD_aGrh_IP.bw",	
+		S2_Zld_FL_aZld_GFP = "data/DBD_immunostaining_raw_images/20211027 ZLD-FL_GFP_RGB_470X 520M (GFP).tif",
+		S2_Zld_FL_aZld_DAPI = "data/DBD_immunostaining_raw_images/20211027 ZLD-FL_DAPI_RGB_395X 445M (DAPI).tif",
+		S2_Zld_FL_aZld_BF = "data/DBD_immunostaining_raw_images/20211027 ZLD-FL_BF_RGB_BF.tif",
+		S2_Zld_DBD_aZld_GFP = "data/DBD_immunostaining_raw_images/20211027 ZLD-DBD_GFP_RGB_470X 520M (GFP).tif",
+		S2_Zld_DBD_aZld_DAPI = "data/DBD_immunostaining_raw_images/20211027 ZLD-DBD_DAPI_RGB_395X 445M (DAPI).tif",
+		S2_Zld_DBD_aZld_BF = "data/DBD_immunostaining_raw_images/20211027 ZLD-DBD_BF_RGB_BF.tif",
+		S2_WT_aZld_GFP = "data/DBD_immunostaining_raw_images/20211027 WT anti-ZLD_GFP_RGB_470X 520M (GFP).tif",
+		S2_WT_aZld_DAPI = "data/DBD_immunostaining_raw_images/20211027 WT anti-ZLD_DAPI_RGB_395X 445M (DAPI).tif",
+		S2_WT_aZld_BF = "data/DBD_immunostaining_raw_images/20211027 WT anti-ZLD_BF_RGB_BF.tif",
+		S2_Grh_FL_aGrh_GFP = "data/DBD_immunostaining_raw_images/20211027 Grh-FL_GFP_RGB_470X 520M (GFP).tif",
+		S2_Grh_FL_aGrh_DAPI = "data/DBD_immunostaining_raw_images/20211027 Grh-FL_DAPI_RGB_395X 445M (DAPI).tif",
+		S2_Grh_FL_aGrh_BF = "data/DBD_immunostaining_raw_images/20211027 Grh-FL_BF_RGB_BF.tif",
+		S2_Grh_DBD_aGrh_GFP = "data/DBD_immunostaining_raw_images/20211027 GRH-DBD_GFP_RGB_470X 520M (GFP).tif",
+		S2_Grh_DBD_aGrh_DAPI = "data/DBD_immunostaining_raw_images/20211027 GRH-DBD_DAPI_RGB_395X 445M (DAPI).tif",
+		S2_Grh_DBD_aGrh_BF = "data/DBD_immunostaining_raw_images/20211027 GRH-DBD_BF_RGB_BF.tif",
+		S2_WT_aGrh_GFP = "data/DBD_immunostaining_raw_images/20211027 WT anti-GRH_GFP_RGB_470X 520M (GFP).tif",
+		S2_WT_aGrh_DAPI =  "data/DBD_immunostaining_raw_images/20211027 WT anti-GRH_DAPI_RGB_395X 445M (DAPI).tif",
+		S2_WT_aGrh_BF = "data/DBD_immunostaining_raw_images/20211027 WT anti-GRH_BF_RGB_BF.tif",
 	output:
 		"manuscript/figures/extended_data_fig10.pdf"
 	script:
@@ -799,7 +889,7 @@ rule all:
         "manuscript/figures/fig5.pdf",
         "manuscript/figures/fig6.pdf",
         "manuscript/figures/extended_data_fig1.pdf",
-#         "manuscript/figures/extended_data_fig2.pdf",
+        "manuscript/figures/extended_data_fig2.pdf",
         "manuscript/figures/extended_data_fig3.pdf",
         "manuscript/figures/extended_data_fig4.pdf",
         "manuscript/figures/extended_data_fig5.pdf",

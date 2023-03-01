@@ -9,6 +9,7 @@ library(rtracklayer)
 library(EBImage)
 
 source("workflow/scripts/plot_heatmap.R")
+source("workflow/scripts/utils.R")
 
 # define input files ===========================================================
 # define input files explicitly for interactively testing script
@@ -27,6 +28,31 @@ source("workflow/scripts/plot_heatmap.R")
 # 
 # grh_FL_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw"
 # grh_DBD_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh-DBD_aGrh_IP.bw"
+# 
+# `S2-Zld-FL_aZld_GFP` <- "data/DBD_immunostaining_raw_images/20211027 ZLD-FL_GFP_RGB_470X 520M (GFP).tif"
+# `S2-Zld-FL_aZld_DAPI` <- "data/DBD_immunostaining_raw_images/20211027 ZLD-FL_DAPI_RGB_395X 445M (DAPI).tif"
+# `S2-Zld-FL_aZld_BF` <- "data/DBD_immunostaining_raw_images/20211027 ZLD-FL_BF_RGB_BF.tif"
+# 
+# `S2-Zld-DBD_aZld_GFP` <- "data/DBD_immunostaining_raw_images/20211027 ZLD-DBD_GFP_RGB_470X 520M (GFP).tif"
+# `S2-Zld-DBD_aZld_DAPI` <- "data/DBD_immunostaining_raw_images/20211027 ZLD-DBD_DAPI_RGB_395X 445M (DAPI).tif"
+# `S2-Zld-DBD_aZld_BF` <- "data/DBD_immunostaining_raw_images/20211027 ZLD-DBD_BF_RGB_BF.tif"
+# 
+# `S2-WT_aZld_GFP` <- "data/DBD_immunostaining_raw_images/20211027 WT anti-ZLD_GFP_RGB_470X 520M (GFP).tif"
+# `S2-WT_aZld_DAPI` <- "data/DBD_immunostaining_raw_images/20211027 WT anti-ZLD_DAPI_RGB_395X 445M (DAPI).tif"
+# `S2-WT_aZld_BF` <- "data/DBD_immunostaining_raw_images/20211027 WT anti-ZLD_BF_RGB_BF.tif"
+# 
+# `S2-Grh-FL_aGrh_GFP` <- "data/DBD_immunostaining_raw_images/20211027 Grh-FL_GFP_RGB_470X 520M (GFP).tif"
+# `S2-Grh-FL_aGrh_DAPI` <- "data/DBD_immunostaining_raw_images/20211027 Grh-FL_DAPI_RGB_395X 445M (DAPI).tif"
+# `S2-Grh-FL_aGrh_BF` <- "data/DBD_immunostaining_raw_images/20211027 Grh-FL_BF_RGB_BF.tif"
+# 
+# `S2-Grh-DBD_aGrh_GFP` <- "data/DBD_immunostaining_raw_images/20211027 GRH-DBD_GFP_RGB_470X 520M (GFP).tif"
+# `S2-Grh-DBD_aGrh_DAPI` <- "data/DBD_immunostaining_raw_images/20211027 GRH-DBD_DAPI_RGB_395X 445M (DAPI).tif"
+# `S2-Grh-DBD_aGrh_BF` <- "data/DBD_immunostaining_raw_images/20211027 GRH-DBD_BF_RGB_BF.tif"
+# 
+# `S2-WT_aGrh_GFP` <- "data/DBD_immunostaining_raw_images/20211027 WT anti-GRH_GFP_RGB_470X 520M (GFP).tif"
+# `S2-WT_aGrh_DAPI` <-  "data/DBD_immunostaining_raw_images/20211027 WT anti-GRH_DAPI_RGB_395X 445M (DAPI).tif"
+# `S2-WT_aGrh_BF` <- "data/DBD_immunostaining_raw_images/20211027 WT anti-GRH_BF_RGB_BF.tif"
+
 
 # get input files from snakemake
 zld_DBD_blot <- snakemake@input[["zld_DBD_blot"]]
@@ -45,6 +71,30 @@ zld_DBD_bw <-  snakemake@input[["zld_DBD_bw"]]
 grh_FL_bw <- snakemake@input[["grh_FL_bw"]]
 grh_DBD_bw <- snakemake@input[["grh_DBD_bw"]]
 
+`S2-Zld-FL_aZld_GFP` <- snakemake@input[["S2_Zld_FL_aZld_GFP"]]
+`S2-Zld-FL_aZld_DAPI` <- snakemake@input[["S2_Zld_FL_aZld_DAPI"]]
+`S2-Zld-FL_aZld_BF` <- snakemake@input[["S2_Zld_FL_aZld_BF"]]
+
+`S2-Zld-DBD_aZld_GFP` <- snakemake@input[["S2_Zld_DBD_aZld_GFP"]]
+`S2-Zld-DBD_aZld_DAPI` <- snakemake@input[["S2_Zld_DBD_aZld_DAPI"]]
+`S2-Zld-DBD_aZld_BF` <- snakemake@input[["S2_Zld_DBD_aZld_BF"]]
+
+`S2-WT_aZld_GFP` <- snakemake@input[["S2_WT_aZld_GFP"]]
+`S2-WT_aZld_DAPI` <- snakemake@input[["S2_WT_aZld_DAPI"]]
+`S2-WT_aZld_BF` <- snakemake@input[["S2_WT_aZld_BF"]]
+
+`S2-Grh-FL_aGrh_GFP` <- snakemake@input[["S2_Grh_FL_aGrh_GFP"]]
+`S2-Grh-FL_aGrh_DAPI` <- snakemake@input[["S2_Grh_FL_aGrh_DAPI"]]
+`S2-Grh-FL_aGrh_BF` <- snakemake@input[["S2_Grh_FL_aGrh_BF"]]
+
+`S2-Grh-DBD_aGrh_GFP` <- snakemake@input[["S2_Grh_DBD_aGrh_GFP"]]
+`S2-Grh-DBD_aGrh_DAPI` <- snakemake@input[["S2_Grh_DBD_aGrh_DAPI"]]
+`S2-Grh-DBD_aGrh_BF` <- snakemake@input[["S2_Grh_DBD_aGrh_BF"]]
+
+`S2-WT_aGrh_GFP` <- snakemake@input[["S2_WT_aGrh_GFP"]]
+`S2-WT_aGrh_DAPI` <-  snakemake@input[["S2_WT_aGrh_DAPI"]]
+`S2-WT_aGrh_BF` <- snakemake@input[["S2_WT_aGrh_BF"]]
+
 # impor ChIP classes ===========================================================
 zld_ChIP_classes <- zld_FL_ChIP_classes_fn |> 
   read_tsv()
@@ -54,8 +104,8 @@ grh_ChIP_classes <- grh_FL_ChIP_classes_fn |>
 
 # # create blank layout for plot ===============================================
 # pdf(snakemake@output[[1]], useDingbats = FALSE)
-pdf("manuscript/figures/extended_data_fig10.pdf", useDingbats = FALSE)
-pageCreate(width = 18, height = 16, default.units = "cm", showGuides = FALSE)
+pdf("manuscript/figures/extended_data_fig10.pdf", useDingbats = FALSE, height = 8.5)
+pageCreate(width = 18, height = 21, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics
@@ -99,7 +149,7 @@ blot_image <- blot_image - 0.3
 
 # get blot aspect ratio
 blot_dim <- dim(blot_image)
-blot_aspect_ratio <- blot_dim[2] / blot_dim[1]
+IF_aspect_ratio <- blot_dim[2] / blot_dim[1]
 
 
 
@@ -111,7 +161,7 @@ plotRaster(
   x = ref_x + 1,
   y = ref_y + 1,
   width = plot_width,
-  height = plot_width * blot_aspect_ratio,
+  height = plot_width * IF_aspect_ratio,
   default.units = "cm",
   just = c("left, top")
   
@@ -223,7 +273,7 @@ blot_image <- blot_image[3537:4583,540:1350]
 
 # get blot aspect ratio
 blot_dim <- dim(blot_image)
-blot_aspect_ratio <- blot_dim[2] / blot_dim[1]
+IF_aspect_ratio <- blot_dim[2] / blot_dim[1]
 
 
 # place blot on page
@@ -234,7 +284,7 @@ plotRaster(
   x = ref_x + 1,
   y = ref_y + 1,
   width = plot_width,
-  height = plot_width * blot_aspect_ratio,
+  height = plot_width * IF_aspect_ratio,
   default.units = "cm",
   just = c("left, top")
   
@@ -315,10 +365,6 @@ plotText(
   x = ref_x + 7.2, y = ref_y + 0.75, just = c("center"), default.units = "cm"
 )
 
-
-
-
-
 # panel C ======================================================================
 # reference points for positioning figure components
 ref_x <- 0.5
@@ -327,6 +373,494 @@ ref_y <- 8.5
 # panel label
 plotText(
   label = "c", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+# S2-Zld-FL --------------------------------------------------------------------
+# parameters for image processing
+
+# coordinates for cell of interest
+coordinates <- list(
+  x = 681:839,
+  y = 1737:1895
+)
+
+# signal intensity range for histogram normalization
+intensity_range <- list(
+  GFP = c(0,0.2),
+  DAPI = c(0,0.6),
+  BF = c(0,0.7)
+)
+# read input images
+images <- list(
+  GFP = readImage(`S2-Zld-FL_aZld_GFP`),
+  DAPI = readImage(`S2-Zld-FL_aZld_DAPI`),
+  BF =  readImage(`S2-Zld-FL_aZld_BF`)
+) 
+
+# process images
+images <- process_IF_images(x = images, coordinates = coordinates, normalize = TRUE, intensity_range = intensity_range)
+
+# get aspect ratio
+IF_dim <- dim(images$GFP)
+IF_aspect_ratio <- IF_dim[2] / IF_dim[1]
+
+
+
+# place images on page
+plot_width <- 2
+
+plotRaster(
+  images$GFP,
+  x = ref_x + 1,
+  y = ref_y + 0.5,
+  width = plot_width,
+  height = plot_width * IF_aspect_ratio,
+  default.units = "cm",
+  just = c("left, top")
+  
+)
+
+plotRaster(
+  images$DAPI,
+  x = ref_x + 3.5,
+  y = ref_y + 0.5,
+  width = plot_width,
+  height = plot_width * IF_aspect_ratio,
+  default.units = "cm",
+  just = c("left, top")
+  
+)
+
+plotRaster(
+  images$BF,
+  x = ref_x + 6,
+  y = ref_y + 0.5,
+  width = plot_width,
+  height = plot_width * IF_aspect_ratio,
+  default.units = "cm",
+  just = c("left, top")
+  
+)
+
+# S2-Zld-DBD -------------------------------------------------------------------
+# parameters for image processing
+
+# coordinates for cell of interest
+coordinates <- list(
+  x = 606:764,
+  y = 205:363
+)
+
+# signal intensity range for histogram normalization
+intensity_range <- list(
+  GFP = c(0,0.15),
+  DAPI = c(0,0.4),
+  BF = c(0,0.6)
+)
+# read input images
+images <- list(
+  GFP = readImage(`S2-Zld-DBD_aZld_GFP`),
+  DAPI = readImage(`S2-Zld-DBD_aZld_DAPI`),
+  BF =  readImage(`S2-Zld-DBD_aZld_BF`)
+)
+
+# process images
+images <- process_IF_images(x = images, coordinates = coordinates, normalize = TRUE, intensity_range = intensity_range)
+
+# get aspect ratio
+IF_dim <- dim(images$GFP)
+IF_aspect_ratio <- IF_dim[2] / IF_dim[1]
+
+
+
+# place images on page
+plot_width <- 2
+
+plotRaster(
+  images$GFP,
+  x = ref_x + 1,
+  y = ref_y + 3,
+  width = plot_width,
+  height = plot_width * IF_aspect_ratio,
+  default.units = "cm",
+  just = c("left, top")
+  
+)
+
+plotRaster(
+  images$DAPI,
+  x = ref_x + 3.5,
+  y = ref_y + 3,
+  width = plot_width,
+  height = plot_width * IF_aspect_ratio,
+  default.units = "cm",
+  just = c("left, top")
+  
+)
+
+plotRaster(
+  images$BF,
+  x = ref_x + 6,
+  y = ref_y + 3,
+  width = plot_width,
+  height = plot_width * IF_aspect_ratio,
+  default.units = "cm",
+  just = c("left, top")
+  
+)
+
+# S2-WT aZld -------------------------------------------------------------------
+# parameters for image processing
+
+# coordinates for cell of interest
+coordinates <- list(
+  x = 792:956,
+  y = 863:1027
+)
+
+# signal intensity range for histogram normalization
+intensity_range <- list(
+  GFP = c(0,0.15),
+  DAPI = c(0,0.4),
+  BF = c(0,0.6)
+)
+# read input images
+images <- list(
+  GFP = readImage(`S2-WT_aZld_GFP`),
+  DAPI = readImage(`S2-WT_aZld_DAPI`),
+  BF =  readImage(`S2-WT_aZld_BF`)
+)
+
+# process images
+images <- process_IF_images(x = images, coordinates = coordinates, normalize = TRUE, intensity_range = intensity_range)
+
+# get aspect ratio
+IF_dim <- dim(images$GFP)
+IF_aspect_ratio <- IF_dim[2] / IF_dim[1]
+
+
+
+# place images on page
+plot_width <- 2
+
+plotRaster(
+  images$GFP,
+  x = ref_x + 1,
+  y = ref_y + 5.5,
+  width = plot_width,
+  height = plot_width * IF_aspect_ratio,
+  default.units = "cm",
+  just = c("left, top")
+  
+)
+
+plotRaster(
+  images$DAPI,
+  x = ref_x + 3.5,
+  y = ref_y + 5.5,
+  width = plot_width,
+  height = plot_width * IF_aspect_ratio,
+  default.units = "cm",
+  just = c("left, top")
+  
+)
+
+plotRaster(
+  images$BF,
+  x = ref_x + 6,
+  y = ref_y + 5.5,
+  width = plot_width,
+  height = plot_width * IF_aspect_ratio,
+  default.units = "cm",
+  just = c("left, top")
+  
+)
+
+# add labels -------------------------------------------------------------------
+plotText(
+  label = "anti-Zld", params = large_text_params, fontface = "bold",
+  x = ref_x + 2, y = ref_y + 0.25, just = "center", default.units = "cm"
+)
+
+plotText(
+  label = "DAPI", params = large_text_params, fontface = "bold",
+  x = ref_x + 4.5, y = ref_y + 0.25, just = "center", default.units = "cm"
+)
+
+plotText(
+  label = "brightfield", params = large_text_params, fontface = "bold",
+  x = ref_x + 7, y = ref_y + 0.25, just = "center", default.units = "cm"
+)
+
+plotText(
+  label = "Zld FL", params = large_text_params, fontface = "bold",
+  x = ref_x + 0.75, y = ref_y + 1.5, just = c("right","center"), default.units = "cm"
+)
+
+plotText(
+  label = "Zld DBD", params = large_text_params, fontface = "bold",
+  x = ref_x + 0.75, y = ref_y + 4, just = c("right","center"), default.units = "cm"
+)
+
+plotText(
+  label = "WT", params = large_text_params, fontface = "bold",
+  x = ref_x + 0.75, y = ref_y + 6.5, just = c("right","center"), default.units = "cm"
+)
+
+
+# panel D ======================================================================
+# reference points for positioning figure components
+ref_x <- 9.5
+ref_y <- 8.5
+
+# panel label
+plotText(
+  label = "d", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+# S2-Grh-FL --------------------------------------------------------------------
+# parameters for image processing
+
+# coordinates for cell of interest
+coordinates <- list(
+  x = 970:1366,
+  y = 642:1038
+)
+
+# signal intensity range for histogram normalization
+intensity_range <- list(
+  GFP = c(0,0.12),
+  DAPI = c(0,1),
+  BF = c(0,0.6)
+)
+# read input images
+images <- list(
+  GFP = readImage(`S2-Grh-FL_aGrh_GFP`),
+  DAPI = readImage(`S2-Grh-FL_aGrh_DAPI`),
+  BF =  readImage(`S2-Grh-FL_aGrh_BF`)
+) 
+
+# process images
+images <- process_IF_images(x = images, coordinates = coordinates, normalize = TRUE, intensity_range = intensity_range)
+
+# get aspect ratio
+IF_dim <- dim(images$GFP)
+IF_aspect_ratio <- IF_dim[2] / IF_dim[1]
+
+
+
+# place images on page
+plot_width <- 2
+
+plotRaster(
+  images$GFP,
+  x = ref_x + 1,
+  y = ref_y + 0.5,
+  width = plot_width,
+  height = plot_width * IF_aspect_ratio,
+  default.units = "cm",
+  just = c("left, top")
+  
+)
+
+plotRaster(
+  images$DAPI,
+  x = ref_x + 3.5,
+  y = ref_y + 0.5,
+  width = plot_width,
+  height = plot_width * IF_aspect_ratio,
+  default.units = "cm",
+  just = c("left, top")
+  
+)
+
+plotRaster(
+  images$BF,
+  x = ref_x + 6,
+  y = ref_y + 0.5,
+  width = plot_width,
+  height = plot_width * IF_aspect_ratio,
+  default.units = "cm",
+  just = c("left, top")
+  
+)
+
+# S2-Grh-DBD -------------------------------------------------------------------
+# parameters for image processing
+
+# coordinates for cell of interest
+coordinates <- list(
+  x = 1593:1717,
+  y = 1723:1847
+)
+
+# signal intensity range for histogram normalization
+intensity_range <- list(
+  GFP = c(0,0.15),
+  DAPI = c(0,0.25),
+  BF = c(0,0.65)
+)
+# read input images
+images <- list(
+  GFP = readImage(`S2-Grh-DBD_aGrh_GFP`),
+  DAPI = readImage(`S2-Grh-DBD_aGrh_DAPI`),
+  BF =  readImage(`S2-Grh-DBD_aGrh_BF`)
+)
+
+# process images
+images <- process_IF_images(x = images, coordinates = coordinates, normalize = TRUE, intensity_range = intensity_range)
+
+# get aspect ratio
+IF_dim <- dim(images$GFP)
+IF_aspect_ratio <- IF_dim[2] / IF_dim[1]
+
+
+
+# place images on page
+plot_width <- 2
+
+plotRaster(
+  images$GFP,
+  x = ref_x + 1,
+  y = ref_y + 3,
+  width = plot_width,
+  height = plot_width * IF_aspect_ratio,
+  default.units = "cm",
+  just = c("left, top")
+  
+)
+
+plotRaster(
+  images$DAPI,
+  x = ref_x + 3.5,
+  y = ref_y + 3,
+  width = plot_width,
+  height = plot_width * IF_aspect_ratio,
+  default.units = "cm",
+  just = c("left, top")
+  
+)
+
+plotRaster(
+  images$BF,
+  x = ref_x + 6,
+  y = ref_y + 3,
+  width = plot_width,
+  height = plot_width * IF_aspect_ratio,
+  default.units = "cm",
+  just = c("left, top")
+  
+)
+
+# S2-WT aGrh -------------------------------------------------------------------
+# parameters for image processing
+
+# coordinates for cell of interest
+coordinates <- list(
+  x = 257:411,
+  y = 1419:1573
+)
+
+# signal intensity range for histogram normalization
+intensity_range <- list(
+  GFP = c(0,0.15),
+  DAPI = c(0,0.25),
+  BF = c(0,0.65)
+)
+# read input images
+images <- list(
+  GFP = readImage(`S2-WT_aGrh_GFP`),
+  DAPI = readImage(`S2-WT_aGrh_DAPI`),
+  BF =  readImage(`S2-WT_aGrh_BF`)
+)
+
+# process images
+images <- process_IF_images(x = images, coordinates = coordinates, normalize = TRUE, intensity_range = intensity_range)
+
+# get aspect ratio
+IF_dim <- dim(images$GFP)
+IF_aspect_ratio <- IF_dim[2] / IF_dim[1]
+
+
+
+# place images on page
+plot_width <- 2
+
+plotRaster(
+  images$GFP,
+  x = ref_x + 1,
+  y = ref_y + 5.5,
+  width = plot_width,
+  height = plot_width * IF_aspect_ratio,
+  default.units = "cm",
+  just = c("left, top")
+  
+)
+
+plotRaster(
+  images$DAPI,
+  x = ref_x + 3.5,
+  y = ref_y + 5.5,
+  width = plot_width,
+  height = plot_width * IF_aspect_ratio,
+  default.units = "cm",
+  just = c("left, top")
+  
+)
+
+plotRaster(
+  images$BF,
+  x = ref_x + 6,
+  y = ref_y + 5.5,
+  width = plot_width,
+  height = plot_width * IF_aspect_ratio,
+  default.units = "cm",
+  just = c("left, top")
+  
+)
+
+# add labels -------------------------------------------------------------------
+plotText(
+  label = "anti-Grh", params = large_text_params, fontface = "bold",
+  x = ref_x + 2, y = ref_y + 0.25, just = "center", default.units = "cm"
+)
+
+plotText(
+  label = "DAPI", params = large_text_params, fontface = "bold",
+  x = ref_x + 4.5, y = ref_y + 0.25, just = "center", default.units = "cm"
+)
+
+plotText(
+  label = "brightfield", params = large_text_params, fontface = "bold",
+  x = ref_x + 7, y = ref_y + 0.25, just = "center", default.units = "cm"
+)
+
+plotText(
+  label = "Grh FL", params = large_text_params, fontface = "bold",
+  x = ref_x + 0.75, y = ref_y + 1.5, just = c("right","center"), default.units = "cm"
+)
+
+plotText(
+  label = "Grh DBD", params = large_text_params, fontface = "bold",
+  x = ref_x + 0.75, y = ref_y + 4, just = c("right","center"), default.units = "cm"
+)
+
+plotText(
+  label = "WT", params = large_text_params, fontface = "bold",
+  x = ref_x + 0.75, y = ref_y + 6.5, just = c("right","center"), default.units = "cm"
+)
+
+
+# panel E ======================================================================
+# reference points for positioning figure components
+ref_x <- 0.5
+ref_y <- 16.5
+
+# panel label
+plotText(
+  label = "e", params = panel_label_params, fontface = "bold",
   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 )
 

@@ -1,13 +1,1 @@
-Chromatin represents a substantial barrier to transcription-factor function.
-While many transcription factors cannot bind to target DNA in the context of nucleosomes, pioneer transcription factors access nucleosomal targets and promote chromatin opening.
-How pioneer factors navigate complex chromatin substrates is not well understood.
-To better understand pioneer-factor function, we expressed the Drosophila pioneer factors Zelda (Zld) and Grainy head (Grh) in a cell type in which these factors are not normally expressed.
-Zld and Grh bind both open and closed chromatin.
-At many sites where they bind closed chromatin, binding leads to chromatin opening and transcriptional activation of proximal genes.
-Analysis of sequence motifs, genomic features and histone modifications surrounding these binding sites revealed that Zld and Grh act as pioneer factors by binding to canonical motifs at sites that are mostly devoid of histone modifications.
-Expression of the Zld or Grh DNA-binding domain (DBD) alone was insufficient to bind and open chromatin, suggesting that nonspecific interactions with nucleosomes mediated by domains outside of the canonical DBD are essential for pioneer function.
-We additionally investigated properties of the putative non-pioneer factor Twist (Twi).
-Contrary to prediction, Twi bound to thousands of inaccessible sites, but resulted in chromatin opening at a very small subset.
-These results complicate the definition of a pioneer factor but suggest that factors likely employ separable strategies for binding and opening closed chromatin.
-Finally, we examined sites that are bound by Zld, Grh and Twi in Drosophila embryos, but not upon exogenous expression and discovered that repressive histone modifications are enriched at these regions.
-Our data identify unique features that shape pioneer-factor function and binding and suggest that pioneering is better defined by the capacity to open chromatin than by simply the ability to bind closed chromatin.
+
