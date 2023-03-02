@@ -1,1 +1,10 @@
-
+During development, transcription factors establish cell-type specific gene expression programs.
+While many transcription factors cannot bind to target DNA in the context of nucleosomes, pioneer transcription factors access nucleosomal targets and promote chromatin opening.
+Despite the ability to bind to nucleosomal target motifs, many pioneer factors display cell-type specific binding and activity.
+It is unclear how pioneer factor occupancy is regulated in different cell types during development and how chromatin occupancy relates to chromatin opening activity.
+To determine how pioneer-factor binding and activity are regulated, we systematically studied three Drosophila transcription factors with distinct DNA-binding domains and biological functions: Zelda, Grainy head, and Twist.
+We demonstrated that the level of chromatin occupancy is a key determinant of pioneer-factor activity.
+Zld, Grh and Twi occupancy are regulated by a numerous factors including motif content at binding sites, local chromatin context, and protein concentration.
+We found that regions outside the DNA-binding domain are required for pioneer-factor binding and chromatin opening.
+Together, our results demonstrate that both protein-intrinsic and cell-type specific factors regulate pioneer-factor occupancy and activity.
+These findings have important implications for how pioneer factors drive development and how misexpression can lead to disease.

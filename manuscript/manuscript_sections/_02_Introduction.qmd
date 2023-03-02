@@ -11,7 +11,8 @@ Through this activity, PFs drive cell-type specific gene expression programs tha
 Due to these properties, PFs are essential players in development, induced reprogramming, and disease [@Larson2021].
 
 Despite their ability to target closed, nucleosomally occupied binding sites, PFs do not bind to all genomic instances of their target motifs.
-Many PFs bind primarily to naïve chromatin that is inaccessible, inactive, and lacks most histone modifications [@Soufi2012; @Donaghey2018]. In addition, PFs have also been shown to have cell-type specific patterns of binding and activity [@Soufi2012; @Donaghey2018; @Chronis2017; @Buecker2014; @Cernilogar2019; @Lupien2008].
+Many PFs bind primarily to naïve chromatin that is inaccessible, inactive, and lacks most histone modifications [@Soufi2012; @Donaghey2018].
+In addition, PFs have also been shown to have cell-type specific patterns of binding and activity [@Soufi2012; @Donaghey2018; @Chronis2017; @Buecker2014; @Cernilogar2019; @Lupien2008].
 How PF binding is restricted in different tissues or cellular contexts remains unclear.
 Many PFs bind primarily to naïve chromatin that is inaccessible, inactive, and lacks most histone modifications [@Soufi2012; @Donaghey2018].
 Cell-type specific binding is often associated with distinct chromatin features [@Mayran2018a; @Lupien2008; @Cernilogar2019].
