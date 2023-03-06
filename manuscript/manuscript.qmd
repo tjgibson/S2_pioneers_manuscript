@@ -15,15 +15,14 @@ bibliography: references.bib
 csl: nsmb.csl
 ---
 
+Department of Biomolecular Chemistry, University of Wisconsin School of Medicine and Public Health, Madison, WI
+
 {{< pagebreak >}}
 
 # Abstract
+{{< include manuscript_sections/_01_Abstract.qmd >}}
 
-<!-- # Abstract -->
-
-<!-- {{< include manuscript_sections/_01_Abstract.qmd >}} -->
-
-<!-- {{< pagebreak >}} -->
+{{< pagebreak >}}
 
 # Introduction
 

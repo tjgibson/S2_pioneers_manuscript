@@ -43,9 +43,15 @@ grh_titration_classes_fn <- snakemake@input[["grh_titration_classes_fn"]]
 twi_titration_classes_fn <- snakemake@input[["twi_titration_classes_fn"]]
 
 ## create blank layout for plot =================================================
-pdf(snakemake@output[[1]], useDingbats = FALSE)
-# pdf("manuscript/figures/fig5.pdf")
-pageCreate(width = 18, height = 16, default.units = "cm", showGuides = FALSE)
+# define figure dimensions in cm
+fig_width <-  18
+fig_height <- 16
+
+# open pdf
+pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
+
+# generate plotGardener page
+pageCreate(width = fig_width, height = fig_height, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics

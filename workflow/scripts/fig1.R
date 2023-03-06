@@ -25,13 +25,18 @@ zld_ChIP_classes_fn <- snakemake@input[["zld_ChIP_classes"]]
 grh_ChIP_classes_fn <- snakemake@input[["grh_ChIP_classes"]]
 
 # # create blank layout for plot ===============================================
-pdf(snakemake@output[[1]], useDingbats = FALSE)
-# tiff("results/pub_figs/2022_drafts/fig1.tiff", width = 4.392, height = 3, units = "in", res = 300)
-pageCreate(width = 18.3, height = 12.5, default.units = "cm", showGuides = FALSE)
+fig_width <-  18
+fig_height <- 12.5
+
+# open pdf
+pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
+
+# generate plotGardener page
+pageCreate(width = 18, height = 12.5, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics
-panel_label_params <- pgParams(fontsize = 8)
+panel_label_params <- pgParams(fontsize = 7)
 large_text_params <- pgParams(fontsize = 7)
 small_text_params <- pgParams(fontsize = 5)
 

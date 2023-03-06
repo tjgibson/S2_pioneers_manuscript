@@ -61,9 +61,15 @@ S2_Twi_H3K27me3_DMSO_bw <-  snakemake@input[["S2_Twi_H3K27me3_DMSO_bw"]]
 S2_Twi_H3K27me3_taz_bw <-  snakemake@input[["S2_Twi_H3K27me3_taz_bw"]]
 
 ## create blank layout for plot =================================================
-pdf(snakemake@output[[1]], useDingbats = FALSE)
-# pdf("manuscript/figures/fig4.pdf")
-pageCreate(width = 18.0, height = 12, default.units = "cm", showGuides = FALSE)
+# define figure dimensions in cm
+fig_width <-  18
+fig_height <- 12.5
+
+# open pdf
+pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
+
+# generate plotGardener page
+pageCreate(width = fig_width, height = fig_height, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics

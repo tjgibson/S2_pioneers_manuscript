@@ -37,12 +37,19 @@ zld_RNAseq_results_fn <- snakemake@input[["zld_RNAseq_results"]]
 grh_RNAseq_results_fn <- snakemake@input[["grh_RNAseq_results"]]
 
 # create blank layout for plot =================================================
-pdf(snakemake@output[[1]], useDingbats = FALSE)
-pageCreate(width = 18.3, height = 12.5, default.units = "cm", showGuides = FALSE)
+# define figure dimensions in cm
+fig_width <-  13
+fig_height <- 6.5
+
+# open pdf
+pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
+
+# generate plotGardener page
+pageCreate(width = fig_width, height = fig_height, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics
-panel_label_params <- pgParams(fontsize = 8)
+panel_label_params <- pgParams(fontsize = 7)
 large_text_params <- pgParams(fontsize = 7)
 small_text_params <- pgParams(fontsize = 5)
 
@@ -831,3 +838,4 @@ plotText(
 
 # close graphics device ========================================================
 dev.off()
+

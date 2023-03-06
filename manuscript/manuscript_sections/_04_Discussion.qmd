@@ -1,17 +1,17 @@
 ---
 format: html
 editor: visual
-#bibliography: ../references.bib
+# bibliography: ../references.bib
 ---
 
 In this study, we systematically explore chromatin binding and opening by the transcription factors Zld, Grh and Twi.
 Unlike many mammalian TFs, which have mostly been studied in cell culture, Zld, Grh and Twi have been extensively studied during normal Drosophila development.
-By comparing the results of TF induction in S2 cells to Zld, Grh and Twi activity during normal development, we are able to provide mechanistic insights that are relevant to the endogenous function of pioneer factors.
+By comparing the results of TF induction in S2 cells to Zld, Grh and Twi activity during normal development, we are able to provide mechanistic insights into how PFs are regulated in different cell types, and how PF binding relates to function.
 Zld, Grh, and Twi displayed a range of abilities to bind and open closed chromatin, suggesting that pioneering activity occurs on a spectrum and is context dependent.
 Binding is separable from chromatin opening through the identification of class II sites that are bound by PFs but remain closed, or by the expression of the Grh DBD, which retains some binding but cannot promote chromatin opening.
 The separability of binding and opening suggests that additional downstream steps such as recruitment of chromatin remodelers are required for chromatin opening [@Judd2021; @King2017].
-Local restructuring of nucleosome-DNA interactions [@Michael2020; @Dodonova2020], if it occurs in the case of Zld, Grh, or Twi, may be insufficient for establishing NFRs and may instead stabilize PF binding to allow recruitment of cofactors.
-We propose that pioneering activity requires a high level of chromatin occupancy that can be achieved through both protein-intrinsic and protein-extrinsic features (Fig 7) such as local chromatin features, protein concentration, DNA motif content, and protein domains outside the DBD.
+Local restructuring of nucleosome-DNA interactions [@Michael2020; @Dodonova2020], if it occurs in the case of Zld, Grh, or Twi, may be insufficient for establishing accessible chromatin and may instead stabilize PF binding to allow recruitment of cofactors.
+We find that pioneering activity requires a high level of chromatin occupancy that can be achieved through both protein-intrinsic and protein-extrinsic features such as local chromatin features, protein concentration, DNA motif content, and protein domains outside the DBD.
 
 Despite the ability of PFs to bind to closed chromatin, most PFs occupy only a subset of target motifs in the genome and PF binding and activity is often cell-type specific [@Larson2021].
 In many cases, the presence of active or repressive chromatin is an important determinant of transcription factor binding, but the extent to which this informs PF binding is unclear.
@@ -23,20 +23,10 @@ Even when expressed at low levels, all three proteins bind to active, accessible
 At approximately physiological levels, these factors bind to canonical motifs in naïve chromatin, and are largely excluded from repressed chromatin (bearing H3K9me3 or H3K27me3).
 When we depleted H3K27me3 with the polycomb inhibitor tazemetostat, we observed no effect on binding within these repressed regions.
 In contrast to taz treatment, expression of Zld and Grh, but not Twi, at higher levels allowed at least some binding to these repressed regions.
-These results suggest that despite the correlation with H3K27me3, protein concentration and affinity for target motifs may be more important than the presence of polycomb silencing for tissue-specific binding and emphasize the importance of functionally testing the importance of different chromatin marks to PF binding.
+These results suggest that despite the correlation with H3K27me3, protein concentration and affinity for target motifs may be more important than the presence of polycomb silencing for tissue-specific.
 Cooperative binding with cell-type specific cofactors can also stabilize PF binding to tissue-specific binding sites [@Donaghey2018].
 This may also be important for Zld, Grh, and Twi, and may explain the presence of class VI sites that are resistant to binding and lack any repressive histone modifications.
 Further exploration of how chromatin structure and cofactor expression influence PF binding and activity will be essential to developing a more complete understanding of how these factors function in development and disease.
-
-The strong concentration dependence of chromatin opening by Zld, Grh and Twi provides important context for the *in vivo* biological functions of these proteins.
-Zld, along with many other TFs, forms high concentration foci within the nucleus [@Mir2018].
-These foci may facilitate chromatin opening by pioneer factors by creating a high protein concentration at specific genomic regions or locations within the nucleus.
-Grh has pioneering activity in late drosophila embryos and larval tissues, but not in early embryos [@Nevil2020; @Jacobs2018].
-This could, in part, be accounted for by differences in Grh expression between tissues.
-Additionally, GRHL2, one the mammalian Grh orthologs, can act as either a tumor suppressor or an oncogene, depending on the context [@Reese2019].
-Considering Grh expression levels in different tissues, cell types, and cancer types will be important for determining these contradictory effects.
-This is especially relevant considering that GRHL2 is frequently subject to copy number amplification in various cancers, leading to overexpression [@Reese2019].
-Pioneering activity by other mammalian factors depends on protein concentration [@Hansen2022; @Blassberg2022], suggesting that this is likely a general feature of PFs.
 
 In addition to DBDs that provide sequence specificity, many transcription factors contain long intrinsically disordered regions (IDRs) that are frequently required for transcriptional activation [@Minezaki2006].
 Fusing different IDRs to the same DBD can dramatically change which genomic regions are bound by transcription factors [@Brodsky2020].
@@ -52,3 +42,16 @@ Zld and Grh DBDs still bound to class I regions, despite the weaker motifs prese
 This suggests that the less specific binding to class I regions is not due to interactions between IDRs and other proteins present at active chromatin.
 This binding may instead be driven by the high affinity of the DBDs for nucleosome-free DNA.
 Further exploration of how IDRs contribute to PF binding and chromatin accessibility will be essential for a more complete understanding of how *cis-*regulatory regions are established.
+
+The strong concentration dependence of chromatin opening by Zld, Grh and Twi provides important context for the *in vivo* biological functions of these proteins.
+Zld, along with many other TFs, forms high concentration foci within the nucleus [@Mir2018].
+These foci may facilitate chromatin opening by pioneer factors by creating a high protein concentration at specific genomic regions or locations within the nucleus.
+Grh has pioneering activity in late drosophila embryos and larval tissues, but not in early embryos [@Nevil2020; @Jacobs2018].
+This could, in part, be accounted for by differences in Grh expression between tissues.
+Pioneering activity by other mammalian factors depends on protein concentration [@Hansen2022; @Blassberg2022], suggesting that this is likely a general feature of PFs.
+
+Due to the essential role of PFs in regulating cell fate, their misexpression frequently results in disease [@Larson2021; @Dobersch2019].
+GRHL2, one the mammalian Grh orthologs, is frequently subject to copy number amplification in various cancers, leading to overexpression, and can act as either a tumor suppressor or an oncogene, depending on the context [@Reese2019].
+Misexpression of the PF DUX4 results in the muscular atrophy disease facioscapulohumeral muscular dystrophy (FSHD) [@Campbell2018].
+Our data provide evidence for how misexpression and overexpression of PFs can lead to ectopic activation of gene-regulatory programs.
+A better understanding of how PF binding and activity is regulated will be essential for understanding and treating diseases caused by these proteins.

@@ -79,9 +79,15 @@ twi_WT_atac_fn <- snakemake@input[["twi_WT_atac_fn"]]
 # twi_WT_atac_fn <- "ATACseq/results/peaks/merged_by_sample/Twi_ATAC_S2-WT_40uM_summits.bed"
 
 ## create blank layout for plot =================================================
-pdf(snakemake@output[[1]], useDingbats = FALSE)
-# pdf("manuscript/figures/fig3.pdf")
-pageCreate(width = 12.0, height = 12.5, default.units = "cm", showGuides = FALSE)
+# define figure dimensions in cm
+fig_width <-  12
+fig_height <- 7.5
+
+# open pdf
+pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
+
+# generate plotGardener page
+pageCreate(width = fig_width, height = fig_height, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics

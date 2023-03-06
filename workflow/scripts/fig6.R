@@ -30,11 +30,16 @@ grh_FL_atac_results_fn <- snakemake@input[["grh_FL_atac_results"]]
 grh_DBD_atac_results_fn <- snakemake@input[["grh_DBD_atac_results"]]
   
 
-# open graphics device =========================================================
-pdf(snakemake@output[[1]], useDingbats = FALSE)
+## create blank layout for plot =================================================
+# define figure dimensions in cm
+fig_width <-  16
+fig_height <- 6
 
-# create blank layout for plot =================================================
-pageCreate(width = 18.3, height = 12.5, default.units = "cm", showGuides = FALSE)
+# open pdf
+pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
+
+# generate plotGardener page
+pageCreate(width = fig_width, height = fig_height, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics
