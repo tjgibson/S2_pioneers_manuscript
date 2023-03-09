@@ -7,7 +7,7 @@ editor:
 ## Reagents
 
 | Reagent                               | Source/vendor             | Catalog/accession \# | Notes                   |
-|---------------------------------------|---------------------------|----------------------|-------------------------|
+|-----------------------|-----------------|-----------------|-----------------|
 | pMT-puro                              | AddGene                   | 17923                |                         |
 | Gibson Cloning                        | New England Biolabs       | E2611                |                         |
 | Schneider's Medium                    | Thermo Fisher Scientific  | 21720001             |                         |
@@ -50,8 +50,8 @@ Following recovery of stable cell lines, cells were cultured with 1 µg/mL purom
 ## Induction of transcription factor expression
 
 Transcription factor expression was induced by adding CuSO~4~ to the cell culture media.
-Expression of protein at physiological levels was achieved with 1000, 100, or 40 µM CuSO~4~ for Zld, Grh or Twi, respectively (Supplemental figure X).
-For experiments with sub- or supraphysiological protein levels (Fig. 5), the following CuSO~4~ concentrations were used: 500 µM (Zld subphysiological), 1000 µM (Zld physiological) or 1500 µM (Zld supraphysiological); 25 µM (Grh subphysiological), 100 µM (Grh physiological) or 400 µM (Grh supraphysiological); 10 µM (Twi subphysiological), 40 µM (Twi physiological) or 160 µM (Twi supraphysiological).
+Expression of protein at physiological levels was achieved with 1000, 100, or 40 µM CuSO~4~ for Zld, Grh or Twi, respectively (Extended Data Fig. 1c-d; Extended Data Fig. 4a).
+For experiments with sub- or supraphysiological protein levels (Fig. 5; Extended Data Fig. 9a-c), the following CuSO~4~ concentrations were used: 500 µM (Zld subphysiological), 1000 µM (Zld physiological) or 1500 µM (Zld supraphysiological); 25 µM (Grh subphysiological), 100 µM (Grh physiological) or 400 µM (Grh supraphysiological); 10 µM (Twi subphysiological), 40 µM (Twi physiological) or 160 µM (Twi supraphysiological).
 For all induction experiments, cells were plated at 1×10^6^ cells per mL.
 Unless otherwise specified, experiments were performed with cells harvested 48 hours after induction.
 

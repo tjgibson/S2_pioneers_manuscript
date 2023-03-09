@@ -867,6 +867,7 @@ rule extended_data_fig_10:
 	script:
 		"workflow/scripts/extended_data_fig10.R"
 
+
 ##########################################################################################
 ##########################################################################################
 ###                                                                                    ###
@@ -875,27 +876,27 @@ rule extended_data_fig_10:
 ##########################################################################################
 ##########################################################################################
 rule all:
-    input:
-    	rules.ChIPseq_all.input,
-        rules.published_ChIPseq_all.input,
-        rules.RNAseq_all.input,
-        rules.ATACseq_all.input,
-        rules.histone_CUTandRUN_all.input,
-        rules.TF_CUTandRUN_all.input,
-        "manuscript/figures/fig1.pdf",
-        "manuscript/figures/fig2.pdf",
-        "manuscript/figures/fig3.pdf",
-        "manuscript/figures/fig4.pdf",
-        "manuscript/figures/fig5.pdf",
-        "manuscript/figures/fig6.pdf",
-        "manuscript/figures/extended_data_fig1.pdf",
-        "manuscript/figures/extended_data_fig2.pdf",
-        "manuscript/figures/extended_data_fig3.pdf",
-        "manuscript/figures/extended_data_fig4.pdf",
-        "manuscript/figures/extended_data_fig5.pdf",
-        "manuscript/figures/extended_data_fig6.pdf",
-        "manuscript/figures/extended_data_fig7.pdf",
-        "manuscript/figures/extended_data_fig8.pdf",
-        "manuscript/figures/extended_data_fig9.pdf",
-        "manuscript/figures/extended_data_fig10.pdf",
-    default_target: True
+	input:
+		rules.ChIPseq_all.input,
+		rules.published_ChIPseq_all.input,
+		rules.RNAseq_all.input,
+		rules.ATACseq_all.input,
+		rules.histone_CUTandRUN_all.input,
+		rules.TF_CUTandRUN_all.input,
+		"manuscript/figures/fig1.pdf",
+		"manuscript/figures/fig2.pdf",
+		"manuscript/figures/fig3.pdf",
+		"manuscript/figures/fig4.pdf",
+		"manuscript/figures/fig5.pdf",
+		"manuscript/figures/fig6.pdf",
+		"manuscript/figures/extended_data_fig1.pdf",
+		"manuscript/figures/extended_data_fig2.pdf",
+		"manuscript/figures/extended_data_fig3.pdf",
+		"manuscript/figures/extended_data_fig4.pdf",
+		"manuscript/figures/extended_data_fig5.pdf",
+		"manuscript/figures/extended_data_fig6.pdf",
+		"manuscript/figures/extended_data_fig7.pdf",
+		"manuscript/figures/extended_data_fig8.pdf",
+		"manuscript/figures/extended_data_fig9.pdf",
+		"manuscript/figures/extended_data_fig10.pdf",
+	default_target: True
