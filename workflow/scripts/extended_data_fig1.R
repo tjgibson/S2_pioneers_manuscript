@@ -16,22 +16,22 @@ source("workflow/scripts/plot_heatmap.R")
 # 
 # zld_blot_image <- "data/immunoblot_raw_images/2018-10-17_Zld_induction/2018-1018-144408_pub.tif"
 # grh_blot_image <- "data/immunoblot_raw_images/2018-11-08_Grh_induction/2018-1108-132834_pub.tif"
-
+# 
 # S2_Zld_aZld_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw"
 # S2_WT_aZld_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-WT_aZld_IP.bw"
-# S2_Zld_IgG_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2_Zld_aIgG_IP.bw"
+# S2_Zld_IgG_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aIgG_IP.bw"
 # 
 # zld_ChIP_classes_fn <- "results/ChIP_peak_classes/zld_ChIP_classes.tsv"
 # 
 # S2_Grh_aGrh_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw"
 # S2_WT_aGrh_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-WT_aGrh_IP.bw"
-# S2_Grh_IgG_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2_Grh_aIgG_IP.bw"
+# S2_Grh_IgG_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aIgG_IP.bw"
 # 
 # grh_ChIP_classes_fn <- "results/ChIP_peak_classes/grh_ChIP_classes.tsv"
 # 
 # S2_Twi_aTwi_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw"
-# S2_WT_aTwi_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-WT_aTwi.bw"
-# S2_Twi_IgG_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2_Zld_aIgG_IP.bw"
+# S2_WT_aTwi_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-WT_aTwi_IP.bw"
+# S2_Twi_IgG_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aIgG_IP.bw"
 # 
 # twi_ChIP_classes_fn <- "results/ChIP_peak_classes/twi_ChIP_classes.tsv"
 
@@ -61,9 +61,15 @@ twi_ChIP_classes_fn <- snakemake@input[["twi_ChIP_classes_fn"]]
 
 
 # # create blank layout for plot ===============================================
-pdf(snakemake@output[[1]], useDingbats = FALSE)
+# # create blank layout for plot ===============================================
+fig_width <-  18
+fig_height <- 18.5
+
+# open pdf
+pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
 # pdf("manuscript/figures/extended_data_fig1.pdf", useDingbats = FALSE)
-pageCreate(width = 18, height = 18.5, default.units = "cm", showGuides = FALSE)
+
+pageCreate(width = fig_width, height = fig_height, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics
@@ -153,6 +159,14 @@ b_p2 <- zld_RPKM_table |>
   filter(gene_symbol == "zld") |>
   mutate(condition = fct_relevel(sample_group, c("S2-WT_noCuSO4", "S2-WT_1000uM", "S2-Zld_noCuSO4", "S2-Zld_1000mM"))) |>
   mutate(condition = fct_rev(condition)) |>
+  mutate(
+    condition = recode(condition,
+                          "S2-WT_noCuSO4" ="S2-WT uninduced", 
+                          "S2-WT_1000uM" = "S2-WT induced", 
+                          "S2-Zld_noCuSO4" = "S2-Zld uninduced", 
+                          "S2-Zld_1000mM" = "S2-Zld induced"
+    )
+  ) |> 
   ggplot(aes(x=condition, y=log2(RPKM)),) + 
   geom_boxplot(fill = "deepskyblue", lwd = 0.05) + 
   coord_flip() +
@@ -167,13 +181,22 @@ b_p3 <- grh_RPKM_table |>
   filter(gene_symbol == "grh") |>
   mutate(condition = fct_relevel(sample_group, c("S2-WT_noCuSO4", "S2-WT_100uM", "S2-Grh_noCuSO4", "S2-Grh_100mM"))) |>
   mutate(condition = fct_rev(condition)) |>
+  mutate(
+    condition = recode(condition,
+                          "S2-WT_noCuSO4" ="S2-WT uninduced", 
+                          "S2-WT_100uM" = "S2-WT induced", 
+                          "S2-Grh_noCuSO4" = "S2-Grh uninduced", 
+                          "S2-Grh_100mM" = "S2-Grh induced"
+    )
+  ) |> 
   ggplot(aes(x=condition, y=log2(RPKM)),) + 
   geom_boxplot(fill = "darkorange", lwd = 0.05) + 
   coord_flip() +
   theme_classic(base_size = small_text_params$fontsize) +
   ylim(limits) +
   xlab("Grh") +
-  geom_hline(yintercept = log2(1), lty = 2, lwd = 0.1)
+  geom_hline(yintercept = log2(1), lty = 2, lwd = 0.1) +
+  ylab(bquote(log[2]("RPKM")))
 
 # combine plots into composite plot
 b_plot <- rbind(ggplotGrob(b_p1), ggplotGrob(b_p2), ggplotGrob(b_p3), size = "last")
@@ -244,12 +267,12 @@ plotSegments(
 )
 
 plotText(
-  label = "S2 Zld line A", params = large_text_params, fontface = "bold",
+  label = "S2-Zld line A", params = large_text_params, fontface = "bold",
   x = ref_x + 2.15, y = ref_y, just = "top", default.units = "cm"
 )
 
 plotText(
-  label = "S2 Zld line B", params = large_text_params, fontface = "bold",
+  label = "S2-Zld line B", params = large_text_params, fontface = "bold",
   x = ref_x + 4.5, y = ref_y, just = "top", default.units = "cm"
 )
 
@@ -400,12 +423,12 @@ plotSegments(
 
 
 plotText(
-  label = "S2 Grh line A", params = large_text_params, fontface = "bold",
+  label = "S2-Grh line A", params = large_text_params, fontface = "bold",
   x = ref_x + 2.15, y = ref_y, just = "top", default.units = "cm"
 )
 
 plotText(
-  label = "S2 Grh line B", params = large_text_params, fontface = "bold",
+  label = "S2-Grh line B", params = large_text_params, fontface = "bold",
   x = ref_x + 4.5, y = ref_y, just = "top", default.units = "cm"
 )
 
@@ -645,7 +668,7 @@ plotText(
 )
 
 plotText(
-  label = paste0("S2-Grh", "\n", "anti-Zld"), params = small_text_params, fontface = "bold",
+  label = paste0("S2-WT", "\n", "anti-Grh"), params = small_text_params, fontface = "bold",
   x = (ref_x + 2.75), y = (ref_y), just = c("center"), default.units = "cm"
 )
 

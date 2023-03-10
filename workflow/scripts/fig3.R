@@ -9,15 +9,6 @@ suppressPackageStartupMessages(library(grid))
 source("workflow/scripts/plot_heatmap.R")
 source("workflow/scripts/utils.R")
 
-# function to get range for browser tracks -------------------------------------
-signal_range <- function(x, extra = 0.05) {
-  min <- floor(min(x))
-  max <- ceiling(max(x))
-  range <- max - min
-  margin <- range * extra
-  output <- c(min - margin, max + margin)
-  return(output)
-}
 
 # define input files ===========================================================
 class_I_bed_fn <- c(
@@ -80,14 +71,14 @@ twi_WT_atac_fn <- snakemake@input[["twi_WT_atac_fn"]]
 
 ## create blank layout for plot =================================================
 # define figure dimensions in cm
-fig_width <-  12
-fig_height <- 7.5
+fig_width <-  18
+fig_height <- 12
 
 # open pdf
 pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
 
 # generate plotGardener page
-pageCreate(width = fig_width, height = fig_height, default.units = "cm", showGuides = FALSE)
+pageCreate(width = fig_width, height = fig_height, default.units = "cm", showGuides = TRUE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics
@@ -281,7 +272,8 @@ plotText(
 )
 
 # import ChIP classes
-zld_ChIP_classes <- read_tsv(zld_ChIP_classes_fn)
+zld_ChIP_classes <- read_tsv(zld_ChIP_classes_fn) |> 
+  mutate(class = str_to_upper(class))
 
 # get background motif frequency
 zld_motifs_gr <- 
@@ -293,7 +285,7 @@ zld_ATAC_peaks <-
   zld_WT_atac_fn |> 
   rtracklayer::import() |> 
   resize(width = 201, fix = "center")
-zld_ATAC_peaks$class <- "all_ATAC_peaks"
+zld_ATAC_peaks$class <- "all ATAC peaks"
 
 zld_ATAC_peaks$n_motifs <- countOverlaps(zld_ATAC_peaks, zld_motifs_gr)
 
@@ -377,7 +369,8 @@ plotText(
 )
 
 # import ChIP classes
-grh_ChIP_classes <- read_tsv(grh_ChIP_classes_fn)
+grh_ChIP_classes <- read_tsv(grh_ChIP_classes_fn) |> 
+  mutate(class = str_to_upper(class))
 
 # get background motif frequency
 grh_motifs_gr <- 
@@ -389,7 +382,7 @@ grh_ATAC_peaks <-
   grh_WT_atac_fn |> 
   rtracklayer::import() |> 
   resize(width = 201, fix = "center")
-grh_ATAC_peaks$class <- "all_ATAC_peaks"
+grh_ATAC_peaks$class <- "all ATAC peaks"
 
 grh_ATAC_peaks$n_motifs <- countOverlaps(grh_ATAC_peaks, grh_motifs_gr)
 
@@ -469,7 +462,8 @@ plotText(
 )
 
 # import ChIP classes
-twi_ChIP_classes <- read_tsv(twi_ChIP_classes_fn)
+twi_ChIP_classes <- read_tsv(twi_ChIP_classes_fn) |> 
+  mutate(class = str_to_upper(class))
 
 # get background motif frequency
 twi_motifs_gr <- 
@@ -481,7 +475,7 @@ twi_ATAC_peaks <-
   twi_WT_atac_fn |> 
   rtracklayer::import() |> 
   resize(width = 201, fix = "center")
-twi_ATAC_peaks$class <- "all_ATAC_peaks"
+twi_ATAC_peaks$class <- "all ATAC peaks"
 
 twi_ATAC_peaks$n_motifs <- countOverlaps(twi_ATAC_peaks, twi_motifs_gr)
 
@@ -562,7 +556,8 @@ zld_n_motifs_plot <- zld_ChIP_classes |>
   ggplot(aes(x = class, y = n_motifs)) + 
   geom_boxplot(fill = zld_color, outlier.size = 0.01, lwd = 0.1) +
   theme_classic(base_size = small_text_params$fontsize) +
-  scale_y_continuous(breaks=seq(n_motifs_ylim[1],n_motifs_ylim[2],1), limits = n_motifs_ylim)
+  scale_y_continuous(breaks=seq(n_motifs_ylim[1],n_motifs_ylim[2],1), limits = n_motifs_ylim) +
+  ylab("n motifs")
   
 
 plotGG(
@@ -587,7 +582,9 @@ ref_y <- 5.25
 zld_motif_score_plot <- zld_ChIP_classes |>
   ggplot(aes(x = class, y = average_motif_score)) + 
   geom_boxplot(fill = zld_color, outlier.size = 0.01, lwd = 0.1) +
-  theme_classic(base_size = small_text_params$fontsize)
+  theme_classic(base_size = small_text_params$fontsize) +
+  ylab("average motif score")
+
 
 
 plotGG(
@@ -613,7 +610,9 @@ grh_n_motifs_plot <- grh_ChIP_classes |>
   ggplot(aes(x = class, y = n_motifs)) + 
   geom_boxplot(fill = grh_color, outlier.size = 0.01, lwd = 0.1) +
   theme_classic(base_size = small_text_params$fontsize) +
-  scale_y_continuous(breaks=seq(n_motifs_ylim[1],n_motifs_ylim[2],1), limits = n_motifs_ylim)
+  scale_y_continuous(breaks=seq(n_motifs_ylim[1],n_motifs_ylim[2],1), limits = n_motifs_ylim) +
+  ylab("n motifs")
+
 
 
 plotGG(
@@ -638,7 +637,9 @@ ref_y <- 5.25
 grh_motif_score_plot <- grh_ChIP_classes |>
   ggplot(aes(x = class, y = average_motif_score)) + 
   geom_boxplot(fill = grh_color, outlier.size = 0.01, lwd = 0.1) +
-  theme_classic(base_size = small_text_params$fontsize)
+  theme_classic(base_size = small_text_params$fontsize) +
+  ylab("average motif score")
+
 
 
 plotGG(
@@ -664,7 +665,8 @@ twi_n_motifs_plot <- twi_ChIP_classes |>
   ggplot(aes(x = class, y = n_motifs)) + 
   geom_boxplot(fill = twi_color, outlier.size = 0.01, lwd = 0.1) +
   theme_classic(base_size = small_text_params$fontsize) +
-  scale_y_continuous(breaks=seq(n_motifs_ylim[1],n_motifs_ylim[2],1), limits = n_motifs_ylim)
+  scale_y_continuous(breaks=seq(n_motifs_ylim[1],n_motifs_ylim[2],1), limits = n_motifs_ylim) +
+  ylab("n motifs")
 
 
 plotGG(
@@ -689,7 +691,8 @@ ref_y <- 5.25
 twi_motif_score_plot <- twi_ChIP_classes |>
   ggplot(aes(x = class, y = average_motif_score)) + 
   geom_boxplot(fill = twi_color, outlier.size = 0.01, lwd = 0.1) +
-  theme_classic(base_size = small_text_params$fontsize)
+  theme_classic(base_size = small_text_params$fontsize) +
+  ylab("average motif score")
 
 
 plotGG(

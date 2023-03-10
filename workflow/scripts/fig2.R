@@ -425,12 +425,13 @@ plotText(
 )
 
 # read in ChIP classes
-twi_chip_classes <- read_tsv(twi_ChIP_classes_fn)
+twi_chip_classes <- read_tsv(twi_ChIP_classes_fn) |> 
+  mutate(class = str_to_upper(class))
 
 # generate pie charts
-twi_class_plot <- twi_chip_classes  %>% 
-  # mutate(zygotic_class = factor(zygotic_class, levels = c("i", "ii", "iii"))) %>%
-  group_by(class) %>% summarise(n = n()) %>%
+twi_class_plot <- twi_chip_classes  |> 
+  # mutate(zygotic_class = factor(zygotic_class, levels = c("I", "II", "III"))) |>
+  group_by(class) |> summarise(n = n()) |>
   ggplot(aes(x='', y = n, fill = class)) + 
   geom_bar(stat = "identity", position = "fill") + 
   coord_polar("y", direction = 1, start = pi / 2) + 
@@ -450,17 +451,17 @@ plotGG(
 
 # add labels
 plotText(
-  label = paste("class I", "\n", "n =", sum(twi_chip_classes$class == "i")), fontsize = small_text_params$fontsize,
+  label = paste("class I", "\n", "n =", sum(twi_chip_classes$class == "I")), fontsize = small_text_params$fontsize,
   x = (ref_x + 1), y = (ref_y + 0.5), just = "center", default.units = "cm"
 )
 
 plotText(
-  label = paste("class II", "\n", "n =", sum(twi_chip_classes$class == "ii")), fontsize = small_text_params$fontsize,
+  label = paste("class II", "\n", "n =", sum(twi_chip_classes$class == "II")), fontsize = small_text_params$fontsize,
   x = (ref_x + 2.2), y = (ref_y + 1.5), just = "center", default.units = "cm"
 )
 
 plotText(
-  label = paste("class III", "\n", "n =", sum(twi_chip_classes$class == "iii")), fontsize = small_text_params$fontsize,
+  label = paste("class III", "\n", "n =", sum(twi_chip_classes$class == "III")), fontsize = small_text_params$fontsize,
   x = (ref_x + 2.2), y = (ref_y + 1), just = "center", default.units = "cm"
 )
 
@@ -471,7 +472,7 @@ ref_x <- 9.5
 ref_y <- 0.5 
 
 # generate chart
-twi_feature_plot <- twi_chip_classes  %>% 
+twi_feature_plot <- twi_chip_classes  |> 
   ggplot(aes(x=class, fill = feature)) + 
   geom_bar(position = "fill") + 
   theme_classic(base_size = small_text_params$fontsize) +
@@ -518,8 +519,8 @@ bw <- c(
 
 groups <- c(1,2,2)
 
-regions <- twi_chip_classes %>%
-  filter(class != "i") %>% 
+regions <- twi_chip_classes |>
+  filter(class != "I") |> 
   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
 
 hm <- plot_heatmap_minimal(
@@ -591,7 +592,7 @@ plotText(
 #   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 # )
 # 
-# # e_plot <- twi_chip_classes %>%
+# # e_plot <- twi_chip_classes |>
 # #   ggplot(aes(x = class, y = atac_FC)) +
 # #   geom_violin(fill = twi_color, lwd = 0.1) +
 # #   geom_boxplot(width = 0.1, outlier.shape = NA, lwd = 0.1) +
@@ -608,32 +609,32 @@ plotText(
 # zld_chip_classes <- read_tsv(zld_ChIP_classes_fn)
 # grh_chip_classes <- read_tsv(grh_ChIP_classes_fn)
 # 
-# zld_closed <- zld_chip_classes %>%
-#   filter(class != "i") %>%
-#   group_by(class) %>%
-#   summarise(n = n()) %>%
-#   mutate(percent = n / sum(n) * 100) %>%
+# zld_closed <- zld_chip_classes |>
+#   filter(class != "I") |>
+#   group_by(class) |>
+#   summarise(n = n()) |>
+#   mutate(percent = n / sum(n) * 100) |>
 #   add_column(factor = "Zld")
 # 
-# grh_closed <- grh_chip_classes %>%
-#   filter(class != "i") %>%
-#   group_by(class) %>%
-#   summarise(n = n()) %>%
-#   mutate(percent = n / sum(n) * 100) %>%
+# grh_closed <- grh_chip_classes |>
+#   filter(class != "I") |>
+#   group_by(class) |>
+#   summarise(n = n()) |>
+#   mutate(percent = n / sum(n) * 100) |>
 #   add_column(factor = "Grh")
 # 
-# twi_closed <- twi_chip_classes %>%
-#   filter(class != "i") %>%
-#   group_by(class) %>%
-#   summarise(n = n()) %>%
-#   mutate(percent = n / sum(n) * 100) %>%
+# twi_closed <- twi_chip_classes |>
+#   filter(class != "I") |>
+#   group_by(class) |>
+#   summarise(n = n()) |>
+#   mutate(percent = n / sum(n) * 100) |>
 #   add_column(factor = "Twi")
 # 
-# p_data <- bind_rows(zld_closed, grh_closed, twi_closed) %>%
-#   filter(class == "iii")
+# p_data <- bind_rows(zld_closed, grh_closed, twi_closed) |>
+#   filter(class == "III")
 # 
-# e_plot <- p_data %>%
-#   mutate(factor = factor(factor, levels = c("Twi", "Grh", "Zld"))) %>%
+# e_plot <- p_data |>
+#   mutate(factor = factor(factor, levels = c("Twi", "Grh", "Zld"))) |>
 #   ggplot(aes(x = factor, y = percent, fill = factor)) + geom_bar(stat = "identity") +
 #   theme_classic(base_size = 5) +
 #   theme(
@@ -660,7 +661,7 @@ plotText(
 #   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 # )
 # 
-# # f_plot <- twi_chip_classes %>%
+# # f_plot <- twi_chip_classes |>
 # #   ggplot(aes(x = class, y = RNAseq_FC)) +
 # #   geom_violin(fill = twi_color, lwd = 0.1) +
 # #   geom_boxplot(width = 0.1, outlier.shape = NA, lwd = 0.1) +
@@ -683,16 +684,16 @@ plotText(
 # )
 # 
 # # define regions to use for metaplots
-# twi_regions <- twi_chip_classes %>%
-#   filter(class != "i") %>%
+# twi_regions <- twi_chip_classes |>
+#   filter(class != "I") |>
 #   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
 # 
-# grh_regions <- grh_chip_classes %>%
-#   filter(class != "i") %>%
+# grh_regions <- grh_chip_classes |>
+#   filter(class != "I") |>
 #   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
 # 
-# zld_regions <- zld_chip_classes %>%
-#   filter(class != "i") %>%
+# zld_regions <- zld_chip_classes |>
+#   filter(class != "I") |>
 #   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
 # 
 # 
@@ -789,33 +790,33 @@ plotText(
 # 
 # 
 # # import RNA-seq results and reformat for plotting
-# twi_RNAseq_results <- read_tsv(twi_RNAseq_results_fn) %>%
-#   filter(is_diff, log2FoldChange > 0) %>%
-#   add_column(factor = "Twi") %>%
-#   left_join(dplyr::select(twi_chip_classes, gene_id, peak_id), by = "gene_id") %>%
-#   mutate(bound_by_factor = !is.na(peak_id)) %>%
-#   dplyr::select(gene_id, factor,bound_by_factor) %>%
+# twi_RNAseq_results <- read_tsv(twi_RNAseq_results_fn) |>
+#   filter(is_diff, log2FoldChange > 0) |>
+#   add_column(factor = "Twi") |>
+#   left_join(dplyr::select(twi_chip_classes, gene_id, peak_id), by = "gene_id") |>
+#   mutate(bound_by_factor = !is.na(peak_id)) |>
+#   dplyr::select(gene_id, factor,bound_by_factor) |>
 #   distinct(.keep_all = TRUE)
 # 
-# zld_RNAseq_results <- read_tsv(zld_RNAseq_results_fn) %>%
-#   filter(is_diff, log2FoldChange > 0) %>%
-#   add_column(factor = "Zld") %>%
-#   left_join(dplyr::select(zld_chip_classes, gene_id, peak_id), by = "gene_id") %>%
-#   mutate(bound_by_factor = !is.na(peak_id)) %>%
-#   dplyr::select(gene_id, factor,bound_by_factor) %>%
+# zld_RNAseq_results <- read_tsv(zld_RNAseq_results_fn) |>
+#   filter(is_diff, log2FoldChange > 0) |>
+#   add_column(factor = "Zld") |>
+#   left_join(dplyr::select(zld_chip_classes, gene_id, peak_id), by = "gene_id") |>
+#   mutate(bound_by_factor = !is.na(peak_id)) |>
+#   dplyr::select(gene_id, factor,bound_by_factor) |>
 #   distinct(.keep_all = TRUE)
 # 
-# grh_RNAseq_results <- read_tsv(grh_RNAseq_results_fn) %>%
-#   filter(is_diff, log2FoldChange > 0) %>%
-#   add_column(factor = "Grh") %>%
-#   left_join(dplyr::select(grh_chip_classes, gene_id, peak_id), by = "gene_id") %>%
-#   mutate(bound_by_factor = !is.na(peak_id)) %>%
-#   dplyr::select(gene_id, factor,bound_by_factor) %>%
+# grh_RNAseq_results <- read_tsv(grh_RNAseq_results_fn) |>
+#   filter(is_diff, log2FoldChange > 0) |>
+#   add_column(factor = "Grh") |>
+#   left_join(dplyr::select(grh_chip_classes, gene_id, peak_id), by = "gene_id") |>
+#   mutate(bound_by_factor = !is.na(peak_id)) |>
+#   dplyr::select(gene_id, factor,bound_by_factor) |>
 #   distinct(.keep_all = TRUE)
 # 
 # p_data <- bind_rows(twi_RNAseq_results, zld_RNAseq_results, grh_RNAseq_results)
 # 
-# h_plot <- p_data %>%
+# h_plot <- p_data |>
 #   ggplot(aes(x=factor, fill = bound_by_factor)) + geom_bar(position = "stack") +
 #   theme_classic(base_size = small_text_params$fontsize) +
 #   scale_fill_manual(values=c("#DFF3F0", "#5FC3B5")) +

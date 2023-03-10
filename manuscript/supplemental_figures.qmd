@@ -1,0 +1,110 @@
+---
+format: 
+  pdf:
+    include-in-header:
+      text: |
+        \usepackage[labelfont=bf,format=plain]{caption}
+        \pagenumbering{gobble}
+    mainfont: Arial
+  docx:
+    reference-doc: custom-reference-doc.docx
+crossref:
+  fig-title: '**Extended Data Figure**'
+  title-delim: "**.**"
+
+---
+
+::: {#fig-1}
+![](figures/extended_data_fig1.pdf)
+
+**Stable cell lines allow inducible expression of transcription factors at physiological concentrations. a,** Schematic of generation of stable cell lines and induction of protein expression.
+**b,** mRNA levels of Zld and Grh in S2 cells.
+Top histogram shows the distribution of mRNA levels for all Drosophila genes.
+Vertical dashed line indicates a log~2~ RPKM value of 0 as a threshold for considering a gene to be expressed.
+**c-d,** Immunoblots showing titration of Zld **(c)** or Grh **(d)** protein levels in stable cell lines.
+Two independently generated cell lines are shown and compared to 2-3H embryos.
+:::
+
+::: {#fig-2}
+![](figures/extended_data_fig2.pdf)
+
+**Zld and Grh bind to chromatin rapidly after induction of protein expression. a-b,** Immunoblots showing time course of Zld **(a)** or Grh **(b)** protein expression following induction of stable cell lines.
+**c-d,** Metaplots showing average z-score normalized CUT&RUN signal at class I, II or III sites at different time points following induction.
+:::
+
+
+::: {#fig-3}
+![](figures/extended_data_fig3.pdf)
+
+**Ectopic expression of pioneer factors in S2 cells leads to widespread changes to chromatin accessibility and gene expression. a,d,** Volcano plots showing changes in ATAC-seq signal in cells expressing Zld **(a)** or Grh **(d)** when compared to WT cells treated with the same concentration of CuSO~4~.
+**b,e,** RNA-seq volcano plots showing gene expression changes in cells expressing Zld **(a)** or Grh **(d)** when compared to WT cells treated with the same concentration of CuSO~4~.
+**c,f,** Bar plots showing enrichment of gene ontology terms in genes significantly upregulated upon expression of Zld **(c)** or Grh **(f)**.
+:::
+
+
+::: {#fig-4}
+![](figures/extended_data_fig4.pdf)
+
+**Twist binding leads to chromatin opening and transcriptional activation. a,** Immunoblot showing titration of Twi or HA-Twi protein levels in stable cell lines.
+Protein levels in stable cell lines are compared to 3-4 hour old embryos.
+**b,** Volcano plots showing changes in ATAC-seq signal in cells expressing Twi when compared to WT cells treated with the same concentration of CuSO~4~.
+**c,** RNA-seq volcano plots showing gene expression changes in cells expressing Twi when compared to WT cells treated with the same concentration of CuSO~4~.
+**d,** Bar plots showing enrichment of gene ontology terms in genes significantly upregulated upon expression of Twi.
+:::
+
+
+::: {#fig-5}
+![](figures/extended_data_fig5.pdf)
+
+**Chromatin features associated with Zld, Grh and Twi binding sites. a,c,e,** Heatmaps showing the levels of different chromatin marks in class I, II or III regions for Zld (a), Grh (c) or Twi (e).
+The color represents the average z-score normalized read depth across a 1 KB region surrounding the center of class I, II or III ChIP-seq peaks.
+**b,d,f,** Example genome browser tracks for class III regions with high levels of H3K27me3 for Zld (b), Grh (d), or Twi (f).
+:::
+
+
+
+::: {#fig-6}
+![](figures/extended_data_fig6.pdf)
+
+**Zld, Grh and Twi do not bind preferentially to motifs in a particular position on nucleosomes. a-c,** Metaplots showing average MNase signal at motifs within class I, II, or III regions for Zld (a), Grh (b), or Twi (c).
+**d-f,** Heatmaps showing MNase signal at motifs within class II and III regions for Zld (d), Grh (e), or Twi (f).
+Rows are ordered based on hierarchical clustering to highlight the various patterns of MNase signal around motifs.
+:::
+
+
+::: {#fig-7}
+![](figures/extended_data_fig7.pdf)
+
+**Zld, Grh and Twi display cell-type specific binding. a-c,** Venn diagrams showing overlap between ChIP-seq peaks identified in different tissues for Zld (a), Grh (b) or Twi (c).
+**d-l,** Genome browser tracks showing examples of class IV, V, and VI regions for Zld (d-f), Grh (g-i) or Twi (j-l).
+For each example, the top tracks show H3K27me3 and H3K9me3 signal over a larger region.
+Dashed gray lines indicate a zoomed-in region where Zld, Grh or Twi ChIP-seq signal is shown in S2 cells or in embryos.
+:::
+
+::: {#fig-8}
+![](figures/extended_data_fig8.pdf)
+
+**PRC2 inhibition is insufficient to promote Zld, Grh, and Twi binding to repressed targets. a,** Immunoblot showing H3K27me3 levels in two replicates of DMSO- or tazemetostat-treated cells.
+Tubulin levels are shown as a loading control.
+:::
+
+
+::: {#fig-9}
+![](figures/extended_data_fig9.pdf)
+
+**Expression of Zld, Grh, or Twi at supraphysiological levels results in chromatin opening at a small number of novel binding sites. a-c,** Immunoblots showing Zld (a), Grh (b) or Twi (c) protein levels when stable cell lines are induced using different concentrations of CuSO~4~.
+**d-f,** Bar plots showing the percentage of previously defined class I-VI binding sites that are bound by Zld (d), Grh (e), or Twi (f) when expressed at varying concentrations.
+**g-i,** Bar plots showing the percentage of previously defined class I-VI binding sites that overlap an ATAC-seq peak when Zld (g), Grh (h), or Twi (i) are expressed at varying concentrations.
+:::
+
+
+::: {#fig-10}
+![](figures/extended_data_fig10.pdf)
+
+**Expression of Zld and Grh DNA-binding domains at protein levels comparable to the full-length proteins. a-b,** Immunoblots showing titration of protein levels for Zld (a) or Grh (b) DNA-binding domains to match expression of the full-length proteins.
+DNA-binding domain protein levels are shown at a range of CuSO~4~ concentrations and compared to an equivalent number of cells expressing full-length Zld or Grh at approximately physiological levels.
+**c-d,** Immunofluorescent microscopy images of stable cell lines expressing full-length protein or DBD only for Zld (c) or (Grh).
+Stable cell lines are compared to WT cells.
+**e,** Metaplots showing the average ChIP-seq signal for full-length Zld or the DNA-binding domain alone at the subset of previously identified class I, II or III binding sites that contain a canonical Zelda CAGGTAG motif.
+:::
+

@@ -3,7 +3,7 @@ suppressPackageStartupMessages(library(plotgardener))
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(org.Dm.eg.db))
 suppressPackageStartupMessages(library(TxDb.Dmelanogaster.UCSC.dm6.ensGene))
-# library(grImport)
+library(grImport)
 suppressPackageStartupMessages(library(grid))
 suppressPackageStartupMessages(library(RColorBrewer))
 
@@ -32,8 +32,8 @@ grh_DBD_atac_results_fn <- snakemake@input[["grh_DBD_atac_results"]]
 
 ## create blank layout for plot =================================================
 # define figure dimensions in cm
-fig_width <-  16
-fig_height <- 6
+fig_width <-  18
+fig_height <- 14
 
 # open pdf
 pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
@@ -124,7 +124,7 @@ ATAC_range <- signal_range(c(`S2-WT_ATAC`$score, `S2-Zld_ATAC`$score))
 
 s1 <- plotSignal(
   data = `Zld_FL_ChIP`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 0.25), width = 5, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.25), width = 6, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = zld_color, fill = zld_color, baseline = FALSE, baseline.lwd = 0, baseline.color = zld_color,
   range = ChIP_range
@@ -138,7 +138,7 @@ annoYaxis(
 
 s2 <- plotSignal(
   data = `Zld_DBD_ChIP`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 5, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 6, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = zld_color, fill = zld_color, baseline = FALSE, baseline.lwd = 0, baseline.color = zld_color,
   range = ChIP_range
@@ -152,7 +152,7 @@ annoYaxis(
 
 s3 <- plotSignal(
   data = `S2-WT_ATAC`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 1.25), width = 5, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 1.25), width = 6, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = zld_color, fill = zld_color, baseline = FALSE, baseline.lwd = 0, baseline.color = zld_color,
   range = ATAC_range
@@ -167,7 +167,7 @@ annoYaxis(
 
 s4 <- plotSignal(
   data = `S2-Zld_ATAC`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 1.75), width = 5, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 1.75), width = 6, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = zld_color, fill = zld_color, baseline = FALSE, baseline.lwd = 0, baseline.color = zld_color,
   range = ATAC_range
@@ -180,7 +180,7 @@ annoYaxis(
 
 plotGenes(
   params = region, assembly = "dm6",
-  x = (ref_x + x_offset_browser), y = (ref_y + 2), height = 0.75, width = 5, fontsize = small_text_params$fontsize,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2), height = 0.75, width = 6, fontsize = small_text_params$fontsize,
   just = c("left", "top"),
   default.units = "cm"
 )
@@ -197,7 +197,7 @@ annoHighlight(
 
 # panel B ======================================================================
 # panel label
-ref_x <- 8.5
+ref_x <- 9.25
 ref_y <- 0.5
 
 plotText(
@@ -253,7 +253,7 @@ ATAC_range <- signal_range(c(`S2-WT_ATAC`$score, `S2-Grh_ATAC`$score))
 
 s1 <- plotSignal(
   data = `Grh_FL_ChIP`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 0.25), width = 5, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.25), width = 6, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = grh_color, fill = grh_color, baseline = FALSE, baseline.lwd = 0, baseline.color = grh_color,
   range = ChIP_range
@@ -266,7 +266,7 @@ annoYaxis(
 
 s2 <- plotSignal(
   data = `Grh_DBD_ChIP`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 5, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 6, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = grh_color, fill = grh_color, baseline = FALSE, baseline.lwd = 0, baseline.color = grh_color,
   range = ChIP_range
@@ -279,7 +279,7 @@ annoYaxis(
 
 s3 <- plotSignal(
   data = `S2-WT_ATAC`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 1.25), width = 5, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 1.25), width = 6, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = grh_color, fill = grh_color, baseline = FALSE, baseline.lwd = 0, baseline.color = grh_color,
   range = ATAC_range
@@ -293,7 +293,7 @@ annoYaxis(
 
 s4 <- plotSignal(
   data = `S2-Grh_ATAC`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 1.75), width = 5, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 1.75), width = 6, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = grh_color, fill = grh_color, baseline = FALSE, baseline.lwd = 0, baseline.color = grh_color,
   range = ATAC_range
@@ -306,7 +306,7 @@ annoYaxis(
 
 plotGenes(
   params = region, assembly = "dm6",
-  x = (ref_x + x_offset_browser), y = (ref_y + 2), height = 0.75, width = 5, fontsize = small_text_params$fontsize,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2), height = 0.75, width = 6, fontsize = small_text_params$fontsize,
   just = c("left", "top"),
   default.units = "cm"
 )
@@ -339,7 +339,8 @@ bw <- c(
 )
 
 
-zld_chip_classes <- read_tsv(zld_ChIP_classes_fn)
+zld_chip_classes <- read_tsv(zld_ChIP_classes_fn) |> 
+  mutate(class = str_to_upper(class))
 
 regions <- zld_chip_classes %>%
   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
@@ -349,21 +350,16 @@ plot_range <- c(0,5)
 metaplot_1 <- plot_average(bw[1], regions = regions, row_split = regions$class, line_width = 0.2) +
   scale_color_brewer(palette = "Blues") +
   theme(text = element_text(size = 5),
-        line = element_line(size = 0.1),
+        line = element_line(size = 0.15),
+        legend.position = "none", 
         axis.title.y = element_blank(),
-        legend.key.size = unit(2, 'mm'),
-        legend.title = element_blank(),
-        legend.position = "bottom",
-        legend.margin=margin(-5,-5,-5,-5),
-        legend.box.margin=margin(0,0,0,0),
-        plot.margin = margin(0,0,0,0)
   ) +
   ylim(plot_range)
 
 plotGG(
   plot = metaplot_1,
   x = (ref_x + 0.25), y = (ref_y + 0.25),
-  width = 2, height = 2, just = c("left", "top"),
+  width = 2.5, height = 2.25, just = c("left", "top"),
   default.units = "cm"
 )
 
@@ -372,44 +368,59 @@ metaplot_2 <- plot_average(bw[2], regions = regions, row_split = regions$class, 
   theme(text = element_text(size = 5),
         line = element_line(size = 0.1),
         axis.title.y = element_blank(),
-        legend.key.size = unit(2, 'mm'),
-        legend.title = element_blank(),
-        legend.position = "bottom",
-        legend.margin=margin(-5,-5,-5,-5),
-        legend.box.margin=margin(0,0,0,0),
-        plot.margin = margin(0,0,0,0)
+        legend.position = "none"
   ) +
   ylim(plot_range)
 
 plotGG(
   plot = metaplot_2,
-  x = (ref_x + 2.5), y = (ref_y + 0.25),
-  width = 2, height = 2, just = c("left", "top"),
+  x = (ref_x + 2.75), y = (ref_y + 0.25),
+  width = 2.5, height = 2.25, just = c("left", "top"),
   default.units = "cm"
 )
 
 # add labels to metaplots
 plotText(
   label = "Zld FL ChIP", params = small_text_params, fontface = "bold",
-  x = (ref_x + 1.25), y = (ref_y), just = c("center","center"), default.units = "cm"
+  x = (ref_x + 1.5), y = (ref_y), just = c("center","center"), default.units = "cm"
 )
 
 plotText(
   label = "Zld DBD ChIP", params = small_text_params, fontface = "bold",
-  x = (ref_x + 3.5), y = (ref_y), just = c("center","center"), default.units = "cm"
+  x = (ref_x + 4.25), y = (ref_y), just = c("center","center"), default.units = "cm"
+)
+
+plotText(
+  label = "z-score-normalized signal", params = small_text_params, rot = 90,
+  x = (ref_x + 0.25), y = (ref_y + 1.25), just = c("center","center"), default.units = "cm"
+)
+
+
+# add legend
+plot_colors <- c(
+  I = "#DEEBF7",
+  II = "#9ECAE1",
+  III = "#3182BD"
+)
+
+
+plotLegend(
+  legend = names(plot_colors),
+  fill = plot_colors,
+  border = FALSE,
+  x = 3.5, y = 6.25, width =3, height = 0.5,
+  just = c("center", "center"),
+  default.units = "cm",
+  fontsize = small_text_params$fontsize,
+  lty = 1,
+  orientation = "h"
 )
 
 # Panel D ======================================================================
 # panel label
-ref_x <- 5.5
+ref_x <- 6
 ref_y <- 3.5 
 
-# panel label
-
-plotText(
-  label = "d", params = panel_label_params, fontface = "bold",
-  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
-)
 
 # import ATAC-seq results
 zld_FL_atac_results <- read_tsv(zld_FL_atac_results_fn)
@@ -425,20 +436,29 @@ d_plot <-
   theme_classic(base_size = 5) +
   theme( legend.position = "none") +
   scale_color_manual(values = c("grey", "black")) +
-  ylim(zld_FL_range)
+  ylim(zld_FL_range) +
+  xlab(bquote(log[2]("fold change"))) +
+  ylab(bquote(-log[10]("adj. p-value")))
 
 plotGG(
   plot = d_plot,
-  x = (ref_x + 0.25), y = (ref_y + 0.25),
-  width = 2, height = 2, just = c("left", "top"),
+  x = (ref_x), y = (ref_y + 0.4),
+  width = 2.75, height = 2.5, just = c("left", "top"),
   default.units = "cm"
+)
+
+# panel label
+
+plotText(
+  label = "d", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 )
 
 
 
 # Panel E ======================================================================
 # panel label
-ref_x <- 8.5
+ref_x <- 9.25
 ref_y <- 3.5 
 
 # panel label
@@ -454,7 +474,8 @@ bw <- c(
 )
 
 
-grh_chip_classes <- read_tsv(grh_ChIP_classes_fn)
+grh_chip_classes <- read_tsv(grh_ChIP_classes_fn) |> 
+  mutate(class = str_to_upper(class))
 
 regions <- grh_chip_classes %>%
   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
@@ -467,18 +488,14 @@ metaplot_1 <- plot_average(bw[1], regions = regions, row_split = regions$class, 
         line = element_line(size = 0.1),
         axis.title.y = element_blank(),
         legend.key.size = unit(2, 'mm'),
-        legend.title = element_blank(),
-        legend.position = "bottom",
-        legend.margin=margin(-5,-5,-5,-5),
-        legend.box.margin=margin(0,0,0,0),
-        plot.margin = margin(0,0,0,0)
+        legend.position = "none"
   ) +
   ylim(plot_range)
 
 plotGG(
   plot = metaplot_1,
   x = (ref_x + 0.25), y = (ref_y + 0.25),
-  width = 2, height = 2, just = c("left", "top"),
+  width = 2.5, height = 2.25, just = c("left", "top"),
   default.units = "cm"
 )
 
@@ -487,41 +504,60 @@ metaplot_2 <- plot_average(bw[2], regions = regions, row_split = regions$class, 
   theme(text = element_text(size = 5),
         line = element_line(size = 0.1),
         axis.title.y = element_blank(),
-        legend.key.size = unit(2, 'mm'),
-        legend.title = element_blank(),
-        legend.position = "bottom",
-        legend.margin=margin(-5,-5,-5,-5),
-        legend.box.margin=margin(0,0,0,0),
-        plot.margin = margin(0,0,0,0)
+        legend.position = "none"
   ) +
   ylim(plot_range)
 
 plotGG(
   plot = metaplot_2,
-  x = (ref_x + 2.5), y = (ref_y + 0.25),
-  width = 2, height = 2, just = c("left", "top"),
+  x = (ref_x + 2.75), y = (ref_y + 0.25),
+  width = 2.5, height = 2.25, just = c("left", "top"),
   default.units = "cm"
 )
 
 # add labels to metaplots
 plotText(
   label = "Grh FL ChIP", params = small_text_params, fontface = "bold",
-  x = (ref_x + 1.25), y = (ref_y), just = c("center","center"), default.units = "cm"
+  x = (ref_x + 1.5), y = (ref_y), just = c("center","center"), default.units = "cm"
 )
 
 plotText(
   label = "Grh DBD ChIP", params = small_text_params, fontface = "bold",
-  x = (ref_x + 3.5), y = (ref_y), just = c("center","center"), default.units = "cm"
+  x = (ref_x + 4.25), y = (ref_y), just = c("center","center"), default.units = "cm"
+)
+
+plotText(
+  label = "z-score-normalized signal", params = small_text_params, rot = 90,
+  x = (ref_x + 0.25), y = (ref_y + 1.25), just = c("center","center"), default.units = "cm"
 )
 
 
+# add legend
+plot_colors <- c(
+  I = "#FEE6CE",
+  II = "#FDAE6B",
+  III = "#E6550D"
+)
+
+
+plotLegend(
+  legend = names(plot_colors),
+  fill = plot_colors,
+  border = FALSE,
+  x = 12.25, y = 6.25, width =3, height = 0.5,
+  just = c("center", "center"),
+  default.units = "cm",
+  fontsize = small_text_params$fontsize,
+  lty = 1,
+  orientation = "h"
+)
+
 # Panel F ======================================================================
 # panel label
-ref_x <- 13.5
+ref_x <- 14.75
 ref_y <- 3.5 
 
 # panel label
-
 plotText(
   label = "f", params = panel_label_params, fontface = "bold",
   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
@@ -540,17 +576,45 @@ f_plot <-
   theme_classic(base_size = 5) +
   theme( legend.position = "none") +
   scale_color_manual(values = c("grey", "black")) +
-  ylim(grh_FL_range)
+  ylim(grh_FL_range) +
+  xlab(bquote(log[2]("fold change"))) +
+  ylab(bquote(-log[10]("adj. p-value")))
+
 
 plotGG(
   plot = f_plot,
-  x = (ref_x + 0.25), y = (ref_y + 0.25),
-  width = 2, height = 2, just = c("left", "top"),
+  x = (ref_x), y = (ref_y + 0.4),
+  width = 2.75, height = 2.5, just = c("left", "top"),
   default.units = "cm"
 )
 
+# panel G ======================================================================
+# reference points for positioning figure components
+ref_x <- 0.5
+ref_y <- 6.75
 
+# panel label
+plotText(
+  label = "g", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
 
+# # get model for EPS file
+# PostScriptTrace(
+#   "manuscript/figures/models/model.eps",
+#   outfilename = "manuscript/figures/models/model.eps.xml",
+#   charpath = FALSE,
+#   charpos = FALSE
+# )
+# schematic <- readPicture("manuscript/figures/models/model.eps.xml")
+# schematic_gtree <- grid.grabExpr(grid.picture(schematic))
+# 
+# 
+# # plot model on page
+# plotGG(schematic_gtree, x = ref_x, y = ref_y, width = 17, height = 6.5, default.units = "cm")
+
+# placeholder for model
+plotRect(x = (ref_x + 0.25), y = (ref_y + 0.25), width = 17, height = 6.5, default.units = "cm", just = c("top","left"))
 
 # close graphics device ========================================================
 dev.off()

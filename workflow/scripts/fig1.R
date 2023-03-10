@@ -24,7 +24,7 @@ Grh_Grh_RNAseq_bw <- snakemake@input[["Grh_Grh_RNAseq_bw"]]
 zld_ChIP_classes_fn <- snakemake@input[["zld_ChIP_classes"]]
 grh_ChIP_classes_fn <- snakemake@input[["grh_ChIP_classes"]]
 
-# # create blank layout for plot ===============================================
+# create blank layout for plot ===============================================
 fig_width <-  18
 fig_height <- 12.5
 
@@ -32,7 +32,7 @@ fig_height <- 12.5
 pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
 
 # generate plotGardener page
-pageCreate(width = 18, height = 12.5, default.units = "cm", showGuides = FALSE)
+pageCreate(width = fig_width, height = fig_height, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics
@@ -760,12 +760,12 @@ plotText(
 )
 
 # read in ChIP classes
-zld_chip_classes <- read_tsv(zld_ChIP_classes_fn)
+zld_chip_classes <- read_tsv(zld_ChIP_classes_fn) |> 
+  mutate(class = str_to_upper(class))
 
 # generate pie charts
-zld_class_plot <- zld_chip_classes  %>% 
-  # mutate(zygotic_class = factor(zygotic_class, levels = c("i", "ii", "iii"))) %>%
-  group_by(class) %>% summarise(n = n()) %>%
+zld_class_plot <- zld_chip_classes  |> 
+  group_by(class) |> summarise(n = n()) |>
   ggplot(aes(x='', y = n, fill = class)) + 
   geom_bar(stat = "identity", position = "fill") + 
   coord_polar("y", direction = 1, start = pi / 2) + 
@@ -785,17 +785,17 @@ plotGG(
 
 # add labels
 plotText(
-  label = paste("class I", "\n", "n =", sum(zld_chip_classes$class == "i")), fontsize = small_text_params$fontsize,
+  label = paste("class I", "\n", "n =", sum(zld_chip_classes$class == "I")), fontsize = small_text_params$fontsize,
   x = (ref_x + 1), y = (ref_y + 0.5), just = "center", default.units = "cm"
 )
 
 plotText(
-  label = paste("class II", "\n", "n =", sum(zld_chip_classes$class == "ii")), fontsize = small_text_params$fontsize,
+  label = paste("class II", "\n", "n =", sum(zld_chip_classes$class == "II")), fontsize = small_text_params$fontsize,
   x = (ref_x + 2.2), y = (ref_y + 1.5), just = "center", default.units = "cm"
 )
 
 plotText(
-  label = paste("class III", "\n", "n =", sum(zld_chip_classes$class == "iii")), fontsize = small_text_params$fontsize,
+  label = paste("class III", "\n", "n =", sum(zld_chip_classes$class == "III")), fontsize = small_text_params$fontsize,
   x = (ref_x + 2.2), y = (ref_y + 1), just = "center", default.units = "cm"
 )
 
@@ -807,7 +807,7 @@ ref_y <- 0.5
 
 
 # generate chart
-zld_feature_plot <- zld_chip_classes  %>% 
+zld_feature_plot <- zld_chip_classes  |> 
   ggplot(aes(x=class, fill = feature)) + 
   geom_bar(position = "fill") + 
   theme_classic(base_size = small_text_params$fontsize) +
@@ -852,8 +852,8 @@ bw <- c(
 
 groups <- c(1,2,2)
 
-regions <- zld_chip_classes %>%
-  filter(class != "i") %>% 
+regions <- zld_chip_classes |>
+  filter(class != "I") |> 
   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
 
 hm <- plot_heatmap_minimal(
@@ -924,12 +924,12 @@ plotText(
 )
 
 # read in ChIP classes
-grh_chip_classes <- read_tsv(grh_ChIP_classes_fn)
+grh_chip_classes <- read_tsv(grh_ChIP_classes_fn) |> 
+  mutate(class = str_to_upper(class))
 
 # generate pie charts
-grh_class_plot <- grh_chip_classes  %>% 
-  # mutate(zygotic_class = factor(zygotic_class, levels = c("i", "ii", "iii"))) %>%
-  group_by(class) %>% summarise(n = n()) %>%
+grh_class_plot <- grh_chip_classes  |> 
+  group_by(class) |> summarise(n = n()) |>
   ggplot(aes(x='', y = n, fill = class, label = n)) + 
   geom_bar(stat = "identity", position = "fill") + 
   coord_polar("y", direction = 1, start = pi / 2) + 
@@ -947,17 +947,17 @@ plotGG(
 
 # add labels
 plotText(
-  label = paste("class I", "\n", "n =", sum(grh_chip_classes$class == "i")), fontsize = small_text_params$fontsize,
+  label = paste("class I", "\n", "n =", sum(grh_chip_classes$class == "I")), fontsize = small_text_params$fontsize,
   x = (ref_x + 1), y = (ref_y + 0.5), just = "center", default.units = "cm"
 )
 
 plotText(
-  label = paste("class II", "\n", "n =", sum(grh_chip_classes$class == "ii")), fontsize = small_text_params$fontsize,
+  label = paste("class II", "\n", "n =", sum(grh_chip_classes$class == "II")), fontsize = small_text_params$fontsize,
   x = (ref_x + 2.2), y = (ref_y + 1.75), just = "center", default.units = "cm"
 )
 
 plotText(
-  label = paste("class III", "\n", "n =", sum(grh_chip_classes$class == "iii")), fontsize = small_text_params$fontsize,
+  label = paste("class III", "\n", "n =", sum(grh_chip_classes$class == "III")), fontsize = small_text_params$fontsize,
   x = (ref_x + 2.2), y = (ref_y + 1), just = "center", default.units = "cm"
 )
 
@@ -969,7 +969,7 @@ ref_y <- 6.5
 
 
 # generate chart
-grh_feature_plot <- grh_chip_classes  %>% 
+grh_feature_plot <- grh_chip_classes  |> 
   ggplot(aes(x=class, fill = feature)) + 
   geom_bar(position = "fill") + 
   theme_classic(base_size = small_text_params$fontsize) +
@@ -1013,8 +1013,8 @@ bw <- c(
 
 groups <- c(1,2,2)
 
-regions <- grh_chip_classes %>%
-  filter(class != "i") %>% 
+regions <- grh_chip_classes |>
+  filter(class != "I") |> 
   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
 
 hm <- plot_heatmap_minimal(
@@ -1083,11 +1083,11 @@ x_offset_browser <- 2.0
 
 # panel label
 plotText(
-  label = "i", params = panel_label_params, fontface = "bold",
+  label = "I", params = panel_label_params, fontface = "bold",
   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 )
 # 
-# i_plot <- zld_chip_classes %>% 
+# i_plot <- zld_chip_classes |> 
 #   ggplot(aes(x = class, y = atac_FC)) +
 #   geom_violin(fill = zld_color, lwd = 0.1) +
 #   geom_boxplot(width = 0.1, outlier.shape = NA, lwd = 0.1) +
@@ -1257,19 +1257,19 @@ ref_y <- 3.6
 
 
 
-n_sites <- zld_chip_classes %>% 
-  replace_na(list(RNAseq_is_diff = FALSE)) %>% 
-  group_by(feature, class, RNAseq_is_diff) %>% 
+n_sites <- zld_chip_classes |> 
+  replace_na(list(RNAseq_is_diff = FALSE)) |> 
+  group_by(feature, class, RNAseq_is_diff) |> 
   summarise(n = n())
 
-n_diff <-  zld_chip_classes %>% 
-  replace_na(list(RNAseq_is_diff = FALSE)) %>% pull(RNAseq_is_diff) %>% sum()
+n_diff <-  zld_chip_classes |> 
+  replace_na(list(RNAseq_is_diff = FALSE)) |> pull(RNAseq_is_diff) |> sum()
 
 percent_diff <- n_diff / nrow(zld_chip_classes)
 
 
-j_plot <- zld_chip_classes %>% 
-  replace_na(list(RNAseq_is_diff = FALSE)) %>% 
+j_plot <- zld_chip_classes |> 
+  replace_na(list(RNAseq_is_diff = FALSE)) |> 
   ggplot(aes(x = class, fill = RNAseq_is_diff)) + 
   geom_bar(position = "fill") + 
   geom_hline(yintercept = percent_diff, lty = 2, lwd = 0.5, color = "gray50") +
@@ -1282,7 +1282,7 @@ j_plot <- zld_chip_classes %>%
   theme(legend.key.size = unit(2, 'mm'))
 
 
-# j_plot <- zld_chip_classes %>% 
+# j_plot <- zld_chip_classes |> 
 #   ggplot(aes(x = class, y = RNAseq_FC)) +
 #   geom_violin(fill = zld_color, lwd = 0.1) +
 #   geom_boxplot(width = 0.1, outlier.shape = NA, lwd = 0.1) +
@@ -1476,19 +1476,19 @@ plotText(
   x = ref_x, y = (ref_y), just = "bottom", default.units = "cm"
 )
 
-n_sites <- grh_chip_classes %>% 
-  replace_na(list(RNAseq_is_diff = FALSE)) %>% 
-  group_by(feature, class, RNAseq_is_diff) %>% 
+n_sites <- grh_chip_classes |> 
+  replace_na(list(RNAseq_is_diff = FALSE)) |> 
+  group_by(feature, class, RNAseq_is_diff) |> 
   summarise(n = n())
 
-n_diff <-  grh_chip_classes %>% 
-  replace_na(list(RNAseq_is_diff = FALSE)) %>% pull(RNAseq_is_diff) %>% sum()
+n_diff <-  grh_chip_classes |> 
+  replace_na(list(RNAseq_is_diff = FALSE)) |> pull(RNAseq_is_diff) |> sum()
 
 percent_diff <- n_diff / nrow(grh_chip_classes)
 
 
-l_plot <- grh_chip_classes %>% 
-  replace_na(list(RNAseq_is_diff = FALSE)) %>% 
+l_plot <- grh_chip_classes |> 
+  replace_na(list(RNAseq_is_diff = FALSE)) |> 
   ggplot(aes(x = class, fill = RNAseq_is_diff)) + 
   geom_bar(position = "fill") + 
   geom_hline(yintercept = percent_diff, lty = 2, lwd = 0.5, color = "gray50") +
@@ -1506,7 +1506,7 @@ plotGG(
   width = 5, height = 2.65, just = c("left", "top"),
   default.units = "cm"
 )
-# l_plot <- grh_chip_classes %>% 
+# l_plot <- grh_chip_classes |> 
 #   ggplot(aes(x = class, y = RNAseq_FC)) +
 #   geom_violin(fill = grh_color, lwd = 0.1) +
 #   geom_boxplot(width = 0.1, outlier.shape = NA, lwd = 0.1) +

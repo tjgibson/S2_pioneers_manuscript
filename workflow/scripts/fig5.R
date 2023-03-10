@@ -152,14 +152,16 @@ ref_y <- 0.5
 
 # generate plot
 zld_class_plot <- zld_titration_classes_fn |> 
-  read_tsv() |> 
-  filter(class != "i") |> 
+  read_tsv()  |> 
+  mutate(class = str_to_upper(class)) |> 
+  filter(class != "I") |> 
     ggplot(aes(x = CuSO4, fill = class)) + 
   geom_bar(color = "black", linewidth = 0.1) +
   theme_classic(base_size = small_text_params$fontsize) +
   theme(legend.key.size = unit(2, 'mm'),
         legend.position = "right") +
   scale_fill_manual(values = brewer.pal(3, "Blues")[2:3]) +
+  xlab(bquote("[" ~ CuSO[4] ~ "]")) +
   ylab("n peaks") 
 
 # place chart on page
@@ -198,16 +200,22 @@ input_files <- c(
   
 )
 
-peak_overlaps <- input_files %>%
-  map(rtracklayer::import) %>%
-  GRangesList() %>%
-  peak_overlap_table()
+peak_overlaps <- input_files |>
+  map(rtracklayer::import) |>
+  GRangesList() |>
+  peak_overlap_table() |> 
+  dplyr::rename(
+    `Zld 0` = zld_0uM,
+    `Zld 500` = zld_500uM,
+    `Zld 1000` = zld_1000uM,
+    `Zld 1500` = zld_1500uM
+  )
 
 
-zld_euler_plot <- peak_overlaps %>% 
-  dplyr::select(8,9) %>% 
-  as.matrix() %>% 
-  euler() %>% 
+zld_euler_plot <- peak_overlaps |> 
+  dplyr::select(8,9) |> 
+  as.matrix() |> 
+  euler() |> 
   plot(quantities = list(fontsize = small_text_params$fontsize), labels = list(fontsize = small_text_params$fontsize))
 
 plotGG(
@@ -304,12 +312,14 @@ ref_y <- 5.5
 # generate plot
 grh_class_plot <- grh_titration_classes_fn |> 
   read_tsv() |> 
-  filter(class != "i") |> 
+  mutate(class = str_to_upper(class)) |> 
+  filter(class != "I") |> 
   ggplot(aes(x = as.factor(CuSO4), fill = class)) + 
   geom_bar(color = "black", linewidth = 0.1) +
   theme_classic(base_size = small_text_params$fontsize) +
   theme(legend.key.size = unit(2, 'mm')) +
   scale_fill_manual(values = brewer.pal(3, "Oranges")[2:3]) +
+  xlab(bquote("[" ~ CuSO[4] ~ "]")) +
   ylab("n peaks")
 
 # place chart on page
@@ -350,16 +360,23 @@ input_files <- c(
   
 )
 
-peak_overlaps <- input_files %>%
-  map(rtracklayer::import) %>%
-  GRangesList() %>%
-  peak_overlap_table()
+peak_overlaps <- input_files |>
+  map(rtracklayer::import) |>
+  GRangesList() |>
+  peak_overlap_table() |> 
+  dplyr::rename(
+    `Grh 0` = grh_0uM,
+    `Grh 25` = grh_25uM,
+    `Grh 100` = grh_100uM,
+    `Grh 400` = grh_400uM
+  )
 
 
-grh_euler_plot <- peak_overlaps %>% 
-  dplyr::select(8,9) %>% 
-  as.matrix() %>% 
-  euler() %>% 
+
+grh_euler_plot <- peak_overlaps |> 
+  dplyr::select(8,9) |> 
+  as.matrix() |> 
+  euler() |> 
   plot(quantities = list(fontsize = small_text_params$fontsize), labels = list(fontsize = small_text_params$fontsize))
 
 plotGG(
@@ -455,12 +472,14 @@ ref_y <- 10.5
 # generate plot
 twi_class_plot <- twi_titration_classes_fn |> 
   read_tsv() |> 
-  filter(class != "i") |> 
+  mutate(class = str_to_upper(class)) |> 
+  filter(class != "I") |> 
   ggplot(aes(x = as.factor(CuSO4), fill = class)) + 
   geom_bar(color = "black", linewidth = 0.1) +
   theme_classic(base_size = small_text_params$fontsize) +
   theme(legend.key.size = unit(2, 'mm')) +
   scale_fill_manual(values = brewer.pal(3, "GnBu")[2:3]) +
+  xlab(bquote("[" ~ CuSO[4] ~ "]")) +
   ylab("n peaks")
 
 # place chart on page
@@ -500,16 +519,22 @@ input_files <- c(
   
 )
 
-peak_overlaps <- input_files %>%
-  map(rtracklayer::import) %>%
-  GRangesList() %>%
-  peak_overlap_table()
+peak_overlaps <- input_files |>
+  map(rtracklayer::import) |>
+  GRangesList() |>
+  peak_overlap_table() |> 
+  dplyr::rename(
+    `Twi 0` = twi_0uM,
+    `Twi 10` = twi_10uM,
+    `Twi 40` = twi_40uM,
+    `Twi 160` = twi_160uM
+  )
 
 
-twi_euler_plot <- peak_overlaps %>% 
-  dplyr::select(8,9) %>% 
-  as.matrix() %>% 
-  euler() %>% 
+twi_euler_plot <- peak_overlaps |> 
+  dplyr::select(8,9) |> 
+  as.matrix() |> 
+  euler() |> 
   plot(quantities = list(fontsize = small_text_params$fontsize), labels = list(fontsize = small_text_params$fontsize))
 
 plotGG(

@@ -23,10 +23,17 @@ twi_ChIP_peaks_fn <- snakemake@input[["twi_ChIP_peaks_fn"]]
 twi_blot_image <- snakemake@input[["twi_blot_image"]]
 
 
-# # create blank layout for plot ===============================================
-pdf(snakemake@output[[1]], useDingbats = FALSE)
+# create blank layout for plot ===============================================
+# create blank layout for plot ===============================================
+fig_width <-  18
+fig_height <- 12
+
+# open pdf
+pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
 # pdf("manuscript/figures/extended_data_fig4.pdf", useDingbats = FALSE)
-pageCreate(width = 18, height = 12, default.units = "cm", showGuides = FALSE)
+
+# generate plotGardener page
+pageCreate(width = fig_width, height = fig_height, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics
@@ -232,7 +239,9 @@ b_plot <- twi_ATAC_results |>
         legend.position = "bottom",
         legend.title = element_blank(),
         legend.margin=margin(0,0,0,0),
-        legend.box.margin=margin(-10,-10,-10,-10))
+        legend.box.margin=margin(0,0,0,0)) +
+  xlab(bquote(log[2]("fold change"))) +
+  ylab(bquote(-log[10]("adj. p-value")))
 
 # place plots on plotGardener page
 plotGG(
@@ -289,7 +298,9 @@ c_plot <- twi_RNAseq_results |>
         legend.position = "bottom",
         legend.title = element_blank(),
         legend.margin=margin(0,0,0,0),
-        legend.box.margin=margin(-10,-10,-10,-10))
+        legend.box.margin=margin(0,0,0,0)) +
+  xlab(bquote(log[2]("fold change"))) +
+  ylab(bquote(-log[10]("adj. p-value")))
 
 # place plots on plotGardener page
 plotGG(

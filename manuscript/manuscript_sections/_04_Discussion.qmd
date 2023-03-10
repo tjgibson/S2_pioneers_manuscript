@@ -8,6 +8,7 @@ By exogenously expressing Zld, Grh, and Twi in S2 cells where they are not norma
 Studying the two well-defined PFs Zld and Grh, along with Twi, which possess features distinct from these two factors, allowed us to determine general properties regulating PF activity.
 Furthermore, our analysis of both binding and accessibility allowed us to separate PF occupancy from activity.
 We find that pioneering activity requires a high level of chromatin occupancy that can be achieved through both protein-intrinsic and protein-extrinsic features such as local chromatin structure, protein concentration, DNA motif content, and protein domains outside the DBD.
+
 Even when expressed at low levels Zld, Grh and Twi bind promiscuously to active, accessible regions with degenerate motifs or no detectable motifs at all.
 When expressed at approximately physiological levels these factors all possess the capacity to bind to canonical motifs in closed chromatin.
 However, these factors are largely excluded from repressed chromatin enriched for H3K9me3 or H3K27me3.
@@ -18,6 +19,7 @@ Similarly, cell-type specific binding of the PF Pax7 is anti-correlated with lev
 Here, we specifically tested whether H3K27me3 regulates cell-type specific occupancy of Zld, Grh and Twi using the PRC2 inhibitor tazmetostat.
 While H3K27me3 levels were dramatically decreased in our treatment, PF binding was largely unchanged.
 Thus, unlike H3K9me3 in the case of OSKM, H3K27me3 is not a barrier to binding by the three factors assayed and suggest other features are restricting binding to these regions.
+
 While depleting H3K27me3 levels did not result in Zld, Grh and Twi binding to additional regions, increased expression of both Zld and Grh resulted in binding to regions that were unbound at lower expression levels.
 These results suggest that protein concentration and affinity for the target motif drives tissue-specific PF binding rather than the presence or absence of Polycomb-mediated silencing.
 Tissue-specific PF occupancy is also likely regulated by the collection of cofactors expressed in a given tissue.
@@ -28,6 +30,7 @@ Unlike Zld and Grh, increased expression of Twi did not result in binding to reg
 It is probable that additional cofactors, such as Zld itself, may be required for Twi occupancy at these regions.
 Prior studies demonstrated an important role for Zld in promoting Twi binding in the early embryo [@Yáñez-Cuna2012; @brennan2022].
 Along with prior studies, our data suggest that PF occupancy is regulated by tissue-intrinsic features, including levels of PF expression, the complement of cofactors expressed and chromatin structure.
+
 In addition to cell-type specific factors, we demonstrate that protein-intrinsic features control PF binding.
 We show that regions outside the DBD of Zld and Grh are important for binding-site selection.
 Similarly, regions outside the DBDs of human PFs FOXA1 and SOX2 are required for robust binding of closed chromatin [@lerner2022].
@@ -39,6 +42,7 @@ Zld and Grh DBDs retain the capacity to bind to class I regions, despite the wea
 Thus, the binding to class I regions is not due to interactions between IDRs and other proteins present at active chromatin.
 Instead, this binding may be driven by the high affinity of the DBDs for nucleosome-free DNA.
 To provide a more complete understanding of how cis-regulatory regions are established, we must further investigate how IDRs contribute to PF binding and chromatin accessibility.
+
 The failure of the DBD alone to promote chromatin accessibility implicates a separation between the ability to bind nucleosomes and the capacity to promote chromatin accessibility.
 Local restructuring of nucleosome-DNA interactions [@Michael2020; @Dodonova2020] may be insufficient for establishing accessible chromatin and, instead, may stabilize PF binding to allow recruitment of cofactors, such as chromatin remodelers [@Judd2021; @King2017].
 Furthermore, our identification of hundreds of class II regions, which are bound but not opened by exogenous PF expression, further separates chromatin binding and PF activity.
