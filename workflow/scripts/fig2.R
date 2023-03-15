@@ -9,18 +9,23 @@ library(RColorBrewer)
 
 
 source("workflow/scripts/plot_heatmap.R")
-
-# function to get range for browser tracks -------------------------------------
-signal_range <- function(x, extra = 0.05) {
-  min <- floor(min(x))
-  max <- ceiling(max(x))
-  range <- max - min
-  margin <- range * extra
-  output <- c(min - margin, max + margin)
-  return(output)
-}
+source("workflow/scripts/utils.R")
 
 # define input files ===========================================================
+# define input files explictly for interactive testing
+# Twi_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw"
+# Twi_WT_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/Twi_ATAC_S2-WT_40uM_small.bw"
+# Twi_Twi_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/S2-Twi_40uM_small.bw"
+# Zld_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw"
+# Grh_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw"
+# twi_ChIP_classes_fn <- "results/ChIP_peak_classes/twi_ChIP_classes.tsv"
+# zld_ChIP_classes_fn <- "results/ChIP_peak_classes/zld_ChIP_classes.tsv"
+# grh_ChIP_classes_fn <- "results/ChIP_peak_classes/grh_ChIP_classes.tsv"
+# twi_RNAseq_results_fn <- "RNAseq/results/DEseq2/S2-Twi_RNAseq_S2-Twi-vs-S2-WT_results.tsv"
+# zld_RNAseq_results_fn <- "RNAseq/results/DEseq2/S2-Zld_RNAseq_S2-Zld-vs-S2-WT_results.tsv"
+# grh_RNAseq_results_fn <- "RNAseq/results/DEseq2/S2-Grh_RNAseq_S2-Grh-vs-S2-WT_results.tsv"
+
+# get input files from snakemake
 Twi_ChIP_bw <- snakemake@input[["Twi_ChIP_bw"]]
 Twi_WT_ATAC_bw <- snakemake@input[["Twi_WT_ATAC_bw"]]
 Twi_Twi_ATAC_bw <- snakemake@input[["Twi_Twi_ATAC_bw"]]
@@ -38,8 +43,8 @@ grh_RNAseq_results_fn <- snakemake@input[["grh_RNAseq_results"]]
 
 # create blank layout for plot =================================================
 # define figure dimensions in cm
-fig_width <-  13
-fig_height <- 6.5
+fig_width <-  8.8
+fig_height <- 14.5
 
 # open pdf
 pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
@@ -138,7 +143,7 @@ ATAC_range <- signal_range(c(`S2-WT_ATAC`$score, `S2-Twi_ATAC`$score))
 
 s1 <- plotSignal(
   data = `S2-Twi_ChIP`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 0.25), width = 3, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.25), width = 5.5, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = twi_color, fill = twi_color, baseline = FALSE, baseline.lwd = 0, baseline.color = twi_color,
   range = ChIP_range
@@ -151,7 +156,7 @@ annoYaxis(
 
 s2 <- plotSignal(
   data = `S2-WT_ATAC`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 3, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 5.5, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = twi_color, fill = twi_color, baseline = FALSE, baseline.lwd = 0, baseline.color = twi_color,
   range = ATAC_range
@@ -164,7 +169,7 @@ annoYaxis(
 
 s3 <- plotSignal(
   data = `S2-Twi_ATAC`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 1.25), width = 3, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 1.25), width = 5.5, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = twi_color, fill = twi_color, baseline = FALSE, baseline.lwd = 0, baseline.color = twi_color,
   range = ATAC_range
@@ -243,7 +248,7 @@ ATAC_range <- c(-0.5, 10)
 
 s1 <- plotSignal(
   data = `S2-Twi_ChIP`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 0.25), width = 3, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.25), width = 5.5, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = twi_color, fill = twi_color, baseline = FALSE, baseline.lwd = 0, baseline.color = twi_color,
   range = ChIP_range
@@ -258,7 +263,7 @@ annoYaxis(
 
 s2 <- plotSignal(
   data = `S2-WT_ATAC`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 3, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 5.5, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = twi_color, fill = twi_color, baseline = FALSE, baseline.lwd = 0, baseline.color = twi_color,
   range = ATAC_range
@@ -271,7 +276,7 @@ annoYaxis(
 
 s3 <- plotSignal(
   data = `S2-Twi_ATAC`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 1.25), width = 3, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 1.25), width = 5.5, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = twi_color, fill = twi_color, baseline = FALSE, baseline.lwd = 0, baseline.color = twi_color,
   range = ATAC_range
@@ -360,7 +365,7 @@ ATAC_range <- signal_range(c(`S2-WT_ATAC`$score, `S2-Twi_ATAC`$score))
 
 s1 <- plotSignal(
   data = `S2-Twi_ChIP`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 0.25), width = 3, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.25), width = 5.5, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = twi_color, fill = twi_color, baseline = FALSE, baseline.lwd = 0, baseline.color = twi_color,
   range = ChIP_range
@@ -373,7 +378,7 @@ annoYaxis(
 
 s2 <- plotSignal(
   data = `S2-WT_ATAC`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 3, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 5.5, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = twi_color, fill = twi_color, baseline = FALSE, baseline.lwd = 0, baseline.color = twi_color,
   range = ATAC_range
@@ -387,7 +392,7 @@ annoYaxis(
 
 s3 <- plotSignal(
   data = `S2-Twi_ATAC`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_x + 5.25), width = 3, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_x + 5.25), width = 5.5, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = twi_color, fill = twi_color, baseline = FALSE, baseline.lwd = 0, baseline.color = twi_color,
   range = ATAC_range
@@ -414,8 +419,8 @@ annoGenomeLabel(
 
 # Panel B ======================================================================
 # panel label
-ref_x <- 6.5
-ref_y <- 0.5 
+ref_x <- 0.5
+ref_y <- 6.5 
 
 # panel label
 
@@ -445,31 +450,31 @@ twi_class_plot <- twi_chip_classes  |>
 plotGG(
   plot = twi_class_plot,
   x = (ref_x), y = ref_y,
-  width = 2, height = 2, just = c("left", "top"),
+  width = 3, height = 3, just = c("left", "top"),
   default.units = "cm"
 )
 
 # add labels
 plotText(
   label = paste("class I", "\n", "n =", sum(twi_chip_classes$class == "I")), fontsize = small_text_params$fontsize,
-  x = (ref_x + 1), y = (ref_y + 0.5), just = "center", default.units = "cm"
+  x = (ref_x + 1.5), y = (ref_y + 1), just = "center", default.units = "cm"
 )
 
 plotText(
   label = paste("class II", "\n", "n =", sum(twi_chip_classes$class == "II")), fontsize = small_text_params$fontsize,
-  x = (ref_x + 2.2), y = (ref_y + 1.5), just = "center", default.units = "cm"
+  x = (ref_x + 2), y = (ref_y + 2), just = "center", default.units = "cm"
 )
 
 plotText(
   label = paste("class III", "\n", "n =", sum(twi_chip_classes$class == "III")), fontsize = small_text_params$fontsize,
-  x = (ref_x + 2.2), y = (ref_y + 1), just = "center", default.units = "cm"
+  x = (ref_x + 3.2), y = (ref_y + 1.5), just = "center", default.units = "cm"
 )
 
 
 # Panel C ======================================================================
 # panel label
-ref_x <- 9.5
-ref_y <- 0.5 
+ref_x <- 4.5
+ref_y <- 6.5 
 
 # generate chart
 twi_feature_plot <- twi_chip_classes  |> 
@@ -485,7 +490,7 @@ twi_feature_plot <- twi_chip_classes  |>
 plotGG(
   plot = twi_feature_plot,
   x = (ref_x), y = ref_y,
-  width = 3, height = 2, just = c("left", "top"),
+  width = 4, height = 3, just = c("left", "top"),
   default.units = "cm"
 )
 
@@ -498,8 +503,8 @@ plotText(
 
 # Panel D ======================================================================
 # panel label
-ref_x <- 6.5
-ref_y <- 2.75 
+ref_x <- 0.5
+ref_y <- 9.5
 
 
 # panel label
@@ -544,7 +549,7 @@ d_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 
 plotGG(
   plot = d_hm,
   x = (ref_x + 0.75), y = (ref_y + 0.25),
-  width = 5.25, height = 3, just = c("left", "top"),
+  width = 7.25, height = 4, just = c("left", "top"),
   default.units = "cm"
 )
 
@@ -556,285 +561,28 @@ seekViewport(name = "page")
 # heatmap labels
 plotText(
   label = "S2 Twi ChIP", params = small_text_params, fontface = "bold",
-  x = (ref_x + 1.625), y = (ref_y), just = c("center"), default.units = "cm"
+  x = (ref_x + 1.875), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "S2 WT ATAC", params = small_text_params, fontface = "bold",
-  x = (ref_x + 3.375), y = (ref_y), just = c("center"), default.units = "cm"
+  x = (ref_x + 4.325), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "S2 Twi ATAC", params = small_text_params, fontface = "bold",
-  x = (ref_x + 5.125), y = (ref_y), just = c("center"), default.units = "cm"
+  x = (ref_x + 6.875), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "class II", params = small_text_params, fontface = "bold",
-  x = (ref_x + 0.5), y = (ref_y + 2), just = c("right", "center"), default.units = "cm"
+  x = (ref_x + 0.5), y = (ref_y + 2.5), just = c("right", "center"), default.units = "cm"
 )
 
 plotText(
   label = "class III", params = small_text_params, fontface = "bold",
-  x = (ref_x + 0.5), y = (ref_y + 3.15), just = c("right","center"), default.units = "cm"
+  x = (ref_x + 0.5), y = (ref_y + 4.1), just = c("right","center"), default.units = "cm"
 )
-
-
-
-# # # Panel E ======================================================================
-# # panel label
-# ref_x <- 0.5
-# ref_y <- 6.75
-# 
-# # panel label
-# plotText(
-#   label = "e", params = panel_label_params, fontface = "bold",
-#   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
-# )
-# 
-# # e_plot <- twi_chip_classes |>
-# #   ggplot(aes(x = class, y = atac_FC)) +
-# #   geom_violin(fill = twi_color, lwd = 0.1) +
-# #   geom_boxplot(width = 0.1, outlier.shape = NA, lwd = 0.1) +
-# #   ylab(expression(ATAC~log[2]~fold~change) ) +
-# #   theme_classic(base_size = small_text_params$fontsize)
-# #
-# # plotGG(
-# #   plot = e_plot,
-# #   x = ref_x, y = ref_y,
-# #   width = 2.5, height = 2, just = c("left", "top"),
-# #   default.units = "cm"
-# # )
-# 
-# zld_chip_classes <- read_tsv(zld_ChIP_classes_fn)
-# grh_chip_classes <- read_tsv(grh_ChIP_classes_fn)
-# 
-# zld_closed <- zld_chip_classes |>
-#   filter(class != "I") |>
-#   group_by(class) |>
-#   summarise(n = n()) |>
-#   mutate(percent = n / sum(n) * 100) |>
-#   add_column(factor = "Zld")
-# 
-# grh_closed <- grh_chip_classes |>
-#   filter(class != "I") |>
-#   group_by(class) |>
-#   summarise(n = n()) |>
-#   mutate(percent = n / sum(n) * 100) |>
-#   add_column(factor = "Grh")
-# 
-# twi_closed <- twi_chip_classes |>
-#   filter(class != "I") |>
-#   group_by(class) |>
-#   summarise(n = n()) |>
-#   mutate(percent = n / sum(n) * 100) |>
-#   add_column(factor = "Twi")
-# 
-# p_data <- bind_rows(zld_closed, grh_closed, twi_closed) |>
-#   filter(class == "III")
-# 
-# e_plot <- p_data |>
-#   mutate(factor = factor(factor, levels = c("Twi", "Grh", "Zld"))) |>
-#   ggplot(aes(x = factor, y = percent, fill = factor)) + geom_bar(stat = "identity") +
-#   theme_classic(base_size = 5) +
-#   theme(
-#         legend.position = "none",
-#         axis.title.x = element_blank()) +
-#   scale_fill_manual(values=c(twi_color, grh_color, zld_color)) +
-#   ylab("% closed sites opened")
-# 
-# plotGG(
-#   plot = e_plot,
-#   x = ref_x, y = (ref_y + 0.25),
-#   width = 2.5, height = 2, just = c("left", "top"),
-#   default.units = "cm"
-# )
-# 
-# # # Panel F ======================================================================
-# # panel label
-# ref_x <- 3.25
-# ref_y <- 6.75
-# 
-# # panel label
-# plotText(
-#   label = "f", params = panel_label_params, fontface = "bold",
-#   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
-# )
-# 
-# # f_plot <- twi_chip_classes |>
-# #   ggplot(aes(x = class, y = RNAseq_FC)) +
-# #   geom_violin(fill = twi_color, lwd = 0.1) +
-# #   geom_boxplot(width = 0.1, outlier.shape = NA, lwd = 0.1) +
-# #   ylab(expression(RNA-seq~log[2]~fold~change) ) +
-# #   theme_classic(base_size = small_text_params$fontsize)
-# #
-# # plotGG(
-# #   plot = f_plot,
-# #   x = ref_x, y = ref_y,
-# #   width = 2.5, height = 2, just = c("left", "top"),
-# #   default.units = "cm"
-# # )
-# #
-# 
-# # define bigwig files to use
-# bw <- c(
-#   Twi_ChIP_bw,
-#   Grh_ChIP_bw,
-#   Zld_ChIP_bw
-# )
-# 
-# # define regions to use for metaplots
-# twi_regions <- twi_chip_classes |>
-#   filter(class != "I") |>
-#   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
-# 
-# grh_regions <- grh_chip_classes |>
-#   filter(class != "I") |>
-#   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
-# 
-# zld_regions <- zld_chip_classes |>
-#   filter(class != "I") |>
-#   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
-# 
-# 
-# 
-# metaplot_1 <- plot_average(bw[1], regions = twi_regions, row_split = twi_regions$class, line_width = 0.2) +
-#   scale_color_manual(values=c("#5FC3B5", "#154734")) +
-#   theme(text = element_text(size = 5),
-#         line = element_line(size = 0.1),
-#         axis.title.y = element_blank(),
-#         legend.key.size = unit(2, 'mm'),
-#         legend.title = element_blank(),
-#         legend.position = "bottom",
-#         legend.margin=margin(-5,-5,-5,-5),
-#         legend.box.margin=margin(0,0,0,0),
-#         plot.margin = margin(0,0,0,0)
-#         )
-# 
-# plotGG(
-#   plot = metaplot_1,
-#   x = ref_x, y = (ref_y + 0.25),
-#   width = 2, height = 2, just = c("left", "top"),
-#   default.units = "cm"
-# )
-# 
-# metaplot_2 <- plot_average(bw[2], regions = grh_regions, row_split = grh_regions$class, line_width = 0.2) +
-#   scale_color_manual(values=c("#FDAE6B", "#E6550D")) +
-#   theme(text = element_text(size = 5),
-#         line = element_line(size = 0.1),
-#         axis.title.y = element_blank(),
-#         legend.key.size = unit(2, 'mm'),
-#         legend.title = element_blank(),
-#         legend.position = "bottom",
-#         legend.margin=margin(-5,-5,-5,-5),
-#         legend.box.margin=margin(0,0,0,0),
-#         plot.margin = margin(0,0,0,0)
-#   )
-# 
-# plotGG(
-#   plot = metaplot_2,
-#   x = ref_x + 2.5, y = (ref_y + 0.25),
-#   width = 2, height = 2, just = c("left", "top"),
-#   default.units = "cm"
-# )
-# 
-# metaplot_3 <- plot_average(bw[3], regions = zld_regions, row_split = zld_regions$class, line_width = 0.2) +
-#   scale_color_manual(values=c("#9ECAE1", "#3182BD")) +
-#   theme(text = element_text(size = 5),
-#         line = element_line(size = 0.1),
-#         axis.title.y = element_blank(),
-#         legend.key.size = unit(2, 'mm'),
-#         legend.title = element_blank(),
-#         legend.position = "bottom",
-#         legend.margin=margin(-5,-5,-5,-5),
-#         legend.box.margin=margin(0,0,0,0),
-#         plot.margin = margin(0,0,0,0)
-#   )
-# 
-# plotGG(
-#   plot = metaplot_3,
-#   x = ref_x + 5, y = (ref_y + 0.25),
-#   width = 2, height = 2, just = c("left", "top"),
-#   default.units = "cm"
-# )
-# 
-# # add titles to metaplots
-# plotText(
-#   label = "Twi ChIP", params = small_text_params, fontface = "bold",
-#   x = (ref_x + 1.1), y = (ref_y), just = c("center"), default.units = "cm"
-# )
-# 
-# plotText(
-#   label = "Grh ChIP", params = small_text_params, fontface = "bold",
-#   x = (ref_x + 3.6), y = (ref_y), just = c("center"), default.units = "cm"
-# )
-# 
-# plotText(
-#   label = "Zld ChIP", params = small_text_params, fontface = "bold",
-#   x = (ref_x + 6.1), y = (ref_y), just = c("center"), default.units = "cm"
-# )
-# 
-# 
-# 
-# 
-# # # Panel G ======================================================================
-# # panel label
-# ref_x <- 10.75
-# ref_y <- 6.75
-# 
-# # panel label
-# plotText(
-#   label = "g", params = panel_label_params, fontface = "bold",
-#   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
-# )
-# 
-# 
-# # import RNA-seq results and reformat for plotting
-# twi_RNAseq_results <- read_tsv(twi_RNAseq_results_fn) |>
-#   filter(is_diff, log2FoldChange > 0) |>
-#   add_column(factor = "Twi") |>
-#   left_join(dplyr::select(twi_chip_classes, gene_id, peak_id), by = "gene_id") |>
-#   mutate(bound_by_factor = !is.na(peak_id)) |>
-#   dplyr::select(gene_id, factor,bound_by_factor) |>
-#   distinct(.keep_all = TRUE)
-# 
-# zld_RNAseq_results <- read_tsv(zld_RNAseq_results_fn) |>
-#   filter(is_diff, log2FoldChange > 0) |>
-#   add_column(factor = "Zld") |>
-#   left_join(dplyr::select(zld_chip_classes, gene_id, peak_id), by = "gene_id") |>
-#   mutate(bound_by_factor = !is.na(peak_id)) |>
-#   dplyr::select(gene_id, factor,bound_by_factor) |>
-#   distinct(.keep_all = TRUE)
-# 
-# grh_RNAseq_results <- read_tsv(grh_RNAseq_results_fn) |>
-#   filter(is_diff, log2FoldChange > 0) |>
-#   add_column(factor = "Grh") |>
-#   left_join(dplyr::select(grh_chip_classes, gene_id, peak_id), by = "gene_id") |>
-#   mutate(bound_by_factor = !is.na(peak_id)) |>
-#   dplyr::select(gene_id, factor,bound_by_factor) |>
-#   distinct(.keep_all = TRUE)
-# 
-# p_data <- bind_rows(twi_RNAseq_results, zld_RNAseq_results, grh_RNAseq_results)
-# 
-# h_plot <- p_data |>
-#   ggplot(aes(x=factor, fill = bound_by_factor)) + geom_bar(position = "stack") +
-#   theme_classic(base_size = small_text_params$fontsize) +
-#   scale_fill_manual(values=c("#DFF3F0", "#5FC3B5")) +
-#   ylab("n upregulated genes") +
-#   theme(legend.key.size = unit(2, 'mm'),
-#         axis.title.x = element_blank(),
-#         # legend.title = element_blank(),
-#         legend.position = "bottom",
-#         legend.margin=margin(-5,-5,-5,-5),
-#         legend.box.margin=margin(0,0,0,0),
-#         plot.margin = margin(0,0,0,0))
-# 
-# plotGG(
-#   plot = h_plot,
-#   x = ref_x, y = (ref_y + 0.25),
-#   width = 2, height = 2, just = c("left", "top"),
-#   default.units = "cm"
-# )
 
 
 # close graphics device ========================================================

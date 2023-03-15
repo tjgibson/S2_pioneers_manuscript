@@ -24,9 +24,8 @@ twi_blot_image <- snakemake@input[["twi_blot_image"]]
 
 
 # create blank layout for plot ===============================================
-# create blank layout for plot ===============================================
 fig_width <-  18
-fig_height <- 12
+fig_height <- 9.5
 
 # open pdf
 pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)

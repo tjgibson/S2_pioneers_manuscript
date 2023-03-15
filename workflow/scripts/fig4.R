@@ -204,7 +204,7 @@ plotText(
 )
 
 plotText(
-  label = paste0("Zld", "\n", "brain"), params = small_text_params, fontface = "bold",
+  label = paste0("Zld", "\n", "NSC"), params = small_text_params, fontface = "bold",
   x = (ref_x + 2.71), y = (ref_y), just = c("center"), default.units = "cm"
 )
 

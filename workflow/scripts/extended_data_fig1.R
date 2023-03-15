@@ -363,6 +363,10 @@ plotText(
   x = ref_x + 7.8, y = ref_y + 1.25, just = c("center"), default.units = "cm"
 )
 
+# add arrowheads to blot
+plotPolygon(x = c(1, 1.25, 1), y = c(7.2,7.3,7.4), default.units = "cm", fill = "black")
+
+plotPolygon(x = c(1, 1.25, 1), y = c(8.35,8.45,8.55), default.units = "cm", fill = "grey")
 
 # panel D ======================================================================
 # reference points for positioning figure components
@@ -519,6 +523,12 @@ plotText(
   x = ref_x + 7.8, y = ref_y + 1.25, just = c("center"), default.units = "cm"
 )
 
+# add arrowheads to blot
+plotPolygon(x = c(10, 10.25, 10), y = c(7.3,7.4,7.5), default.units = "cm", fill = "black")
+
+plotPolygon(x = c(10, 10.25, 10), y = c(8.9,9,9.1), default.units = "cm", fill = "grey")
+
+
 # panel E ======================================================================
 # reference points for positioning figure components
 ref_x <- 0.5
@@ -538,8 +548,9 @@ bw <- c(
 )
 
 # define regions to use for heatmap
-regions <- zld_ChIP_classes_fn %>%
+regions <- zld_ChIP_classes_fn |>
   read_tsv() |> 
+  mutate(class = str_to_upper(class)) |> 
   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
 
 
@@ -627,8 +638,9 @@ bw <- c(
 )
 
 # define regions for heatmap
-regions <- grh_ChIP_classes_fn %>%
+regions <- grh_ChIP_classes_fn |>
   read_tsv() |> 
+  mutate(class = str_to_upper(class)) |> 
   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
 
 
@@ -716,8 +728,9 @@ bw <- c(
 )
 
 # define regions to use for heatmap
-regions <- twi_ChIP_classes_fn %>%
+regions <- twi_ChIP_classes_fn |>
   read_tsv() |> 
+  mutate(class = str_to_upper(class)) |> 
   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
 
 

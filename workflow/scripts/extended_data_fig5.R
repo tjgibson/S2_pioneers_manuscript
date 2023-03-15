@@ -18,16 +18,16 @@ source("workflow/scripts/utils.R")
 #   H3K4me3 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K4me3.bw",
 #   H4K16ac = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE37865_aH4K16ac.bw",
 #   H2AV = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_H2Av_IP.bw",
-#   
+# 
 #   Rpb3 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_Rpb3_IP.bw",
 #   `PolII-pS2` = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_PolII_phosphoSer2_IP.bw",
 #   H3K36me3 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_H3K36me3_IP.bw",
 #   SSRP1 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_SSRP1_IP.bw",
 #   Spt16 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_Spt16_IP.bw",
-#   
+# 
 #   H3 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_H3_IP.bw",
 #   H1 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE127227_aH1.bw",
-#   
+# 
 #   Pho = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE84502_aPho_IP.bw",
 #   Ez = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_Ez_IP.bw",
 #   Pc = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE24521_Pc_IP.bw",
@@ -35,20 +35,20 @@ source("workflow/scripts/utils.R")
 #   Ph = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE24521_Ph_IP.bw",
 #   dRing = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_dRing_IP.bw",
 #   H3K27me3 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE151983_S2_aH3K27me3_IP.bw",
-#   
+# 
 #   H3K9me3 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE160855_aH3K9me3.bw",
 #   HP1a = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE56101_aHP1a.bw",
-#   
+# 
 #   M1BP = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_M1BP_IP.bw",
 #   GAF = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_GAGA_IP.bw",
 #   BEAF32 =
 #     "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE52887_aBEAF32_IP.bw",
-#   
+# 
 #   CTCF = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aCTCF.bw",
 #   CP190 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aCP190_IP.bw",
 #   Su_hw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aSu-Hw_IP.bw",
 #   Mod_mdg4 = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aMod-mdg4.bw"
-#   
+# 
 # )
 # 
 # feature_types <- list(
@@ -58,15 +58,15 @@ source("workflow/scripts/utils.R")
 #              "H3K4me3" ,
 #              "H4K16ac" ,
 #              "H2AV"),
-#   
+# 
 #   Pol_II = c("Rpb3",
 #              "PolII.pS2",
 #              "H3K36me3",
 #              "SSRP1",
 #              "Spt16"),
-#   
+# 
 #   histones = c("H3", "H1"),
-#   
+# 
 #   polycomb = c("Pho" ,
 #                "Ez" ,
 #                "Pc" ,
@@ -74,14 +74,14 @@ source("workflow/scripts/utils.R")
 #                "Ph" ,
 #                "dRing" ,
 #                "H3K27me3"),
-#   
+# 
 #   heterochromatin = c("H3K9me3",
 #                       "HP1a"),
-#   
+# 
 #   TF = c("M1BP",
 #          "GAF",
 #          "BEAF32"),
-#   
+# 
 #   insulator = c("CTCF" ,
 #                 "CP190",
 #                 "Su_hw",
@@ -203,21 +203,20 @@ Twi_Twi_ATAC_bw <- snakemake@input[["Twi_Twi_ATAC_bw"]]
 H3K27me3_ChIP_bw <- snakemake@input[["H3K27me3_ChIP_bw"]]
 H3K9me3_ChIP_bw <- snakemake@input[["H3K9me3_ChIP_bw"]]
 
+# create blank layout for plot ===============================================
+fig_width <-  18
+fig_height <- 12.5
 
+# open pdf
+pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
+# pdf("manuscript/figures/extended_data_fig4.pdf", useDingbats = FALSE)
 
+# generate plotGardener page
+pageCreate(width = fig_width, height = fig_height, default.units = "cm", showGuides = FALSE)
 
-# # create blank layout for plot ===============================================
-pdf(snakemake@output[[1]], useDingbats = FALSE)
-# pdf("manuscript/figures/extended_data_fig5.pdf", useDingbats = FALSE)
-pageCreate(
-  width = 18,
-  height = 12.5,
-  default.units = "cm",
-  showGuides = FALSE
-)
 
 # general figure settings ======================================================
-# text parameters for Nature Genetics
+# text parameters
 panel_label_params <- pgParams(fontsize = 8)
 large_text_params <- pgParams(fontsize = 7)
 small_text_params <- pgParams(fontsize = 5)

@@ -68,5 +68,9 @@ vignettes/*.pdf
 data/
 
 # MS Word manuscript files
-manuscript/custom-reference-doc.docx
-manuscript/manuscript.docx
+manuscript/*
+!manuscript.qmd
+!manuscript_sections/*
+!nsmb.csl
+!references.bib
+!supplemental_figures.qmd

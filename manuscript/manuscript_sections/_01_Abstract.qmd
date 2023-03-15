@@ -1,10 +1,8 @@
-Transcription factors establish cell-type specific gene expression programs to drive developmental transitions.
 While chromatin presents a barrier to the binding of many transcription factors, pioneer factors access nucleosomal targets and promote chromatin opening.
-Despite the ability to bind to target motifs in closed chromatin, many pioneer factors display cell-type specific binding and activity.
-The mechanisms that govern pioneer-factor occupancy in different cell types and the relationship between chromatin occupancy and chromatin opening remain unclear.
-To determine how pioneer-factor binding and activity are regulated, we systematically studied three Drosophila transcription factors with distinct DNA-binding domains and biological functions: Zelda, Grainy head, and Twist.
+Despite binding to target motifs in closed chromatin, many pioneer factors display cell-type specific binding and activity.
+The mechanisms that govern pioneer-factor occupancy and the relationship between chromatin occupancy and opening remain unclear.
+We studied three Drosophila transcription factors with distinct DNA-binding domains and biological functions: Zelda, Grainy head, and Twist.
 We demonstrated that the level of chromatin occupancy is a key determinant of pioneer-factor activity.
-Zelda, Grainy head and Twist occupancy is regulated by multiple factors, including motif content at binding sites, local chromatin context, and protein concentration.
-We found that regions outside the DNA-binding domain are required for binding and chromatin opening.
-Together, our results demonstrate that pioneering activity is not a binary feature intrinsic to a protein but occurs on a spectrum and can be regulated by a variety of protein-intrinsic and cell-type-specific features.
-These findings have important implications for how pioneer factors drive development and how misexpression can lead to disease.
+Occupancy is regulated by multiple factors, including motif content at binding sites, local chromatin context, and protein concentration.
+Regions outside the DNA-binding domain are required for pioneer-factor binding and chromatin opening.
+Together, our results show that pioneering activity is not a binary feature intrinsic to a protein but occurs on a spectrum and can be regulated by a variety of protein-intrinsic and cell-type-specific features.

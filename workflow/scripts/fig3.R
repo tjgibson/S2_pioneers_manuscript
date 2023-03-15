@@ -71,14 +71,14 @@ twi_WT_atac_fn <- snakemake@input[["twi_WT_atac_fn"]]
 
 ## create blank layout for plot =================================================
 # define figure dimensions in cm
-fig_width <-  18
-fig_height <- 12
+fig_width <-  12
+fig_height <- 7.5
 
 # open pdf
 pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
 
 # generate plotGardener page
-pageCreate(width = fig_width, height = fig_height, default.units = "cm", showGuides = TRUE)
+pageCreate(width = fig_width, height = fig_height, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics

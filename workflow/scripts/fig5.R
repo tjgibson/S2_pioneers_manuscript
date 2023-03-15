@@ -216,13 +216,24 @@ zld_euler_plot <- peak_overlaps |>
   dplyr::select(8,9) |> 
   as.matrix() |> 
   euler() |> 
-  plot(quantities = list(fontsize = small_text_params$fontsize), labels = list(fontsize = small_text_params$fontsize))
+  plot(quantities = list(fontsize = small_text_params$fontsize), labels = NULL)
 
 plotGG(
   plot = zld_euler_plot,
   x = (ref_x + 0.5), y = (ref_y + 0.25),
   width = 2, height = 2, just = c("left", "top"),
   default.units = "cm"
+)
+
+# add labels for different groups
+plotText(
+  label = paste0("Zld", "\n", "1000"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 0.2), y = (ref_y + 1), just = "top", default.units = "cm"
+)
+
+plotText(
+  label = paste0("Zld", "\n", "1500"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 2.8), y = (ref_y + 1), just = "top", default.units = "cm"
 )
 
 # panel E ======================================================================
@@ -377,13 +388,23 @@ grh_euler_plot <- peak_overlaps |>
   dplyr::select(8,9) |> 
   as.matrix() |> 
   euler() |> 
-  plot(quantities = list(fontsize = small_text_params$fontsize), labels = list(fontsize = small_text_params$fontsize))
+  plot(quantities = list(fontsize = small_text_params$fontsize), labels = NULL)
 
 plotGG(
   plot = grh_euler_plot,
   x = (ref_x + 0.5), y = (ref_y + 0.25),
   width = 2, height = 2, just = c("left", "top"),
   default.units = "cm"
+)
+
+plotText(
+  label = paste0("Grh", "\n", "100"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 0.2), y = (ref_y + 1), just = "top", default.units = "cm"
+)
+
+plotText(
+  label = paste0("Grh", "\n", "400"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 2.8), y = (ref_y + 1), just = "top", default.units = "cm"
 )
 
 # panel I ======================================================================
@@ -535,7 +556,7 @@ twi_euler_plot <- peak_overlaps |>
   dplyr::select(8,9) |> 
   as.matrix() |> 
   euler() |> 
-  plot(quantities = list(fontsize = small_text_params$fontsize), labels = list(fontsize = small_text_params$fontsize))
+  plot(quantities = list(fontsize = small_text_params$fontsize), labels = NULL)
 
 plotGG(
   plot = twi_euler_plot,
@@ -543,5 +564,17 @@ plotGG(
   width = 2, height = 2, just = c("left", "top"),
   default.units = "cm"
 )
+
+# add labels for different groups
+plotText(
+  label = paste0("Twi", "\n", "40"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 0.2), y = (ref_y + 1), just = "top", default.units = "cm"
+)
+
+plotText(
+  label = paste0("Twi", "\n", "160"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 2.8), y = (ref_y + 1), just = "top", default.units = "cm"
+)
+
 
 dev.off()

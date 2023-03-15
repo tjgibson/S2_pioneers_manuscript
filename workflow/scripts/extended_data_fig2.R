@@ -21,8 +21,8 @@ source("workflow/scripts/plot_heatmap.R")
 # S2_Grh_CR_12H_bw <- "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_12H_small.bw"
 # S2_Grh_CR_24H_bw <- "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_24H_small.bw"
 # S2_Grh_CR_48H_bw <- "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_48H_small.bw"
-
-
+# 
+# 
 # zld_ChIP_classes_fn <- "results/ChIP_peak_classes/zld_ChIP_classes.tsv"
 # grh_ChIP_classes_fn <- "results/ChIP_peak_classes/grh_ChIP_classes.tsv"
 # 
@@ -48,10 +48,16 @@ grh_ChIP_classes_fn <- snakemake@input[["grh_ChIP_classes_fn"]]
 zld_blot_image <- snakemake@input[["zld_blot_image"]]
 grh_blot_image <- snakemake@input[["grh_blot_image"]]
 
-# # create blank layout for plot ===============================================
-pdf(snakemake@output[[1]], useDingbats = FALSE)
+# create blank layout for plot ===============================================
+fig_width <-  18
+fig_height <- 14
+
+# open pdf
+pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
 # pdf("manuscript/figures/extended_data_fig2.pdf", useDingbats = FALSE)
-pageCreate(width = 18.3, height = 15, default.units = "cm", showGuides = FALSE)
+
+# generate plotGardener page
+pageCreate(width = fig_width, height = fig_height, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics
@@ -141,6 +147,12 @@ plotText(
   x = ref_x + 7.3, y = ref_y + 0.25, just = c("center"), default.units = "cm"
 )
 
+# add arrowheads to blot
+plotPolygon(x = c(1, 1.25, 1), y = c(1.4,1.5,1.6), default.units = "cm", fill = "black")
+
+plotPolygon(x = c(1, 1.25, 1), y = c(3.6,3.7,3.8), default.units = "cm", fill = "grey")
+
+
 # panel B ======================================================================
 # reference points for positioning figure components
 ref_x <- 9
@@ -216,6 +228,12 @@ plotText(
   x = ref_x + 7.1, y = ref_y + 0.25, just = c("center"), default.units = "cm"
 )
 
+# add arrowheads to blot
+plotPolygon(x = c(9.5, 9.75, 9.5), y = c(1.7,1.8,1.9), default.units = "cm", fill = "black")
+
+plotPolygon(x = c(9.5, 9.75, 9.5), y = c(4.6,4.7,4.8), default.units = "cm", fill = "grey")
+
+
 # Panel C ======================================================================
 # panel label
 ref_x <- 0.5
@@ -238,15 +256,16 @@ bw <- c(
 
 
 # define regions to plot
-regions <- zld_ChIP_classes %>%
+regions <- zld_ChIP_classes |>
+  mutate(class = str_to_upper(class)) |> 
   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
 
 # plot metaplot 1
 plot_range <- c(-0.1,3.5)
 plot_colors <- c(
-  `i` = "#DEEBF7",
-  `ii` = "#9ECAE1",
-  `iii` = "#3182BD"
+  `I` = "#BDD7E7",
+  `II` = "#6BAED6",
+  `III` = "#2171B5"
 )
 
 metaplot_1 <- plot_average(bw[1], regions = regions, row_split = regions$class, line_width = 0.2) +
@@ -419,15 +438,16 @@ bw <- c(
 
 
 # define regions to plot
-regions <- grh_ChIP_classes %>%
+regions <- grh_ChIP_classes |>
+  mutate(class = str_to_upper(class)) |> 
   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
 
 # plot metaplot 1
 plot_range <- c(-0.1,3)
 plot_colors <- c(
-  `i` = "#FEE6CE",
-  `ii` = "#FDAE6B",
-  `iii` = "#E6550D"
+  `I` = "#FDBE85",
+  `II` = "#FD8D3C",
+  `III` = "#D94701"
 )
   
 metaplot_1 <- plot_average(bw[1], regions = regions, row_split = regions$class, line_width = 0.2) +
@@ -576,7 +596,6 @@ plotLegend(
   lty = 1,
   orientation = "v"
 )
-
 
 # close graphics device ========================================================
 dev.off()

@@ -49,10 +49,16 @@ twi_ChIP_classes <- twi_ChIP_classes_fn |>
   read_tsv()
 
 
-# # create blank layout for plot ===============================================
-pdf(snakemake@output[[1]], useDingbats = FALSE)
+# create blank layout for plot ===============================================
+fig_width <-  15.5
+fig_height <- 12
+
+# open pdf
+pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
 # pdf("manuscript/figures/extended_data_fig6.pdf", useDingbats = FALSE)
-pageCreate(width = 18, height = 12, default.units = "cm", showGuides = FALSE)
+
+# generate plotGardener page
+pageCreate(width = fig_width, height = fig_height, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics
@@ -95,15 +101,16 @@ bw <- c(
   MNase = MNase_seq_bw
 )
 
-regions <- zld_bound_motifs
+regions <- zld_bound_motifs |> 
+  mutate(class = str_to_upper(class))
 
 
 # plot metaplot 1
 # plot_range <- c(-0.1,3)
 plot_colors <- c(
-  i = "#DEEBF7",
-  ii = "#9ECAE1",
-  iii = "#3182BD"
+  `I` = "#BDD7E7",
+  `II` = "#6BAED6",
+  `III` = "#2171B5"
 )
 
 a_plot <- plot_average(bw, regions = regions, row_split = regions$class, line_width = 0.5, upstream = hm_upstream, downstream = hm_downstream) +
@@ -165,15 +172,16 @@ bw <- c(
   MNase = MNase_seq_bw
 )
 
-regions <- grh_bound_motifs
+regions <- grh_bound_motifs |> 
+  mutate(class = str_to_upper(class))
 
 
 # plot metaplot 1
 # plot_range <- c(-0.1,3)
 plot_colors <- c(
-  i = "#FEE6CE",
-  ii = "#FDAE6B",
-  iii = "#E6550D"
+  `I` = "#FDBE85",
+  `II` = "#FD8D3C",
+  `III` = "#D94701"
 )
 
 b_plot <- plot_average(bw, regions = regions, row_split = regions$class, line_width = 0.5, upstream = hm_upstream, downstream = hm_downstream) +
@@ -229,15 +237,16 @@ bw <- c(
   MNase = MNase_seq_bw
 )
 
-regions <- twi_bound_motifs
-
+regions <- twi_bound_motifs |> 
+  mutate(class = str_to_upper(class))
+  
 
 # plot metaplot 1
 # plot_range <- c(-0.1,3)
 plot_colors <- c(
-  i =  "#E0F3DB",
-  ii = "#A8DDB5",
-  iii = "#43A2CA"
+  I =  "#BAE4BC",
+  II = "#7BCCC4",
+  III = "#2B8CBE"
 )
 
 c_plot <- plot_average(bw, regions = regions, row_split = regions$class, line_width = 0.5, upstream = hm_upstream, downstream = hm_downstream) +
@@ -362,6 +371,11 @@ plotGG(
   default.units = "cm"
 )
 
+# add axes to heatmaps
+seekViewport(name = "matrix_2_heatmap_body_1_1")
+grid.xaxis(at = c(0, 0.5, 1), label = c(paste0("-",hm_upstream / 1000, "KB"), "motif", paste0("+",hm_downstream / 1000, "KB")), gp = gpar(lwd = 0.5, fontsize = small_text_params$fontsize))
+seekViewport(name = "page")
+
 plotText(
   label = "MNase-seq", params = large_text_params, fontface = "bold",
   x = ref_x + 2.5, y = ref_y, just = "bottom", default.units = "cm"
@@ -469,6 +483,12 @@ plotGG(
   default.units = "cm"
 )
 
+# add axes to heatmaps
+seekViewport(name = "matrix_4_heatmap_body_1_1")
+grid.xaxis(at = c(0, 0.5, 1), label = c(paste0("-",hm_upstream / 1000, "KB"), "motif", paste0("+",hm_downstream / 1000, "KB")), gp = gpar(lwd = 0.5, fontsize = small_text_params$fontsize))
+seekViewport(name = "page")
+
+
 plotText(
   label = "MNase-seq", params = large_text_params, fontface = "bold",
   x = ref_x + 2.5, y = ref_y, just = "bottom", default.units = "cm"
@@ -575,6 +595,12 @@ plotGG(
   width = 3.5, height = 3, just = c("left", "top"),
   default.units = "cm"
 )
+
+# add axes to heatmaps
+seekViewport(name = "matrix_6_heatmap_body_1_1")
+grid.xaxis(at = c(0, 0.5, 1), label = c(paste0("-",hm_upstream / 1000, "KB"), "motif", paste0("+",hm_downstream / 1000, "KB")), gp = gpar(lwd = 0.5, fontsize = small_text_params$fontsize))
+seekViewport(name = "page")
+
 
 plotText(
   label = "MNase-seq", params = large_text_params, fontface = "bold",

@@ -4,10 +4,10 @@ editor: visual
 # bibliography: ../references.bib
 ---
 
-By exogenously expressing Zld, Grh, and Twi in S2 cells where they are not normally expressed, leveraging prior data identifying binding sites for these factors in vivo, and analyzing the wealth of data on chromatin structure in S2 cells, we identified features that govern PF activity.
+By exogenously expressing Zld, Grh, and Twi in S2 cells where they are not normally expressed, leveraging prior data identifying binding sites for these factors *in vivo*, and analyzing the wealth of data on chromatin structure in S2 cells, we identified features that govern PF activity.
 Studying the two well-defined PFs Zld and Grh, along with Twi, which possess features distinct from these two factors, allowed us to determine general properties regulating PF activity.
 Furthermore, our analysis of both binding and accessibility allowed us to separate PF occupancy from activity.
-We find that pioneering activity requires a high level of chromatin occupancy that can be achieved through both protein-intrinsic and protein-extrinsic features such as local chromatin structure, protein concentration, DNA motif content, and protein domains outside the DBD.
+We find that pioneering activity requires a high level of chromatin occupancy that can be achieved through both protein-intrinsic and protein-extrinsic features such as local chromatin structure, protein concentration, DNA motif content, and protein domains outside the DBD (Fig. 6g).
 
 Even when expressed at low levels Zld, Grh and Twi bind promiscuously to active, accessible regions with degenerate motifs or no detectable motifs at all.
 When expressed at approximately physiological levels these factors all possess the capacity to bind to canonical motifs in closed chromatin.
@@ -17,13 +17,13 @@ Regions with high levels of H3K9me3 are resistant to binding by the reprogrammin
 Depletion of H3K9 methyltransferases increases OSKM occupancy at these regions, suggesting that this repressive chromatin state is a barrier to PF binding [@Soufi2012].
 Similarly, cell-type specific binding of the PF Pax7 is anti-correlated with levels of H3K27me3 [@Mayran2019].
 Here, we specifically tested whether H3K27me3 regulates cell-type specific occupancy of Zld, Grh and Twi using the PRC2 inhibitor tazmetostat.
-While H3K27me3 levels were dramatically decreased in our treatment, PF binding was largely unchanged.
+While H3K27me3 levels were decreased in our treatment, PF binding was largely unchanged.
 Thus, unlike H3K9me3 in the case of OSKM, H3K27me3 is not a barrier to binding by the three factors assayed and suggest other features are restricting binding to these regions.
 
 While depleting H3K27me3 levels did not result in Zld, Grh and Twi binding to additional regions, increased expression of both Zld and Grh resulted in binding to regions that were unbound at lower expression levels.
 These results suggest that protein concentration and affinity for the target motif drives tissue-specific PF binding rather than the presence or absence of Polycomb-mediated silencing.
 Tissue-specific PF occupancy is also likely regulated by the collection of cofactors expressed in a given tissue.
-This may partially explain the presence of class VI sites that lack repressive histone modifications in culture and are bound in vivo but not when expressed in S2 cells.
+This may partially explain the presence of class VI sites that lack repressive histone modifications in culture and are bound *in vivo* but not when expressed in S2 cells.
 For example, in mammalian cell culture FOXA2 occupancy at a subset of tissue-specific binding sites was increased when GATA4 was present [@Donaghey2018].
 Similarly, PARP-1 stabilizes Sox2 binding at subset of physiologically relevant sites in mouse embryonic stem cells [@Liu2017].
 Unlike Zld and Grh, increased expression of Twi did not result in binding to regions bound in other tissues.
@@ -35,8 +35,8 @@ In addition to cell-type specific factors, we demonstrate that protein-intrinsic
 We show that regions outside the DBD of Zld and Grh are important for binding-site selection.
 Similarly, regions outside the DBDs of human PFs FOXA1 and SOX2 are required for robust binding of closed chromatin [@lerner2022].
 Increasing evidence suggests that eukaryotic transcription factors are not as modular as their bacterial counterparts and have demonstrated the role that intrinsically disordered regions (IDRs) play in regulating chromatin occupancy[@Ferrie2022; @Brodsky2020] Both Zld and Grh contain long disordered domains.
-For Zld, this disordered domain is required for transcriptional activation and promotes nucleosome binding in vitro [@Hamm2015; @McDaniel2019].
-IDRs may contribute to transcription-factor binding through protein-protein interactions with other transcription factors, nonspecific interactions with DNA, or by driving condensate formation [@Brodsky2021; @Staller2022].
+For Zld, this disordered domain is required for transcriptional activation and promotes nucleosome binding *in vitro* [@Hamm2015; @McDaniel2019a].
+IDRs may contribute to TF binding through protein-protein interactions with other transcription factors, nonspecific interactions with DNA, or by driving condensate formation [@Brodsky2021; @Staller2022].
 Indeed, Zld is visualized in hubs within the nucleus, and these promote binding of additional transcription factors [@Mir2018; @Yamada2019].
 Zld and Grh DBDs retain the capacity to bind to class I regions, despite the weaker motifs present at these sites.
 Thus, the binding to class I regions is not due to interactions between IDRs and other proteins present at active chromatin.

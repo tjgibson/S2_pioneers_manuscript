@@ -60,10 +60,16 @@ H3K27me3_ChIP_bw <- snakemake@input[["H3K27me3_ChIP_bw"]]
 H3K9me3_ChIP_bw <- snakemake@input[["H3K9me3_ChIP_bw"]]
 
 
-# # create blank layout for plot ===============================================
-pdf(snakemake@output[[1]], useDingbats = FALSE)
+# create blank layout for plot ===============================================
+fig_width <-  18
+fig_height <- 18
+
+# open pdf
+pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
 # pdf("manuscript/figures/extended_data_fig7.pdf", useDingbats = FALSE)
-pageCreate(width = 18, height = 18, default.units = "cm", showGuides = FALSE)
+
+# generate plotGardener page
+pageCreate(width = fig_width, height = fig_height, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics
@@ -84,12 +90,12 @@ twi_heatmap_colors <- brewer.pal(9, "GnBu")
 H3K27me3_color <- "gray40"      
   
   # reference points for positioning figure components
-  x_offset_class_label <- 0.25
-  x_offset_browser_label <- 1
-  x_offset_browser <- 1.5
-  
-  # set genome browser height
-  gb_height <- 0.3
+x_offset_class_label <- 0.25
+x_offset_browser_label <- 1
+x_offset_browser <- 1.5
+
+# set genome browser height
+gb_height <- 0.3
   
 # panel A ======================================================================
 # reference points for positioning figure components ---------------------------
@@ -146,18 +152,18 @@ plotGG(
 
 # add labels for different groups
 plotText(
-  label = "Brain Zld ChIP", params = small_text_params, fontface = "bold",
-  x = (ref_x + 2), y = (ref_y + 0.25), just = "top", default.units = "cm"
+  label = "Zld NSC", params = small_text_params, fontface = "bold",
+  x = (ref_x + 2), y = (ref_y), just = "top", default.units = "cm"
 )
 
 plotText(
-  label = paste0("S2 Zld", "\n", "ChIP"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 1), y = (ref_y + 2.25), just = "center", default.units = "cm"
+  label = "Zld S2", params = small_text_params, fontface = "bold",
+  x = (ref_x + 1), y = (ref_y + 2.5), just = "center", default.units = "cm"
 )
 
 plotText(
-  label = paste0("nc14 embryo", "\n", "Zld Chip"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 3.8), y = (ref_y + 2), just = "center", default.units = "cm"
+  label = paste0("Zld nc14 embryo"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 3.5), y = (ref_y + 2.3), just = "center", default.units = "cm"
 )
 
 
@@ -220,18 +226,18 @@ plotGG(
 
 # add labels for different groups
 plotText(
-  label = "Wing disc Grh ChIP", params = small_text_params, fontface = "bold",
+  label = "Grh wing disc", params = small_text_params, fontface = "bold",
   x = (ref_x + 1.5), y = (ref_y + 0.25), just = "top", default.units = "cm"
 )
 
 plotText(
-  label = paste0("S2 Grh", "\n", "ChIP"), params = small_text_params, fontface = "bold",
+  label = paste0("Grh S2"), params = small_text_params, fontface = "bold",
   x = (ref_x - 0.1), y = (ref_y + 2), just = "center", default.units = "cm"
 )
 
 plotText(
-  label = paste0("15-16H embryo", "\n", "Grh Chip"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 3.3), y = (ref_y + 1.5), just = "center", default.units = "cm"
+  label = paste0("Grh","\n", "15-16H embryo"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 3.4), y = (ref_y + 1.5), just = "center", default.units = "cm"
 )
 
 
@@ -288,12 +294,12 @@ plotGG(
 
 # add labels for different groups
 plotText(
-  label = paste0("S2 Twi ChIP"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 1.5), y = (ref_y + 1.8), just = "center", default.units = "cm"
+  label = paste0("Twi S2"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 1.6), y = (ref_y + 1.8), just = "center", default.units = "cm"
 )
 
 plotText(
-  label = paste0("2-3H embryo", "\n", "Twi Chip"), params = small_text_params, fontface = "bold",
+  label = paste0("Twi", "\n", "2-3H embryo"), params = small_text_params, fontface = "bold",
   x = (ref_x + 4.5), y = (ref_y + 1.2), just = "center", default.units = "cm"
 )
 

@@ -11,40 +11,41 @@ Through this activity, PFs drive cell-type specific gene expression programs tha
 Due to these properties, PFs are essential players in development, induced reprogramming, and disease [@Larson2021].
 
 Despite their ability to target closed, nucleosomally occupied binding sites, PFs do not bind to all genomic instances of their target motifs.
+PFs also have cell-type specific patterns of binding and activity, suggesting that features beyond sequence motif govern PF function [@Soufi2012; @Donaghey2018; @Chronis2017; @Buecker2014; @Cernilogar2019; @Lupien2008].
+Chromatin structure may influence PF binding as cell-type specific occupancy is often associated with distinct chromatin features [@Mayran2018a; @Lupien2008; @Cernilogar2019].
 Many PFs bind primarily to naïve chromatin that is inaccessible, inactive, and lacks most histone modifications [@Soufi2012; @Donaghey2018].
-In addition, PFs have also been shown to have cell-type specific patterns of binding and activity [@Soufi2012; @Donaghey2018; @Chronis2017; @Buecker2014; @Cernilogar2019; @Lupien2008].
-How PF binding is restricted in different tissues or cellular contexts remains unclear.
-Many PFs bind primarily to naïve chromatin that is inaccessible, inactive, and lacks most histone modifications [@Soufi2012; @Donaghey2018].
-Cell-type specific binding is often associated with distinct chromatin features [@Mayran2018a; @Lupien2008; @Cernilogar2019].
 Together, these studies indicate that PF occupancy is regulated by both genomic context and cell-type specific features.
 Nonetheless, the mechanisms that govern PF occupancy and activity remain largely unknown.
 
 Although PFs are defined by their ability to promote chromatin opening, many PFs are only required for chromatin accessibility at a subset of their binding sites.
-Upon depletion of the PFs Zelda, GAGA-factor, Oct4, or Sox2, chromatin accessibility is only lost at a subset of the binding sites for the respective factor [@Schulz2015; @Gaskill2021; @maresca2022].
+Thus, PF activity is regulated at a step other than chromatin binding.
+For example, upon depletion of the PFs Zelda, GAGA-factor, Oct4, or Sox2, chromatin accessibility is lost only at a subset of the binding sites for the respective factor [@Schulz2015; @Gaskill2021; @maresca2022].
 This suggests that PF binding does not necessarily translate to chromatin opening.
-Pax7, a PF important for specification of pituitary melanotropes, binds to thousands of regions where binding does not result in chromatin opening, which the authors term "pioneer primed" sites [@Mayran2018a].
-Additionally, a time course of Pax7 binding and chromatin accessibility indicated that there is a delay between Pax7 binding and chromatin opening.
-For GAGA-factor and Oct4, establishment of chromatin accessibility requires the activity of a nucleosome remodeler [@Judd2021; @King2017].
-In the case of Oct4, however, binding to nucleosomes does result in local remodeling of histone-DNA interactions, especially at the nucleosome entry-exit site [@Michael2020].
+Pax7, a PF important for specification of pituitary melanotropes, binds to thousands of "pioneer primed" regions where binding does not result in chromatin opening [@Mayran2018a].
+Further separating PF binding from opening, at some Pax7-bound loci there is a temporal delay between binding and chromatin opening.
+This distinction between binding and opening may be due to PFs recruiting additional factors to drive chromatin accessibility.
+For example, both GAGA factor and Oct4 require nucleosome remodelers to promote chromatin accessibility [@Judd2021; @King2017].
+Nonetheless, PF binding can also perturb nucleosome structure.
+Oct4 binding to nucleosomes can result in local remodeling of histone-DNA interactions, especially at the nucleosome entry-exit site [@Michael2020].
 Together, these observations highlight that the relationship between PF binding and activity is not well understood.
 
-To begin to elucidate the factors that reuglate PF binding and activity, we focused on two well-studied PFs that control conserved developmental transitions, Zelda (Zld) and Grainy head (Grh).
-Zld is essential for driving early embryonic development in Drosophila [@Liang2008; @Staudt2006].
+To begin to elucidate the factors that regulate PF binding and activity, we focused on two well-studied PFs that control conserved developmental transitions, Zelda (Zld) and Grainy head (Grh).
+Zld is essential for driving early embryonic development in *Drosophila* [@Liang2008; @Staudt2006].
 Immediately following fertilization, the zygotic genome is transcriptionally silent, and development is controlled by maternally deposited mRNAs and proteins.
 Maternal products are gradually degraded as the zygotic genome is activated during a process known as the maternal-to-zygotic transition (MZT) [@Schulz2019; @Vastenhouw2019].
-In Drosophila, the pioneering activity of Zld is essential for driving activation of the zygotic genome [@Liang2008; @Schulz2015; @Sun2015; @McDaniel2019a].
-Since the discovery of Zld as an activator of the initial wave of zygotic transcription, pioneer factors have been shown to drive the transition in all other species studied to date [@Lee2013; @Leichsenring2013; @Gassler2022; @Gentsch2019; @Charney2017].
-Similar to the reprogramming role of Zld in the early embryo, Zld promotes the neural stem cell (NSC) fate in the developing larval brain[@Larson2021a].
-Despite the shared ability to promote the undifferentiated fate in both tissues, the majority of Zld-binding sites are unique to either the embryo or NSCs, with only a subset of regions being bound in both tissues.
-By contrast, Grh-binding sites are largely shared between tissues [@Nevil2017].
+In *Drosophila*, the pioneering activity of Zld is essential for activating transcription from the zygotic genome [@Liang2008; @Schulz2015; @Sun2015; @McDaniel2019a].
+Since the discovery of Zld as an activator of the initial wave of zygotic transcription, pioneer factors have been shown to drive zygotic genome activation in all other species studied to date [@Lee2013; @Leichsenring2013; @Gassler2022; @Gentsch2019; @Charney2017].
+Similar to the role of Zld in genomic reprogramming in the early embryo, Zld promotes the neural stem cell fate in the developing larval brain [@Larson2021a].
+Despite the shared ability to promote the undifferentiated fate in both tissues, the majority of Zld-binding sites are unique to either tissue.
+In contrast to the tissue-specific chromatin occupancy of Zld, Grh-binding sites are largely shared between tissues [@Nevil2017].
 Grh is a master regulator of epithelial cell fate that is conserved among metazoans and functions as a pioeer factor in both *Drosophila* larva and mammalian cell culture [@Wang2012; @Jacobs2018; @Nevil2020].
 However, in the early *Drosophila* embryo Grh is dispensible for chromatin accessibility, and only displays pioneering activity in late embryos or larval tissues.
 Thus, Grh pioneering activity, but not Grh binding is regulated over development.
 
-The essential roles of Zld and Grh in diverse biological processes and the well-documented context-dependent binding and activity of these factors makes them excellent models to explore how PF binding is regulated during development, and how PF occupancy relates to chromatin opening.
-Because many previous studies have relied on loss-of-function experiments, it has been difficult to unravel causal relationships between chromatin structure and PF activity.
-We therefore expressed Zld and Grh in Drosophila S2 cells, where neither factor is endogenously expressed.
-When ectopically expressed, Zld and Grh bind to closed chromatin, establish open chromatin, and promote transcriptional activation at a subset of binding sites.
+The essential roles of Zld and Grh in diverse biological processes and the well-documented context-dependent binding and activity of these factors makes them excellent models to explore how PF binding is regulated and how PF occupancy relates to chromatin opening.
+Because many previous studies have relied on loss-of-function experiments, it has been difficult to disentangle causal relationships between chromatin structure and PF activity.
+We therefore expressed Zld and Grh in Drosophila Schneider 2 (S2) cells, where neither factor is endogenously expressed.
+When ectopically expressed, Zld and Grh bind to closed chromatin, establish chromatin accessibility, and promote transcriptional activation at a subset of binding sites.
 We show that an additional TF, Twist (Twi), can function as a pioneer factor.
 By comparing the features of these three factors and relating exogenous activity to *in vivo* functionality, we demonstrate that pioneering depends on a combination of local chromatin structure, sequence context, and PF concentration.
 We propose that pioneering activity is not a binary feature intrinsic to a protein, but occurs on a spectrum and can be regulated by a variety of protein-intrinsic and cell-type specific features.

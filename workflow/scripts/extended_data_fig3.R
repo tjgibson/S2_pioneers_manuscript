@@ -92,10 +92,12 @@ a_plot <- zld_ATAC_results |>
   scale_color_manual(values = c("grey", "black", zld_color)) +
   theme_classic(base_size = small_text_params$fontsize) +
   theme(legend.key.size = unit(2, 'mm'),
+        legend.text = element_text(size=5),
         legend.position = "bottom",
         legend.title = element_blank(),
         legend.margin=margin(0,0,0,0),
         legend.box.margin=margin(0,0,0,0)) +
+  guides(colour = guide_legend(override.aes = list(size=0.6))) +
   xlab(bquote(log[2]("fold change"))) +
   ylab(bquote(-log[10]("adj. p-value")))
 
@@ -103,7 +105,7 @@ a_plot <- zld_ATAC_results |>
 plotGG(
   plot = a_plot,
   x = (ref_x), y = (ref_y),
-  width = 4.5, height = 4, just = c("left", "top"),
+  width = 4.5, height = 5, just = c("left", "top"),
   default.units = "cm"
 )
 
@@ -145,10 +147,12 @@ b_plot <- zld_RNAseq_results |>
   scale_color_manual(values = c("grey", "black", zld_color)) +
   theme_classic(base_size = small_text_params$fontsize) +
   theme(legend.key.size = unit(2, 'mm'),
+        legend.text = element_text(size=5),
         legend.position = "bottom",
         legend.title = element_blank(),
         legend.margin=margin(0,0,0,0),
         legend.box.margin=margin(0,0,0,0)) +
+  guides(colour = guide_legend(override.aes = list(size=0.6))) +
   xlab(bquote(log[2]("fold change"))) +
   ylab(bquote(-log[10]("adj. p-value")))
 
@@ -156,7 +160,7 @@ b_plot <- zld_RNAseq_results |>
 plotGG(
   plot = b_plot,
   x = (ref_x), y = (ref_y),
-  width = 4.5, height = 4, just = c("left", "top"),
+  width = 4.5, height = 5, just = c("left", "top"),
   default.units = "cm"
 )
 
@@ -204,14 +208,14 @@ c_plot <- barplot(ego, showCategory=10) +
 plotGG(
   plot = c_plot,
   x = (ref_x), y = (ref_y),
-  width = 6, height = 4, just = c("left", "top"),
+  width = 7, height = 5, just = c("left", "top"),
   default.units = "cm"
 )
 
 # panel D ======================================================================
 # reference points for positioning figure components
 ref_x <- 0.5
-ref_y <- 5
+ref_y <- 6
 
 
 # read in ATAC-seq results
@@ -244,10 +248,12 @@ d_plot <- grh_ATAC_results |>
   scale_color_manual(values = c("grey", "black", grh_color)) +
   theme_classic(base_size = small_text_params$fontsize) +
   theme(legend.key.size = unit(2, 'mm'),
+        legend.text = element_text(size=5),
         legend.position = "bottom",
         legend.title = element_blank(),
         legend.margin=margin(0,0,0,0),
         legend.box.margin=margin(0,0,0,0)) +
+  guides(colour = guide_legend(override.aes = list(size=0.6))) +
   xlab(bquote(log[2]("fold change"))) +
   ylab(bquote(-log[10]("adj. p-value")))
 
@@ -255,7 +261,7 @@ d_plot <- grh_ATAC_results |>
 plotGG(
   plot = d_plot,
   x = (ref_x), y = (ref_y),
-  width = 4.5, height = 4, just = c("left", "top"),
+  width = 4.5, height = 5, just = c("left", "top"),
   default.units = "cm"
 )
 
@@ -273,7 +279,7 @@ plotText(
 # panel E ======================================================================
 # reference points for positioning figure components
 ref_x <- 5.5
-ref_y <- 5
+ref_y <- 6
 
 
 # read in RNAseq_results
@@ -297,10 +303,12 @@ e_plot <- grh_RNAseq_results |>
   scale_color_manual(values = c("grey", "black", grh_color)) +
   theme_classic(base_size = small_text_params$fontsize) +
   theme(legend.key.size = unit(2, 'mm'),
+        legend.text = element_text(size=5),
         legend.position = "bottom",
         legend.title = element_blank(),
         legend.margin=margin(0,0,0,0),
         legend.box.margin=margin(0,0,0,0)) +
+  guides(colour = guide_legend(override.aes = list(size=0.6))) +
   xlab(bquote(log[2]("fold change"))) +
   ylab(bquote(-log[10]("adj. p-value")))
 
@@ -309,7 +317,7 @@ e_plot <- grh_RNAseq_results |>
 plotGG(
   plot = e_plot,
   x = (ref_x), y = (ref_y),
-  width = 4.5, height = 4, just = c("left", "top"),
+  width = 4.5, height = 5, just = c("left", "top"),
   default.units = "cm"
 )
 
@@ -356,7 +364,7 @@ f_plot <- barplot(ego, showCategory=10) +
 plotGG(
   plot = f_plot,
   x = (ref_x), y = (ref_y),
-  width = 6, height = 4, just = c("left", "top"),
+  width = 7, height = 5, just = c("left", "top"),
   default.units = "cm"
 )
 
