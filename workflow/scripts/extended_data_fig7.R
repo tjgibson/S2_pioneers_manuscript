@@ -400,13 +400,13 @@ annoZoomLines(
 
 
 plotText(
-  label = "Zld embryo ChIP", params = small_text_params, fontface = "bold",
+  label = "Zld embryo", params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
 )
 
 
 plotText(
-  label = "Zld S2 ChIP", params = small_text_params, fontface = "bold",
+  label = "Zld S2", params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
 )
 
@@ -557,13 +557,13 @@ annoZoomLines(
 )
 
 plotText(
-  label = "Zld embryo ChIP", params = small_text_params, fontface = "bold",
+  label = "Zld embryo", params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
 )
 
 
 plotText(
-  label = "Zld S2 ChIP", params = small_text_params, fontface = "bold",
+  label = "Zld S2", params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
 )
 
@@ -713,13 +713,13 @@ annoZoomLines(
 )
 
 plotText(
-  label = "Zld embryo ChIP", params = small_text_params, fontface = "bold",
+  label = "Zld embryo", params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
 )
 
 
 plotText(
-  label = "Zld S2 ChIP", params = small_text_params, fontface = "bold",
+  label = "Zld S2", params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
 )
 
@@ -870,13 +870,13 @@ annoZoomLines(
 )
 
 plotText(
-  label = "Grh embryo ChIP", params = small_text_params, fontface = "bold",
+  label = "Grh embryo", params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
 )
 
 
 plotText(
-  label = "Grh S2 ChIP", params = small_text_params, fontface = "bold",
+  label = "Grh S2", params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
 )
 
@@ -1187,13 +1187,13 @@ annoZoomLines(
 )
 
 plotText(
-  label = "Grh embryo ChIP", params = small_text_params, fontface = "bold",
+  label = "Grh embryo", params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
 )
 
 
 plotText(
-  label = "Grh S2 ChIP", params = small_text_params, fontface = "bold",
+  label = "Grh S2", params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
 )
 
@@ -1343,13 +1343,13 @@ annoZoomLines(
 )
 
 plotText(
-  label = "Twi embryo ChIP", params = small_text_params, fontface = "bold",
+  label = "Twi embryo", params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
 )
 
 
 plotText(
-  label = "Twi S2 ChIP", params = small_text_params, fontface = "bold",
+  label = "Twi S2", params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
 )
 
@@ -1504,13 +1504,13 @@ annoZoomLines(
 )
 
 plotText(
-  label = "Twi embryo ChIP", params = small_text_params, fontface = "bold",
+  label = "Twi embryo", params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
 )
 
 
 plotText(
-  label = "Twi S2 ChIP", params = small_text_params, fontface = "bold",
+  label = "Twi S2", params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
 )
 
@@ -1662,13 +1662,13 @@ annoZoomLines(
 )
 
 plotText(
-  label = "Twi embryo ChIP", params = small_text_params, fontface = "bold",
+  label = "Twi embryo", params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
 )
 
 
 plotText(
-  label = "Twi S2 ChIP", params = small_text_params, fontface = "bold",
+  label = "Twi S2", params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
 )
 

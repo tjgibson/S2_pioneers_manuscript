@@ -38,11 +38,11 @@ Since the discovery of Zld as an activator of the initial wave of zygotic transc
 Similar to the role of Zld in genomic reprogramming in the early embryo, Zld promotes the neural stem cell fate in the developing larval brain [@Larson2021a].
 Despite the shared ability to promote the undifferentiated fate in both tissues, the majority of Zld-binding sites are unique to either tissue.
 In contrast to the tissue-specific chromatin occupancy of Zld, Grh-binding sites are largely shared between tissues [@Nevil2017].
-Grh is a master regulator of epithelial cell fate that is conserved among metazoans and functions as a pioeer factor in both *Drosophila* larva and mammalian cell culture [@Wang2012; @Jacobs2018; @Nevil2020].
+Grh is a master regulator of epithelial cell fate that is conserved among metazoans and functions as a pioneer factor in both *Drosophila* larva and mammalian cell culture [@Wang2012; @Jacobs2018; @Nevil2020].
 However, in the early *Drosophila* embryo Grh is dispensible for chromatin accessibility, and only displays pioneering activity in late embryos or larval tissues.
 Thus, Grh pioneering activity, but not Grh binding is regulated over development.
 
-The essential roles of Zld and Grh in diverse biological processes and the well-documented context-dependent binding and activity of these factors makes them excellent models to explore how PF binding is regulated and how PF occupancy relates to chromatin opening.
+The essential roles of Zld and Grh in diverse biological processes and the context-dependent binding and activity of these factors makes them excellent models to explore how PF binding is regulated and how PF occupancy relates to chromatin opening.
 Because many previous studies have relied on loss-of-function experiments, it has been difficult to disentangle causal relationships between chromatin structure and PF activity.
 We therefore expressed Zld and Grh in Drosophila Schneider 2 (S2) cells, where neither factor is endogenously expressed.
 When ectopically expressed, Zld and Grh bind to closed chromatin, establish chromatin accessibility, and promote transcriptional activation at a subset of binding sites.

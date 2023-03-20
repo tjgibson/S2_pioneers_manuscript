@@ -102,10 +102,17 @@ zld_ChIP_classes <- zld_FL_ChIP_classes_fn |>
 grh_ChIP_classes <- grh_FL_ChIP_classes_fn |> 
   read_tsv()
 
-# # create blank layout for plot ===============================================
-# pdf(snakemake@output[[1]], useDingbats = FALSE)
-pdf("manuscript/figures/extended_data_fig10.pdf", useDingbats = FALSE, height = 8.5)
-pageCreate(width = 18, height = 21, default.units = "cm", showGuides = FALSE)
+# create blank layout for plot =================================================
+# define figure dimensions in cm
+fig_width <-  18
+fig_height <- 21
+
+# open pdf
+pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
+# pdf("manuscript/figures/extended_data_fig10.pdf", useDingbats = FALSE, height = 8.5)
+
+# generate plotGardener page
+pageCreate(width = fig_width, height = fig_height, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics

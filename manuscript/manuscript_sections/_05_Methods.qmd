@@ -32,12 +32,12 @@ Blots were treated with SuperSignal West Pico PLUS chemiluminescent substrate (T
 
 ## Immunostaining
 
-Immunostaining was performed as described previously[@angshuman2007].
+Immunostaining was performed as described previously [@angshuman2007].
 Briefly, 1×10^6^ cells in 200 µL PBS were applied to a coverslip pre-coated with 10% poly-L-lysine.
 Cells were fixed with 4% methanol-free formaldehyde for 30 minutes at 37°C, permeabilized with 0.2% Triton-X 100 for 10 minutes at room temperature, and blocked with 1% BSA for 1 hour.
 Cells were incubated with a 1:500 dilution of anti-Zld or anti-Grh primary antibody overnight at 4°C.
 After washing with PBS, cells were incubated with a 1:500 dilution of goat anti-rabbit IgG DyLight 488 conjugated secondary antibody (Thermo Fisher Scientific #35552) for 1 hour at RT.
-Imaging was performed at 60X on a Nikon Ti2 epi-fluorescent microscope.
+Imaging was performed on a Nikon Ti2 epi-fluorescent microscope with a 60x objective lens.
 
 ## ChIP-seq
 
@@ -64,7 +64,7 @@ Bowtie2 version 2.4.4 [@Langmead2012] was used to align ChIP-seq reads to the *D
 Aligned reads were filtered to include only reads with a mapping quality score \> 30.
 Reads mapping to unplaced scaffolds or the mitochondrial genome were discarded.
 Peak calling was performed using MACS2 version 2.2 with parameters `-g dm --call-summits`.
-Data from ChIP experiments performed with the same antibody in WT cells were used as a control for peak calling.
+Data from ChIP experiments performed with the same antibody in wild-type cells were used as a control for peak calling.
 Only peaks that were detected in all replicates were considered in downstream analysis.
 bigWig files were generated using deepTools bamCoverage version 3.5.1 with parameters `–binSize 10`.
 bigWig files were z-score normalized by subtracting the genome-wide average of all bins from each bin value and dividing by the standard deviation of all bins.
@@ -137,7 +137,7 @@ The z-score normalized read depth was multiplied by these scaling factors to gen
 
 ## Analysis of previously published data
 
-Previously published datasets analyzed in this study can be found in supplemental table 1.
+Previously published datasets analyzed in this study can be found in supplemental table 2.
 All previously published data were analyzed in parallel with data from this study using analysis parameters described above.
 
 ## Data and code availability

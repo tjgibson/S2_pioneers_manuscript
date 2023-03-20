@@ -11,6 +11,26 @@ source("workflow/scripts/plot_heatmap.R")
 source("workflow/scripts/utils.R")
 
 # define input files ===========================================================
+# define input files explicitly for interactive testing
+# Zld_FL_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw"
+# Zld_DBD_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld-DBD_aZld_IP.bw"
+# Zld_WT_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/S2-WT_1000uM_small.bw"
+# Zld_Zld_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/S2-Zld_1000uM_small.bw"
+# 
+# Grh_FL_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw"
+# Grh_DBD_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh-DBD_aGrh_IP.bw"
+# Grh_WT_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/FL_ATAC_S2-WT_100uM_small.bw"
+# Grh_Grh_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/S2-Grh_100uM_small.bw"
+# 
+# zld_ChIP_classes_fn <- "results/ChIP_peak_classes/zld_ChIP_classes.tsv"
+# grh_ChIP_classes_fn <- "results/ChIP_peak_classes/grh_ChIP_classes.tsv"
+# 
+# zld_FL_atac_results_fn <- "ATACseq/results/DEseq2_results_filtered/S2-Zld_ATACseq_S2-Zld-FL-vs-S2-WT_results.tsv"
+# zld_DBD_atac_results_fn <- "ATACseq/results/DEseq2_results_filtered/S2-Zld-DBD_ATACseq_S2-Zld-DBD-vs-S2-WT_results.tsv"
+# grh_FL_atac_results_fn <- "ATACseq/results/DEseq2_results_filtered/S2-Grh_ATACseq_S2-Grh-FL-vs-S2-WT_results.tsv"
+# grh_DBD_atac_results_fn <- "ATACseq/results/DEseq2_results_filtered/S2-Grh-DBD_ATACseq_S2-Grh-DBD-vs-S2-WT_results.tsv"
+
+# get input files from snakemake
 Zld_FL_ChIP_bw <- snakemake@input[["Zld_FL_ChIP_bw"]]
 Zld_DBD_ChIP_bw <- snakemake@input[["Zld_DBD_ChIP_bw"]]
 Zld_WT_ATAC_bw <- snakemake@input[["Zld_WT_ATAC_bw"]]
@@ -342,7 +362,7 @@ bw <- c(
 zld_chip_classes <- read_tsv(zld_ChIP_classes_fn) |> 
   mutate(class = str_to_upper(class))
 
-regions <- zld_chip_classes %>%
+regions <- zld_chip_classes |>
   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
 
 plot_range <- c(0,5)
@@ -427,16 +447,16 @@ zld_FL_atac_results <- read_tsv(zld_FL_atac_results_fn)
 zld_DBD_atac_results <- read_tsv(zld_DBD_atac_results_fn)
 
 
-zld_FL_range <- -log10(zld_FL_atac_results$padj) %>% na.omit() %>% range()
+plot_range <- c(-log10(zld_FL_atac_results$padj),-log10(zld_DBD_atac_results$padj)) |> na.omit() |> range()
 
 d_plot <-
-  zld_DBD_atac_results %>% 
+  zld_DBD_atac_results |> 
   ggplot(aes(x=log2FoldChange, y=-log10(padj), color = is_diff)) +
   geom_point(alpha = 0.7, size = 0.1) +
   theme_classic(base_size = 5) +
   theme( legend.position = "none") +
   scale_color_manual(values = c("grey", "black")) +
-  ylim(zld_FL_range) +
+  ylim(plot_range) +
   xlab(bquote(log[2]("fold change"))) +
   ylab(bquote(-log[10]("adj. p-value")))
 
@@ -477,7 +497,7 @@ bw <- c(
 grh_chip_classes <- read_tsv(grh_ChIP_classes_fn) |> 
   mutate(class = str_to_upper(class))
 
-regions <- grh_chip_classes %>%
+regions <- grh_chip_classes |>
   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
 
 plot_range <- c(0,5)
@@ -567,16 +587,16 @@ plotText(
 grh_FL_atac_results <- read_tsv(grh_FL_atac_results_fn)
 grh_DBD_atac_results <- read_tsv(grh_DBD_atac_results_fn)
 
-grh_FL_range <- -log10(grh_FL_atac_results$padj) %>% na.omit() %>% range()
+plot_range <- c(-log10(grh_FL_atac_results$padj),-log10(grh_DBD_atac_results$padj)) |> na.omit() |> range()
 
 f_plot <-
-  grh_DBD_atac_results %>% 
+  grh_DBD_atac_results |> 
   ggplot(aes(x=log2FoldChange, y=-log10(padj), color = is_diff)) +
   geom_point(alpha = 0.7, size = 0.1) +
   theme_classic(base_size = 5) +
   theme( legend.position = "none") +
   scale_color_manual(values = c("grey", "black")) +
-  ylim(grh_FL_range) +
+  ylim(plot_range) +
   xlab(bquote(log[2]("fold change"))) +
   ylab(bquote(-log[10]("adj. p-value")))
 

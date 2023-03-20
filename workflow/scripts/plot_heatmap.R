@@ -425,7 +425,8 @@ plot_average <- function(
     row_split = NULL,
     colors = NULL,
     summary_fun = mean,
-    line_width = 1
+    line_width = 1,
+    center_label = "center"
 ) {
   
   require(rtracklayer)
@@ -532,7 +533,7 @@ plot_average <- function(
     scale_x_continuous(
       
       breaks = c(start,end/2,end), 
-      labels = c(paste0("-", upstream / 1000, "KB"),"center", paste0("+", upstream / 1000, "KB")),
+      labels = c(paste0("-", upstream / 1000, "KB"),center_label, paste0("+", upstream / 1000, "KB")),
       expand = c(0,0,0,0)
       ) 
   

@@ -113,7 +113,15 @@ plot_colors <- c(
   `III` = "#2171B5"
 )
 
-a_plot <- plot_average(bw, regions = regions, row_split = regions$class, line_width = 0.5, upstream = hm_upstream, downstream = hm_downstream) +
+a_plot <- plot_average(
+  bw, 
+  regions = regions, 
+  row_split = regions$class, 
+  line_width = 0.5, 
+  upstream = hm_upstream, 
+  downstream = hm_downstream, 
+  center_label = "motif"
+  ) +
   # scale_color_brewer(palette = "Blues") +
   scale_color_manual(values = plot_colors) +
   theme(text = element_text(size = 5),
@@ -126,7 +134,6 @@ a_plot <- plot_average(bw, regions = regions, row_split = regions$class, line_wi
         legend.position = "bottom",
         legend.margin=margin(-5,-5,-5,-5),
         legend.box.margin=margin(0,0,0,0)
-        
   )
 
 a_plot <- a_plot +
@@ -184,8 +191,15 @@ plot_colors <- c(
   `III` = "#D94701"
 )
 
-b_plot <- plot_average(bw, regions = regions, row_split = regions$class, line_width = 0.5, upstream = hm_upstream, downstream = hm_downstream) +
-  # scale_color_brewer(palette = "Blues") +
+b_plot <- plot_average(
+  bw, 
+  regions = regions, 
+  row_split = regions$class, 
+  line_width = 0.5, 
+  upstream = hm_upstream, 
+  downstream = hm_downstream, 
+  center_label = "motif"
+) +
   scale_color_manual(values = plot_colors) +
   theme(text = element_text(size = 5),
         line = element_line(size = 0.1),
@@ -249,8 +263,15 @@ plot_colors <- c(
   III = "#2B8CBE"
 )
 
-c_plot <- plot_average(bw, regions = regions, row_split = regions$class, line_width = 0.5, upstream = hm_upstream, downstream = hm_downstream) +
-  # scale_color_brewer(palette = "Blues") +
+c_plot <- plot_average(
+  bw, 
+  regions = regions, 
+  row_split = regions$class, 
+  line_width = 0.5, 
+  upstream = hm_upstream, 
+  downstream = hm_downstream, 
+  center_label = "motif"
+) +
   scale_color_manual(values = plot_colors) +
   theme(text = element_text(size = 5),
         line = element_line(size = 0.1),
