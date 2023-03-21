@@ -142,5 +142,5 @@ All previously published data were analyzed in parallel with data from this stud
 
 ## Data and code availability
 
-Sequencing data have been deposited in the Gene Expresion Omnibus under accession GSEXXXX.
+Sequencing data have been deposited in the Gene Expresion Omnibus under accession GSE227884
 All analysis code is available on GitHub: https://github.com/tjgibson/S2_pioneers_manuscript.
