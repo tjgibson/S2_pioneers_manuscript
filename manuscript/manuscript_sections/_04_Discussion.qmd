@@ -35,8 +35,8 @@ In addition to cell-type specific factors, we demonstrate that protein-intrinsic
 We show that regions outside the DBD of Zld and Grh are important for binding-site selection.
 Similarly, regions outside the DBDs of human PFs FOXA1 and SOX2 are required for robust binding of closed chromatin [@lerner2022].
 Increasing evidence suggests that eukaryotic transcription factors are not as modular as their bacterial counterparts and has demonstrated the role that intrinsically disordered regions (IDRs) play in regulating chromatin occupancy[@Ferrie2022; @Brodsky2020] Both Zld and Grh contain long disordered domains.
-For Zld, this disordered domain is required for transcriptional activation and promotes nucleosome binding *in vitro* [@Hamm2015; @McDaniel2019a].
-IDRs may contribute to TF binding through protein-protein interactions with other transcription factors, nonspecific interactions with DNA, or by driving condensate formation [@Brodsky2021; @Staller2022].
+For Zld, this disordered domain is required for transcriptional activation and promotes optimal nucleosome binding *in vitro* [@Hamm2015; @McDaniel2019a].
+IDRs may contribute to TF binding through protein-protein interactions with other transcription factors, nonspecific interactions with DNA or histones, or by driving condensate formation [@Brodsky2021; @Staller2022].
 Indeed, Zld is visualized in hubs within the nucleus, and these promote binding of additional transcription factors [@Mir2018; @Yamada2019].
 Zld and Grh DBDs retain the capacity to bind to class I regions, despite the weaker motifs present at these sites.
 Thus, the binding to class I regions is not due to interactions between IDRs and other proteins present at active chromatin.
@@ -44,7 +44,7 @@ Instead, this binding may be driven by the high affinity of the DBDs for nucleos
 To provide a more complete understanding of how cis-regulatory regions are established, we must further investigate how IDRs contribute to PF binding and chromatin accessibility.
 
 The failure of the DBD alone to promote chromatin accessibility implicates a separation between the ability to bind nucleosomes and the capacity to promote chromatin accessibility.
-Local restructuring of nucleosome-DNA interactions [@Michael2020; @Dodonova2020] may be insufficient for establishing accessible chromatin and, instead, may stabilize PF binding to allow recruitment of cofactors, such as chromatin remodelers [@Judd2021; @King2017].
+Local restructuring of nucleosome-DNA interactions may be insufficient for establishing accessible chromatin [@Michael2020; @Dodonova2020] and, instead, may stabilize PF binding to allow recruitment of cofactors, such as chromatin remodelers [@Judd2021; @King2017].
 Furthermore, our identification of hundreds of class II regions, which are bound but not opened by exogenous PF expression, further separates chromatin binding and PF activity.
 Increased motif content at the sites in which PFs can promote accessibility suggests a model whereby PF chromatin occupancy is correlated with PF activity.
 Supporting this model, we identified a strong concentration dependence of chromatin opening by Zld and Grh.

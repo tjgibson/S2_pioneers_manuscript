@@ -50,6 +50,8 @@ Gray arrowheads indicate background bands used to assess loading.
 
 **Twist binding leads to chromatin opening and transcriptional activation. a,** Immunoblot showing titration of Twi or HA-Twi protein levels in stable cell lines.
 Protein levels in stable cell lines are compared to 3-4 hour (H) old embryos.
+Black arrowhead indicates Twi or HA-Twi.
+Gray arrowhead indicates background band used to assess loading.
 **b,** Volcano plots showing changes in ATAC-seq signal in cells expressing Twi when compared to wild-type cells treated with the same concentration of CuSO~4~.
 **c,** RNA-seq volcano plots showing gene expression changes in cells expressing Twi when compared to wild-type cells treated with the same concentration of CuSO~4~.
 **d,** Bar plots showing enrichment of gene ontology terms in genes significantly upregulated upon expression of Twi.

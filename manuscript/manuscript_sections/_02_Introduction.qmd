@@ -46,6 +46,5 @@ The essential roles of Zld and Grh in diverse biological processes and the conte
 Because many previous studies have relied on loss-of-function experiments, it has been difficult to disentangle causal relationships between chromatin structure and PF activity.
 We therefore expressed Zld and Grh in Drosophila Schneider 2 (S2) cells, where neither factor is endogenously expressed.
 When ectopically expressed, Zld and Grh bind to closed chromatin, establish chromatin accessibility, and promote transcriptional activation at a subset of binding sites.
-We show that an additional TF, Twist (Twi), can function as a pioneer factor.
-By comparing the features of these three factors and relating exogenous activity to *in vivo* functionality, we demonstrate that pioneering depends on a combination of local chromatin structure, sequence context, and PF concentration.
+By comparing the features of these factors and relating exogenous activity to *in vivo* functionality, we demonstrate that pioneering depends on a combination of local chromatin structure, sequence context, and PF concentration.
 We propose that pioneering activity is not a binary feature intrinsic to a protein, but occurs on a spectrum and can be regulated by a variety of protein-intrinsic and cell-type specific features.

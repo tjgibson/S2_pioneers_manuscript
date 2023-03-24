@@ -70,12 +70,6 @@ twi_color <- "#00A08A"
 ref_x <- 0.5
 ref_y <- 0.5
 
-# panel label
-plotText(
-  label = "a", params = panel_label_params, fontface = "bold",
-  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
-)
-
 
 a_plot <- zld_titration_ChIP_rpkm_fn |> 
   read_tsv() |> 
@@ -104,17 +98,18 @@ plotGG(
   default.units = "cm"
 )
 
+# panel label
+plotText(
+  label = "a", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
 
 # panel B ======================================================================
 # reference points for positioning figure components
 ref_x <- 7.5
 ref_y <- 0.5
 
-# panel label
-plotText(
-  label = "b", params = panel_label_params, fontface = "bold",
-  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
-)
+
 
 
 b_plot <- zld_titration_ATAC_rpkm_fn |> 
@@ -142,6 +137,12 @@ plotGG(
   x = (ref_x), y = (ref_y),
   width = 6.5, height = 4.5, just = c("left", "top"),
   default.units = "cm"
+)
+
+# panel label
+plotText(
+  label = "b", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 )
 
 # panel C ======================================================================
@@ -185,11 +186,6 @@ library(eulerr)
 ref_x <- 14.5
 ref_y <- 2.5
 
-# panel label
-plotText(
-  label = "d", params = panel_label_params, fontface = "bold",
-  x = ref_x, y = ref_y, just = "top", default.units = "cm"
-)
 
 # define input files
 input_files <- c(
@@ -236,16 +232,16 @@ plotText(
   x = (ref_x + 2.8), y = (ref_y + 1), just = "top", default.units = "cm"
 )
 
+# panel label
+plotText(
+  label = "d", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "top", default.units = "cm"
+)
+
 # panel E ======================================================================
 # reference points for positioning figure components
 ref_x <- 0.5
 ref_y <- 5.5
-
-# panel label
-plotText(
-  label = "e", params = panel_label_params, fontface = "bold",
-  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
-)
 
 e_plot <- grh_titration_ChIP_rpkm_fn |> 
   read_tsv() |> 
@@ -274,17 +270,16 @@ plotGG(
   default.units = "cm"
 )
 
+# panel label
+plotText(
+  label = "e", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
 
 # panel F ======================================================================
 # reference points for positioning figure components
 ref_x <- 7.5
 ref_y <- 5.5
-
-# panel label
-plotText(
-  label = "f", params = panel_label_params, fontface = "bold",
-  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
-)
 
 
 e_plot <- grh_titration_ATAC_rpkm_fn |> 
@@ -313,6 +308,13 @@ plotGG(
   width = 6.5, height = 4.5, just = c("left", "top"),
   default.units = "cm"
 )
+
+# panel label
+plotText(
+  label = "f", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
 
 # panel G ======================================================================
 # reference points for positioning figure components
@@ -356,11 +358,6 @@ plotText(
 ref_x <- 14.5
 ref_y <- 7.5
 
-# panel label
-plotText(
-  label = "h", params = panel_label_params, fontface = "bold",
-  x = ref_x, y = ref_y, just = "top", default.units = "cm"
-)
 
 # define input files
 input_files <- c(
@@ -407,16 +404,17 @@ plotText(
   x = (ref_x + 2.8), y = (ref_y + 1), just = "top", default.units = "cm"
 )
 
+# panel label
+plotText(
+  label = "h", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "top", default.units = "cm"
+)
+
 # panel I ======================================================================
 # reference points for positioning figure components
 ref_x <- 0.5
 ref_y <- 10.5
 
-# panel label
-plotText(
-  label = "i", params = panel_label_params, fontface = "bold",
-  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
-)
 
 i_plot <- twi_titration_ChIP_rpkm_fn |> 
   read_tsv() |> 
@@ -445,16 +443,17 @@ plotGG(
   default.units = "cm"
 )
 
+# panel label
+plotText(
+  label = "i", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
+)
+
+
 # panel J ======================================================================
 # reference points for positioning figure components
 ref_x <- 7.5
 ref_y <- 10.5
-
-# panel label
-plotText(
-  label = "j", params = panel_label_params, fontface = "bold",
-  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
-)
 
 
 j_plot <- twi_titration_ATAC_rpkm_fn |> 
@@ -482,6 +481,12 @@ plotGG(
   x = (ref_x), y = (ref_y),
   width = 6.5, height = 4.5, just = c("left", "top"),
   default.units = "cm"
+)
+
+# panel label
+plotText(
+  label = "j", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 )
 
 # panel K ======================================================================
@@ -525,11 +530,6 @@ plotText(
 ref_x <- 14.5
 ref_y <- 12.5
 
-# panel label
-plotText(
-  label = "l", params = panel_label_params, fontface = "bold",
-  x = ref_x, y = ref_y, just = "top", default.units = "cm"
-)
 
 # define input files
 input_files <- c(
@@ -574,6 +574,12 @@ plotText(
 plotText(
   label = paste0("Twi", "\n", "160"), params = small_text_params, fontface = "bold",
   x = (ref_x + 2.8), y = (ref_y + 1), just = "top", default.units = "cm"
+)
+
+# panel label
+plotText(
+  label = "l", params = panel_label_params, fontface = "bold",
+  x = ref_x, y = ref_y, just = "top", default.units = "cm"
 )
 
 

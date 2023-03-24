@@ -560,6 +560,8 @@ zld_color <- "#5BBCD6"
     plotGenes(
       params = zoomRegion, assembly = "dm6",
       x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
+      fill = c("gray50", "gray50"),
+      fontcolor = c("gray50", "gray50"),
       just = c("left", "top"),
       default.units = "cm"
     )
@@ -886,6 +888,8 @@ zld_color <- "#5BBCD6"
     plotGenes(
       params = zoomRegion, assembly = "dm6",
       x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
+      fill = c("gray50", "gray50"),
+      fontcolor = c("gray50", "gray50"),
       just = c("left", "top"),
       default.units = "cm"
     )
@@ -1206,6 +1210,8 @@ zld_color <- "#5BBCD6"
     plotGenes(
       params = zoomRegion, assembly = "dm6",
       x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
+      fill = c("gray50", "gray50"),
+      fontcolor = c("gray50", "gray50"),
       just = c("left", "top"),
       default.units = "cm"
     )

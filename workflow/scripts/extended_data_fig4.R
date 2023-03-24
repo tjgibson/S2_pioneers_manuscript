@@ -198,6 +198,11 @@ plotText(
   x = ref_x + 10.45, y = ref_y + 1.25, just = c("center"), default.units = "cm"
 )
 
+# add arrowheads to blot
+plotPolygon(x = c(1, 1.25, 1), y = c(3.1,3.2,3.3), default.units = "cm", fill = "black")
+
+plotPolygon(x = c(1, 1.25, 1), y = c(2.5,2.6,2.7), default.units = "cm", fill = "grey")
+
 
 
 # panel B ======================================================================

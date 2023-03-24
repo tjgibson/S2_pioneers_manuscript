@@ -1083,7 +1083,7 @@ x_offset_browser <- 2.0
 
 # panel label
 plotText(
-  label = "I", params = panel_label_params, fontface = "bold",
+  label = "i", params = panel_label_params, fontface = "bold",
   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 )
 # 
@@ -1229,6 +1229,7 @@ g1 <- plotGenes(
   params = region, assembly = "dm6",
   x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 0.6, width = 2.75, fontsize = small_text_params$fontsize,
   fill = c("gray50", "gray50"),
+  fontcolor = c("gray50", "gray50"),
   just = c("left", "top"),
   default.units = "cm"
 )
@@ -1444,6 +1445,7 @@ g1 <- plotGenes(
   params = region, assembly = "dm6",
   x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 0.6, width = 2.75, fontsize = small_text_params$fontsize, 
   fill = c("gray50", "gray50"),
+  fontcolor = c("gray50", "gray50"),
   just = c("left", "top"),
   default.units = "cm"
 )

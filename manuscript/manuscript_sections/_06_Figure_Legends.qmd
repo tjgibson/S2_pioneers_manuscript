@@ -1,11 +1,12 @@
-**Figure 1: Ectopically expressed pioneer factors open chromatin and activate transcription. a-b,** Genome browser tracks showing examples of individual class I, II or III regions for Zld **(a)** or Grh **(b)**.
+**Figure 1: Ectopically expressed pioneer factors open chromatin and activate transcription. a,b,** Genome browser tracks showing examples of individual class I, II or III regions for Zld **(a)** or Grh **(b)**.
 ChIP seq and ATAC-seq signal are shown for Zld- or Grh-expressing cells along with ATAC-seq signal for wild-type (WT) cells lacking Zld or Grh expression.
 **c,f,** Pie charts showing the distribution of class I, II, and III binding sites for Zld **(c)** or Grh **(f)**.
 **d,g,** The proportion of class I, II or III binding sites that occur at promoters (-500 to +100 bp around transcription start site) or promoter distal regions for Zld **(d)** or Grh **(g)**.
-**e,h,** Heatmaps showing ChIP-seq and ATAC-seq signal at class II and III regions for Zld **(e)** or Grh **(h). i,k,** Example genome browser tracks showing ChIP-seq, ATAC-seq and RNA-seq signal at class III regions where changes in chromatin accessibility are associated with changes in gene expression for Zld **(i)** or Grh **(k)**.
+**e,h,** Heatmaps showing ChIP-seq and ATAC-seq signal at class II and III regions for Zld **(e)** or Grh **(h)**.
+**i,k,** Example genome browser tracks showing ChIP-seq, ATAC-seq and RNA-seq signal at class III regions (shaded area) where changes in chromatin accessibility (shaded region) are associated with changes in gene expression for Zld **(i)** or Grh **(k)**.
 **j,l,** Proportion of class I, II or III regions that is proximal to a gene that is differentially expressed (DE) upon Zld **(j)** or Grh **(l)** expression.
 Promoter-proximal and promoter-distal binding sites are shown separately.
-The grey dotted line indicates the percentage of all binding sites that are proximal to a upregulated expressed gene.
+The grey dotted line indicates the percentage of all binding sites that are proximal to a differentially expressed gene.
 
 **Figure 2: Twist binds closed chromatin extensively and drives accessibility at a limited number of sites. a,** Genome browser tracks showing examples of individual class I, II or III regions **b,** Pie charts showing the distribution of class I, II, and III binding sites.
 **c,** The proportion of class I, II or III binding sites that occur at promoters (-500 to +100 bp around transcription start site) or promoter distal regions.
@@ -14,7 +15,7 @@ The grey dotted line indicates the percentage of all binding sites that are prox
 **Figure 3: Motif content shapes pioneer-factor activity. a,** Venn diagram showing overlap between class I regions for Zld, Grh and Twi.
 **b,** Heatmap of ChIP-seq signal at class I sites that overlap between Zld, Grh, and Twi.
 Zld, Grh, and Twi ChIP-seq data were generated in this study.
-Remaining ChIP-seq datasets were previously published (see Supplementary table 1)[@Henriques2018; @Philip2015; @Tettey2019].
+Remaining ChIP-seq datasets were previously published (see Supplementary table 2)[@Henriques2018; @Philip2015; @Tettey2019].
 **c-e,** Heatmaps showing the percentage of regions containing a canonical Zld **(c)**, Grh **(d)**, or Twi motif **(e)**.
 Logos plot of the canonical motif are shown alongside the heatmap.
 Percentages are shown for class I, II or III binding sites, or all wild-type ATAC-seq peaks as a control for the background motif frequency within regulatory elements.
@@ -35,7 +36,7 @@ Y-axis indicates the total number of peaks called at each concentration.
 Colors indicate the proportion of those peaks that are defined as class II, or III.
 **d,h,l,** Venn diagrams showing overlap of peaks called at physiological or supraphysiological expression levels for Zld **(d)**, Grh **(h)**, or Twi **(l)**.
 
-**Figure 6: Regions outside the DNA-binding domain are required for pioneer-factor function. a-b,** Genome browser tracks showing example of class III regions where expression of the DBD alone is insufficient for robust binding and chromatin opening.
+**Figure 6: Regions outside the DNA-binding domain are required for pioneer-factor function. a,b,** Genome browser tracks showing example of class III regions where expression of the DBD alone is insufficient for robust binding and chromatin opening.
 Adjacent class I regions are shown where the DBD alone can bind.
 Tracks shown for Zld **(a)** and Grh **(b)**.
 Class III regions are highlighted with gray shading.
@@ -67,6 +68,8 @@ Gray arrowheads indicate background bands used to assess loading.
 
 **Extended Data Figure 4: Twist binding leads to chromatin opening and transcriptional activation. a,** Immunoblot showing titration of Twi or HA-Twi protein levels in stable cell lines.
 Protein levels in stable cell lines are compared to 3-4 hour (H) old embryos.
+Black arrowhead indicates Twi or HA-Twi.
+Gray arrowhead indicates background band used to assess loading.
 **b,** Volcano plots showing changes in ATAC-seq signal in cells expressing Twi when compared to wild-type cells treated with the same concentration of CuSO~4~.
 **c,** RNA-seq volcano plots showing gene expression changes in cells expressing Twi when compared to wild-type cells treated with the same concentration of CuSO~4~.
 **d,** Bar plots showing enrichment of gene ontology terms in genes significantly upregulated upon expression of Twi.

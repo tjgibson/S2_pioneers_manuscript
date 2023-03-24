@@ -201,6 +201,8 @@ annoYaxis(
 plotGenes(
   params = region, assembly = "dm6",
   x = (ref_x + x_offset_browser), y = (ref_y + 2), height = 0.75, width = 6, fontsize = small_text_params$fontsize,
+  fill = c("gray50", "gray50"),
+  fontcolor = c("gray50", "gray50"),
   just = c("left", "top"),
   default.units = "cm"
 )
@@ -327,6 +329,8 @@ annoYaxis(
 plotGenes(
   params = region, assembly = "dm6",
   x = (ref_x + x_offset_browser), y = (ref_y + 2), height = 0.75, width = 6, fontsize = small_text_params$fontsize,
+  fill = c("gray50", "gray50"),
+  fontcolor = c("gray50", "gray50"),
   just = c("left", "top"),
   default.units = "cm"
 )

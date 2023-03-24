@@ -28,6 +28,19 @@ source("workflow/scripts/utils.R")
 # S2_Twi_ChIP_bw <-  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw"
 # embryo_Twi_ChIP_bw <-  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-1-3H_aTwi.bw"
 
+# S2_Zld_ChIP_DMSO_bw <-  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_DMSO_aZld.bw"
+# S2_Zld_ChIP_taz_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_taz_aZld.bw"
+# S2_Zld_H3K27me3_DMSO_bw <- "histone_CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Zld_DMSO_aH3K27me3_large.bw"
+# S2_Zld_H3K27me3_taz_bw <- "histone_CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Zld_Taz_aH3K27me3_large.bw"
+# S2_Grh_ChIP_DMSO_bw <-  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_DMSO_aGrh.bw"
+# S2_Grh_ChIP_taz_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_taz_aGrh.bw"
+# S2_Grh_H3K27me3_DMSO_bw <- "histone_CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Grh_DMSO_aH3K27me3_large.bw"
+# S2_Grh_H3K27me3_taz_bw <- "histone_CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Grh_Taz_aH3K27me3_large.bw"
+# S2_Twi_ChIP_DMSO_bw <-  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-HA-Twi_DMSO_aHA.bw"
+# S2_Twi_ChIP_taz_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-HA-Twi_taz_aHA.bw"
+# S2_Twi_H3K27me3_DMSO_bw <- "histone_CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-HA-Twi_DMSO_aH3K27me3_large.bw"
+# S2_Twi_H3K27me3_taz_bw <- "histone_CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-HA-Twi_Taz_aH3K27me3_large.bw"
+
 zld_tissue_occupancy_fn <- snakemake@input[["zld_tissue_occupancy"]]
 grh_tissue_occupancy_fn <- snakemake@input[["grh_tissue_occupancy"]]
 twi_tissue_occupancy_fn <- snakemake@input[["twi_tissue_occupancy"]]
@@ -165,32 +178,32 @@ plotText(
 
 plotText(
   label = "I", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 0.6), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 0.5), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "II", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 1.3), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 1.05), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "III", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 1.58), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 1.25), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "IV", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 1.9), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 1.55), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "V", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 2.5), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 2.1), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "VI", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 4), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 3.75), just = c("center"), default.units = "cm"
 )
 
 plotText(
@@ -280,27 +293,27 @@ plotText(
 
 plotText(
   label = "I", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 0.5), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 0.75), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "II", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 1.35), just = c("center"), default.units = "cm"
-)
-
-plotText(
-  label = "III", params = small_text_params, fontface = "bold",
   x = (ref_x), y = (ref_y + 1.8), just = c("center"), default.units = "cm"
 )
 
 plotText(
+  label = "III", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 2.35), just = c("center"), default.units = "cm"
+)
+
+plotText(
   label = "IV", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 2.3), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 2.7), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "V", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 2.7), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 3.05), just = c("center"), default.units = "cm"
 )
 
 plotText(
@@ -394,32 +407,32 @@ plotText(
 
 plotText(
   label = "I", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 1.25), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 1.5), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "II", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 3.25), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 3.5), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "III", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 4.35), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 4.4), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "IV", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 4.55), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 4.6), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "V", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 4.75), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 4.8), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "VI", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 5), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 5.1), just = c("center"), default.units = "cm"
 )
 
 plotText(
@@ -506,32 +519,32 @@ plotText(
 
 plotText(
   label = "I", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 0.6), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 0.5), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "II", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 1.3), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 1.05), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "III", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 1.58), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 1.25), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "IV", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 1.9), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 1.55), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "V", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 2.5), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 2.1), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "VI", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 4), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 3.75), just = c("center"), default.units = "cm"
 )
 
 plotText(
@@ -617,27 +630,27 @@ plotText(
 
 plotText(
   label = "I", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 0.5), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 0.75), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "II", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 1.35), just = c("center"), default.units = "cm"
-)
-
-plotText(
-  label = "III", params = small_text_params, fontface = "bold",
   x = (ref_x), y = (ref_y + 1.8), just = c("center"), default.units = "cm"
 )
 
 plotText(
+  label = "III", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 2.35), just = c("center"), default.units = "cm"
+)
+
+plotText(
   label = "IV", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 2.3), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 2.7), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "V", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 2.7), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 3.05), just = c("center"), default.units = "cm"
 )
 
 plotText(
@@ -730,32 +743,32 @@ plotText(
 
 plotText(
   label = "I", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 1.25), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 1.5), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "II", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 3.25), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 3.5), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "III", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 4.35), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 4.4), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "IV", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 4.55), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 4.6), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "V", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 4.75), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 4.8), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "VI", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 5), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 5.1), just = c("center"), default.units = "cm"
 )
 
 plotText(
