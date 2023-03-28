@@ -29,7 +29,7 @@ fig_height <- 9.5
 
 # open pdf
 pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
-# pdf("manuscript/figures/extended_data_fig4.pdf", useDingbats = FALSE)
+# pdf("manuscript/figures/extended_data_fig4.pdf", useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
 
 # generate plotGardener page
 pageCreate(width = fig_width, height = fig_height, default.units = "cm", showGuides = FALSE)
@@ -236,7 +236,7 @@ b_plot <- twi_ATAC_results |>
   mutate(diff_class = fct_relevel(diff_class, c("ns", "not twi bound", "twi bound"))) |>
   # mutate(diff_class = fct_rev(diff_class)) |>
   ggplot(aes(x=log2FoldChange, y=-log10(padj), color = diff_class)) + 
-  geom_point(size = 0.1) + 
+  geom_point(size = 0.1, alpha = 0.5, shape = 16) + 
   scale_color_manual(values = c("grey", "black", twi_color)) +
   theme_classic(base_size = small_text_params$fontsize) +
   theme(legend.key.size = unit(2, 'mm'),
@@ -295,7 +295,7 @@ c_plot <- twi_RNAseq_results |>
     y = -log10(padj),
     color = diff_class
   )) +
-  geom_point(size = 0.1) +
+  geom_point(size = 0.1, alpha = 0.5, shape = 16) +
   scale_color_manual(values = c("grey", "black", twi_color)) +
   theme_classic(base_size = small_text_params$fontsize) +
   theme(legend.key.size = unit(2, 'mm'),
@@ -383,7 +383,3 @@ plotGG(
 
 # close graphics device ========================================================
 dev.off()
-
-
-
-

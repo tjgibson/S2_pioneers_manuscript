@@ -11,35 +11,7 @@ source("workflow/scripts/utils.R")
 
 
 # define input files ===========================================================
-class_I_bed_fn <- c(
-  zld_class_I = snakemake@input[["zld_class_I_bed_fn"]],
-  grh_class_I = snakemake@input[["grh_class_I_bed_fn"]],
-  twi_class_I = snakemake@input[["twi_class_I_bed_fn"]]
-)
-
-ns_sites_bed_fn <- snakemake@input[["ns_sites_bed_fn"]]
-
-S2_Zld_ChIP_bw <-  snakemake@input[["S2_Zld_ChIP_bw"]]
-S2_Grh_ChIP_bw <-  snakemake@input[["S2_Grh_ChIP_bw"]]
-S2_Twi_ChIP_bw <-  snakemake@input[["S2_Twi_ChIP_bw"]]
-H3K27ac_bw <- snakemake@input[["H3K27ac_bw"]]
-Nej_bw <- snakemake@input[["Nej_bw"]]
-H3K4me1_bw <-  snakemake@input[["H3K4me1_bw"]]
-H3K4me3_bw <- snakemake@input[["H3K4me3_bw"]]
-H2AV_bw <- snakemake@input[["H2AV_bw"]]
-
-zld_ChIP_classes_fn <- snakemake@input[["zld_ChIP_classes_fn"]]
-grh_ChIP_classes_fn <- snakemake@input[["grh_ChIP_classes_fn"]]
-twi_ChIP_classes_fn <- snakemake@input[["twi_ChIP_classes_fn"]]
-
-zld_motifs_fn <- snakemake@input[["zld_motifs_fn"]]
-grh_motifs_fn <- snakemake@input[["grh_motifs_fn"]]
-twi_motifs_fn <- snakemake@input[["twi_motifs_fn"]]
-
-zld_WT_atac_fn <- snakemake@input[["zld_WT_atac_fn"]]
-grh_WT_atac_fn <- snakemake@input[["grh_WT_atac_fn"]]
-twi_WT_atac_fn <- snakemake@input[["twi_WT_atac_fn"]]
-
+# define input files explicitly for interactive testing
 # class_I_bed_fn <- c(
 #   zld_class_I = "results/ChIP_peak_classes/zld_class_I.bed",
 #   grh_class_I = "results/ChIP_peak_classes/grh_class_I.bed",
@@ -69,6 +41,36 @@ twi_WT_atac_fn <- snakemake@input[["twi_WT_atac_fn"]]
 # grh_WT_atac_fn <- "ATACseq/results/peaks/merged_by_sample/FL_ATAC_S2-WT_100uM_summits.bed"
 # twi_WT_atac_fn <- "ATACseq/results/peaks/merged_by_sample/Twi_ATAC_S2-WT_40uM_summits.bed"
 
+# get input files from snakemake
+class_I_bed_fn <- c(
+  zld_class_I = snakemake@input[["zld_class_I_bed_fn"]],
+  grh_class_I = snakemake@input[["grh_class_I_bed_fn"]],
+  twi_class_I = snakemake@input[["twi_class_I_bed_fn"]]
+)
+
+ns_sites_bed_fn <- snakemake@input[["ns_sites_bed_fn"]]
+
+S2_Zld_ChIP_bw <-  snakemake@input[["S2_Zld_ChIP_bw"]]
+S2_Grh_ChIP_bw <-  snakemake@input[["S2_Grh_ChIP_bw"]]
+S2_Twi_ChIP_bw <-  snakemake@input[["S2_Twi_ChIP_bw"]]
+H3K27ac_bw <- snakemake@input[["H3K27ac_bw"]]
+Nej_bw <- snakemake@input[["Nej_bw"]]
+H3K4me1_bw <-  snakemake@input[["H3K4me1_bw"]]
+H3K4me3_bw <- snakemake@input[["H3K4me3_bw"]]
+H2AV_bw <- snakemake@input[["H2AV_bw"]]
+
+zld_ChIP_classes_fn <- snakemake@input[["zld_ChIP_classes_fn"]]
+grh_ChIP_classes_fn <- snakemake@input[["grh_ChIP_classes_fn"]]
+twi_ChIP_classes_fn <- snakemake@input[["twi_ChIP_classes_fn"]]
+
+zld_motifs_fn <- snakemake@input[["zld_motifs_fn"]]
+grh_motifs_fn <- snakemake@input[["grh_motifs_fn"]]
+twi_motifs_fn <- snakemake@input[["twi_motifs_fn"]]
+
+zld_WT_atac_fn <- snakemake@input[["zld_WT_atac_fn"]]
+grh_WT_atac_fn <- snakemake@input[["grh_WT_atac_fn"]]
+twi_WT_atac_fn <- snakemake@input[["twi_WT_atac_fn"]]
+
 ## create blank layout for plot =================================================
 # define figure dimensions in cm
 fig_width <-  12
@@ -76,6 +78,7 @@ fig_height <- 7.5
 
 # open pdf
 pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
+# pdf("manuscript/figures/fig3.pdf", useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
 
 # generate plotGardener page
 pageCreate(width = fig_width, height = fig_height, default.units = "cm", showGuides = FALSE)
@@ -307,6 +310,7 @@ zld_plot <- zld_ChIP_classes |>
   ggplot(aes(x=class, y = motif_name, fill = percent_with_motif)) + 
   geom_tile(color = "black") +
   scale_fill_distiller(palette = "Blues", direction = 1, limits=hm_limits, breaks = hm_limits, name = NULL) +
+  scale_x_discrete(labels = c("background", "class I", "class II", "class III")) +
   geom_text(aes(label = percent_with_motif), size = small_text_params$fontsize * 0.35) +
   theme_minimal(base_size = small_text_params$fontsize) +
   theme(legend.key.size = unit(1, 'mm'), 
@@ -401,6 +405,7 @@ grh_plot <- grh_ChIP_classes |>
   
   ggplot(aes(x=class, y = motif_name, fill = percent_with_motif)) + 
   geom_tile(color = "black") +
+  scale_x_discrete(labels = c("background", "class I", "class II", "class III")) +
   scale_fill_distiller(palette = "Oranges", direction = 1, limits=hm_limits, breaks = hm_limits, name = NULL) +
   geom_text(aes(label = percent_with_motif), size = small_text_params$fontsize * 0.35) +
   theme_minimal(base_size = small_text_params$fontsize) +
@@ -494,6 +499,7 @@ twi_plot <- twi_ChIP_classes |>
   
   ggplot(aes(x=class, y = motif_name, fill = percent_with_motif)) + 
   geom_tile(color = "black") +
+  scale_x_discrete(labels = c("background", "class I", "class II", "class III")) +
   scale_fill_distiller(palette = "GnBu", direction = 1, limits=hm_limits, breaks = hm_limits, name = NULL) +
   geom_text(aes(label = percent_with_motif), size = small_text_params$fontsize * 0.35) +
   theme_minimal(base_size = small_text_params$fontsize) +
@@ -549,7 +555,7 @@ n_motifs_ylim <- c(0,8)
 
 # panel label
 ref_x <- 0.5
-ref_y <- 5.25 
+ref_y <- 5.5
 
 # boxplot
 zld_n_motifs_plot <- zld_ChIP_classes |>
@@ -576,7 +582,7 @@ plotText(
 # Panel G ======================================================================
 # panel label
 ref_x <- 2.25
-ref_y <- 5.25 
+ref_y <- 5.5
 
 # boxplot
 zld_motif_score_plot <- zld_ChIP_classes |>
@@ -603,7 +609,7 @@ plotText(
 # Panel H ======================================================================
 # panel label
 ref_x <- 4.5
-ref_y <- 5.25 
+ref_y <- 5.5
 
 # boxplot
 grh_n_motifs_plot <- grh_ChIP_classes |>
@@ -631,7 +637,7 @@ plotText(
 # Panel I ======================================================================
 # panel label
 ref_x <- 6.25
-ref_y <- 5.25 
+ref_y <- 5.5 
 
 # boxplot
 grh_motif_score_plot <- grh_ChIP_classes |>
@@ -658,7 +664,7 @@ plotText(
 # Panel J ======================================================================
 # panel label
 ref_x <- 8.5
-ref_y <- 5.25 
+ref_y <- 5.5 
 
 # boxplot
 twi_n_motifs_plot <- twi_ChIP_classes |>
@@ -685,7 +691,7 @@ plotText(
 # Panel K ======================================================================
 # panel label
 ref_x <- 10.25
-ref_y <- 5.25 
+ref_y <- 5.5 
 
 # boxplot
 twi_motif_score_plot <- twi_ChIP_classes |>
@@ -707,9 +713,5 @@ plotText(
   label = "k", params = panel_label_params, fontface = "bold",
   x = ref_x, y = ref_y, just = "bottom", default.units = "cm"
 )
-
-
-
-
 
 dev.off()
