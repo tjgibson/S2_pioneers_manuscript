@@ -3,30 +3,29 @@
 ---
 
 During animal development, the totipotent embryo divides and differentiates to give rise to the diverse cell and tissue types of the adult organism.
-The establishment of cell-type specific gene expression programs is driven by transcription factors (TFs) that bind sequence-specifically to *cis*-regulatory elements.
+The establishment of cell-type specific gene expression programs is driven by transcription factors (TFs) that bind sequence specifically to *cis*-regulatory elements.
 The packaging of DNA into chromatin obstructs TFs from accessing their target motifs [@Luger1997].
 Thus, many TFs only bind the small subset of genomic motifs that fall within regions of open chromatin [@Li2011].
-A specialized subset of transcription factors, termed pioneer factors (PFs), are defined by their ability to bind target motifs on nucleosomes and promote chromatin opening, allowing additional TFs to bind and activate transcription [@Iwafuchi-Doi2016; @Zaret2020].
+A specialized subset of transcription factors, termed pioneer factors (PFs), are defined by their ability to bind target motifs on nucleosomes and promote chromatin opening, allowing additional TFs to bind these newly accessible motifs and activate transcription [@Iwafuchi-Doi2016; @Zaret2020].
 Through this activity, PFs drive cell-type specific gene expression programs that determine cell fate.
-Due to these properties, PFs are essential players in development, induced reprogramming, and disease [@Larson2021].
+PFs are essential players in development, induced reprogramming, and disease [@Larson2021].
 
 Despite their ability to target closed, nucleosomally occupied binding sites, PFs do not bind to all genomic instances of their target motifs.
 PFs also have cell-type specific patterns of binding and activity, suggesting that features beyond sequence motif govern PF function [@Soufi2012; @Donaghey2018; @Chronis2017; @Buecker2014; @Cernilogar2019; @Lupien2008].
 Chromatin structure may influence PF binding as cell-type specific occupancy is often associated with distinct chromatin features [@Mayran2018a; @Lupien2008; @Cernilogar2019].
-Many PFs bind primarily to naïve chromatin that is inaccessible, inactive, and lacks most histone modifications [@Soufi2012; @Donaghey2018].
+Many PFs bind primarily to naïve chromatin that is inactive and lacks most histone modifications [@Soufi2012; @Donaghey2018].
 Together, these studies indicate that PF occupancy is regulated by both genomic context and cell-type specific features.
 Nonetheless, the mechanisms that govern PF occupancy and activity remain largely unknown.
 
-Although PFs are defined by their ability to promote chromatin opening, many PFs are only required for chromatin accessibility at a subset of their binding sites.
-Thus, PF activity is regulated at a step other than chromatin binding.
+PF activity is regulated at a step other than chromatin binding.
+PFs are defined by their ability to promote chromatin opening, yet many PFs are only required for chromatin accessibility at a subset of their binding sites.
 For example, upon depletion of the PFs Zelda, GAGA-factor, Oct4, or Sox2, chromatin accessibility is lost only at a subset of the binding sites for the respective factor [@Schulz2015; @Gaskill2021; @maresca2022].
-This suggests that PF binding does not necessarily translate to chromatin opening.
 Pax7, a PF important for specification of pituitary melanotropes, binds to thousands of "pioneer primed" regions where binding does not result in chromatin opening [@Mayran2018a].
 Further separating PF binding from opening, at some Pax7-bound loci there is a temporal delay between binding and chromatin opening.
 This distinction between binding and opening may be due to PFs recruiting additional factors to drive chromatin accessibility.
 For example, both GAGA factor and Oct4 require nucleosome remodelers to promote chromatin accessibility [@Judd2021; @King2017].
 Nonetheless, PF binding can also perturb nucleosome structure.
-Oct4 binding to nucleosomes can result in local remodeling of histone-DNA interactions, especially at the nucleosome entry-exit site [@Michael2020].
+Oct4 binding to nucleosomes results in local remodeling of histone-DNA interactions, especially at the nucleosome entry-exit site [@Michael2020].
 Together, these observations highlight that the relationship between PF binding and activity is not well understood.
 
 To begin to elucidate the factors that regulate PF binding and activity, we focused on two well-studied PFs that control conserved developmental transitions, Zelda (Zld) and Grainy head (Grh).
@@ -38,13 +37,14 @@ Since the discovery of Zld as an activator of the initial wave of zygotic transc
 Similar to the role of Zld in genomic reprogramming in the early embryo, Zld promotes the neural stem cell fate in the developing larval brain [@Larson2021a].
 Despite the shared ability to promote the undifferentiated fate in both tissues, the majority of Zld-binding sites are unique to either tissue.
 In contrast to the tissue-specific chromatin occupancy of Zld, Grh-binding sites are largely shared between tissues [@Nevil2017].
-Grh is a master regulator of epithelial cell fate that is conserved among metazoans and functions as a pioneer factor in both *Drosophila* larva and mammalian cell culture [@Wang2012; @Jacobs2018; @Nevil2020].
+Grh is a master regulator of epithelial cell fate that is conserved among metazoans and functions as a pioneer factor in both *Drosophila* larva and mammalian cell culture [@Wang2012; @Jacobs2018;@Chen2018; @Nevil2020].
 However, in the early *Drosophila* embryo Grh is dispensible for chromatin accessibility, and only displays pioneering activity in late embryos or larval tissues.
 Thus, Grh pioneering activity, but not Grh binding is regulated over development.
 
 The essential roles of Zld and Grh in diverse biological processes and the context-dependent binding and activity of these factors makes them excellent models to explore how PF binding is regulated and how PF occupancy relates to chromatin opening.
-Because many previous studies have relied on loss-of-function experiments, it has been difficult to disentangle causal relationships between chromatin structure and PF activity.
-We therefore expressed Zld and Grh in Drosophila Schneider 2 (S2) cells, where neither factor is endogenously expressed.
-When ectopically expressed, Zld and Grh bind to closed chromatin, establish chromatin accessibility, and promote transcriptional activation at a subset of binding sites.
-By comparing the features of these factors and relating exogenous activity to *in vivo* functionality, we demonstrate that pioneering depends on a combination of local chromatin structure, sequence context, and PF concentration.
+Because both Zld and Grh are expressed immediately following fertilization, previous studies have largely relied on loss-of-function experiments.
+Thus, it has been difficult to disentangle causal relationships between chromatin structure and PF activity.
+We therefore leveraged the well-characterized Drosophila Schneider 2 (S2) cell-culture system in which neither Zld nor Grh is endogenously expressed as a platform to identify features that promote or prevent PF binding and activity.
+When ectopically expressed, Zld and Grh bound to closed chromatin, established chromatin accessibility, and promoted transcriptional activation at a subset of binding sites.
+By comparing the features of these factors and relating exogenous activity to *in vivo* functionality, we demonstrated that pioneering depended on a combination of local chromatin structure, sequence context, and PF concentration.
 We propose that pioneering activity is not a binary feature intrinsic to a protein, but occurs on a spectrum and can be regulated by a variety of protein-intrinsic and cell-type specific features.

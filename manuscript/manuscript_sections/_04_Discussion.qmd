@@ -4,10 +4,12 @@ editor: visual
 # bibliography: ../references.bib
 ---
 
-By exogenously expressing Zld, Grh, and Twi in S2 cells where they are not normally expressed, leveraging prior data identifying binding sites for these factors *in vivo*, and analyzing the wealth of data on chromatin structure in S2 cells, we identified features that govern PF activity.
-Studying the two well-defined PFs Zld and Grh, along with Twi, which possess features distinct from these two factors, allowed us to determine general properties regulating PF activity.
-Furthermore, our analysis of both binding and accessibility allowed us to separate PF occupancy from activity.
-We find that pioneering activity requires a high level of chromatin occupancy that can be achieved through both protein-intrinsic and protein-extrinsic features such as local chromatin structure, protein concentration, DNA motif content, and protein domains outside the DBD (Fig. 6g).
+To identify the mechanisms that regulate tissue-specific PF engagement with chromatin, we exogenously expressed Zld, Grh, and Twi in S2 cells where they are not normally expressed.
+Leveraging prior data identifying binding sites for these factors *in vivo* and analyzing the wealth of data on chromatin structure in S2 cells, we identified features that govern PF activity.
+We studied the two well-defined PFs Zld and Grh, along with Twi, which possess features distinct from these two factors.
+Studying these three distinct TFs, which engage the genome through structurally distinct DBDs, allowed us to determine shared properties that regulate their pioneering activity.
+Furthermore, our genome-wide analysis ofbinding, chromatin accessibility, and gene expression allowed us to separate PF occupancy and activity.
+Collectively, we find that pioneering activity requires a high level of chromatin occupancy that can be achieved through both protein-intrinsic and protein-extrinsic features such as local chromatin structure, protein concentration, DNA motif content, and protein domains outside the DBD (Fig. 6g).
 
 Even when expressed at low levels Zld, Grh and Twi bind promiscuously to active, accessible regions with degenerate motifs or no detectable motifs at all.
 When expressed at approximately physiological levels these factors all possess the capacity to bind to canonical motifs in closed chromatin.
@@ -27,16 +29,15 @@ This may partially explain the presence of class VI sites that lack repressive h
 For example, in mammalian cell culture FOXA2 occupancy at a subset of tissue-specific binding sites was increased when GATA4 was present [@Donaghey2018].
 Similarly, PARP-1 stabilizes Sox2 binding at subset of physiologically relevant sites in mouse embryonic stem cells [@Liu2017].
 Unlike Zld and Grh, increased expression of Twi did not result in binding to regions bound in other tissues.
-It is probable that additional cofactors, such as Zld itself, may be required for Twi occupancy at these regions.
-Prior studies demonstrated an important role for Zld in promoting Twi binding in the early embryo [@Yáñez-Cuna2012; @brennan2022].
+It is possible that additional cofactors, may be required for Twi occupancy at these regions.
 Along with prior studies, our data suggest that PF occupancy is regulated by tissue-intrinsic features, including levels of PF expression, the complement of cofactors expressed and chromatin structure.
 
 In addition to cell-type specific factors, we demonstrate that protein-intrinsic features control PF binding.
 We show that regions outside the DBD of Zld and Grh are important for binding-site selection.
 Similarly, regions outside the DBDs of human PFs FOXA1 and SOX2 are required for robust binding of closed chromatin [@lerner2022].
-Increasing evidence suggests that eukaryotic transcription factors are not as modular as their bacterial counterparts and has demonstrated the role that intrinsically disordered regions (IDRs) play in regulating chromatin occupancy[@Ferrie2022; @Brodsky2020] Both Zld and Grh contain long disordered domains.
+Increasing evidence suggests that eukaryotic transcription factors are not as modular as their bacterial counterparts and has demonstrated a role for intrinsically disordered regions (IDRs) in regulating chromatin occupancy[@Ferrie2022; @Brodsky2020] Both Zld and Grh contain long disordered domains.
 For Zld, this disordered domain is required for transcriptional activation and promotes optimal nucleosome binding *in vitro* [@Hamm2015; @McDaniel2019a].
-IDRs may contribute to TF binding through protein-protein interactions with other transcription factors, nonspecific interactions with DNA or histones, or by driving condensate formation [@Brodsky2021; @Staller2022].
+IDRs may contribute to TF binding through protein-protein interactions with other TFs, nonspecific interactions with DNA or histones, or by driving condensate formation [@Brodsky2021; @Staller2022].
 Indeed, Zld is visualized in hubs within the nucleus, and these promote binding of additional transcription factors [@Mir2018; @Yamada2019].
 Zld and Grh DBDs retain the capacity to bind to class I regions, despite the weaker motifs present at these sites.
 Thus, the binding to class I regions is not due to interactions between IDRs and other proteins present at active chromatin.
@@ -44,11 +45,14 @@ Instead, this binding may be driven by the high affinity of the DBDs for nucleos
 To provide a more complete understanding of how cis-regulatory regions are established, we must further investigate how IDRs contribute to PF binding and chromatin accessibility.
 
 The failure of the DBD alone to promote chromatin accessibility implicates a separation between the ability to bind nucleosomes and the capacity to promote chromatin accessibility.
+While the DBD of Zld is sufficient to bind nucleosomes in vitro, regions outside the DBD promote this interaction [@McDaniel2019a].
+Thus, nucleosome binding in vitro does not necessarily translate into in vivo occupancy of closed chromatin.
 Local restructuring of nucleosome-DNA interactions may be insufficient for establishing accessible chromatin [@Michael2020; @Dodonova2020] and, instead, may stabilize PF binding to allow recruitment of cofactors, such as chromatin remodelers [@Judd2021; @King2017].
-Furthermore, our identification of hundreds of class II regions, which are bound but not opened by exogenous PF expression, further separates chromatin binding and PF activity.
-Increased motif content at the sites in which PFs can promote accessibility suggests a model whereby PF chromatin occupancy is correlated with PF activity.
-Supporting this model, we identified a strong concentration dependence of chromatin opening by Zld and Grh.
+Furthermore, our identification of hundreds of class II regions, which are bound but not opened by exogenous PF expression, distinguishes chromatin binding and PF activity.
+We propose that PF-mediated chromatin accessibility requires high chromatin occupancy.
+This is supported by our data demonstrating a higher motif content at sites in which PF binding promotes accessibility as compared to sites which remain closed despite PF occupancy.
+Furthermore, we identified a strong concentration dependence of Zld and Grh for chromatin opening.
 This model would suggest that PF expression levels must be tightly controlled during development.
-Indeed, misexpression of the PFs Grh and DUX4 lead to diseases such as epithelial cancer or facioscapulohumeral muscular dystrophy (FSHD), respectively [@Campbell2018; @Reese2019].
+Indeed, misexpression of the PFs Grh and DUX4 leads to diseases such as epithelial cancer or facioscapulohumeral muscular dystrophy (FSHD), respectively [@Campbell2018; @Reese2019].
 Together our data identify protein intrinsic and extrinsic features that govern PF binding and activity, providing insights into how these factors define novel *cis*-regulatory elements and drive gene-regulatory networks to modulate cell fate.
 A deeper understanding of how PF activity is regulated will have important implications for determining how diseases are caused by their misexpression and our ability to use these powerful factors for cellular reprogramming.

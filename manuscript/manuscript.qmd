@@ -1,10 +1,10 @@
 ---
-title: "Protein-intrinsic properties and epigenetic effects regulate pioneer-factor binding and function"
+title: "Protein-intrinsic properties and context-dependent effects regulate pioneer-factor binding and function"
 author:
   - Tyler J. Gibson, Melissa M. Harrison*
   # - Melissa M. Harrison
 affiliations:
-  - name: Department of Biomolecular Chemistry, University of Wisconsin School of Medicine and Public Health
+  - name: Department of Biomolecular Chemistry, University of Wisconsin-Madison
     city: Madison
     state: WI
 format:

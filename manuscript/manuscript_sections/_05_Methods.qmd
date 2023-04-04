@@ -110,7 +110,7 @@ Regions with an adjusted p-value \< 0.05 were considered differentially accessib
 
 ## Treatment of S2 cells with tazemetostat
 
-Cells were plated at 1×10^6^ cells per mL and DMSO or tazemetostat was added to a final concentration of 10 µM.
+Cells were plated at 1×10^6^ cells per mL and DMSO or tazemetostat (Fisher Scientific) was added to a final concentration of 10 µM.
 Cells were split on days 2 and 5 and tazemetostat was added to maintain a final concentration of 10 µM.
 On day 5, CuSO~4~ was added to achieve physiological expression of Zld, Grh or Twi (see above).
 On day 7, cells were harvested for immunoblotting, ChIP and CUT&RUN.
@@ -137,10 +137,14 @@ The z-score normalized read depth was multiplied by these scaling factors to gen
 
 ## Analysis of previously published data
 
-Previously published datasets analyzed in this study can be found in supplemental table 2.
+Previously published datasets analyzed in this study can be found in supplementary table 2.
 All previously published data were analyzed in parallel with data from this study using analysis parameters described above.
 
 ## Data and code availability
 
-Sequencing data have been deposited in the Gene Expresion Omnibus under accession GSE227884
+Sequencing data have been deposited in the Gene Expresion Omnibus under accession GSE227884. Reviewers can access the data using reviewer token whsjesemxzqllyj.
 All analysis code is available on GitHub: https://github.com/tjgibson/S2_pioneers_manuscript.
+
+## Acknowledgements
+We thank Alex Theis, Meghan Freund, and Andrew Mehle for helpful discussions and advice. We thank Julia Zeitlinger for generously sharing the Twist antibody. We acknowledge the University of Wisconsin-Madison Biotechnology Center and the NUSeq Core Facility for sequencing. TJG was supported by the National Institutes of Health (NIH) National Research Service Award T32 GM007215. Experiments were supported by a R35 GM136298 from NIH to MMH. MMH was also supported by a Vallee Scholar Award.
+

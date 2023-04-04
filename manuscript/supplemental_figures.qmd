@@ -17,12 +17,12 @@ crossref:
 ![](figures/extended_data_fig1.pdf)
 
 **Stable cell lines allow inducible expression of transcription factors at physiological concentrations. a,** Schematic of generation of stable cell lines and induction of protein expression.
-**b,** mRNA levels of Zld and Grh in S2 cells.
+**b,** mRNA levels of *zld* and *grh* in S2 cells.
 Top histogram shows the distribution of mRNA levels for all *Drosophila* genes.
 Vertical dashed line indicates a log~2~ RPKM value of 0 as a threshold for considering a gene to be expressed.
 **c-d,** Immunoblots showing titration of Zld **(c)** or Grh **(d)** protein levels in stable cell lines.
-Two independently generated cell lines are shown and compared to 2-3H embryos.
-60,000 cells were loaded in each well, which is equivalent to the approximately 60,000 nuclei present in 10 2-3 hour embryos.
+Two independently generated cell lines are shown and compared to 2-3 hours (H) embryos.
+60,000 cells were loaded in each well, which is equivalent to the approximately 60,000 nuclei present in 10 2-3 hours embryos.
 Black arrowheads indicate Zld **(c)** or Grh **(d)**.
 Gray arrowheads indicate background bands used to assess loading.
 **e-g,** Heatmaps comparing Zld **(e)**, Grh **(f)**, or Twi **(g)** ChIP-seq signal to control experiments in which anti-Zld, anti-Grh, anti-Twi, or IgG antibodies were used to perform immunopreciptation in wild-type (WT) cells.
@@ -31,9 +31,12 @@ Gray arrowheads indicate background bands used to assess loading.
 ::: {#fig-2}
 ![](figures/extended_data_fig2.pdf)
 
-**Ectopic expression of pioneer factors in S2 cells leads to widespread changes to chromatin accessibility and gene expression. a,d,** Volcano plots showing changes in ATAC-seq signal in cells expressing Zld **(a)** or Grh **(d)** when compared to WT cells treated with the same concentration of CuSO~4~.
+**Ectopic expression of pioneer factors in S2 cells leads to widespread changes to chromatin accessibility and gene expression. a,d,** Volcano plots showing changes in ATAC-seq signal in cells expressing Zld **(a)** or Grh **(d)** when compared to wild-type cells treated with the same concentration of CuSO~4~.
 **b,e,** RNA-seq volcano plots showing gene expression changes in cells expressing Zld **(b)** or Grh **(e)** when compared to wild-type cells treated with the same concentration of CuSO~4~.
-**c,f,** Bar plots showing enrichment of gene ontology terms in genes significantly upregulated upon expression of Zld **(c)** or Grh **(f)**.
+**c,f,** Violin plots showing the correlation between changes in chromatin accessibility and gene expression upon expression of Zld **(c)** or Grh **(f)**.
+On the x-axis, all ATAC-seq peaks are grouped based on increased, decreased, or non-significant (ns) changes to chromatin accessibility in Zld- or Grh-expresing cells compared to wild-type cells.
+Groups were compared using a Wilcoxon rank sum test and Bonferroni-corrected p-values are shown.
+**g,h,** Bar plots showing enrichment of gene ontology terms in genes significantly upregulated upon expression of Zld **(g)** or Grh **(h)**.
 :::
 
 ::: {#fig-3}
@@ -105,6 +108,7 @@ For each sample, the heatmap displays the percentage of barcode reads for each s
 
 **Expression of Zld and Grh DNA-binding domains at protein levels comparable to the full-length proteins. a-b,** Immunoblots showing titration of protein levels for Zld **(a)** or Grh **(b)** DNA-binding domains to match expression of the full-length proteins.
 DNA-binding domain protein levels are shown at a range of CuSO~4~ concentrations and compared to an equivalent number of cells expressing full-length Zld or Grh at approximately physiological levels.
+The concentration of CuSO~4~ used to induce DBD expression for ChIP, ATAC and immunofluorescence experiments is indicated in red.
 **c-d,** Immunofluorescent microscopy images of stable cell lines expressing full-length protein or DBD only for Zld **(c)** or (Grh).
 Stable cell lines are compared to wild-type (WT) cells.
 :::
