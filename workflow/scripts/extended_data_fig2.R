@@ -8,6 +8,8 @@ library(clusterProfiler)
 library(enrichplot)
 library(rtracklayer)
 library(ChIPseeker)
+library(ggpubr)
+library(rstatix)
 
 # define input files ===========================================================
 # define input files explicitly for testing
@@ -30,8 +32,8 @@ grh_ATAC_results_fn <- snakemake@input[["grh_ATAC_results_fn"]]
 zld_ChIP_peaks_fn <- snakemake@input[["zld_ChIP_peaks_fn"]]
 grh_ChIP_peaks_fn <- snakemake@input[["grh_ChIP_peaks_fn"]]
 
-# # create blank layout for plot ===============================================
-# # create blank layout for plot ===============================================
+
+# create blank layout for plot ===============================================
 fig_width <-  16
 fig_height <- 18
 
@@ -197,10 +199,7 @@ anno_df <- as.data.frame(peakAnno@anno) |>
   )
 
 p_data <- zld_ATAC_results |> 
-  left_join(anno_df, by = c("peak_chrom","peak_start", "peak_end"))
-
-
-c_plot <- p_data |>
+  left_join(anno_df, by = c("peak_chrom","peak_start", "peak_end")) |>
   mutate(ATAC_direction_of_change = case_when(
     is_diff & (log2FoldChange > 0) ~ "increased",
     is_diff & (log2FoldChange < 0) ~ "decreased",
@@ -208,14 +207,28 @@ c_plot <- p_data |>
   )) |>
   mutate(ATAC_direction_of_change = fct_relevel(ATAC_direction_of_change, c("decreased", "ns", "increased"))) |>
   dplyr::select(ATAC_direction_of_change, gene_id, distanceToTSS) |>
-  left_join(dplyr::select(zld_RNAseq_results, gene_id, log2FoldChange), by = "gene_id") |>
+  left_join(dplyr::select(zld_RNAseq_results, gene_id, log2FoldChange), by = "gene_id")
+
+# perform statistical comparison with wilcoxon test
+stat_test <- compare_means(
+  log2FoldChange ~ ATAC_direction_of_change,
+  ref.group = "ns",
+  p.adjust.method = "bonferroni",
+  method='wilcox.test',
+  data = p_data
+) |>
+  mutate(y.position = c(10,11))
+
+# generate plot
+c_plot <- p_data |>
   ggplot(aes(x = ATAC_direction_of_change, y = log2FoldChange)) +
   geom_violin(fill = zld_color, lwd = 0.1) + 
   geom_boxplot(width = 0.05,color = "gray50", outlier.shape = NA, outlier.size = 0.01, lwd = 0.1) +
   geom_hline(yintercept = 0, color = "gray", lty = 2) +
   xlab("change in ATAC") +
   ylab(bquote("RNA-seq "~log[2]("fold change"))) +
-  theme_classic(base_size = small_text_params$fontsize)
+  theme_classic(base_size = small_text_params$fontsize) +
+  stat_pvalue_manual(stat_test, label = "p.adj", size = small_text_params$fontsize * 0.35)
 
 plotGG(
   plot = c_plot,
@@ -254,14 +267,14 @@ grh_ATAC_results$has_ChIP_peak[overlaps] <- TRUE
 # define categories for coloring points
 grh_ATAC_results <- grh_ATAC_results |> 
   mutate(diff_class = case_when(
-    is_diff & has_ChIP_peak ~ "grh bound",
-    is_diff & !has_ChIP_peak ~ "not grh bound",
+    is_diff & has_ChIP_peak ~ "Grh bound",
+    is_diff & !has_ChIP_peak ~ "not Grh bound",
     !is_diff ~ "ns"
   ))
 
 # volcano plot
 d_plot <- grh_ATAC_results |>
-  mutate(diff_class = fct_relevel(diff_class, c("ns", "not grh bound", "grh bound"))) |>
+  mutate(diff_class = fct_relevel(diff_class, c("ns", "not Grh bound", "Grh bound"))) |>
   # mutate(diff_class = fct_rev(diff_class)) |>
   ggplot(aes(x=log2FoldChange, y=-log10(padj), color = diff_class)) + 
   geom_point(size = 0.1, alpha = 0.5, shape = 16) + 
@@ -375,10 +388,7 @@ anno_df <- as.data.frame(peakAnno@anno) |>
   )
 
 p_data <- grh_ATAC_results |> 
-  left_join(anno_df, by = c("peak_chrom","peak_start", "peak_end"))
-
-
-f_plot <- p_data |>
+  left_join(anno_df, by = c("peak_chrom","peak_start", "peak_end")) |>
   mutate(ATAC_direction_of_change = case_when(
     is_diff & (log2FoldChange > 0) ~ "increased",
     is_diff & (log2FoldChange < 0) ~ "decreased",
@@ -386,14 +396,28 @@ f_plot <- p_data |>
   )) |>
   mutate(ATAC_direction_of_change = fct_relevel(ATAC_direction_of_change, c("decreased", "ns", "increased"))) |>
   dplyr::select(ATAC_direction_of_change, gene_id, distanceToTSS) |>
-  left_join(dplyr::select(grh_RNAseq_results, gene_id, log2FoldChange), by = "gene_id") |>
+  left_join(dplyr::select(grh_RNAseq_results, gene_id, log2FoldChange), by = "gene_id")
+
+# perform statistical comparison with wilcoxon test
+stat_test <- compare_means(
+  log2FoldChange ~ ATAC_direction_of_change,
+  ref.group = "ns",
+  p.adjust.method = "bonferroni",
+  method='wilcox.test',
+  data = p_data
+) |>
+  mutate(y.position = c(13,14))
+
+
+f_plot <- p_data |>
   ggplot(aes(x = ATAC_direction_of_change, y = log2FoldChange)) +
   geom_violin(fill = grh_color, lwd = 0.1) + 
   geom_boxplot(width = 0.05,color = "gray50", outlier.shape = NA, outlier.size = 0.01, lwd = 0.1) +
   geom_hline(yintercept = 0, color = "gray", lty = 2) +
   xlab("change in ATAC") +
   ylab(bquote("RNA-seq "~log[2]("fold change"))) +
-  theme_classic(base_size = small_text_params$fontsize)
+  theme_classic(base_size = small_text_params$fontsize) +
+  stat_pvalue_manual(stat_test, label = "p.adj", size = small_text_params$fontsize * 0.35)
 
 plotGG(
   plot = f_plot,

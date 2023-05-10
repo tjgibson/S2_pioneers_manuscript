@@ -224,7 +224,7 @@ plotText(
 )
 
 plotText(
-  label = "100", params = large_text_params, 
+  label = "100", params = large_text_params, fontcolor = "firebrick3",
   x = ref_x + 3.4, y = ref_y + 0.75, just = c("center"), default.units = "cm"
 )
 
@@ -357,7 +357,7 @@ plotText(
 )
 
 plotText(
-  label = "20", params = large_text_params, 
+  label = "20", params = large_text_params, fontcolor = "firebrick3",
   x = ref_x + 5.4, y = ref_y + 0.75, just = c("center"), default.units = "cm"
 )
 

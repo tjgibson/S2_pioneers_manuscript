@@ -11,7 +11,7 @@ source("workflow/scripts/utils.R")
 
 # define input files ===========================================================
 # define input files explicitly for interactively testing script
-# CR_spikeIn_counts_fn <-"CUTandRUN/results/scaling_factors/epiCypher_barcode_counts.tsv"
+# CR_spikeIn_counts_fn <-"histone_CUTandRUN/results/scaling_factors/epiCypher_barcode_counts.tsv"
 # 
 # taz_blot_aH3K27me3_image <- "data/immunoblot_raw_images/2021-06-29_taz/anti-H3K27me3_3.tif"
 # taz_blot_aTub_image <- "data/immunoblot_raw_images/2021-06-29_taz/anti-tubulin_2.tif"
@@ -22,11 +22,16 @@ taz_blot_aH3K27me3_image <- snakemake@input[["taz_blot_aH3K27me3_image"]]
 taz_blot_aTub_image <- snakemake@input[["taz_blot_aTub_image"]]
 
 
-# open graphics device =========================================================
-pdf(snakemake@output[[1]], useDingbats = FALSE)
-# pdf("manuscript/figures/extended_data_fig8.pdf")
-# create blank layout for plot =================================================
-pageCreate(width = 18, height = 12, default.units = "cm", showGuides = FALSE)
+# create blank layout for plot ===============================================
+fig_width <-  12.5
+fig_height <- 6
+
+# open pdf
+pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
+# pdf("manuscript/figures/extended_data_fig8.pdf", useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
+
+# generate plotGardener page
+pageCreate(width = fig_width, height = fig_height, default.units = "cm", showGuides = FALSE)
 
 # general figure settings ======================================================
 # text parameters for Nature Genetics
@@ -78,10 +83,7 @@ H3K27me3_blot_image <- H3K27me3_blot_image |>
   flop()
 
 # crop image
-H3K27me3_blot_image <- H3K27me3_blot_image[3903:4555,744:966]
-
-# adjust brightness and contrast
-H3K27me3_blot_image <- (H3K27me3_blot_image * 0.7 + 0.2) 
+H3K27me3_blot_image <- H3K27me3_blot_image[1536:2188,880:1102]
 
 # anti-Tubulin
 tub_blot_image <- readImage(taz_blot_aTub_image)
@@ -92,7 +94,7 @@ tub_blot_image <- tub_blot_image |>
   flop()
 
 # crop image
-tub_blot_image <- tub_blot_image[3294:3946,1184:1406]
+tub_blot_image <- tub_blot_image[3280:3932,1184:1406]
 
 # adjust brightness and contrast
 tub_blot_image <- (tub_blot_image - 0.3) 
@@ -135,13 +137,13 @@ plotRaster(
 )
 
 plotSegments(
-  x0 = ref_x + 1.75, y0 = ref_y + 0.25, x1 = ref_x + 3.25, y1 = ref_y + 0.25,
+  x0 = ref_x + 1.8, y0 = ref_y + 0.25, x1 = ref_x + 3.4, y1 = ref_y + 0.25,
   default.units = "cm",
   lwd = 1
 )
 
 plotSegments(
-  x0 = ref_x + 3.5, y0 = ref_y + 0.25, x1 = ref_x + 5, y1 = ref_y + 0.25,
+  x0 = ref_x + 3.6, y0 = ref_y + 0.25, x1 = ref_x + 5.1, y1 = ref_y + 0.25,
   default.units = "cm",
   lwd = 1
 )
@@ -149,7 +151,7 @@ plotSegments(
 # panel label
 plotText(
   label = "DMSO", params = large_text_params, fontface = "bold",
-  x = ref_x + 2.5, y = ref_y, just = "top", default.units = "cm"
+  x = ref_x + 2.7, y = ref_y, just = "top", default.units = "cm"
 )
 
 plotText(
@@ -243,7 +245,7 @@ target_order <- c(
 
 
 # generate plot
-a_plot <- AB_specificity |>
+b_plot <- AB_specificity |>
   mutate(sample_name = factor(sample_name, levels = sample_order)) |>
   mutate(sample_name = fct_rev(sample_name)) |>
   mutate(target = factor(target, levels = target_order)) |>
@@ -261,7 +263,7 @@ a_plot <- AB_specificity |>
 
 # place heatmap on page
 plotGG(
-  plot = a_plot,
+  plot = b_plot,
   x = (ref_x + 1),
   y = (ref_y),
   width = 4.5,
