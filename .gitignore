@@ -77,3 +77,6 @@ manuscript/*
 !nsmb.csl
 !references.bib
 !supplemental_figures.qmd
+
+# docker file
+!Dockerfile
