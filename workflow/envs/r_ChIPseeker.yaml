@@ -4,3 +4,4 @@ channels:
 dependencies:
   - bioconductor-chipseeker
   - bioconductor-txdb.dmelanogaster.ucsc.dm6.ensgene
+  - bioconductor-rtracklayer

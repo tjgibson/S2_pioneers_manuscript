@@ -1,6 +1,7 @@
 # setup ------------------------------------------------------------------------
 suppressPackageStartupMessages(library(ChIPseeker))
 suppressPackageStartupMessages(library(TxDb.Dmelanogaster.UCSC.dm6.ensGene))
+suppressPackageStartupMessages(library(rtracklayer))
 
 # import peaks -----------------------------------------------------------------
 peak_fn <- snakemake@input[[1]]

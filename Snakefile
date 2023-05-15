@@ -91,8 +91,6 @@ rule annotate_ChIP_peaks:
 		"ChIPseq/results/peaks/final/{sample}.bed"
 	output:
 		"ChIPseq/results/peaks/final/{sample}_peak_annotations.tsv"
-# 	conda:
-# 		"workflow/envs/r_ChIPseeker.yaml"
 	params:
 		promoter_upstream= -500,
 		promoter_downstream= 100
