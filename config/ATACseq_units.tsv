@@ -1,49 +1,45 @@
 sample_name	unit_name	fq1	fq2	sra	read_format	sample_group
-FL_ATAC_S2-WT_100uM_rep1	FL_ATAC_S2-WT_100uM_rep1	../data/2020-04_ATAC/raw_reads/TG_S1_S52_L001_R1_001.fastq.gz	../data/2020-04_ATAC/raw_reads/TG_S1_S52_L001_R2_001.fastq.gz		PE	FL_ATAC_S2-WT_100uM
-FL_ATAC_S2-WT_100uM_rep2	FL_ATAC_S2-WT_100uM_rep2	../data/2020-04_ATAC/raw_reads/TG_S2_S56_L001_R1_001.fastq.gz	../data/2020-04_ATAC/raw_reads/TG_S2_S56_L001_R2_001.fastq.gz		PE	FL_ATAC_S2-WT_100uM
-S2-Grh_100uM_rep1	S2-Grh_100uM_rep1	../data/2020-04_ATAC/raw_reads/TG_S3_S57_L001_R1_001.fastq.gz	../data/2020-04_ATAC/raw_reads/TG_S3_S57_L001_R2_001.fastq.gz		PE	S2-Grh_100uM
-S2-Grh_100uM_rep2	S2-Grh_100uM_rep2	../data/2020-04_ATAC/raw_reads/TG_S4_S58_L001_R1_001.fastq.gz	../data/2020-04_ATAC/raw_reads/TG_S4_S58_L001_R2_001.fastq.gz		PE	S2-Grh_100uM
-S2-Zld_1000uM_rep1	S2-Zld_1000uM_rep1	../data/2020-04_ATAC/raw_reads/TG_S5_S59_L001_R1_001.fastq.gz	../data/2020-04_ATAC/raw_reads/TG_S5_S59_L001_R2_001.fastq.gz		PE	S2-Zld_1000uM
-S2-Zld_1000uM_rep2	S2-Zld_1000uM_rep2	../data/2020-04_ATAC/raw_reads/TG_S6_S60_L001_R1_001.fastq.gz	../data/2020-04_ATAC/raw_reads/TG_S6_S60_L001_R2_001.fastq.gz		PE	S2-Zld_1000uM
-S2-WT_1000uM_rep1	S2-WT_1000uM_rep1	../data/2020-04_ATAC/raw_reads/TG_S13_S54_L001_R1_001.fastq.gz	../data/2020-04_ATAC/raw_reads/TG_S13_S54_L001_R2_001.fastq.gz		PE	S2-WT_1000uM
-S2-WT_1000uM_rep2	S2-WT_1000uM_rep2	../data/2020-04_ATAC/raw_reads/TG_S14_S55_L001_R1_001.fastq.gz	../data/2020-04_ATAC/raw_reads/TG_S14_S55_L001_R2_001.fastq.gz		PE	S2-WT_1000uM
-Twi_ATAC_S2-WT_20uM_rep1	Twi_ATAC_S2-WT_20uM_rep1	../data/2021-11_ATAC/raw_reads/TGL068_S137_L002_R1_001.fastq.gz	../data/2021-11_ATAC/raw_reads/TGL068_S137_L002_R2_001.fastq.gz		PE	Twi_ATAC_S2-WT_20uM
-Twi_ATAC_S2-WT_20uM_rep2	Twi_ATAC_S2-WT_20uM_rep2	../data/2021-11_ATAC/raw_reads/TGL069_S138_L002_R1_001.fastq.gz	../data/2021-11_ATAC/raw_reads/TGL069_S138_L002_R2_001.fastq.gz		PE	Twi_ATAC_S2-WT_20uM
-Twi_ATAC_S2-WT_40uM_rep1	Twi_ATAC_S2-WT_40uM_rep1	../data/2021-11_ATAC/raw_reads/TGL070_S139_L002_R1_001.fastq.gz	../data/2021-11_ATAC/raw_reads/TGL070_S139_L002_R2_001.fastq.gz		PE	Twi_ATAC_S2-WT_40uM
-Twi_ATAC_S2-WT_40uM_rep2	Twi_ATAC_S2-WT_40uM_rep2	../data/2021-11_ATAC/raw_reads/TGL071_S140_L002_R1_001.fastq.gz	../data/2021-11_ATAC/raw_reads/TGL071_S140_L002_R2_001.fastq.gz		PE	Twi_ATAC_S2-WT_40uM
-S2-Twi_20uM_rep1	S2-Twi_20uM_rep1	../data/2021-11_ATAC/raw_reads/TGL072_S141_L002_R1_001.fastq.gz	../data/2021-11_ATAC/raw_reads/TGL072_S141_L002_R2_001.fastq.gz		PE	S2-Twi_20uM
-S2-Twi_20uM_rep2	S2-Twi_20uM_rep2	../data/2021-11_ATAC/raw_reads/TGL073_S142_L002_R1_001.fastq.gz	../data/2021-11_ATAC/raw_reads/TGL073_S142_L002_R2_001.fastq.gz		PE	S2-Twi_20uM
-S2-Twi_40uM_rep1	S2-Twi_40uM_rep1	../data/2021-11_ATAC/raw_reads/TGL074_S143_L002_R1_001.fastq.gz	../data/2021-11_ATAC/raw_reads/TGL074_S143_L002_R2_001.fastq.gz		PE	S2-Twi_40uM
-S2-Twi_40uM_rep2	S2-Twi_40uM_rep2	../data/2021-11_ATAC/raw_reads/TGL075_S144_L002_R1_001.fastq.gz	../data/2021-11_ATAC/raw_reads/TGL075_S144_L002_R2_001.fastq.gz		PE	S2-Twi_40uM
-DBD_ATAC_S2-WT_20uM_rep1	DBD_ATAC_S2-WT_20uM_rep1	../data/2021-12_ATAC/raw_reads/TGL084_S105_L003_R1_001.fastq.gz	../data/2021-12_ATAC/raw_reads/TGL084_S105_L003_R2_001.fastq.gz		PE	DBD_ATAC_S2-WT_20uM
-DBD_ATAC_S2-WT_20uM_rep2	DBD_ATAC_S2-WT_20uM_rep2	../data/2021-12_ATAC/raw_reads/TGL085_S106_L003_R1_001.fastq.gz	../data/2021-12_ATAC/raw_reads/TGL085_S106_L003_R2_001.fastq.gz		PE	DBD_ATAC_S2-WT_20uM
-S2-Grh-DBD_20uM_rep1	S2-Grh-DBD_20uM_rep1	../data/2021-12_ATAC/raw_reads/TGL086_S107_L003_R1_001.fastq.gz	../data/2021-12_ATAC/raw_reads/TGL086_S107_L003_R2_001.fastq.gz		PE	S2-Grh-DBD_20uM
-S2-Grh-DBD_20uM_rep2	S2-Grh-DBD_20uM_rep2	../data/2021-12_ATAC/raw_reads/TGL087_S108_L003_R1_001.fastq.gz	../data/2021-12_ATAC/raw_reads/TGL087_S108_L003_R2_001.fastq.gz		PE	S2-Grh-DBD_20uM
-DBD_ATAC_S2-WT_100uM_rep1	DBD_ATAC_S2-WT_100uM_rep1	../data/2021-12_ATAC/raw_reads/TGL088_S109_L003_R1_001.fastq.gz	../data/2021-12_ATAC/raw_reads/TGL088_S109_L003_R2_001.fastq.gz		PE	DBD_ATAC_S2-WT_100uM
-DBD_ATAC_S2-WT_100uM_rep2	DBD_ATAC_S2-WT_100uM_rep2	../data/2021-12_ATAC/raw_reads/TGL089_S110_L003_R1_001.fastq.gz	../data/2021-12_ATAC/raw_reads/TGL089_S110_L003_R2_001.fastq.gz		PE	DBD_ATAC_S2-WT_100uM
-S2-Zld-DBD_100uM_rep1	S2-Zld-DBD_100uM_rep1	../data/2021-12_ATAC/raw_reads/TGL090_S111_L003_R1_001.fastq.gz	../data/2021-12_ATAC/raw_reads/TGL090_S111_L003_R2_001.fastq.gz		PE	S2-Zld-DBD_100uM
-S2-Zld-DBD_100uM_rep2	S2-Zld-DBD_100uM_rep2	../data/2021-12_ATAC/raw_reads/TGL091_S112_L003_R1_001.fastq.gz	../data/2021-12_ATAC/raw_reads/TGL091_S112_L003_R2_001.fastq.gz		PE	S2-Zld-DBD_100uM
-titration_S2-Zld_0uM_rep1	titration_S2-Zld_0uM_rep1	../data/2022-08_ATACseq/TGL132_S113_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL132_S113_L003_R2_001.fastq.gz		PE	titration_S2-Zld_0uM
-titration_S2-Zld_500uM_rep1	titration_S2-Zld_500uM_rep1	../data/2022-08_ATACseq/TGL133_S114_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL133_S114_L003_R2_001.fastq.gz		PE	titration_S2-Zld_500uM
-titration_S2-Zld_1000uM_rep1	titration_S2-Zld_1000uM_rep1	../data/2022-08_ATACseq/TGL134_S115_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL134_S115_L003_R2_001.fastq.gz		PE	titration_S2-Zld_1000uM
-titration_S2-Zld_1500uM_rep1	titration_S2-Zld_1500uM_rep1	../data/2022-08_ATACseq/TGL135_S116_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL135_S116_L003_R2_001.fastq.gz		PE	titration_S2-Zld_1500uM
-titration_S2-Grh_0uM_rep1	titration_S2-Grh_0uM_rep1	../data/2022-08_ATACseq/TGL136_S117_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL136_S117_L003_R2_001.fastq.gz		PE	titration_S2-Grh_0uM
-titration_S2-Grh_25uM_rep1	titration_S2-Grh_25uM_rep1	../data/2022-08_ATACseq/TGL137_S118_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL137_S118_L003_R2_001.fastq.gz		PE	titration_S2-Grh_25uM
-titration_S2-Grh_100uM_rep1	titration_S2-Grh_100uM_rep1	../data/2022-08_ATACseq/TGL138_S119_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL138_S119_L003_R2_001.fastq.gz		PE	titration_S2-Grh_100uM
-titration_S2-Grh_400uM_rep1	titration_S2-Grh_400uM_rep1	../data/2022-08_ATACseq/TGL139_S120_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL139_S120_L003_R2_001.fastq.gz		PE	titration_S2-Grh_400uM
-titration_S2-HA-Twi_0uM_rep1	titration_S2-HA-Twi_0uM_rep1	../data/2022-08_ATACseq/TGL140_S121_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL140_S121_L003_R2_001.fastq.gz		PE	titration_S2-HA-Twi_0uM
-titration_S2-HA-Twi_10uM_rep1	titration_S2-HA-Twi_10uM_rep1	../data/2022-08_ATACseq/TGL141_S122_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL141_S122_L003_R2_001.fastq.gz		PE	titration_S2-HA-Twi_10uM
-titration_S2-HA-Twi_40uM_rep1	titration_S2-HA-Twi_40uM_rep1	../data/2022-08_ATACseq/TGL142_S123_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL142_S123_L003_R2_001.fastq.gz		PE	titration_S2-HA-Twi_40uM
-titration_S2-HA-Twi_160uM_rep1	titration_S2-HA-Twi_160uM_rep1	../data/2022-08_ATACseq/TGL143_S124_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL143_S124_L003_R2_001.fastq.gz		PE	titration_S2-HA-Twi_160uM
-titration_S2-Zld_0uM_rep2	titration_S2-Zld_0uM_rep2	../data/2022-08_ATACseq/TGL144_S125_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL144_S125_L003_R2_001.fastq.gz		PE	titration_S2-Zld_0uM
-titration_S2-Zld_500uM_rep2	titration_S2-Zld_500uM_rep2	../data/2022-08_ATACseq/TGL145_S126_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL145_S126_L003_R2_001.fastq.gz		PE	titration_S2-Zld_500uM
-titration_S2-Zld_1000uM_rep2	titration_S2-Zld_1000uM_rep2	../data/2022-08_ATACseq/TGL146_S127_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL146_S127_L003_R2_001.fastq.gz		PE	titration_S2-Zld_1000uM
-titration_S2-Zld_1500uM_rep2	titration_S2-Zld_1500uM_rep2	../data/2022-08_ATACseq/TGL147_S128_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL147_S128_L003_R2_001.fastq.gz		PE	titration_S2-Zld_1500uM
-titration_S2-Grh_0uM_rep2	titration_S2-Grh_0uM_rep2	../data/2022-08_ATACseq/TGL148_S129_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL148_S129_L003_R2_001.fastq.gz		PE	titration_S2-Grh_0uM
-titration_S2-Grh_25uM_rep2	titration_S2-Grh_25uM_rep2	../data/2022-08_ATACseq/TGL149_S130_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL149_S130_L003_R2_001.fastq.gz		PE	titration_S2-Grh_25uM
-titration_S2-Grh_100uM_rep2	titration_S2-Grh_100uM_rep2	../data/2022-08_ATACseq/TGL150_S131_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL150_S131_L003_R2_001.fastq.gz		PE	titration_S2-Grh_100uM
-titration_S2-Grh_400uM_rep2	titration_S2-Grh_400uM_rep2	../data/2022-08_ATACseq/TGL151_S132_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL151_S132_L003_R2_001.fastq.gz		PE	titration_S2-Grh_400uM
-titration_S2-HA-Twi_0uM_rep2	titration_S2-HA-Twi_0uM_rep2	../data/2022-08_ATACseq/TGL152_S133_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL152_S133_L003_R2_001.fastq.gz		PE	titration_S2-HA-Twi_0uM
-titration_S2-HA-Twi_10uM_rep2	titration_S2-HA-Twi_10uM_rep2	../data/2022-08_ATACseq/TGL153_S134_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL153_S134_L003_R2_001.fastq.gz		PE	titration_S2-HA-Twi_10uM
-titration_S2-HA-Twi_40uM_rep2	titration_S2-HA-Twi_40uM_rep2	../data/2022-08_ATACseq/TGL154_S135_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL154_S135_L003_R2_001.fastq.gz		PE	titration_S2-HA-Twi_40uM
-titration_S2-HA-Twi_160uM_rep2	titration_S2-HA-Twi_160uM_rep2	../data/2022-08_ATACseq/TGL155_S136_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL155_S136_L003_R2_001.fastq.gz		PE	titration_S2-HA-Twi_160uM
+FL_ATAC_S2-WT_100uM_rep1	FL_ATAC_S2-WT_100uM_rep1	../data/2020-04_ATAC/raw_reads/TG_S1_S52_L001_R1_001.fastq.gz	../data/2020-04_ATAC/raw_reads/TG_S1_S52_L001_R2_001.fastq.gz	SRR23933507	PE	FL_ATAC_S2-WT_100uM
+FL_ATAC_S2-WT_100uM_rep2	FL_ATAC_S2-WT_100uM_rep2	../data/2020-04_ATAC/raw_reads/TG_S2_S56_L001_R1_001.fastq.gz	../data/2020-04_ATAC/raw_reads/TG_S2_S56_L001_R2_001.fastq.gz	SRR23933506	PE	FL_ATAC_S2-WT_100uM
+S2-Grh_100uM_rep1	S2-Grh_100uM_rep1	../data/2020-04_ATAC/raw_reads/TG_S3_S57_L001_R1_001.fastq.gz	../data/2020-04_ATAC/raw_reads/TG_S3_S57_L001_R2_001.fastq.gz	SRR23933505	PE	S2-Grh_100uM
+S2-Grh_100uM_rep2	S2-Grh_100uM_rep2	../data/2020-04_ATAC/raw_reads/TG_S4_S58_L001_R1_001.fastq.gz	../data/2020-04_ATAC/raw_reads/TG_S4_S58_L001_R2_001.fastq.gz	SRR23933504	PE	S2-Grh_100uM
+S2-Zld_1000uM_rep1	S2-Zld_1000uM_rep1	../data/2020-04_ATAC/raw_reads/TG_S5_S59_L001_R1_001.fastq.gz	../data/2020-04_ATAC/raw_reads/TG_S5_S59_L001_R2_001.fastq.gz	SRR23933503	PE	S2-Zld_1000uM
+S2-Zld_1000uM_rep2	S2-Zld_1000uM_rep2	../data/2020-04_ATAC/raw_reads/TG_S6_S60_L001_R1_001.fastq.gz	../data/2020-04_ATAC/raw_reads/TG_S6_S60_L001_R2_001.fastq.gz	SRR23933502	PE	S2-Zld_1000uM
+S2-WT_1000uM_rep1	S2-WT_1000uM_rep1	../data/2020-04_ATAC/raw_reads/TG_S13_S54_L001_R1_001.fastq.gz	../data/2020-04_ATAC/raw_reads/TG_S13_S54_L001_R2_001.fastq.gz	SRR23933501	PE	S2-WT_1000uM
+S2-WT_1000uM_rep2	S2-WT_1000uM_rep2	../data/2020-04_ATAC/raw_reads/TG_S14_S55_L001_R1_001.fastq.gz	../data/2020-04_ATAC/raw_reads/TG_S14_S55_L001_R2_001.fastq.gz	SRR23933500	PE	S2-WT_1000uM
+Twi_ATAC_S2-WT_40uM_rep1	Twi_ATAC_S2-WT_40uM_rep1	../data/2021-11_ATAC/raw_reads/TGL070_S139_L002_R1_001.fastq.gz	../data/2021-11_ATAC/raw_reads/TGL070_S139_L002_R2_001.fastq.gz	SRR23933499	PE	Twi_ATAC_S2-WT_40uM
+Twi_ATAC_S2-WT_40uM_rep2	Twi_ATAC_S2-WT_40uM_rep2	../data/2021-11_ATAC/raw_reads/TGL071_S140_L002_R1_001.fastq.gz	../data/2021-11_ATAC/raw_reads/TGL071_S140_L002_R2_001.fastq.gz	SRR23933498	PE	Twi_ATAC_S2-WT_40uM
+S2-Twi_40uM_rep1	S2-Twi_40uM_rep1	../data/2021-11_ATAC/raw_reads/TGL074_S143_L002_R1_001.fastq.gz	../data/2021-11_ATAC/raw_reads/TGL074_S143_L002_R2_001.fastq.gz	SRR23933497	PE	S2-Twi_40uM
+S2-Twi_40uM_rep2	S2-Twi_40uM_rep2	../data/2021-11_ATAC/raw_reads/TGL075_S144_L002_R1_001.fastq.gz	../data/2021-11_ATAC/raw_reads/TGL075_S144_L002_R2_001.fastq.gz	SRR23933496	PE	S2-Twi_40uM
+DBD_ATAC_S2-WT_20uM_rep1	DBD_ATAC_S2-WT_20uM_rep1	../data/2021-12_ATAC/raw_reads/TGL084_S105_L003_R1_001.fastq.gz	../data/2021-12_ATAC/raw_reads/TGL084_S105_L003_R2_001.fastq.gz	SRR23933495	PE	DBD_ATAC_S2-WT_20uM
+DBD_ATAC_S2-WT_20uM_rep2	DBD_ATAC_S2-WT_20uM_rep2	../data/2021-12_ATAC/raw_reads/TGL085_S106_L003_R1_001.fastq.gz	../data/2021-12_ATAC/raw_reads/TGL085_S106_L003_R2_001.fastq.gz	SRR23933494	PE	DBD_ATAC_S2-WT_20uM
+S2-Grh-DBD_20uM_rep1	S2-Grh-DBD_20uM_rep1	../data/2021-12_ATAC/raw_reads/TGL086_S107_L003_R1_001.fastq.gz	../data/2021-12_ATAC/raw_reads/TGL086_S107_L003_R2_001.fastq.gz	SRR23933493	PE	S2-Grh-DBD_20uM
+S2-Grh-DBD_20uM_rep2	S2-Grh-DBD_20uM_rep2	../data/2021-12_ATAC/raw_reads/TGL087_S108_L003_R1_001.fastq.gz	../data/2021-12_ATAC/raw_reads/TGL087_S108_L003_R2_001.fastq.gz	SRR23933492	PE	S2-Grh-DBD_20uM
+DBD_ATAC_S2-WT_100uM_rep1	DBD_ATAC_S2-WT_100uM_rep1	../data/2021-12_ATAC/raw_reads/TGL088_S109_L003_R1_001.fastq.gz	../data/2021-12_ATAC/raw_reads/TGL088_S109_L003_R2_001.fastq.gz	SRR23933479	PE	DBD_ATAC_S2-WT_100uM
+DBD_ATAC_S2-WT_100uM_rep2	DBD_ATAC_S2-WT_100uM_rep2	../data/2021-12_ATAC/raw_reads/TGL089_S110_L003_R1_001.fastq.gz	../data/2021-12_ATAC/raw_reads/TGL089_S110_L003_R2_001.fastq.gz	SRR23933478	PE	DBD_ATAC_S2-WT_100uM
+S2-Zld-DBD_100uM_rep1	S2-Zld-DBD_100uM_rep1	../data/2021-12_ATAC/raw_reads/TGL090_S111_L003_R1_001.fastq.gz	../data/2021-12_ATAC/raw_reads/TGL090_S111_L003_R2_001.fastq.gz	SRR23933477	PE	S2-Zld-DBD_100uM
+S2-Zld-DBD_100uM_rep2	S2-Zld-DBD_100uM_rep2	../data/2021-12_ATAC/raw_reads/TGL091_S112_L003_R1_001.fastq.gz	../data/2021-12_ATAC/raw_reads/TGL091_S112_L003_R2_001.fastq.gz	SRR23933476	PE	S2-Zld-DBD_100uM
+titration_S2-Zld_0uM_rep1	titration_S2-Zld_0uM_rep1	../data/2022-08_ATACseq/TGL132_S113_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL132_S113_L003_R2_001.fastq.gz	SRR23933475	PE	titration_S2-Zld_0uM
+titration_S2-Zld_500uM_rep1	titration_S2-Zld_500uM_rep1	../data/2022-08_ATACseq/TGL133_S114_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL133_S114_L003_R2_001.fastq.gz	SRR23933474	PE	titration_S2-Zld_500uM
+titration_S2-Zld_1000uM_rep1	titration_S2-Zld_1000uM_rep1	../data/2022-08_ATACseq/TGL134_S115_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL134_S115_L003_R2_001.fastq.gz	SRR23933473	PE	titration_S2-Zld_1000uM
+titration_S2-Zld_1500uM_rep1	titration_S2-Zld_1500uM_rep1	../data/2022-08_ATACseq/TGL135_S116_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL135_S116_L003_R2_001.fastq.gz	SRR23933472	PE	titration_S2-Zld_1500uM
+titration_S2-Grh_0uM_rep1	titration_S2-Grh_0uM_rep1	../data/2022-08_ATACseq/TGL136_S117_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL136_S117_L003_R2_001.fastq.gz	SRR23933471	PE	titration_S2-Grh_0uM
+titration_S2-Grh_25uM_rep1	titration_S2-Grh_25uM_rep1	../data/2022-08_ATACseq/TGL137_S118_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL137_S118_L003_R2_001.fastq.gz	SRR23933470	PE	titration_S2-Grh_25uM
+titration_S2-Grh_100uM_rep1	titration_S2-Grh_100uM_rep1	../data/2022-08_ATACseq/TGL138_S119_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL138_S119_L003_R2_001.fastq.gz	SRR23933469	PE	titration_S2-Grh_100uM
+titration_S2-Grh_400uM_rep1	titration_S2-Grh_400uM_rep1	../data/2022-08_ATACseq/TGL139_S120_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL139_S120_L003_R2_001.fastq.gz	SRR23933468	PE	titration_S2-Grh_400uM
+titration_S2-HA-Twi_0uM_rep1	titration_S2-HA-Twi_0uM_rep1	../data/2022-08_ATACseq/TGL140_S121_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL140_S121_L003_R2_001.fastq.gz	SRR23933467	PE	titration_S2-HA-Twi_0uM
+titration_S2-HA-Twi_10uM_rep1	titration_S2-HA-Twi_10uM_rep1	../data/2022-08_ATACseq/TGL141_S122_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL141_S122_L003_R2_001.fastq.gz	SRR23933466	PE	titration_S2-HA-Twi_10uM
+titration_S2-HA-Twi_40uM_rep1	titration_S2-HA-Twi_40uM_rep1	../data/2022-08_ATACseq/TGL142_S123_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL142_S123_L003_R2_001.fastq.gz	SRR23933465	PE	titration_S2-HA-Twi_40uM
+titration_S2-HA-Twi_160uM_rep1	titration_S2-HA-Twi_160uM_rep1	../data/2022-08_ATACseq/TGL143_S124_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL143_S124_L003_R2_001.fastq.gz	SRR23933464	PE	titration_S2-HA-Twi_160uM
+titration_S2-Zld_0uM_rep2	titration_S2-Zld_0uM_rep2	../data/2022-08_ATACseq/TGL144_S125_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL144_S125_L003_R2_001.fastq.gz	SRR23933491	PE	titration_S2-Zld_0uM
+titration_S2-Zld_500uM_rep2	titration_S2-Zld_500uM_rep2	../data/2022-08_ATACseq/TGL145_S126_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL145_S126_L003_R2_001.fastq.gz	SRR23933490	PE	titration_S2-Zld_500uM
+titration_S2-Zld_1000uM_rep2	titration_S2-Zld_1000uM_rep2	../data/2022-08_ATACseq/TGL146_S127_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL146_S127_L003_R2_001.fastq.gz	SRR23933489	PE	titration_S2-Zld_1000uM
+titration_S2-Zld_1500uM_rep2	titration_S2-Zld_1500uM_rep2	../data/2022-08_ATACseq/TGL147_S128_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL147_S128_L003_R2_001.fastq.gz	SRR23933488	PE	titration_S2-Zld_1500uM
+titration_S2-Grh_0uM_rep2	titration_S2-Grh_0uM_rep2	../data/2022-08_ATACseq/TGL148_S129_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL148_S129_L003_R2_001.fastq.gz	SRR23933487	PE	titration_S2-Grh_0uM
+titration_S2-Grh_25uM_rep2	titration_S2-Grh_25uM_rep2	../data/2022-08_ATACseq/TGL149_S130_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL149_S130_L003_R2_001.fastq.gz	SRR23933486	PE	titration_S2-Grh_25uM
+titration_S2-Grh_100uM_rep2	titration_S2-Grh_100uM_rep2	../data/2022-08_ATACseq/TGL150_S131_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL150_S131_L003_R2_001.fastq.gz	SRR23933485	PE	titration_S2-Grh_100uM
+titration_S2-Grh_400uM_rep2	titration_S2-Grh_400uM_rep2	../data/2022-08_ATACseq/TGL151_S132_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL151_S132_L003_R2_001.fastq.gz	SRR23933484	PE	titration_S2-Grh_400uM
+titration_S2-HA-Twi_0uM_rep2	titration_S2-HA-Twi_0uM_rep2	../data/2022-08_ATACseq/TGL152_S133_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL152_S133_L003_R2_001.fastq.gz	SRR23933483	PE	titration_S2-HA-Twi_0uM
+titration_S2-HA-Twi_10uM_rep2	titration_S2-HA-Twi_10uM_rep2	../data/2022-08_ATACseq/TGL153_S134_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL153_S134_L003_R2_001.fastq.gz	SRR23933482	PE	titration_S2-HA-Twi_10uM
+titration_S2-HA-Twi_40uM_rep2	titration_S2-HA-Twi_40uM_rep2	../data/2022-08_ATACseq/TGL154_S135_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL154_S135_L003_R2_001.fastq.gz	SRR23933481	PE	titration_S2-HA-Twi_40uM
+titration_S2-HA-Twi_160uM_rep2	titration_S2-HA-Twi_160uM_rep2	../data/2022-08_ATACseq/TGL155_S136_L003_R1_001.fastq.gz	../data/2022-08_ATACseq/TGL155_S136_L003_R2_001.fastq.gz	SRR23933480	PE	titration_S2-HA-Twi_160uM
