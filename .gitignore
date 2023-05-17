@@ -52,6 +52,12 @@ histone_CUTandRUN/*
 histone_CUTandRUN/config/*
 !histone_CUTandRUN/config/keep_chroms.txt
 
+!published_ChIPseq/
+published_ChIPseq/*
+!published_ChIPseq/config/
+published_ChIPseq/config/*
+!published_ChIPseq/config/keep_chroms.txt
+
 # History files
 .Rhistory
 .Rapp.history
