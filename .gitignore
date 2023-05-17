@@ -21,6 +21,37 @@ workflow/scripts/.snakemake*
 !manuscript/manuscript_sections/*
 !Snakefile
 
+# keep_chrom.txt files for each module
+!ChIPseq/
+ChIPseq/*
+!ChIPseq/config/
+ChIPseq/config/*
+!ChIPseq/config/keep_chroms.txt
+
+!ATACseq/
+ATACseq/*
+!ATACseq/config/
+ATACseq/config/*
+!ATACseq/config/keep_chroms.txt
+
+!RNAseq/
+RNAseq/*
+!RNAseq/config/
+RNAseq/config/*
+!RNAseq/config/keep_chroms.txt
+
+!TF_CUTandRUN/
+TF_CUTandRUN/*
+!TF_CUTandRUN/config/
+TF_CUTandRUN/config/*
+!TF_CUTandRUN/config/keep_chroms.txt
+
+!histone_CUTandRUN/
+histone_CUTandRUN/*
+!histone_CUTandRUN/config/
+histone_CUTandRUN/config/*
+!histone_CUTandRUN/config/keep_chroms.txt
+
 # History files
 .Rhistory
 .Rapp.history
