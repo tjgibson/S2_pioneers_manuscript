@@ -25,38 +25,37 @@ workflow/scripts/.snakemake*
 !ChIPseq/
 ChIPseq/*
 !ChIPseq/config/
-ChIPseq/config/*
-!ChIPseq/config/keep_chroms.txt
+!ChIPseq/config/*
+
+# zld brain chip peaks
+!resources/
+resources/*
+!resources/brain_aZld.bed
 
 !ATACseq/
 ATACseq/*
 !ATACseq/config/
-ATACseq/config/*
-!ATACseq/config/keep_chroms.txt
+!ATACseq/config/*
 
 !RNAseq/
 RNAseq/*
 !RNAseq/config/
-RNAseq/config/*
-!RNAseq/config/keep_chroms.txt
+!RNAseq/config/*
 
 !TF_CUTandRUN/
 TF_CUTandRUN/*
 !TF_CUTandRUN/config/
-TF_CUTandRUN/config/*
-!TF_CUTandRUN/config/keep_chroms.txt
+!TF_CUTandRUN/config/*
 
 !histone_CUTandRUN/
 histone_CUTandRUN/*
 !histone_CUTandRUN/config/
-histone_CUTandRUN/config/*
-!histone_CUTandRUN/config/keep_chroms.txt
+!histone_CUTandRUN/config/*
 
 !published_ChIPseq/
 published_ChIPseq/*
 !published_ChIPseq/config/
-published_ChIPseq/config/*
-!published_ChIPseq/config/keep_chroms.txt
+!published_ChIPseq/config/*
 
 # History files
 .Rhistory

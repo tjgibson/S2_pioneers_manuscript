@@ -418,7 +418,7 @@ annotate_motif_classes:
     motif_instances: results/motif_instances/zld_motifs.bed
     other_tissue:
       - published_ChIPseq/results/peaks/individual/narrow/embryo-nc14_aZld_peaks.narrowPeak
-      - ../S2_pioneers/results/bed_files/peaks/brain_aZld.bed
+      - resources/brain_aZld.bed
   grh:
     ChIP_peaks: results/ChIP_peak_classes_filtered/grh_ChIP_classes.bed
     class_I_peaks: results/ChIP_peak_classes_filtered/grh_class_I.bed
