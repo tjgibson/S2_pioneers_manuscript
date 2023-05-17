@@ -1,25 +1,25 @@
 sample_name	unit_name	fq1	fq2	sra	read_format	call_peaks	input	peak_type	sample_group
-S2-Zld_aZld_0H_rep1	S2-Zld_aZld_0H_rep1	./../data/2021-03_CR/raw_reads/TGL001_S207_L002_R1_001.fastq.gz	./../data/2021-03_CR/raw_reads/TGL001_S207_L002_R2_001.fastq.gz	SRR23933091	PE	TRUE	S2-Zld_IgG_48H_rep1	narrow	S2-Zld_aZld_0H
-S2-Zld_aZld_0H_rep2	S2-Zld_aZld_0H_rep2	./../data/2021-03_CR/raw_reads/TGL002_S208_L002_R1_001.fastq.gz	./../data/2021-03_CR/raw_reads/TGL002_S208_L002_R2_001.fastq.gz	SRR23933090	PE	TRUE	S2-Zld_IgG_48H_rep2	narrow	S2-Zld_aZld_0H
-S2-Zld_aZld_4H_rep1	S2-Zld_aZld_4H_rep1	./../data/2021-03_CR/raw_reads/TGL003_S209_L002_R1_001.fastq.gz	./../data/2021-03_CR/raw_reads/TGL003_S209_L002_R2_001.fastq.gz	SRR23933089	PE	TRUE	S2-Zld_IgG_48H_rep1	narrow	S2-Zld_aZld_4H
-S2-Zld_aZld_4H_rep2	S2-Zld_aZld_4H_rep2	./../data/2021-03_CR/raw_reads/TGL004_S210_L002_R1_001.fastq.gz	./../data/2021-03_CR/raw_reads/TGL004_S210_L002_R2_001.fastq.gz	SRR23933088	PE	TRUE	S2-Zld_IgG_48H_rep2	narrow	S2-Zld_aZld_4H
-S2-Zld_aZld_12H_rep1	S2-Zld_aZld_12H_rep1	./../data/2021-03_CR/raw_reads/TGL005_S211_L002_R1_001.fastq.gz	./../data/2021-03_CR/raw_reads/TGL005_S211_L002_R2_001.fastq.gz	SRR23933087	PE	TRUE	S2-Zld_IgG_48H_rep1	narrow	S2-Zld_aZld_12H
-S2-Zld_aZld_12H_rep2	S2-Zld_aZld_12H_rep2	./../data/2021-03_CR/raw_reads/TGL006_S212_L002_R1_001.fastq.gz	./../data/2021-03_CR/raw_reads/TGL006_S212_L002_R2_001.fastq.gz	SRR23933086	PE	TRUE	S2-Zld_IgG_48H_rep2	narrow	S2-Zld_aZld_12H
-S2-Zld_aZld_24H_rep1	S2-Zld_aZld_24H_rep1	./../data/2021-03_CR/raw_reads/TGL007_S213_L002_R1_001.fastq.gz	./../data/2021-03_CR/raw_reads/TGL007_S213_L002_R2_001.fastq.gz	SRR23933085	PE	TRUE	S2-Zld_IgG_48H_rep1	narrow	S2-Zld_aZld_24H
-S2-Zld_aZld_24H_rep2	S2-Zld_aZld_24H_rep2	./../data/2021-03_CR/raw_reads/TGL008_S214_L002_R1_001.fastq.gz	./../data/2021-03_CR/raw_reads/TGL008_S214_L002_R2_001.fastq.gz	SRR23933084	PE	TRUE	S2-Zld_IgG_48H_rep2	narrow	S2-Zld_aZld_24H
-S2-Zld_aZld_48H_rep1	S2-Zld_aZld_48H_rep1	./../data/2021-03_CR/raw_reads/TGL009_S215_L002_R1_001.fastq.gz	./../data/2021-03_CR/raw_reads/TGL009_S215_L002_R2_001.fastq.gz	SRR23933083	PE	TRUE	S2-Zld_IgG_48H_rep1	narrow	S2-Zld_aZld_48H
-S2-Zld_aZld_48H_rep2	S2-Zld_aZld_48H_rep2	./../data/2021-03_CR/raw_reads/TGL010_S216_L002_R1_001.fastq.gz	./../data/2021-03_CR/raw_reads/TGL010_S216_L002_R2_001.fastq.gz	SRR23933082	PE	TRUE	S2-Zld_IgG_48H_rep2	narrow	S2-Zld_aZld_48H
-S2-Zld_IgG_48H_rep1	S2-Zld_IgG_48H_rep1	./../data/2021-03_CR/raw_reads/TGL011_S217_L002_R1_001.fastq.gz	./../data/2021-03_CR/raw_reads/TGL011_S217_L002_R2_001.fastq.gz	SRR23933081	PE	FALSE			S2-Zld_IgG_48H
-S2-Zld_IgG_48H_rep2	S2-Zld_IgG_48H_rep2	./../data/2021-03_CR/raw_reads/TGL012_S218_L002_R1_001.fastq.gz	./../data/2021-03_CR/raw_reads/TGL012_S218_L002_R2_001.fastq.gz	SRR23933080	PE	FALSE			S2-Zld_IgG_48H
-S2-Grh_aGrh_0H_rep1	S2-Grh_aGrh_0H_rep1	./../data/2021-03_CR/raw_reads/TGL013_S219_L002_R1_001.fastq.gz	./../data/2021-03_CR/raw_reads/TGL013_S219_L002_R2_001.fastq.gz	SRR23933079	PE	TRUE	S2-Grh_IgG_48H_rep1	narrow	S2-Grh_aGrh_0H
-S2-Grh_aGrh_0H_rep2	S2-Grh_aGrh_0H_rep2	./../data/2021-03_CR/raw_reads/TGL014_S220_L002_R1_001.fastq.gz	./../data/2021-03_CR/raw_reads/TGL014_S220_L002_R2_001.fastq.gz	SRR23933078	PE	TRUE	S2-Grh_IgG_48H_rep2	narrow	S2-Grh_aGrh_0H
-S2-Grh_aGrh_4H_rep1	S2-Grh_aGrh_4H_rep1	./../data/2021-03_CR/raw_reads/TGL015_S221_L002_R1_001.fastq.gz	./../data/2021-03_CR/raw_reads/TGL015_S221_L002_R2_001.fastq.gz	SRR23933077	PE	TRUE	S2-Grh_IgG_48H_rep1	narrow	S2-Grh_aGrh_4H
-S2-Grh_aGrh_4H_rep2	S2-Grh_aGrh_4H_rep2	./../data/2021-03_CR/raw_reads/TGL016_S222_L002_R1_001.fastq.gz	./../data/2021-03_CR/raw_reads/TGL016_S222_L002_R2_001.fastq.gz	SRR23933076	PE	TRUE	S2-Grh_IgG_48H_rep2	narrow	S2-Grh_aGrh_4H
-S2-Grh_aGrh_12H_rep1	S2-Grh_aGrh_12H_rep1	./../data/2021-03_CR/raw_reads/TGL017_S223_L002_R1_001.fastq.gz	./../data/2021-03_CR/raw_reads/TGL017_S223_L002_R2_001.fastq.gz	SRR23933075	PE	TRUE	S2-Grh_IgG_48H_rep1	narrow	S2-Grh_aGrh_12H
-S2-Grh_aGrh_12H_rep2	S2-Grh_aGrh_12H_rep2	./../data/2021-03_CR/raw_reads/TGL018_S224_L002_R1_001.fastq.gz	./../data/2021-03_CR/raw_reads/TGL018_S224_L002_R2_001.fastq.gz	SRR23933074	PE	TRUE	S2-Grh_IgG_48H_rep2	narrow	S2-Grh_aGrh_12H
-S2-Grh_aGrh_24H_rep1	S2-Grh_aGrh_24H_rep1	./../data/2021-03_CR/raw_reads/TGL019_S225_L002_R1_001.fastq.gz	./../data/2021-03_CR/raw_reads/TGL019_S225_L002_R2_001.fastq.gz	SRR23933073	PE	TRUE	S2-Grh_IgG_48H_rep1	narrow	S2-Grh_aGrh_24H
-S2-Grh_aGrh_24H_rep2	S2-Grh_aGrh_24H_rep2	./../data/2021-03_CR/raw_reads/TGL020_S226_L002_R1_001.fastq.gz	./../data/2021-03_CR/raw_reads/TGL020_S226_L002_R2_001.fastq.gz	SRR23933072	PE	TRUE	S2-Grh_IgG_48H_rep2	narrow	S2-Grh_aGrh_24H
-S2-Grh_aGrh_48H_rep1	S2-Grh_aGrh_48H_rep1	./../data/2021-03_CR/raw_reads/TGL021_S227_L002_R1_001.fastq.gz	./../data/2021-03_CR/raw_reads/TGL021_S227_L002_R2_001.fastq.gz	SRR23933071	PE	TRUE	S2-Grh_IgG_48H_rep1	narrow	S2-Grh_aGrh_48H
-S2-Grh_aGrh_48H_rep2	S2-Grh_aGrh_48H_rep2	./../data/2021-03_CR/raw_reads/TGL022_S228_L002_R1_001.fastq.gz	./../data/2021-03_CR/raw_reads/TGL022_S228_L002_R2_001.fastq.gz	SRR23933070	PE	TRUE	S2-Grh_IgG_48H_rep2	narrow	S2-Grh_aGrh_48H
-S2-Grh_IgG_48H_rep1	S2-Grh_IgG_48H_rep1	./../data/2021-03_CR/raw_reads/TGL023_S229_L002_R1_001.fastq.gz	./../data/2021-03_CR/raw_reads/TGL023_S229_L002_R2_001.fastq.gz	SRR23933069	PE	FALSE			S2-Grh_IgG_48H
-S2-Grh_IgG_48H_rep2	S2-Grh_IgG_48H_rep2	./../data/2021-03_CR/raw_reads/TGL024_S230_L002_R1_001.fastq.gz	./../data/2021-03_CR/raw_reads/TGL024_S230_L002_R2_001.fastq.gz	SRR23933068	PE	FALSE			S2-Grh_IgG_48H
+S2-Zld_aZld_0H_rep1	S2-Zld_aZld_0H_rep1			SRR23933091	PE	TRUE	S2-Zld_IgG_48H_rep1	narrow	S2-Zld_aZld_0H
+S2-Zld_aZld_0H_rep2	S2-Zld_aZld_0H_rep2			SRR23933090	PE	TRUE	S2-Zld_IgG_48H_rep2	narrow	S2-Zld_aZld_0H
+S2-Zld_aZld_4H_rep1	S2-Zld_aZld_4H_rep1			SRR23933089	PE	TRUE	S2-Zld_IgG_48H_rep1	narrow	S2-Zld_aZld_4H
+S2-Zld_aZld_4H_rep2	S2-Zld_aZld_4H_rep2			SRR23933088	PE	TRUE	S2-Zld_IgG_48H_rep2	narrow	S2-Zld_aZld_4H
+S2-Zld_aZld_12H_rep1	S2-Zld_aZld_12H_rep1			SRR23933087	PE	TRUE	S2-Zld_IgG_48H_rep1	narrow	S2-Zld_aZld_12H
+S2-Zld_aZld_12H_rep2	S2-Zld_aZld_12H_rep2			SRR23933086	PE	TRUE	S2-Zld_IgG_48H_rep2	narrow	S2-Zld_aZld_12H
+S2-Zld_aZld_24H_rep1	S2-Zld_aZld_24H_rep1			SRR23933085	PE	TRUE	S2-Zld_IgG_48H_rep1	narrow	S2-Zld_aZld_24H
+S2-Zld_aZld_24H_rep2	S2-Zld_aZld_24H_rep2			SRR23933084	PE	TRUE	S2-Zld_IgG_48H_rep2	narrow	S2-Zld_aZld_24H
+S2-Zld_aZld_48H_rep1	S2-Zld_aZld_48H_rep1			SRR23933083	PE	TRUE	S2-Zld_IgG_48H_rep1	narrow	S2-Zld_aZld_48H
+S2-Zld_aZld_48H_rep2	S2-Zld_aZld_48H_rep2			SRR23933082	PE	TRUE	S2-Zld_IgG_48H_rep2	narrow	S2-Zld_aZld_48H
+S2-Zld_IgG_48H_rep1	S2-Zld_IgG_48H_rep1			SRR23933081	PE	FALSE			S2-Zld_IgG_48H
+S2-Zld_IgG_48H_rep2	S2-Zld_IgG_48H_rep2			SRR23933080	PE	FALSE			S2-Zld_IgG_48H
+S2-Grh_aGrh_0H_rep1	S2-Grh_aGrh_0H_rep1			SRR23933079	PE	TRUE	S2-Grh_IgG_48H_rep1	narrow	S2-Grh_aGrh_0H
+S2-Grh_aGrh_0H_rep2	S2-Grh_aGrh_0H_rep2			SRR23933078	PE	TRUE	S2-Grh_IgG_48H_rep2	narrow	S2-Grh_aGrh_0H
+S2-Grh_aGrh_4H_rep1	S2-Grh_aGrh_4H_rep1			SRR23933077	PE	TRUE	S2-Grh_IgG_48H_rep1	narrow	S2-Grh_aGrh_4H
+S2-Grh_aGrh_4H_rep2	S2-Grh_aGrh_4H_rep2			SRR23933076	PE	TRUE	S2-Grh_IgG_48H_rep2	narrow	S2-Grh_aGrh_4H
+S2-Grh_aGrh_12H_rep1	S2-Grh_aGrh_12H_rep1			SRR23933075	PE	TRUE	S2-Grh_IgG_48H_rep1	narrow	S2-Grh_aGrh_12H
+S2-Grh_aGrh_12H_rep2	S2-Grh_aGrh_12H_rep2			SRR23933074	PE	TRUE	S2-Grh_IgG_48H_rep2	narrow	S2-Grh_aGrh_12H
+S2-Grh_aGrh_24H_rep1	S2-Grh_aGrh_24H_rep1			SRR23933073	PE	TRUE	S2-Grh_IgG_48H_rep1	narrow	S2-Grh_aGrh_24H
+S2-Grh_aGrh_24H_rep2	S2-Grh_aGrh_24H_rep2			SRR23933072	PE	TRUE	S2-Grh_IgG_48H_rep2	narrow	S2-Grh_aGrh_24H
+S2-Grh_aGrh_48H_rep1	S2-Grh_aGrh_48H_rep1			SRR23933071	PE	TRUE	S2-Grh_IgG_48H_rep1	narrow	S2-Grh_aGrh_48H
+S2-Grh_aGrh_48H_rep2	S2-Grh_aGrh_48H_rep2			SRR23933070	PE	TRUE	S2-Grh_IgG_48H_rep2	narrow	S2-Grh_aGrh_48H
+S2-Grh_IgG_48H_rep1	S2-Grh_IgG_48H_rep1			SRR23933069	PE	FALSE			S2-Grh_IgG_48H
+S2-Grh_IgG_48H_rep2	S2-Grh_IgG_48H_rep2			SRR23933068	PE	FALSE			S2-Grh_IgG_48H
