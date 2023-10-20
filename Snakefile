@@ -23,8 +23,8 @@ configfile: 'config/config.yaml'
 ##########################################################################################
 
 module ChIPseq:
-#     snakefile: "https://github.com/tjgibson/NGS-workflow-chipseq/raw/main/workflow/Snakefile"
-    snakefile: "temp_workflows/NGS-workflow-chipseq/workflow/Snakefile"
+    snakefile: "https://github.com/tjgibson/NGS-workflow-chipseq/raw/main/workflow/Snakefile"
+#     snakefile: "temp_workflows/NGS-workflow-chipseq/workflow/Snakefile"
 	config: config["ChIPseq"]
 	prefix: "ChIPseq"
 use rule * from ChIPseq as ChIPseq_*
@@ -124,8 +124,8 @@ rule get_WT_motifs:
 	
 # process previously published ChIP-seq data for chromatin proteins
 module published_ChIPseq:
-#     snakefile: "https://github.com/tjgibson/NGS-workflow-chipseq/raw/main/workflow/Snakefile"
-	snakefile: "temp_workflows/NGS-workflow-chipseq/workflow/Snakefile"    	
+    snakefile: "https://github.com/tjgibson/NGS-workflow-chipseq/raw/main/workflow/Snakefile"
+# 	snakefile: "temp_workflows/NGS-workflow-chipseq/workflow/Snakefile"    	
 	config: config["published_ChIPseq"]
 	prefix: "published_ChIPseq"
 use rule * from published_ChIPseq as published_ChIPseq_*
@@ -187,8 +187,8 @@ rule get_embryo_PWMs:
 
 module RNAseq:
     snakefile:
-#         "https://github.com/tjgibson/NGS-workflow-RNAseq/raw/main/workflow/Snakefile"
-        "temp_workflows/NGS-workflow-RNAseq/workflow/Snakefile"
+        "https://github.com/tjgibson/NGS-workflow-RNAseq/raw/main/workflow/Snakefile"
+#         "temp_workflows/NGS-workflow-RNAseq/workflow/Snakefile"
 		config: config["RNAseq"]
 		prefix: "RNAseq"
 use rule * from RNAseq as RNAseq_*
@@ -229,8 +229,8 @@ rule annotate_RNAseq_results:
 ##########################################################################################
 
 module ATACseq:
-# 	snakefile: "https://github.com/tjgibson/NGS-workflow-ATACseq/raw/main/workflow/Snakefile"
-	snakefile: "temp_workflows/NGS-workflow-ATACseq/workflow/Snakefile"
+	snakefile: "https://github.com/tjgibson/NGS-workflow-ATACseq/raw/main/workflow/Snakefile"
+# 	snakefile: "temp_workflows/NGS-workflow-ATACseq/workflow/Snakefile"
 	config: config["ATACseq"]
 	prefix: "ATACseq"
 use rule * from ATACseq as ATACseq_*
@@ -272,8 +272,8 @@ rule annotate_ATAC_peaks:
 
 # process CUT&RUN data
 module histone_CUTandRUN:
-# 	snakefile: "https://github.com/tjgibson/NGS-workflow-CUTandRUN/raw/master/workflow/Snakefile"
-	snakefile: "temp_workflows/NGS-workflow-CUTandRUN/workflow/Snakefile"
+	snakefile: "https://github.com/tjgibson/NGS-workflow-CUTandRUN/raw/master/workflow/Snakefile"
+# 	snakefile: "temp_workflows/NGS-workflow-CUTandRUN/workflow/Snakefile"
 	config: config["histone_CUTandRUN"]
 	prefix: "histone_CUTandRUN"
 use rule * from histone_CUTandRUN as histone_CUTandRUN_*
@@ -288,8 +288,8 @@ use rule * from histone_CUTandRUN as histone_CUTandRUN_*
 
 # process CUT&RUN data
 module TF_CUTandRUN:
-# 	snakefile: "https://github.com/tjgibson/NGS-workflow-CUTandRUN/raw/master/workflow/Snakefile"
-	snakefile: "temp_workflows/NGS-workflow-CUTandRUN/workflow/Snakefile"
+	snakefile: "https://github.com/tjgibson/NGS-workflow-CUTandRUN/raw/master/workflow/Snakefile"
+# 	snakefile: "temp_workflows/NGS-workflow-CUTandRUN/workflow/Snakefile"
 	config: config["TF_CUTandRUN"]
 	prefix: "TF_CUTandRUN"
 use rule * from TF_CUTandRUN as TF_CUTandRUN_*
