@@ -43,9 +43,9 @@ titration_S2-HA-Twi_0uM_rep2	titration_S2-HA-Twi_0uM_rep2			SRR23933483	PE	titra
 titration_S2-HA-Twi_10uM_rep2	titration_S2-HA-Twi_10uM_rep2			SRR23933482	PE	titration_S2-HA-Twi_10uM	
 titration_S2-HA-Twi_40uM_rep2	titration_S2-HA-Twi_40uM_rep2			SRR23933481	PE	titration_S2-HA-Twi_40uM	
 titration_S2-HA-Twi_160uM_rep2	titration_S2-HA-Twi_160uM_rep2			SRR23933480	PE	titration_S2-HA-Twi_160uM	
-titration_S2-Zld-DBD_400_rep1	titration_S2-Zld-DBD_400_rep1	./../data/2023-08_ATAC/TGL248_S33_L002_R1_001.fastq.gz	./../data/2023-08_ATAC/TGL248_S33_L002_R2_001.fastq.gz		PE	titration_S2-Zld-DBD_400	
-titration_S2-Zld-DBD_400_rep2	titration_S2-Zld-DBD_400_rep2	./../data/2023-08_ATAC/TGL249_S34_L002_R1_001.fastq.gz	./../data/2023-08_ATAC/TGL249_S34_L002_R2_001.fastq.gz		PE	titration_S2-Zld-DBD_400	
-titration_S2-Grh-DBD_80_rep1	titration_S2-Grh-DBD_80_rep1	./../data/2023-08_ATAC/TGL250_S35_L002_R1_001.fastq.gz	./../data/2023-08_ATAC/TGL250_S35_L002_R2_001.fastq.gz		PE	titration_S2-Grh-DBD_80	
-titration_S2-Grh-DBD_80_rep2	titration_S2-Grh-DBD_80_rep2	./../data/2023-08_ATAC/TGL251_S36_L002_R1_001.fastq.gz	./../data/2023-08_ATAC/TGL251_S36_L002_R2_001.fastq.gz		PE	titration_S2-Grh-DBD_80	
+titration_S2-Zld-DBD_400_rep1	titration_S2-Zld-DBD_400_rep1			SRR26445760	PE	titration_S2-Zld-DBD_400	
+titration_S2-Zld-DBD_400_rep2	titration_S2-Zld-DBD_400_rep2			SRR26445761	PE	titration_S2-Zld-DBD_400	
+titration_S2-Grh-DBD_80_rep1	titration_S2-Grh-DBD_80_rep1			SRR26445758	PE	titration_S2-Grh-DBD_80	
+titration_S2-Grh-DBD_80_rep2	titration_S2-Grh-DBD_80_rep2			SRR26445759	PE	titration_S2-Grh-DBD_80	
 neuroblast_ATAC_rep1	neuroblast_ATAC_rep1			SRR11818939	PE	neuroblast_ATAC	GSE150931
 neuroblast_ATAC_rep2	neuroblast_ATAC_rep2			SRR11818940	PE	neuroblast_ATAC	GSE150931
