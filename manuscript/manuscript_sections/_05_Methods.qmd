@@ -18,8 +18,9 @@ Following recovery of stable cell lines, cells were cultured with 1 µg/mL purom
 ## Induction of transcription factor expression
 
 Transcription factor expression was induced by adding CuSO~4~ to the cell culture media.
-Expression of protein at physiological levels was achieved with 1000, 100, or 40 µM CuSO~4~ for Zld, Grh or Twi, respectively (Extended Data Fig. 1c-d; Extended Data Fig. 4a).
-For experiments with sub- or supraphysiological protein levels (Fig. 5; Extended Data Fig. 9a-c), the following CuSO~4~ concentrations were used: 500 µM (Zld subphysiological), 1000 µM (Zld physiological) or 1500 µM (Zld supraphysiological); 25 µM (Grh subphysiological), 100 µM (Grh physiological) or 400 µM (Grh supraphysiological); 10 µM (Twi subphysiological), 40 µM (Twi physiological) or 160 µM (Twi supraphysiological).
+Expression of protein at approximately physiological levels was achieved with 1000, 100, or 40 µM CuSO4 for Zld, Grh or Twi, respectively (Extended Data Fig. 1c-d; Extended Data Fig. 4a).
+For experiments with multiple protein levels (Fig. 5; Extended Data Fig. 9a-c), the following CuSO~4~ concentrations were used: 500 µM (Zld low), 1000 µM (Zld medium) or 1500 µM (Zld high); 25 µM (Grh low), 100 µM (Grh medium) or 400 µM (Grh high); 10 µM (Twi low), 40 µM (Twi medium) or 160 µM (Twi high); 100 µM (Zld DNA-binding domain low); 400 µM (Zld DNA-binding domain high); 20 µM (Grh DNA-binding domain low); 100 µM (Grh DNA-binding domain high).
+The Zld or Grh DNA-binding domains were induced with 100 µM, or 20 µM CuSO~4~, respectively for immunofluorescence experiments (Extended Data Fig. 10).
 For all induction experiments, cells were plated at 1×10^6^ cells per mL.
 Unless otherwise specified, experiments were performed with cells harvested 48 hours after induction.
 
@@ -65,6 +66,7 @@ Aligned reads were filtered to include only reads with a mapping quality score \
 Reads mapping to unplaced scaffolds or the mitochondrial genome were discarded.
 Peak calling was performed using MACS2 version 2.2 with parameters `-g dm --call-summits`.
 Data from ChIP experiments performed with the same antibody in wild-type cells were used as a control for peak calling.
+Thus, only peaks with statistically significantly enrichment (MACS2 q-value \< 0.5) in induced cells relative to wild-type cells are called as peaks.
 Only peaks that were detected in all replicates were considered in downstream analysis.
 bigWig files were generated using deepTools bamCoverage version 3.5.1 with parameters `–binSize 10`.
 bigWig files were z-score normalized by subtracting the genome-wide average of all bins from each bin value and dividing by the standard deviation of all bins.
@@ -115,10 +117,20 @@ Cells were split on days 2 and 5 and tazemetostat was added to maintain a final 
 On day 5, CuSO~4~ was added to achieve physiological expression of Zld, Grh or Twi (see above).
 On day 7, cells were harvested for immunoblotting, ChIP and CUT&RUN.
 
+## Drosophila strains and collection of brains for CUT&RUN
+
+Drosophila strains and genetic crosses for the isolation of type II neuroblasts (neural stem cells) and for the ectopic expression of Zld in neural stem cells were described previously [@Larson2021a].
+Brains from *brat^11/DF^* mutant larvae were used to perform CUT&RUN for endogenous Zld in neural stem cells.
+For ectopic expression of Zld, brains were collected from *brat^11/DF,Tub-Gal80ts;UAS-HA-Zld^* larvae, in which *Worniu-Gal4* drives overexpression of HA-Zld in the neural stem cells.
+Larvae were grown at 18°C until reaching the L3 stage, then shifted to 33°C for 24 hours to induce Zld overexpression.
+50 brains were dissected into Schneider's medium.
+Brains were centrifuged at 600 × *g* for 3 minutes and transferred to CUT&RUN wash buffer supplemented with 0.1% BSA.
+Brains were dounced 10 times in a 1 mL dounce, centrifuged at 600 × *g* for 3 minutes and resuspended in 100 µL CUT&RUN wash buffer.
+
 ## CUT&RUN
 
 CUT&RUN was performed using EpiCypher reagents according to the manufacturer protocol.
-2×10^5^ cells were used for each CUT&RUN reaction.
+2×10^5^ cells, or material from 50 brains prepared as described above, were used for each CUT&RUN reaction.
 Overnight incubation with antibodies was performed in antibody buffer containing 0.05% digitonin.
 0.5 µL anti-H3K27me3 (Cell signaling technologies), anti-Zld, anti-Grh, or rabbit IgG were used for CUT&RUN.
 For H3K27me3 CUT&RUN, a 1:5 dilution of K-MetStat Panel spike-in nucleosomes (EpiCypher, cat. \# 19-1002) was added to each reaction prior to addition of antibody.
@@ -135,16 +147,34 @@ Generation of z-score normalized bigWig files was performed as described above f
 For H3K27me3 data, the percentage of reads containing barcoded Epicypher nucleosomes was calculated and 1 divided by this percentage was used as the scaling factor for spike-in normalization.
 The z-score normalized read depth was multiplied by these scaling factors to generate spike-in normalized bigWigs.
 
+## Motif analysis
+
+Motif analysis was performed using the MEME suite[@Bailey2015], the memes R package[@Nystrom2021], and the universalmotif R package[@universalmotif].
+To facilitate analysis of canonical Zld, Grh, or Twi motifs, position-weight matrices were derived from ChIP-seq data for each factor in the *Drosophila* embryos.
+FIMO[@Grant2011] was used to find instances of the canonical motifs within ChIP-seq peaks for S2 cells.
+Motifs with an adjusted p-value \< 1×10^-3^ were considered for analysis of motif number and score.
+AME[@mcleay2010] was used to test for enrichment of known motifs from the FlyFactorSurvey database[@zhu2010].
+Previously published RNA-seq data was used to pre-filter motifs to include only those for which the associate factor is expressed (RPKM \> 1) in at least one of the tissues being analyzed (embryo, neural stem cells, and wing discs).
+Motifs enrichment was visualized using the normalized motif rank implemented by the memes package.
+
 ## Analysis of previously published data
 
-Previously published datasets analyzed in this study can be found in supplementary table 2.
+Previously published datasets analyzed in this study can be found in Supplementary Table 2.
 All previously published data were analyzed in parallel with data from this study using analysis parameters described above.
 
 ## Data and code availability
 
-Sequencing data have been deposited in the Gene Expresion Omnibus under accession GSE227884. Reviewers can access the data using reviewer token whsjesemxzqllyj.
+Sequencing data have been deposited in the Gene Expresion Omnibus under accession GSE227884.
+Reviewers can access the data using reviewer token whsjesemxzqllyj.
 All analysis code is available on GitHub: https://github.com/tjgibson/S2_pioneers_manuscript.
 
 ## Acknowledgements
-We thank Alex Theis, Meghan Freund, and Andrew Mehle for helpful discussions and advice. We thank Julia Zeitlinger for generously sharing the Twist antibody. We acknowledge the University of Wisconsin-Madison Biotechnology Center and the NUSeq Core Facility for sequencing. TJG was supported by the National Institutes of Health (NIH) National Research Service Award T32 GM007215. Experiments were supported by a R35 GM136298 from NIH to MMH. MMH was also supported by a Vallee Scholar Award.
 
+We thank Alex Theis, Meghan Freund, and Andrew Mehle for helpful discussions and advice.
+We thank Julia Zeitlinger for generously sharing the Twist antibody.
+We particularly thank Elizabeth Larson for sharing the neural stem cell data for HA-Zld.
+We acknowledge the University of Wisconsin-Madison Biotechnology Center and the NUSeq Core Facility for sequencing.
+TJG was supported by the National Institutes of Health (NIH) National Research Service Award T32 GM007215.
+Experiments were supported by a R35 GM136298 and R01 NS111647 from NIH to MMH.
+MMH was also supported by a Vallee Scholar Award.
+MMH is a Romnes Faculty Fellow and Vilas Faculty Mid-Career Investigator.

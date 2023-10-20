@@ -21,3 +21,25 @@ S2-Twi_40uM_rep1	S2-Twi_40uM	S2-Twi	CuSO4	S2-Twi_RNAseq
 S2-Twi_40uM_rep2	S2-Twi_40uM	S2-Twi	CuSO4	S2-Twi_RNAseq
 S2-WT_noCuSO4_rep1	S2-WT_noCuSO4	S2-WT	no_CuSO4	S2-Twi_RNAseq
 S2-WT_noCuSO4_rep2	S2-WT_noCuSO4	S2-WT	no_CuSO4	S2-Twi_RNAseq
+embryo_cycle-14D_male_rep1	embryo_cycle-14_late			embryo_RNAseq
+embryo_cycle-14D_male_rep2	embryo_cycle-14_late			embryo_RNAseq
+embryo_cycle-14D_female_rep1	embryo_cycle-14_late			embryo_RNAseq
+embryo_cycle-14C_female_rep1	embryo_cycle-14_late			embryo_RNAseq
+embryo_cycle-14C_female_rep2	embryo_cycle-14_late			embryo_RNAseq
+embryo_cycle-14C_male_rep1	embryo_cycle-14_late			embryo_RNAseq
+embryo_cycle-14C_male_rep2	embryo_cycle-14_late			embryo_RNAseq
+S2-WT_noCuSO4_rep1	S2-WT_noCuSO4	S2-WT	no_CuSO4	embryo_RNAseq
+S2-WT_noCuSO4_rep2	S2-WT_noCuSO4	S2-WT	no_CuSO4	embryo_RNAseq
+embryo_15-16H_1	embryo_15-16H			embryo-15-16H_RNAseq
+embryo_15-16H_2	embryo_15-16H			embryo-15-16H_RNAseq
+S2-WT_noCuSO4_rep1	S2-WT_noCuSO4	S2-WT	no_CuSO4	embryo-15-16H_RNAseq
+S2-WT_noCuSO4_rep2	S2-WT_noCuSO4	S2-WT	no_CuSO4	embryo-15-16H_RNAseq
+wing-disc_L3_rep1	wing-disc_L3			wing-disc_RNAseq
+wing-disc_L3_rep2	wing-disc_L3			wing-disc_RNAseq
+S2-WT_noCuSO4_rep1	S2-WT_noCuSO4	S2-WT	no_CuSO4	wing-disc_RNAseq
+S2-WT_noCuSO4_rep2	S2-WT_noCuSO4	S2-WT	no_CuSO4	wing-disc_RNAseq
+neuroblast_rep1	neuroblast			neuroblast_RNA-seq
+neuroblast_rep2	neuroblast			neuroblast_RNA-seq
+neuroblast_rep3	neuroblast			neuroblast_RNA-seq
+S2-WT_noCuSO4_rep1	S2-WT_noCuSO4	S2-WT	no_CuSO4	neuroblast_RNA-seq
+S2-WT_noCuSO4_rep2	S2-WT_noCuSO4	S2-WT	no_CuSO4	neuroblast_RNA-seq

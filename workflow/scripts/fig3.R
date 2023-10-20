@@ -170,7 +170,12 @@ plotText(
 )
 
 # read in overlapping class I sites
-ns_sites <- rtracklayer::import(ns_sites_bed_fn)
+regions <-  nonspecific_sites |> 
+  rowwise() |> 
+  mutate(n_samples = sum(c(zld_class_I, grh_class_I, twi_class_I))) |>
+  ungroup() |> 
+  mutate(ns_class = ifelse(n_samples == 3, "overlapping_class_I", "non-overlapping_class_I")) |> 
+  makeGRangesFromDataFrame(keep.extra.columns = TRUE)
 
 # generate heatmap
 bw <- c(
@@ -187,7 +192,6 @@ bw <- c(
 hm_upstream <- 500
 hm_downstream <- 500
 
-regions <- ns_sites 
 
 hm <- plot_heatmap_minimal(
   bw, regions, 
@@ -196,6 +200,7 @@ hm <- plot_heatmap_minimal(
   order_by_samples = 1:3, 
   individual_scales = TRUE,
   return_heatmap_list = TRUE,
+  row_split = regions$ns_class,
   use_raster = TRUE, raster_by_magick = TRUE, raster_magick_filter = "Triangle",
   border = "black",
   border_gp = gpar(lwd = 0.5)
@@ -212,14 +217,19 @@ plotGG(
 )
 
 # add axes to heatmaps
-seekViewport(name = "matrix_1_heatmap_body_1_1")
+seekViewport(name = "matrix_1_heatmap_body_2_1")
 grid.xaxis(at = c(0, 1), label = c(paste0("-", hm_upstream / 1000, "KB"), paste0("+",hm_downstream / 1000, "KB")), gp = gpar(lwd = 0.5, fontsize = small_text_params$fontsize))
 seekViewport(name = "page")
 
 # add heatmap labels
 plotText(
-  label = paste(length(regions), "overlapping", "\n", "class I sites"), params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 1.5), just = c("center"), default.units = "cm", rot = 90
+  label = "not cobound", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 1), just = c("center"), default.units = "cm", rot = 90
+)
+
+plotText(
+  label = "cobound", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 2.2), just = c("center"), default.units = "cm", rot = 90
 )
 
 plotText(
@@ -715,3 +725,4 @@ plotText(
 )
 
 dev.off()
+

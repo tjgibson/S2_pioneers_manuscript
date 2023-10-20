@@ -29,8 +29,8 @@ These cell lines allowed the inducible and tunable expression of each factor, as
 We expressed each factor at approximately physiological levels and determined genome-wide binding sites using chromatin immunoprecipitation coupled with sequencing (ChIP-seq).
 We identified `r zld_n_ChIP_peaks` peaks for Zld and `r grh_n_ChIP_peaks` for Grh.
 Additional ChIP experiments were performed in wild-type cells using anti-Zld, or anti-Grh to control for antibody specificity.
-Despite undetectable levels of protein by immunoblot, ChIP signal for both proteins was identified in wild-type cells (Extended Data Fig 1e-f).
-To ensure that all peaks used for subsequent analysis reflected those that were gained upon induction, we used these wild-type ChIP datasets as controls for peak calling.
+Despite undetectable levels of protein by immunoblot, ChIP signal for both proteins was identified in wild-type, unedited cells (Extended Data Fig 1e,f).
+To ensure that all peaks used for subsequent analysis reflected those that were gained upon induction, we used these wild-type ChIP datasets (S2-WT) as controls for peak calling (see methods).
 
 ```{r}
 #| include: false
@@ -84,7 +84,7 @@ Genome-wide analysis of signal intensities at all class II and III sites confirm
 Together, these data show that when expressed exogenously at physiolgical levels, Zld and Grh bind and open closed chromatin at a subset of binding sites.
 
 Next, we sought to determine the binding dynamics of Zld and Grh.
-Zld and Grh protein was detectable at 4 or 12 hours following induction, respectively (Extended Data Fig. 3a-b).
+Zld and Grh protein was detectable at 4 or 12 hours following induction, respectively (Extended Data Fig. 3a,b).
 We used CUT&RUN to measure Zld and Grh binding to chromatin at 0, 4, 12, 24 or 48 hours following induction[@Skene2017].
 Both proteins were bound to class I regions even in uninduced cells (0H), suggesting that these sites can be occupied even when protein levels are below the limit of detection of immunoblotting (Extended Data Fig 3c-d).
 Class II and III regions were bound at 4 hours, with slight increases in occupancy at later time points, demonstrating that Zld and Grh bind closed chromatin rapidly following induction of protein expression.
@@ -111,7 +111,7 @@ Class II and III regions were bound at 4 hours, with slight increases in occupan
 
 <!-- ::: -->
 
-## Chromatin opening correlates with transcriptional activation
+## Chromatin opening correlates with increased transcript levels
 
 ```{r}
 #| include: false
@@ -155,11 +155,11 @@ Differential expression analysis comparing induced cells to wild-type cells iden
 Genes activated by Zld were enriched for the gene ontology (GO) term embryonic morphogenesis, consistent with the known function of Zld[@Nien2011], as well as imaginal disc development, in which Zld-target genes have not been well characterized (Extended Data Fig. 2g).
 The genes activated by Grh were enriched for GO terms related to cuticle and epithelial development, consistent with the endogenous function of Grh (Extended Data Fig. 2h)[@Nevil2017].
 
-We compared our RNA-seq and ATAC-seq data, allowing us to investigate the relationship between chromatin opening and transcriptional activation.
-Overall, chromatin opening was correlated with transcriptional activation (Fig. 1i-l, Extended Data Fig. 2c,f).
+We compared our RNA-seq and ATAC-seq data, allowing us to investigate the relationship between chromatin opening and expression levels.
+Overall, chromatin opening was correlated with transcript levels (Fig. 1i-l, Extended Data Fig. 2c,f).
 When we individually analyzed the three classes of binding sites for changes in gene expression, we found that class III sites were most likely to be proximal to upregulated genes (Fig. 1j,l).
 This was particularly evident at class III promoters.
-Thus, PF-dependent increases in chromatin accessibility were correlated with transcriptional activation, although binding and chromatin opening did not always result in gene activation.
+Thus, PF-dependent increases in chromatin accessibility were correlated with increased transcript levels.
 
 ## Twist binds extensively to closed chromatin and opens chromatin at a subset of sites
 
@@ -183,7 +183,7 @@ Like Zld and Grh, Twi is an important regulator of *Drosophila* embryonic develo
 However, Twi has properties that are distinct from these PFs.
 Unlike Grh, many Twi-binding sites are developmentally dynamic and are not maintained through embryonic development [@Wilczynski2010a].
 Additionally, Twi binding in the early embryo requires Zld pioneering activity, as mutations to Zld-binding sites disrupted Twi binding to the *cactus* enhancer [@Yáñez-Cuna2012].
-Deep learning models trained on ChIP-seq and ATAC-seq data for Zld and Twi suggest that Zld motifs contribute to chromatin accessibility and Twi binding, while Twi motifs are not predictive of chromatin accessibility [@brennan2022].
+Deep learning models trained on ChIP-seq and ATAC-seq data for Zld and Twi suggest that Zld motifs contribute to chromatin accessibility and Twi binding, while Twi motifs are not predictive of chromatin accessibility [@Brennan2023].
 To test the properties of Twi in our system, we generated stable cell lines that inducibly express Twi at approximately physiological levels (Extended Data Fig. 4a).
 As we had done for Zld and Grh, we determined Twi binding and activity using ChIP-seq, ATAC-seq, and RNA-seq.
 These data revealed the same three classes of binding sites as described for Zld and Grh (Fig 2a,b; Extended Data Fig. 1g).
@@ -214,6 +214,8 @@ Control IP experiments in wild-type S2 cells support that these peaks are not du
 We hypothesized that the overlapping class I binding sites may occur at active *cis*-regulatory regions in wild-type cells.
 To test this, we analyzed published ChIP-seq data from S2 cells for markers of active chromatin: H3K27ac, CBP, H3K4me1, H3K4me3, and H2AV[@Henriques2018; @Philip2015; @Tettey2019].
 Overlapping class I regions showed high levels of these chromatin marks (Fig. 3b), suggesting that exogenously expressed factors may bind nonspecifically to active regions of the genome.
+As would be predicted if active chromatin promoted non-specific binding, those regions co-bound by all three factors were more enriched than regions bound by fewer factors (Fig. 3b).
+To focus our analysis on specific pioneer-factor binding, we excluded the set of cobound class I regions from downstream analysis.
 
 <!-- ::: {#fig-3} -->
 
@@ -247,7 +249,8 @@ This supports the hypothesis that PFs preferentially bind naïve chromatin that 
 The ability of TF binding to promote chromatin accessibility at class III sites and not class II sites was not explained by a pre-existing lack of histones; the levels of H3 and H1 were higher at class III than at class II sites (Extended Data Fig. 5a,c,e).
 While most class III sites were regions of naïve chromatin, a subset were within regions marked with the repressive histone modification H3K27me3 (Extended Data Fig. 5b,d,f).
 In fact, H3K27me3 levels were higher in class III compared to class I or II regions (Extended Data Fig. 5a,c,e).
-Together these analyses suggest that Zld, Grh and Twi pioneer at regions within naïve or repressed chromatin, and that the inability of these factors to promote chromatin accessibility at class II regions is unlikely to be due to differences in preexisting features of chromatin.
+Together these analyses suggest that Zld, Grh and Twi pioneer at regions within naïve or repressed chromatin, and that the inability of these factors to promote chromatin accessibility at class II regions is not due to a preexisting permissive chromatin state.
+Instead, our data are consistent with the model that nucleosomes may promote PF function, as has been reported for other PFs [@miao2022; @veil2019; @ballaré2013].
 
 ## Chromatin opening by pioneer factors is driven by motif content
 
@@ -301,22 +304,29 @@ Twi binding was largely distinct in S2 cells and the embryo, with only a small s
 
 <!-- ::: -->
 
-To test the functional relevance of repressive chromatin to PF binding, we used the chemical inhibitor tazemetostat to disrupt activity of the PRC2 complex responsible for depositing H3K27me3 (Extended Data Fig 8).
+To test the functional relevance of repressive chromatin to PF binding, we used the chemical inhibitor tazemetostat to disrupt activity of the PRC2 complex responsible for depositing H3K27me3 (Extended Data Fig 8 a,b).
 Despite causing dramatic reductions in H3K27me3 levels, tazemetostat treatment did not result in global changes to Zld, Grh, or Twi binding when compared to DMSO controls (Fig. 4d-f).
 The majority of class IV binding sites remained unbound in tazemetostat-treated cells, demonstrating that loss of PRC2 activity is insufficient to promote widespread binding of any of the three factors studied.
+We therefore further examined the chromatin state of the class IV regions in S2 cells, but did not identify enrichment of other chromatin marks that might explain the continued lack of binding even upon tazemetostat treatment (Extended Data Fig. 8c-e).
+
+Given the lack of a clear role for chromatin features in driving the tissue-specific PF occupancy, we investigated whether cofactors might contribute by analyzing motif enrichment at class I-VI regions (Extended Data Fig. 8f-h).
+For all three PF, class I regions were enriched for motifs bound by factors that are robustly expressed in S2 cells.
+By contrast, regions bound in other tissues (class IV, V, VI) were enriched for factors lowly expressed in S2 cells and more highly expressed in other tissues.
+Class IV sites for Twist are enriched for the Zld-binding motif, and Zld has been demonstrated to promote Twist binding in the embryo[@Yáñez-Cuna2012].
+Together this analysis identifies cofactors that may facilitate PF binding in specific tissues and suggests that highly expressed factors in S2 cells promote occupancy of class I regions.
 
 ## Pioneer-factor binding and chromatin opening is concentration dependent
 
 Previous studies proposed that PF activity depends on protein concentration [@Hansen2022; @Blassberg2022].
 Therefore, we tested if differences in the protein concentration of Zld, Grh, or Twi could affect binding and pioneering.
-We performed ChIP-seq on cells induced to express Zld, Grh and Twi at a range of protein concentrations: uninduced, subphysiological, physiological, or supraphysiological (Extended Data Fig. 9a-c; see methods).
+We performed ChIP-seq on cells induced to express Zld, Grh and Twi at multiple protein concentrations within a range including physiological levels: uninduced, low, medium, or high (Extended Data Fig. 9a-c; see methods).
 Analysis of our previously defined class I-VI sites showed that binding was concentration dependent (Fig. 5).
-At class II and III binding sites, subphysiological levels of Zld, Grh, and Twi were sufficient for some, albeit reduced binding (Fig. 5a,e,i).
-Expression of supraphysiological protein levels resulted in increased ChIP intensity at class II and III sites (Fig. 5a,e,i).
+At class II and III binding sites, low levels of Zld, Grh, and Twi were sufficient for some, albeit reduced binding (Fig. 5a,e,i).
+Expression of high protein levels resulted in increased ChIP intensity at class II and III sites (Fig. 5a,e,i).
 To identify the relationship between PF binding and chromatin accessibility, we performed ATAC-seq on cells with the same range in expression.
 As we identified for PF binding, changes in chromatin accessibility were concentration dependent, with more limited chromatin opening at lower concentrations and more robust opening at higher concentrations (Fig. 5b,f,j).
 Many class II binding sites became accessible when Zld, Grh, and Twi were expressed at the highest levels, suggesting that increased chromatin occupancy, as assayed by ChIP-seq, could result in chromatin accessibility.
-For Grh and Zld, but not Twi, supraphysiological concentrations allowed some binding and opening to class IV-VI sites, which were not bound at lower concentrations (Extended Data Fig. 9d-f).
+For Grh and Zld, but not Twi, high concentrations allowed some binding and opening to class IV-VI sites, which were not bound at lower concentrations (Extended Data Fig. 9d-f).
 
 <!-- ::: {#fig-5} -->
 
@@ -337,14 +347,21 @@ For Grh and Zld, but not Twi, supraphysiological concentrations allowed some bin
 <!-- ::: -->
 
 To determine how protein concentration changed the distribution of class I, II and III sites, we redefined these classes using the ChIP-seq and ATAC-seq data at each concentration.
-For all three factors, supraphysiological concentrations led to an increase in binding to closed chromatin (Fig. 5c,g,k).
+For all three factors, high concentrations led to an increase in binding to closed chromatin (Fig. 5c,g,k).
 For Twi, this increase was mostly within class II regions.
-For Grh and Zld, supraphysiological concentrations caused a dramatic increase in class III regions relative to class II (Fig. 5c,g).
-To assess the extent to which increased concentrations led to binding to new regions that were not bound at physiological concentrations, we overlapped the binding sites detected at physiological vs. supraphysiological concentrations (Fig. 5d,h,l).
+For Grh and Zld, high concentrations caused a dramatic increase in class III regions relative to class II (Fig. 5c,g).
+To assess the extent to which increased concentrations led to binding to new regions that were not bound when induced at medium levels, we overlapped the binding sites detected at medium vs. high levels (Fig. 5d,h,l).
 For all three proteins, there were novel binding sites that were bound only when expressed at the highest concentration.
-Together, these data demonstrate that both binding and chromatin opening by PFs are concentration dependent, and that increasing protein concentration leads to novel binding sites, including some endogenous binding sites for these factors during normal development.
 
-## Regions outside the DNA-binding domain are required for binding and opening of closed chromatin
+To explore whether concentration similarly effects PF binding in vivo, we built on our prior studies of Zld in neural stem cells[@Larson2021a].
+We induced expression of HA-tagged Zld in the neural stem cells, allowing us to specifically query binding of this exogenous, overexpressed Zld using CUT&RUN.
+We identified 4557 novel Zld-binding sites upon over-expression (Extended Data Fig. 9j).
+Analysis of ATAC-seq on brains enriched for neural stem cells demonstrated that these newly occupied sites were enriched for the Zld-binding (CAGGTA) motif in regions of closed chromatin (Extended Data Fig. 9j,k).
+Thus, similar to increased expression in S2 cells, exogenous expression of Zld in neural stem cells results in increased binding to regions of closed chromatin enriched for the PF-binding motif.
+Prior studies of Grh demonstrated that exogenous expression in neurons results in increased chromatin accessibility at regions enriched for the Grh motif[@Jacobs2018].
+Together, these data both in culture and in larval brains demonstrate that binding and chromatin opening by PFs are concentration dependent, and that increasing protein concentration leads to novel binding sites.
+
+## The DNA-binding domain is not sufficient for binding and opening closed chromatin
 
 Binding to nucleosomes by PFs requires recognition of target motifs by DNA-binding domains (DBDs) [@Zaret2020].
 However, little is known about how regions outside the DBD may contribute to pioneering function.
@@ -353,7 +370,10 @@ Immunostaining confirmed that the each DBD alone was properly localized to the n
 We performed ChIP-seq and ATAC-seq on cells expressing approximately physiological levels of the DBDs alone.
 Analysis of ChIP-seq signal at our previously defined class I-III regions revealed that the Zld DBD bound robustly to class I regions, but was unable to bind closed chromatin at class II or III regions (Fig. 6a,c).
 Binding of the Grh DBD to class II-III regions was strongly reduced compared to the full-length protein, although some closed regions retained low levels of binding (Fig. 6b,e).
-For both Zld and Grh, the DBD alone was insufficient to open chromatin (Fig 6d,f).
+For both Zld and Grh, when expressed at approximately physiological levels the DBD alone was insufficient to open chromatin (Fig 6f,i).
+Because levels of Zld and Grh correlated with binding to closed chromatin, we tested whether higher levels of DBD expression could overcome the lack of binding at lower concentrations.
+We induced increased levels Zld DBD or Grh DBD and assayed binding and accessibility.
+In contrast to the full-length proteins, increased expression of the DBD alone did not result in increased binding to closed chromatin as compared to lower concentrations nor did it result in significant chromatin opening at bound regions (Fig 6 c-j).
 Together, these experiments show that regions outside the DBD are essential for binding and opening closed chromatin.
 
 <!-- ::: {#fig-6} -->

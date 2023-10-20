@@ -27,7 +27,7 @@ source("workflow/scripts/utils.R")
 # 
 # S2_Twi_ChIP_bw <-  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Twi_aTwi_IP.bw"
 # embryo_Twi_ChIP_bw <-  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-1-3H_aTwi.bw"
-
+# 
 # S2_Zld_ChIP_DMSO_bw <-  "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_DMSO_aZld.bw"
 # S2_Zld_ChIP_taz_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_taz_aZld.bw"
 # S2_Zld_H3K27me3_DMSO_bw <- "histone_CUTandRUN/results/bigwigs/spikeIn_normalized/merged/S2-Zld_DMSO_aH3K27me3_large.bw"
@@ -76,7 +76,7 @@ S2_Twi_H3K27me3_taz_bw <-  snakemake@input[["S2_Twi_H3K27me3_taz_bw"]]
 ## create blank layout for plot =================================================
 # define figure dimensions in cm
 fig_width <-  18
-fig_height <- 12.5
+fig_height <- 13.5
 
 # open pdf
 pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
@@ -155,11 +155,11 @@ hm <- plot_heatmap_minimal(
   return_heatmap_list = TRUE
 )
 
-b_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 0, 0, 0), "mm")))
+a_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 0, 0, 0), "mm")))
 
 # place heatmap on page
 plotGG(
-  plot = b_hm,
+  plot = a_hm,
   x = (ref_x + 0.25), y = (ref_y + 0.25),
   width = 5, height = 5, just = c("left", "top"),
   default.units = "cm"
@@ -207,27 +207,27 @@ plotText(
 )
 
 plotText(
-  label = paste0("Zld", "\n", "S2 cells"), params = small_text_params, fontface = "bold",
+  label = paste0("S2-Zld", "\n", "anti-Zld"), params = small_text_params, fontface = "bold",
   x = (ref_x + 0.68), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
-  label = paste0("Zld", "\n", "embryo"), params = small_text_params, fontface = "bold",
+  label = paste0("embryo", "\n", "anti-Zld"), params = small_text_params, fontface = "bold",
   x = (ref_x + 1.7), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
-  label = paste0("Zld", "\n", "NSC"), params = small_text_params, fontface = "bold",
+  label = paste0("NSC", "\n", "anti-Zld"), params = small_text_params, fontface = "bold",
   x = (ref_x + 2.71), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
-  label = "H3K27me3", params = small_text_params, fontface = "bold",
+  label = paste0("S2-WT", "\n", "H3K27me3"), params = small_text_params, fontface = "bold",
   x = (ref_x + 3.74), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
-  label = "H3K9me3", params = small_text_params, fontface = "bold",
+  label = paste0("S2-WT", "\n", "H3K9me3"), params = small_text_params, fontface = "bold",
   x = (ref_x + 4.8), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
@@ -322,27 +322,27 @@ plotText(
 )
 
 plotText(
-  label = paste0("Grh", "\n", "S2 cells"), params = small_text_params, fontface = "bold",
+  label = paste0("S2-Grh", "\n", "anti-Grh"), params = small_text_params, fontface = "bold",
   x = (ref_x + 0.68), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
-  label = paste0("Grh", "\n", "embryo"), params = small_text_params, fontface = "bold",
+  label = paste0("embryo", "\n", "anti-Grh"), params = small_text_params, fontface = "bold",
   x = (ref_x + 1.7), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
-  label = paste0("Grh", "\n", "wing disc"), params = small_text_params, fontface = "bold",
+  label = paste0("wing disc", "\n", "anti-Grh"), params = small_text_params, fontface = "bold",
   x = (ref_x + 2.71), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
-  label = "H3K27me3", params = small_text_params, fontface = "bold",
+  label = paste0("S2-WT", "\n", "H3K27me3"), params = small_text_params, fontface = "bold",
   x = (ref_x + 3.74), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
-  label = "H3K9me3", params = small_text_params, fontface = "bold",
+  label = paste0("S2-WT", "\n", "H3K9me3"), params = small_text_params, fontface = "bold",
   x = (ref_x + 4.8), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
@@ -384,11 +384,11 @@ hm <- plot_heatmap_minimal(
   return_heatmap_list = TRUE
 )
 
-b_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 0, 0, 0), "mm")))
+c_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 0, 0, 0), "mm")))
 
 # place heatmap on page
 plotGG(
-  plot = b_hm,
+  plot = c_hm,
   x = (ref_x + 0.25), y = (ref_y + 0.25),
   width = 5, height = 5, just = c("left", "top"),
   default.units = "cm"
@@ -436,23 +436,23 @@ plotText(
 )
 
 plotText(
-  label = paste0("Twi", "\n", "S2 cells"), params = small_text_params, fontface = "bold",
+  label = paste0("S2-Twi", "\n", "anti-Twi"), params = small_text_params, fontface = "bold",
   x = (ref_x + 0.75), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
-  label = paste0("Twi", "\n", "embryo"), params = small_text_params, fontface = "bold",
+  label = paste0("embryo", "\n", "anti-Twi"), params = small_text_params, fontface = "bold",
   x = (ref_x + 2.15), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 
 plotText(
-  label = "H3K27me3", params = small_text_params, fontface = "bold",
+  label = paste0("S2-WT", "\n", "H3K27me3"), params = small_text_params, fontface = "bold",
   x = (ref_x + 3.5), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
-  label = "H3K9me3", params = small_text_params, fontface = "bold",
+  label = paste0("S2-WT", "\n", "H3K9me3"), params = small_text_params, fontface = "bold",
   x = (ref_x + 4.7), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
@@ -496,12 +496,12 @@ hm <- plot_heatmap_minimal(
   return_heatmap_list = TRUE
 )
 
-b_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 0, 0, 0), "mm")))
+d_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 0, 0, 0), "mm")))
 
 # place heatmap on page
 plotGG(
-  plot = b_hm,
-  x = (ref_x + 0.25), y = (ref_y + 0.25),
+  plot = d_hm,
+  x = (ref_x + 0.25), y = (ref_y + 0.75),
   width = 5, height = 5, just = c("left", "top"),
   default.units = "cm"
 )
@@ -514,57 +514,57 @@ seekViewport(name = "page")
 # add heatmap labels
 plotText(
   label = "class:", params = small_text_params, fontface = "bold",
-  x = (ref_x - 0.1), y = (ref_y + 0.2), just = c("center"), default.units = "cm"
+  x = (ref_x - 0.1), y = (ref_y + 0.7), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "I", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 0.5), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 1), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "II", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 1.05), just = c("center"), default.units = "cm"
-)
-
-plotText(
-  label = "III", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 1.25), just = c("center"), default.units = "cm"
-)
-
-plotText(
-  label = "IV", params = small_text_params, fontface = "bold",
   x = (ref_x), y = (ref_y + 1.55), just = c("center"), default.units = "cm"
 )
 
 plotText(
+  label = "III", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 1.75), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = "IV", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 2.05), just = c("center"), default.units = "cm"
+)
+
+plotText(
   label = "V", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 2.1), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 2.6), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "VI", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 3.75), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 4.25), just = c("center"), default.units = "cm"
 )
 
 plotText(
-  label = paste0("Zld ChIP", "\n", "DMSO"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 0.75), y = (ref_y), just = c("center"), default.units = "cm"
+  label = paste0("S2-Zld", "\n","anti-Zld","\n", "DMSO"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 0.75), y = (ref_y + 0.3), just = c("center"), default.units = "cm"
 )
 
 plotText(
-  label = paste0("Zld ChIP", "\n", "taz"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 2.1), y = (ref_y), just = c("center"), default.units = "cm"
+  label = paste0("S2-Zld", "\n","anti-Zld","\n", "taz"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 2.1), y = (ref_y + 0.3), just = c("center"), default.units = "cm"
 )
 
 plotText(
-  label = paste0("H3K27me3", "\n", "DMSO"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 3.4), y = (ref_y), just = c("center"), default.units = "cm"
+  label = paste0("S2-Zld", "\n","H3K27me3","\n", "DMSO"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 3.4), y = (ref_y + 0.3), just = c("center"), default.units = "cm"
 )
 
 plotText(
-  label = paste0("H3K27me3", "\n", "taz"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 4.7), y = (ref_y), just = c("center"), default.units = "cm"
+  label = paste0("S2-Zld", "\n","H3K27me3","\n", "taz"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 4.7), y = (ref_y + 0.3), just = c("center"), default.units = "cm"
 )
 
 
@@ -607,12 +607,12 @@ hm <- plot_heatmap_minimal(
   return_heatmap_list = TRUE
 )
 
-b_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 0, 0, 0), "mm")))
+e_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 0, 0, 0), "mm")))
 
 # place heatmap on page
 plotGG(
-  plot = b_hm,
-  x = (ref_x + 0.25), y = (ref_y + 0.25),
+  plot = e_hm,
+  x = (ref_x + 0.25), y = (ref_y + 0.75),
   width = 5, height = 5, just = c("left", "top"),
   default.units = "cm"
 )
@@ -625,58 +625,58 @@ seekViewport(name = "page")
 # add heatmap labels
 plotText(
   label = "class:", params = small_text_params, fontface = "bold",
-  x = (ref_x - 0.1), y = (ref_y + 0.2), just = c("center"), default.units = "cm"
+  x = (ref_x - 0.1), y = (ref_y + 0.7), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "I", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 0.75), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 1.25), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "II", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 1.8), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 2.3), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "III", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 2.35), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 2.85), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "IV", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 2.7), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 3.2), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "V", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 3.05), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 3.55), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "VI", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 4), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 4.5), just = c("center"), default.units = "cm"
 )
 
 
 plotText(
-  label = paste0("Grh ChIP", "\n", "DMSO"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 0.75), y = (ref_y), just = c("center"), default.units = "cm"
+  label = paste0("S2-Grh", "\n","anti-Grh","\n", "DMSO"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 0.75), y = (ref_y + 0.3), just = c("center"), default.units = "cm"
 )
 
 plotText(
-  label = paste0("Grh ChIP", "\n", "taz"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 2.1), y = (ref_y), just = c("center"), default.units = "cm"
+  label = paste0("S2-Grh", "\n","anti-Grh","\n", "taz"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 2.1), y = (ref_y + 0.3), just = c("center"), default.units = "cm"
 )
 
 plotText(
-  label = paste0("H3K27me3", "\n", "DMSO"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 3.4), y = (ref_y), just = c("center"), default.units = "cm"
+  label = paste0("S2-Grh", "\n","H3K27me3","\n", "DMSO"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 3.4), y = (ref_y + 0.3), just = c("center"), default.units = "cm"
 )
 
 plotText(
-  label = paste0("H3K27me3", "\n", "taz"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 4.7), y = (ref_y), just = c("center"), default.units = "cm"
+  label = paste0("S2-Grh", "\n","H3K27me3","\n", "taz"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 4.7), y = (ref_y + 0.3), just = c("center"), default.units = "cm"
 )
 
 
@@ -720,12 +720,12 @@ hm <- plot_heatmap_minimal(
 )
 
 
-b_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 0, 0, 0), "mm")))
+f_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 0, 0, 0), "mm")))
 
 # place heatmap on page
 plotGG(
-  plot = b_hm,
-  x = (ref_x + 0.25), y = (ref_y + 0.25),
+  plot = f_hm,
+  x = (ref_x + 0.25), y = (ref_y + 0.75),
   width = 5, height = 5, just = c("left", "top"),
   default.units = "cm"
 )
@@ -738,57 +738,57 @@ seekViewport(name = "page")
 # add heatmap labels
 plotText(
   label = "class:", params = small_text_params, fontface = "bold",
-  x = (ref_x - 0.1), y = (ref_y + 0.4), just = c("center"), default.units = "cm"
+  x = (ref_x - 0.1), y = (ref_y + 0.7), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "I", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 1.5), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 2), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "II", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 3.5), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 4), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "III", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 4.4), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 4.9), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "IV", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 4.6), just = c("center"), default.units = "cm"
-)
-
-plotText(
-  label = "V", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 4.8), just = c("center"), default.units = "cm"
-)
-
-plotText(
-  label = "VI", params = small_text_params, fontface = "bold",
   x = (ref_x), y = (ref_y + 5.1), just = c("center"), default.units = "cm"
 )
 
 plotText(
-  label = paste0("Twi ChIP", "\n", "DMSO"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 0.75), y = (ref_y), just = c("center"), default.units = "cm"
+  label = "V", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 5.3), just = c("center"), default.units = "cm"
 )
 
 plotText(
-  label = paste0("Twi ChIP", "\n", "taz"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 2.1), y = (ref_y), just = c("center"), default.units = "cm"
+  label = "VI", params = small_text_params, fontface = "bold",
+  x = (ref_x), y = (ref_y + 5.6), just = c("center"), default.units = "cm"
 )
 
 plotText(
-  label = paste0("H3K27me3", "\n", "DMSO"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 3.4), y = (ref_y), just = c("center"), default.units = "cm"
+  label = paste0("S2-Twi", "\n","anti-Twi","\n", "DMSO"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 0.75), y = (ref_y + 0.3), just = c("center"), default.units = "cm"
 )
 
 plotText(
-  label = paste0("H3K27me3", "\n", "taz"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 4.7), y = (ref_y), just = c("center"), default.units = "cm"
+  label = paste0("S2-Twi", "\n","anti-Twi","\n", "taz"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 2.1), y = (ref_y + 0.3), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = paste0("S2-Twi", "\n","H3K27me3","\n", "DMSO"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 3.4), y = (ref_y + 0.3), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = paste0("S2-Twi", "\n","H3K27me3","\n", "taz"), params = small_text_params, fontface = "bold",
+  x = (ref_x + 4.7), y = (ref_y + 0.3), just = c("center"), default.units = "cm"
 )
 
 

@@ -7,11 +7,12 @@ source("workflow/scripts/utils.R")
 # Zld ChIP =====================================================================
 # import unit names
 units <- read_tsv("config/ChIP_units.tsv")
-units <- units[c(37:84),]
 
 units <- units |> 
   filter(call_peaks) |> 
-  filter(grepl("Zld", sample_name))
+  filter(grepl("Zld", sample_name)) |> 
+  filter(grepl("uM", sample_name)) |> 
+  filter(!grepl("DBD", sample_name))
 
 # import regions of interest
 zld_tissue_occupancy <- read_tsv("results/ChIP_tissue_classes/zld_tissue_classes.tsv")
@@ -71,10 +72,11 @@ rpkm_counts |>
 # Zld ATAC =====================================================================
 # import unit names
 units <- read_tsv("config/ATACseq_units.tsv")
-units <- units[25:48,]
 
 units <- units |> 
-  filter(grepl("Zld", sample_name))
+  filter(grepl("titration", sample_name)) |> 
+  filter(grepl("Zld", sample_name)) |> 
+  filter(!grepl("DBD", sample_name))
 
 # import regions of interest
 zld_tissue_occupancy <- read_tsv("results/ChIP_tissue_classes/zld_tissue_classes.tsv")
@@ -135,11 +137,12 @@ rpkm_counts |>
 # Grh ==========================================================================
 # import unit names
 units <- read_tsv("config/ChIP_units.tsv")
-units <- units[37:84,]
 
 units <- units |> 
   filter(call_peaks) |> 
-  filter(grepl("Grh", sample_name))
+  filter(grepl("Grh", sample_name)) |> 
+  filter(grepl("uM", sample_name)) |> 
+  filter(!grepl("DBD", sample_name))
 
 # import regions of interest
 grh_tissue_occupancy <- read_tsv("results/ChIP_tissue_classes/grh_tissue_classes.tsv")
@@ -199,10 +202,11 @@ rpkm_counts |>
 # Grh ATAC =====================================================================
 # import unit names
 units <- read_tsv("config/ATACseq_units.tsv")
-units <- units[25:48,]
 
 units <- units |> 
-  filter(grepl("Grh", sample_name))
+  filter(grepl("titration", sample_name)) |> 
+  filter(grepl("Grh", sample_name)) |> 
+  filter(!grepl("DBD", sample_name))
 
 # import regions of interest
 grh_tissue_occupancy <- read_tsv("results/ChIP_tissue_classes/grh_tissue_classes.tsv")
@@ -261,11 +265,11 @@ rpkm_counts |>
 # Twi ==========================================================================
 # import unit names
 units <- read_tsv("config/ChIP_units.tsv")
-units <- units[37:84,]
 
 units <- units |> 
   filter(call_peaks) |> 
-  filter(grepl("Twi", sample_name))
+  filter(grepl("Twi", sample_name)) |> 
+  filter(grepl("uM", sample_name))
 
 # import regions of interest
 twi_tissue_occupancy <- read_tsv("results/ChIP_tissue_classes/twi_tissue_classes.tsv")
@@ -324,10 +328,11 @@ rpkm_counts |>
 # Twi ATAC =====================================================================
 # import unit names
 units <- read_tsv("config/ATACseq_units.tsv")
-units <- units[25:48,]
 
 units <- units |> 
-  filter(grepl("Twi", sample_name))
+  filter(grepl("titration", sample_name)) |> 
+  filter(grepl("Twi", sample_name)) 
+
 
 # import regions of interest
 twi_tissue_occupancy <- read_tsv("results/ChIP_tissue_classes/twi_tissue_classes.tsv")

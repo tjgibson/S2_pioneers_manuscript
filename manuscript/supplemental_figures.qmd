@@ -25,7 +25,7 @@ Two independently generated cell lines are shown and compared to 2-3 hours (H) e
 60,000 cells were loaded in each well, which is equivalent to the approximately 60,000 nuclei present in 10 2-3 hours embryos.
 Black arrowheads indicate Zld **(c)** or Grh **(d)**.
 Gray arrowheads indicate background bands used to assess loading.
-**e-g,** Heatmaps comparing Zld **(e)**, Grh **(f)**, or Twi **(g)** ChIP-seq signal to control experiments in which anti-Zld, anti-Grh, anti-Twi, or IgG antibodies were used to perform immunopreciptation in wild-type (WT) cells.
+**e-g,** Heatmaps comparing Zld **(e)**, Grh **(f)**, or Twi **(g)** ChIP-seq signal to control experiments in which anti-Zld, anti-Grh, anti-Twi, or IgG antibodies were used to perform immunopreciptation in wild-type (WT) cells. ATAC-seq signal in wild-type cells is shown for reference.
 :::
 
 ::: {#fig-2}
@@ -88,19 +88,23 @@ Dashed gray lines indicate a zoomed-in region where Zld, Grh or Twi ChIP-seq sig
 ::: {#fig-8}
 ![](figures/extended_data_fig8.pdf)
 
-**Loss of H3K27me3 in tazemetostat-treated cells. a,** Immunoblot showing H3K27me3 levels in two replicates of DMSO- or tazemetostat-treated cells.
+**Analysis of chromatin and motif content at class I-VI regions. a,** Immunoblot showing H3K27me3 levels in two replicates of DMSO- or tazemetostat-treated cells.
 Tubulin levels are shown as a loading control.
 **b,** Heatmap showing specificity of anti-H327me3 antibody in CUT&RUN reactions.
 A panel of barcoded spike-in nucleosomes bearing different modifications was added to each CUT&RUN reaction (see methods).
 For each sample, the heatmap displays the percentage of barcode reads for each sample and histone modification relative to the total number of barcode reads for all modifications.
+**c-e,** Heatmaps showing the levels of different chromatin marks in class I-VI regions for Zld **(c)**, Grh **(d)** or Twi **(e)**.
+**f-h,** Enrichment of known motifs in class I-VI sites for Zld **(f)**, Grh **(g)** or Twi **(h)**. Left heatmap shows normalized motif rank within each class, with 1 being more enriched and 0 being less enriched. Right heatmap shows the normalized expression (log~2~ RPKM) in RNA-seq datasets from each of the tissues that was analyzed.
 :::
 
 ::: {#fig-9}
 ![](figures/extended_data_fig9.pdf)
 
-**Expression of Zld, Grh, or Twi at supraphysiological levels results in chromatin opening at a small number of novel binding sites. a-c,** Immunoblots showing Zld **(a)**, Grh **(b)** or Twi **(c)** protein levels when stable cell lines are induced using different concentrations of CuSO~4~.
+**Expression of Zld, Grh, or Twi at high protein levels results in chromatin opening at a small number of novel binding sites. a-c,** Immunoblots showing Zld **(a)**, Grh **(b)** or Twi **(c)** protein levels when stable cell lines are induced using different concentrations of CuSO~4~.
 **d-f,** Bar plots showing the percentage of previously defined class I-VI binding sites that are bound by Zld **(d)**, Grh **(e)**, or Twi **(f)** when expressed at varying concentrations.
 **g-i,** Bar plots showing the percentage of previously defined class I-VI binding sites that overlap an ATAC-seq peak when Zld **(g)**, Grh **(h)**, or Twi **(i)** are expressed at varying concentrations.
+**j,** Heatmap showing z-score normalized, anti-Zld CUT&RUN data generated from either wild-type neural stem cells (Type II neuroblasts) or neural stem cells over-expressing Zld. Heatmaps are divided to show those peaks detected in wild-type vs. novel peaks that were only observed with over-expression of Zld. ATAC-seq data from wild-type neural stem cells is also shown.
+**i,** Heatmap of adjusted p-values for the top *de novo* motifs enriched in either the endogenous or novel (Zld overexpression) Zld binding sites.
 :::
 
 ::: {#fig-10}

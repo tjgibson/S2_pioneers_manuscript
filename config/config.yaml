@@ -148,6 +148,26 @@ RNAseq:
           S2-Twi-vs-S2-WT:
             - S2-Twi_40uM
             - S2-WT_40uM
+      embryo_RNAseq:
+        contrasts:
+          S2-WT-vs-nc14-embryo:
+            - S2-WT_noCuSO4
+            - embryo_cycle-14_late
+      embryo-15-16H_RNAseq:
+        contrasts:
+          S2-WT-vs-15-16H-embryo:
+            - S2-WT_noCuSO4
+            - embryo_15-16H
+      wing-disc_RNAseq:
+        contrasts:
+          S2-WT-vs-L3-wing-disc:
+            - S2-WT_noCuSO4
+            - wing-disc_L3
+      neuroblast_RNA-seq:
+        contrasts:
+          S2-WT-vs-NB:
+            - S2-WT_noCuSO4
+            - neuroblast
     model: ~condition
     count_threshold: 50
     padj_cutoff: 0.05
@@ -264,6 +284,18 @@ ATACseq:
           S2-HA-Twi-160uM-vs-0uM:
           - titration_S2-HA-Twi_160uM
           - titration_S2-HA-Twi_0uM
+      S2-Zld-DBD-titration_ATACseq:
+      # contrasts for the deseq2 results method
+        contrasts:
+          S2-Zld-DBD-400uM-vs-S2-ZLD-DBD-100uM:
+          - titration_S2-Zld-DBD_400
+          - S2-Zld-DBD_100uM
+      S2-Grh-DBD-titration_ATACseq:
+      # contrasts for the deseq2 results method
+        contrasts:
+          S2-Grh-DBD-80uM-vs-S2-GRH-20uM:
+          - titration_S2-Grh-DBD_80
+          - S2-Grh-DBD_20uM
     model: ~condition
     count_threshold: 50
     padj_cutoff: 0.05

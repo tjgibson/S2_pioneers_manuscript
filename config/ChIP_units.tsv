@@ -69,3 +69,11 @@ S2-WT_aTwi_input_rep1	S2-WT_aTwi_input_rep1			SRR23932840	SE	FALSE			S2-WT_aTwi_
 S2-WT_aTwi_input_rep2	S2-WT_aTwi_input_rep2			SRR23932839	SE	FALSE			S2-WT_aTwi_input
 S2-WT_aHA_input_rep1	S2-WT_aHA_input_rep1			SRR23932888	SE	FALSE			S2-WT_aHA_input
 S2-WT_aHA_input_rep2	S2-WT_aHA_input_rep2			SRR23932887	SE	FALSE			S2-WT_aHA_input
+S2-Zld-DBD_aZld_100uM_rep1	S2-Zld-DBD_aZld_100uM_rep1	./../data/2023-09_ChIP/TGL247_S9_R1_001.fastq.gz			SE	TRUE	S2-WT_aZld_IP_rep1	narrow	S2-Zld-DBD-100uM_aZld_IP
+S2-Zld-DBD_aZld_100uM_rep2	S2-Zld-DBD_aZld_100uM_rep2	./../data/2023-09_ChIP/TGL248_S10_R1_001.fastq.gz			SE	TRUE	S2-WT_aZld_IP_rep2	narrow	S2-Zld-DBD-100uM_aZld_IP
+S2-Zld-DBD_aZld_400uM_rep1	S2-Zld-DBD_aZld_400uM_rep1	./../data/2023-09_ChIP/TGL249_S11_R1_001.fastq.gz			SE	TRUE	S2-WT_aZld_IP_rep1	narrow	S2-Zld-DBD-400uM_aZld_IP
+S2-Zld-DBD_aZld_400uM_rep2	S2-Zld-DBD_aZld_400uM_rep2	./../data/2023-09_ChIP/TGL250_S12_R1_001.fastq.gz			SE	TRUE	S2-WT_aZld_IP_rep2	narrow	S2-Zld-DBD-400uM_aZld_IP
+S2-Grh-DBD_aGrh_20uM_rep1	S2-Grh-DBD_aGrh_20uM_rep1	./../data/2023-09_ChIP/TGL251_S13_R1_001.fastq.gz			SE	TRUE	S2-WT_aGrh_IP_rep1	narrow	S2-Grh-DBD-20uM_aGrh_IP
+S2-Grh-DBD_aGrh_20uM_rep2	S2-Grh-DBD_aGrh_20uM_rep2	./../data/2023-09_ChIP/TGL252_S14_R1_001.fastq.gz			SE	TRUE	S2-WT_aGrh_IP_rep2	narrow	S2-Grh-DBD-20uM_aGrh_IP
+S2-Grh-DBD_aGrh_80uM_rep1	S2-Grh-DBD_aGrh_80uM_rep1	./../data/2023-09_ChIP/TGL253_S15_R1_001.fastq.gz			SE	TRUE	S2-WT_aGrh_IP_rep1	narrow	S2-Grh-DBD-80uM_aGrh_IP
+S2-Grh-DBD_aGrh_80uM_rep2	S2-Grh-DBD_aGrh_80uM_rep2	./../data/2023-09_ChIP/TGL254_S16_R1_001.fastq.gz			SE	TRUE	S2-WT_aGrh_IP_rep2	narrow	S2-Grh-DBD-80uM_aGrh_IP

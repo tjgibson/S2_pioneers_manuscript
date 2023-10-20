@@ -19,7 +19,7 @@ Nonetheless, the mechanisms that govern PF occupancy and activity remain largely
 
 PF activity is regulated at a step other than chromatin binding.
 PFs are defined by their ability to promote chromatin opening, yet many PFs are only required for chromatin accessibility at a subset of their binding sites.
-For example, upon depletion of the PFs Zelda, GAGA-factor, Oct4, or Sox2, chromatin accessibility is lost only at a subset of the binding sites for the respective factor [@Schulz2015; @Gaskill2021; @maresca2022].
+For example, upon depletion of the PFs Zelda, GAGA-factor, Oct4, or Sox2, chromatin accessibility is lost only at a subset of the binding sites for the respective factor [@Schulz2015; @Gaskill2021; @Maresca2023].
 Pax7, a PF important for specification of pituitary melanotropes, binds to thousands of "pioneer primed" regions where binding does not result in chromatin opening [@Mayran2018a].
 Further separating PF binding from opening, at some Pax7-bound loci there is a temporal delay between binding and chromatin opening.
 This distinction between binding and opening may be due to PFs recruiting additional factors to drive chromatin accessibility.
@@ -37,7 +37,7 @@ Since the discovery of Zld as an activator of the initial wave of zygotic transc
 Similar to the role of Zld in genomic reprogramming in the early embryo, Zld promotes the neural stem cell fate in the developing larval brain [@Larson2021a].
 Despite the shared ability to promote the undifferentiated fate in both tissues, the majority of Zld-binding sites are unique to either tissue.
 In contrast to the tissue-specific chromatin occupancy of Zld, Grh-binding sites are largely shared between tissues [@Nevil2017].
-Grh is a master regulator of epithelial cell fate that is conserved among metazoans and functions as a pioneer factor in both *Drosophila* larva and mammalian cell culture [@Wang2012; @Jacobs2018;@Chen2018; @Nevil2020].
+Grh is a master regulator of epithelial cell fate that is conserved among metazoans and functions as a pioneer factor in both *Drosophila* larva and mammalian cell culture [@Wang2012; @Jacobs2018; @Chen2018; @Nevil2020].
 However, in the early *Drosophila* embryo Grh is dispensible for chromatin accessibility, and only displays pioneering activity in late embryos or larval tissues.
 Thus, Grh pioneering activity, but not Grh binding is regulated over development.
 

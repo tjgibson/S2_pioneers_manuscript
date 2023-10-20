@@ -23,8 +23,8 @@ configfile: 'config/config.yaml'
 ##########################################################################################
 
 module ChIPseq:
-    snakefile: "https://github.com/tjgibson/NGS-workflow-chipseq/raw/main/workflow/Snakefile"
-#     snakefile: "../../NGS_workflows/NGS-workflow-chipseq/workflow/Snakefile"
+#     snakefile: "https://github.com/tjgibson/NGS-workflow-chipseq/raw/main/workflow/Snakefile"
+    snakefile: "temp_workflows/NGS-workflow-chipseq/workflow/Snakefile"
 	config: config["ChIPseq"]
 	prefix: "ChIPseq"
 use rule * from ChIPseq as ChIPseq_*
@@ -96,11 +96,36 @@ rule annotate_ChIP_peaks:
 		promoter_downstream= 100
 	script:
 		"workflow/scripts/annotate_peaks_ChIPseeker.R"
-		
+
+
+rule get_peak_fasta:
+	input:
+		"ChIPseq/results/peaks/filtered/S2-WT_{factor}_IP.narrowPeak"
+	output:
+		temp("ChIPseq/results/peaks/peak_sequences/S2-WT_{factor}.fasta")
+	params:
+		r_source= "workflow/scripts/utils.R",
+	script:
+		"workflow/scripts/get_embryo_peak_sequences.R"
+
+rule get_WT_motifs:
+	input:
+		"ChIPseq/results/peaks/peak_sequences/S2-WT_{factor}.fasta"
+	output:
+		multiext("ChIPseq/results/motifs/S2-WT_{factor}/meme", ".html", ".txt", ".xml")
+	conda:
+		"workflow/envs/meme.yaml"
+	params:
+		mode="zoops",
+		n_motifs=10,
+	shell:
+		 "meme-chip {input} -oc ChIPseq/results/motifs/{wildcards.factor} -db /Users/tylergibson/meme/motif_databases/FLY/* -meme-mod {params[0]} -meme-nmotifs {params[1]}"
+
+	
 # process previously published ChIP-seq data for chromatin proteins
 module published_ChIPseq:
-    snakefile: "https://github.com/tjgibson/NGS-workflow-chipseq/raw/main/workflow/Snakefile"
-# 	snakefile: "../../NGS_workflows/NGS-workflow-chipseq/workflow/Snakefile"    	
+#     snakefile: "https://github.com/tjgibson/NGS-workflow-chipseq/raw/main/workflow/Snakefile"
+	snakefile: "temp_workflows/NGS-workflow-chipseq/workflow/Snakefile"    	
 	config: config["published_ChIPseq"]
 	prefix: "published_ChIPseq"
 use rule * from published_ChIPseq as published_ChIPseq_*
@@ -162,8 +187,8 @@ rule get_embryo_PWMs:
 
 module RNAseq:
     snakefile:
-        "https://github.com/tjgibson/NGS-workflow-RNAseq/raw/main/workflow/Snakefile"
-#         "../NGS_workflows/NGS-workflow-RNAseq/workflow/Snakefile"
+#         "https://github.com/tjgibson/NGS-workflow-RNAseq/raw/main/workflow/Snakefile"
+        "temp_workflows/NGS-workflow-RNAseq/workflow/Snakefile"
 		config: config["RNAseq"]
 		prefix: "RNAseq"
 use rule * from RNAseq as RNAseq_*
@@ -204,8 +229,8 @@ rule annotate_RNAseq_results:
 ##########################################################################################
 
 module ATACseq:
-	snakefile: "https://github.com/tjgibson/NGS-workflow-ATACseq/raw/main/workflow/Snakefile"
-# 	snakefile: "../../NGS_workflows/NGS-workflow-ATACseq/workflow/Snakefile"
+# 	snakefile: "https://github.com/tjgibson/NGS-workflow-ATACseq/raw/main/workflow/Snakefile"
+	snakefile: "temp_workflows/NGS-workflow-ATACseq/workflow/Snakefile"
 	config: config["ATACseq"]
 	prefix: "ATACseq"
 use rule * from ATACseq as ATACseq_*
@@ -247,8 +272,8 @@ rule annotate_ATAC_peaks:
 
 # process CUT&RUN data
 module histone_CUTandRUN:
-	snakefile: "https://github.com/tjgibson/NGS-workflow-CUTandRUN/raw/master/workflow/Snakefile"
-# 	snakefile: "../NGS_workflows/NGS-workflow-CUTandRUN/workflow/Snakefile"
+# 	snakefile: "https://github.com/tjgibson/NGS-workflow-CUTandRUN/raw/master/workflow/Snakefile"
+	snakefile: "temp_workflows/NGS-workflow-CUTandRUN/workflow/Snakefile"
 	config: config["histone_CUTandRUN"]
 	prefix: "histone_CUTandRUN"
 use rule * from histone_CUTandRUN as histone_CUTandRUN_*
@@ -263,8 +288,8 @@ use rule * from histone_CUTandRUN as histone_CUTandRUN_*
 
 # process CUT&RUN data
 module TF_CUTandRUN:
-	snakefile: "https://github.com/tjgibson/NGS-workflow-CUTandRUN/raw/master/workflow/Snakefile"
-# 	snakefile: "../NGS_workflows/NGS-workflow-CUTandRUN/workflow/Snakefile"
+# 	snakefile: "https://github.com/tjgibson/NGS-workflow-CUTandRUN/raw/master/workflow/Snakefile"
+	snakefile: "temp_workflows/NGS-workflow-CUTandRUN/workflow/Snakefile"
 	config: config["TF_CUTandRUN"]
 	prefix: "TF_CUTandRUN"
 use rule * from TF_CUTandRUN as TF_CUTandRUN_*
@@ -404,6 +429,38 @@ rule annotate_tissue_classes:
 	script:
 		"workflow/scripts/get_tissue_classes.R"
 
+rule split_tissue_classes:
+	input:
+		"results/ChIP_tissue_classes/{factor}_tissue_classes.tsv",
+	output:
+		"results/ChIP_tissue_classes/{factor}_class_I.bed",
+		"results/ChIP_tissue_classes/{factor}_class_II.bed",
+		"results/ChIP_tissue_classes/{factor}_class_III.bed",
+		"results/ChIP_tissue_classes/{factor}_class_IV.bed",
+		"results/ChIP_tissue_classes/{factor}_class_V.bed",
+		"results/ChIP_tissue_classes/{factor}_class_VI.bed",
+		"results/ChIP_tissue_classes/{factor}_class_I.fasta",
+		"results/ChIP_tissue_classes/{factor}_class_II.fasta",
+		"results/ChIP_tissue_classes/{factor}_class_III.fasta",
+		"results/ChIP_tissue_classes/{factor}_class_IV.fasta",
+		"results/ChIP_tissue_classes/{factor}_class_V.fasta",
+		"results/ChIP_tissue_classes/{factor}_class_VI.fasta",
+
+	script:
+		"workflow/scripts/split_tissue_classes.R"
+
+rule get_tissue_motifs:
+	input:
+		"results/ChIP_tissue_classes/{factor}_{class}.fasta",
+	output:
+		"results/ChIP_tissue_classes/motifs/{factor}_{class}/meme-chip.html"
+	conda:
+		"workflow/envs/meme.yaml"
+	params:
+		mode="zoops",
+		n_motifs=10,
+	shell:
+		 "meme-chip {input} -oc results/ChIP_tissue_classes/motifs/{wildcards.factor}_{wildcards.class} -db /Users/tylergibson/meme/motif_databases/FLY/* -meme-mod {params[0]} -meme-nmotifs {params[1]}"
 
 rule annotate_titration_classes:
 	input:
@@ -457,7 +514,79 @@ rule generate_fig5_RPKM_tables:
 	script:
 		"workflow/scripts/generate_fig5_RPKM_tables.R"
 
+rule get_zld_OE_classes:
+	input:
+		"TF_CUTandRUN/results/peaks/filtered/brain_brat_aZld.narrowPeak",
+		"TF_CUTandRUN/results/peaks/filtered/brain_UAS-HA-Zld_aZld.narrowPeak",
+	
+	output:
+		"results/Zld_NB_OE/zld_NB_endogenous_peaks.bed",
+		"results/Zld_NB_OE/zld_NB_novel_peaks.bed",
+		"results/Zld_NB_OE/zld_NB_endogenous_peak_seqs.fasta",
+		"results/Zld_NB_OE/zld_NB_novel_peak_seqs.fasta",
+		"results/Zld_NB_OE/peak_classes.tsv",
+	script:
+		"workflow/scripts/brain_zld_OE_peak_classes.R"
+	
 
+
+rule get_zld_OE_motifs:
+	input:
+		"results/Zld_NB_OE/{class}_peak_seqs.fasta",
+	output:
+		"results/Zld_NB_OE/motifs/{class}/meme-chip.html"
+	conda:
+		"workflow/envs/meme.yaml"
+	params:
+		mode="zoops",
+		n_motifs=10,
+	shell:
+		 "meme-chip {input} -oc results/Zld_NB_OE/motifs/{wildcards.class} -db /Users/tylergibson/meme/motif_databases/FLY/* -meme-mod {params[0]} -meme-nmotifs {params[1]}"
+
+rule zld_OE_motif_table:
+	input:
+		"results/Zld_NB_OE/motifs/zld_NB_endogenous/combined.meme",
+  		"results/Zld_NB_OE/motifs/zld_NB_novel/combined.meme",
+  		"results/Zld_NB_OE/peak_classes.tsv",
+	output:
+		"results/Zld_NB_OE/motifs/meme_chip_motifs.rds",
+		"results/Zld_NB_OE/motifs/meme_chip_motifs_AME_enrichment.tsv",
+	script:
+		"workflow/scripts/zld_brain_motif_table.R"
+
+rule get_fb_synonyms:
+	output:
+		"resources/fb_synonyms.tsv.gz"
+	log:
+		"logs/get_fb_synonyms.log",
+	conda:
+		"workflow/envs/curl.yaml",
+	params:
+		link="https://ftp.flybase.net/releases/current/precomputed_files/synonyms/fb_synonym_fb_2023_04.tsv.gz",
+	shell:
+		"""
+		curl '{params.link}' > {output} 2> {log}
+		"""
+
+rule AME_motif_enrichment:
+	input:
+		zld_tissue_classes_fn = "results/ChIP_tissue_classes/zld_tissue_classes.tsv",
+		grh_tissue_classes_fn = "results/ChIP_tissue_classes/grh_tissue_classes.tsv",
+		twi_tissue_classes_fn = "results/ChIP_tissue_classes/twi_tissue_classes.tsv",
+		embryo_nc14_RNAseq_fn = "RNAseq/results/count_tables/embryo_RNAseq_RPKM.tsv",
+		NB_RNAseq_fn = "RNAseq/results/count_tables/neuroblast_RNA-seq_RPKM.tsv",
+		embryo_15_16H_RNAseq_fn = "RNAseq/results/count_tables/embryo-15-16H_RNAseq_RPKM.tsv",
+		wing_disc_RNAseq_fn = "RNAseq/results/count_tables/wing-disc_RNAseq_RPKM.tsv",
+		flybase_synonym_table_fn = "resources/fb_synonyms.tsv.gz",
+	output:
+		"results/ChIP_tissue_classes/motifs/zld_AME_results.tsv",
+		"results/ChIP_tissue_classes/motifs/zld_motif_factor_RNAseq.tsv",
+		"results/ChIP_tissue_classes/motifs/grh_AME_results.tsv",
+		"results/ChIP_tissue_classes/motifs/grh_motif_factor_RNAseq.tsv",
+		"results/ChIP_tissue_classes/motifs/twi_AME_results.tsv",
+		"results/ChIP_tissue_classes/motifs/twi_motif_factor_RNAseq.tsv",
+	script:
+		"workflow/scripts/AME_motif_enrichment.R"
 
 ##########################################################################################
 ##########################################################################################
@@ -543,7 +672,7 @@ rule figure_4:
 		twi_tissue_occupancy = "results/ChIP_tissue_classes/twi_tissue_classes.tsv",
 		S2_ZLD_ChIP_bw =   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw",
 		embryo_Zld_ChIP_bw =  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/embryo-nc14_aZld.bw",
-		brain_Zld_ChIP_bw =  "resources/brain_aZld.bed",
+		brain_Zld_ChIP_bw =  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/brain_aZld.bw",
 		S2_H3K27me3_bw =  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE151983_S2_aH3K27me3_IP.bw",
 		S2_H3K9me3_bw =  "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE160855_aH3K9me3.bw",
 		S2_Grh_ChIP_bw =   "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw",
@@ -591,12 +720,15 @@ rule figure_5:
 rule figure_6:
 	input:
   		Zld_FL_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw",
-		Zld_DBD_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld-DBD_aZld_IP.bw",
+		Zld_DBD_ChIP_100uM_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld-DBD-100uM_aZld_IP.bw",
+		Zld_DBD_ChIP_400uM_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld-DBD-400uM_aZld_IP.bw",
 		Zld_WT_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/S2-WT_1000uM_small.bw",
 		Zld_Zld_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/S2-Zld_1000uM_small.bw",
 
 		Grh_FL_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw",
-		Grh_DBD_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh-DBD_aGrh_IP.bw",
+		Grh_DBD_ChIP_20uM_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh-DBD-20uM_aGrh_IP.bw",
+		Grh_DBD_ChIP_80uM_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh-DBD-80uM_aGrh_IP.bw",
+
 		Grh_WT_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/FL_ATAC_S2-WT_100uM_small.bw",
 		Grh_Grh_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/S2-Grh_100uM_small.bw",
 
@@ -604,9 +736,14 @@ rule figure_6:
 		grh_ChIP_classes = "results/ChIP_peak_classes/grh_ChIP_classes.tsv",
 
 		zld_FL_atac_results = "ATACseq/results/DEseq2_results_filtered/S2-Zld_ATACseq_S2-Zld-FL-vs-S2-WT_results.tsv",
-		zld_DBD_atac_results = "ATACseq/results/DEseq2_results_filtered/S2-Zld-DBD_ATACseq_S2-Zld-DBD-vs-S2-WT_results.tsv",
+		zld_DBD_100uM_atac_results = "ATACseq/results/DEseq2_results_filtered/S2-Zld-DBD_ATACseq_S2-Zld-DBD-vs-S2-WT_results.tsv",
+		zld_DBD_400uM_atac_results = "ATACseq/results/DEseq2_results_filtered/S2-Zld-DBD-titration_ATACseq_S2-Zld-DBD-400uM-vs-S2-ZLD-DBD-100uM_results.tsv",
 		grh_FL_atac_results = "ATACseq/results/DEseq2_results_filtered/S2-Grh_ATACseq_S2-Grh-FL-vs-S2-WT_results.tsv",
-		grh_DBD_atac_results = "ATACseq/results/DEseq2_results_filtered/S2-Grh-DBD_ATACseq_S2-Grh-DBD-vs-S2-WT_results.tsv",
+		grh_DBD_20uM_atac_results = "ATACseq/results/DEseq2_results_filtered/S2-Grh-DBD_ATACseq_S2-Grh-DBD-vs-S2-WT_results.tsv",
+		grh_DBD_80uM_atac_results = "ATACseq/results/DEseq2_results_filtered/S2-Grh-DBD-titration_ATACseq_S2-Grh-DBD-80uM-vs-S2-GRH-20uM_results.tsv",
+		
+		zld_ChIP_peaks_fn = "ChIPseq/results/peaks/final/S2-Zld_aZld_IP.narrowPeak",
+		grh_ChIP_peaks_fn = "ChIPseq/results/peaks/final/S2-Grh_aGrh_IP.narrowPeak",
 
 	output:
 		"manuscript/figures/fig6.pdf"
@@ -621,6 +758,9 @@ rule extended_data_fig_1:
 		S2_Zld_aZld_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw",
 		S2_WT_aZld_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-WT_aZld_IP.bw",
 		S2_Zld_IgG_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aIgG_IP.bw",
+		Zld_WT_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/S2-WT_1000uM_small.bw",
+		Grh_WT_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/FL_ATAC_S2-WT_100uM_small.bw",
+		Twi_WT_ATAC_bw = "ATACseq/results/bigwigs/zscore_normalized/merged/Twi_ATAC_S2-WT_40uM_small.bw",
 		zld_ChIP_classes_fn = "results/ChIP_peak_classes/zld_ChIP_classes.tsv",
 		S2_Grh_aGrh_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Grh_aGrh_IP.bw",
 		S2_WT_aGrh_ChIP_bw = "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-WT_aGrh_IP.bw",
@@ -775,6 +915,44 @@ rule extended_data_fig_8:
 		CR_spikeIn_counts_fn ="histone_CUTandRUN/results/scaling_factors/epiCypher_barcode_counts.tsv",
 		taz_blot_aH3K27me3_image = "data/immunoblot_raw_images/2021-06-29_taz/anti-H3K27me3_3.tif",
 		taz_blot_aTub_image = "data/immunoblot_raw_images/2021-06-29_taz/anti-tubulin_2.tif",
+		H3K27ac_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K27ac.bw",
+		Nej_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE64464_aNej.bw",
+		H3K4me1_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K4me1.bw",
+		H3K4me3_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE85191_aH3K4me3.bw",
+		H4K16ac_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE37865_aH4K16ac.bw",
+		H2AV_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_H2Av_IP.bw",
+		Rpb3_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_Rpb3_IP.bw",
+		PolII_pS2_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_PolII_phosphoSer2_IP.bw",
+		H3K36me3_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_H3K36me3_IP.bw",
+		SSRP1_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_SSRP1_IP.bw",
+		Spt16_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_Spt16_IP.bw",
+		H3_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE129236_H3_IP.bw",
+		H1_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE127227_aH1.bw",
+		Pho_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE84502_aPho_IP.bw",
+		Ez_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_Ez_IP.bw",
+		Pc_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE24521_Pc_IP.bw",
+		Psc_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE24521_Psc_IP.bw",
+		Ph_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE24521_Ph_IP.bw",
+		dRing_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_dRing_IP.bw",
+		H3K27me3_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE151983_S2_aH3K27me3_IP.bw",
+		H3K9me3_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE160855_aH3K9me3.bw",
+		HP1a_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE56101_aHP1a.bw",
+		M1BP_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_M1BP_IP.bw",
+		GAF_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE101557_S2_GAGA_IP.bw",
+		BEAF32_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE52887_aBEAF32_IP.bw",
+		CTCF_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aCTCF.bw",
+		CP190_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aCP190_IP.bw",
+		Su_hw_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aSu-Hw_IP.bw",
+		Mod_mdg4_bw = "published_ChIPseq/results/bigwigs/zscore_normalized/merged/GSE41354_aMod-mdg4.bw",
+		zld_chip_classes = "results/ChIP_tissue_classes/zld_tissue_classes.tsv",
+		grh_chip_classes = "results/ChIP_tissue_classes/grh_tissue_classes.tsv",
+		twi_chip_classes = "results/ChIP_tissue_classes/twi_tissue_classes.tsv",
+		zld_ame_results_fn = "results/ChIP_tissue_classes/motifs/zld_AME_results.tsv",
+		zld_motif_factor_RNAseq_fn = "results/ChIP_tissue_classes/motifs/zld_motif_factor_RNAseq.tsv",
+		grh_ame_results_fn = "results/ChIP_tissue_classes/motifs/grh_AME_results.tsv",
+		grh_motif_factor_RNAseq_fn = "results/ChIP_tissue_classes/motifs/grh_motif_factor_RNAseq.tsv",
+		twi_ame_results_fn = "results/ChIP_tissue_classes/motifs/twi_AME_results.tsv",
+		twi_motif_factor_RNAseq_fn = "results/ChIP_tissue_classes/motifs/twi_motif_factor_RNAseq.tsv",
 	output:
 		"manuscript/figures/extended_data_fig8.pdf"
 	script:
@@ -782,7 +960,8 @@ rule extended_data_fig_8:
 		
 rule extended_data_fig_9:
 	input:
-		zld_titration_blot_aZld = "data/immunoblot_raw_images/2022-7-12_titration/Zld-titration_aZld.tif",
+		zld_titration_blot_aZld = "data/immunoblot_raw_images/2023-03-10_Zld_titration/Zld_exposure_2.tif",
+		zld_titration_blot_aTub = "data/immunoblot_raw_images/2023-03-10_Zld_titration/tubulin.tif",
 		grh_titration_blot_aGrh = "data/immunoblot_raw_images/2022-7-12_titration/Grh-titration_aGrh_short.tif",
 		grh_titration_blot_aTub = "data/immunoblot_raw_images/2022-7-12_titration/Grh-titration_aTub.tif",
 		twi_titration_blot_aTwi = "data/immunoblot_raw_images/2022-7-12_titration/Twi-titration_aTwi.tif",
@@ -790,11 +969,17 @@ rule extended_data_fig_9:
 		zld_tissue_classes_fn = "results/ChIP_tissue_classes/zld_tissue_classes.tsv",
 		grh_tissue_classes_fn = "results/ChIP_tissue_classes/grh_tissue_classes.tsv",
 		twi_tissue_classes_fn = "results/ChIP_tissue_classes/twi_tissue_classes.tsv",
+		zld_brat_CR_bw = "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/brain_brat_aZld_total.bw",
+		zld_OE_CR_bw = "TF_CUTandRUN/results/bigwigs/zscore_normalized/merged/brain_UAS-HA-Zld_aZld_total.bw",
+		NB_BRAT_ATAC_bw =  "ATACseq/results/bigwigs/zscore_normalized/merged/neuroblast_ATAC_small.bw",
+		zld_OE_peak_classes = "results/Zld_NB_OE/peak_classes.tsv",
+		zld_NB_motifs = "results/Zld_NB_OE/motifs/meme_chip_motifs.rds",
+		zld_NB_motif_enrichment = "results/Zld_NB_OE/motifs/meme_chip_motifs_AME_enrichment.tsv",
 	output:
 		"manuscript/figures/extended_data_fig9.pdf"
 	script:
 		"workflow/scripts/extended_data_fig9.R"
-		
+
 rule extended_data_fig_10:
 	input:
 		zld_DBD_blot = "data/immunoblot_raw_images/2021-10-14_Zld-DBD/Zld-Grh-DBDs.tif",

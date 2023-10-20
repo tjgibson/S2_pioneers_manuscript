@@ -11,18 +11,18 @@ source("workflow/scripts/plot_heatmap.R")
 source("workflow/scripts/utils.R")
 
 # define input files ===========================================================
-# zld_tissue_occupancy_fn <- "results/ChIP_tissue_classes/zld_tissue_classes.tsv"
-# grh_tissue_occupancy_fn <- "results/ChIP_tissue_classes/grh_tissue_classes.tsv"
-# twi_tissue_occupancy_fn <- "results/ChIP_tissue_classes/twi_tissue_classes.tsv"
-# zld_titration_classes_fn <- "results/ChIP_titration_classes/zld_titration_classes.tsv"
-# grh_titration_classes_fn <- "results/ChIP_titration_classes/grh_titration_classes.tsv"
-# twi_titration_classes_fn <- "results/ChIP_titration_classes/twi_titration_classes.tsv"
-# zld_titration_ChIP_rpkm_fn <- "results/ChIP_tissue_classes/zld_classes_titration_ChIP_rpkm.tsv"
-# zld_titration_ATAC_rpkm_fn <- "results/ChIP_tissue_classes/zld_classes_titration_ATAC_rpkm.tsv"
-# grh_titration_ChIP_rpkm_fn <- "results/ChIP_tissue_classes/grh_classes_titration_ChIP_rpkm.tsv"
-# grh_titration_ATAC_rpkm_fn <- "results/ChIP_tissue_classes/grh_classes_titration_ATAC_rpkm.tsv"
-# twi_titration_ChIP_rpkm_fn <- "results/ChIP_tissue_classes/twi_classes_titration_ChIP_rpkm.tsv"
-# twi_titration_ATAC_rpkm_fn <- "results/ChIP_tissue_classes/twi_classes_titration_ATAC_rpkm.tsv"
+zld_tissue_occupancy_fn <- "results/ChIP_tissue_classes/zld_tissue_classes.tsv"
+grh_tissue_occupancy_fn <- "results/ChIP_tissue_classes/grh_tissue_classes.tsv"
+twi_tissue_occupancy_fn <- "results/ChIP_tissue_classes/twi_tissue_classes.tsv"
+zld_titration_classes_fn <- "results/ChIP_titration_classes/zld_titration_classes.tsv"
+grh_titration_classes_fn <- "results/ChIP_titration_classes/grh_titration_classes.tsv"
+twi_titration_classes_fn <- "results/ChIP_titration_classes/twi_titration_classes.tsv"
+zld_titration_ChIP_rpkm_fn <- "results/ChIP_tissue_classes/zld_classes_titration_ChIP_rpkm.tsv"
+zld_titration_ATAC_rpkm_fn <- "results/ChIP_tissue_classes/zld_classes_titration_ATAC_rpkm.tsv"
+grh_titration_ChIP_rpkm_fn <- "results/ChIP_tissue_classes/grh_classes_titration_ChIP_rpkm.tsv"
+grh_titration_ATAC_rpkm_fn <- "results/ChIP_tissue_classes/grh_classes_titration_ATAC_rpkm.tsv"
+twi_titration_ChIP_rpkm_fn <- "results/ChIP_tissue_classes/twi_classes_titration_ChIP_rpkm.tsv"
+twi_titration_ATAC_rpkm_fn <- "results/ChIP_tissue_classes/twi_classes_titration_ATAC_rpkm.tsv"
 
 
 zld_titration_ChIP_rpkm_fn <- snakemake@input[["zld_titration_ChIP_rpkm_fn"]]

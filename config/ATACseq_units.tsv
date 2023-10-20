@@ -1,45 +1,51 @@
-sample_name	unit_name	fq1	fq2	sra	read_format	sample_group
-FL_ATAC_S2-WT_100uM_rep1	FL_ATAC_S2-WT_100uM_rep1			SRR23933507	PE	FL_ATAC_S2-WT_100uM
-FL_ATAC_S2-WT_100uM_rep2	FL_ATAC_S2-WT_100uM_rep2			SRR23933506	PE	FL_ATAC_S2-WT_100uM
-S2-Grh_100uM_rep1	S2-Grh_100uM_rep1			SRR23933505	PE	S2-Grh_100uM
-S2-Grh_100uM_rep2	S2-Grh_100uM_rep2			SRR23933504	PE	S2-Grh_100uM
-S2-Zld_1000uM_rep1	S2-Zld_1000uM_rep1			SRR23933503	PE	S2-Zld_1000uM
-S2-Zld_1000uM_rep2	S2-Zld_1000uM_rep2			SRR23933502	PE	S2-Zld_1000uM
-S2-WT_1000uM_rep1	S2-WT_1000uM_rep1			SRR23933501	PE	S2-WT_1000uM
-S2-WT_1000uM_rep2	S2-WT_1000uM_rep2			SRR23933500	PE	S2-WT_1000uM
-Twi_ATAC_S2-WT_40uM_rep1	Twi_ATAC_S2-WT_40uM_rep1			SRR23933499	PE	Twi_ATAC_S2-WT_40uM
-Twi_ATAC_S2-WT_40uM_rep2	Twi_ATAC_S2-WT_40uM_rep2			SRR23933498	PE	Twi_ATAC_S2-WT_40uM
-S2-Twi_40uM_rep1	S2-Twi_40uM_rep1			SRR23933497	PE	S2-Twi_40uM
-S2-Twi_40uM_rep2	S2-Twi_40uM_rep2			SRR23933496	PE	S2-Twi_40uM
-DBD_ATAC_S2-WT_20uM_rep1	DBD_ATAC_S2-WT_20uM_rep1			SRR23933495	PE	DBD_ATAC_S2-WT_20uM
-DBD_ATAC_S2-WT_20uM_rep2	DBD_ATAC_S2-WT_20uM_rep2			SRR23933494	PE	DBD_ATAC_S2-WT_20uM
-S2-Grh-DBD_20uM_rep1	S2-Grh-DBD_20uM_rep1			SRR23933493	PE	S2-Grh-DBD_20uM
-S2-Grh-DBD_20uM_rep2	S2-Grh-DBD_20uM_rep2			SRR23933492	PE	S2-Grh-DBD_20uM
-DBD_ATAC_S2-WT_100uM_rep1	DBD_ATAC_S2-WT_100uM_rep1			SRR23933479	PE	DBD_ATAC_S2-WT_100uM
-DBD_ATAC_S2-WT_100uM_rep2	DBD_ATAC_S2-WT_100uM_rep2			SRR23933478	PE	DBD_ATAC_S2-WT_100uM
-S2-Zld-DBD_100uM_rep1	S2-Zld-DBD_100uM_rep1			SRR23933477	PE	S2-Zld-DBD_100uM
-S2-Zld-DBD_100uM_rep2	S2-Zld-DBD_100uM_rep2			SRR23933476	PE	S2-Zld-DBD_100uM
-titration_S2-Zld_0uM_rep1	titration_S2-Zld_0uM_rep1			SRR23933475	PE	titration_S2-Zld_0uM
-titration_S2-Zld_500uM_rep1	titration_S2-Zld_500uM_rep1			SRR23933474	PE	titration_S2-Zld_500uM
-titration_S2-Zld_1000uM_rep1	titration_S2-Zld_1000uM_rep1			SRR23933473	PE	titration_S2-Zld_1000uM
-titration_S2-Zld_1500uM_rep1	titration_S2-Zld_1500uM_rep1			SRR23933472	PE	titration_S2-Zld_1500uM
-titration_S2-Grh_0uM_rep1	titration_S2-Grh_0uM_rep1			SRR23933471	PE	titration_S2-Grh_0uM
-titration_S2-Grh_25uM_rep1	titration_S2-Grh_25uM_rep1			SRR23933470	PE	titration_S2-Grh_25uM
-titration_S2-Grh_100uM_rep1	titration_S2-Grh_100uM_rep1			SRR23933469	PE	titration_S2-Grh_100uM
-titration_S2-Grh_400uM_rep1	titration_S2-Grh_400uM_rep1			SRR23933468	PE	titration_S2-Grh_400uM
-titration_S2-HA-Twi_0uM_rep1	titration_S2-HA-Twi_0uM_rep1			SRR23933467	PE	titration_S2-HA-Twi_0uM
-titration_S2-HA-Twi_10uM_rep1	titration_S2-HA-Twi_10uM_rep1			SRR23933466	PE	titration_S2-HA-Twi_10uM
-titration_S2-HA-Twi_40uM_rep1	titration_S2-HA-Twi_40uM_rep1			SRR23933465	PE	titration_S2-HA-Twi_40uM
-titration_S2-HA-Twi_160uM_rep1	titration_S2-HA-Twi_160uM_rep1			SRR23933464	PE	titration_S2-HA-Twi_160uM
-titration_S2-Zld_0uM_rep2	titration_S2-Zld_0uM_rep2			SRR23933491	PE	titration_S2-Zld_0uM
-titration_S2-Zld_500uM_rep2	titration_S2-Zld_500uM_rep2			SRR23933490	PE	titration_S2-Zld_500uM
-titration_S2-Zld_1000uM_rep2	titration_S2-Zld_1000uM_rep2			SRR23933489	PE	titration_S2-Zld_1000uM
-titration_S2-Zld_1500uM_rep2	titration_S2-Zld_1500uM_rep2			SRR23933488	PE	titration_S2-Zld_1500uM
-titration_S2-Grh_0uM_rep2	titration_S2-Grh_0uM_rep2			SRR23933487	PE	titration_S2-Grh_0uM
-titration_S2-Grh_25uM_rep2	titration_S2-Grh_25uM_rep2			SRR23933486	PE	titration_S2-Grh_25uM
-titration_S2-Grh_100uM_rep2	titration_S2-Grh_100uM_rep2			SRR23933485	PE	titration_S2-Grh_100uM
-titration_S2-Grh_400uM_rep2	titration_S2-Grh_400uM_rep2			SRR23933484	PE	titration_S2-Grh_400uM
-titration_S2-HA-Twi_0uM_rep2	titration_S2-HA-Twi_0uM_rep2			SRR23933483	PE	titration_S2-HA-Twi_0uM
-titration_S2-HA-Twi_10uM_rep2	titration_S2-HA-Twi_10uM_rep2			SRR23933482	PE	titration_S2-HA-Twi_10uM
-titration_S2-HA-Twi_40uM_rep2	titration_S2-HA-Twi_40uM_rep2			SRR23933481	PE	titration_S2-HA-Twi_40uM
-titration_S2-HA-Twi_160uM_rep2	titration_S2-HA-Twi_160uM_rep2			SRR23933480	PE	titration_S2-HA-Twi_160uM
+sample_name	unit_name	fq1	fq2	sra	read_format	sample_group	GSE_accession
+FL_ATAC_S2-WT_100uM_rep1	FL_ATAC_S2-WT_100uM_rep1			SRR23933507	PE	FL_ATAC_S2-WT_100uM	
+FL_ATAC_S2-WT_100uM_rep2	FL_ATAC_S2-WT_100uM_rep2			SRR23933506	PE	FL_ATAC_S2-WT_100uM	
+S2-Grh_100uM_rep1	S2-Grh_100uM_rep1			SRR23933505	PE	S2-Grh_100uM	
+S2-Grh_100uM_rep2	S2-Grh_100uM_rep2			SRR23933504	PE	S2-Grh_100uM	
+S2-Zld_1000uM_rep1	S2-Zld_1000uM_rep1			SRR23933503	PE	S2-Zld_1000uM	
+S2-Zld_1000uM_rep2	S2-Zld_1000uM_rep2			SRR23933502	PE	S2-Zld_1000uM	
+S2-WT_1000uM_rep1	S2-WT_1000uM_rep1			SRR23933501	PE	S2-WT_1000uM	
+S2-WT_1000uM_rep2	S2-WT_1000uM_rep2			SRR23933500	PE	S2-WT_1000uM	
+Twi_ATAC_S2-WT_40uM_rep1	Twi_ATAC_S2-WT_40uM_rep1			SRR23933499	PE	Twi_ATAC_S2-WT_40uM	
+Twi_ATAC_S2-WT_40uM_rep2	Twi_ATAC_S2-WT_40uM_rep2			SRR23933498	PE	Twi_ATAC_S2-WT_40uM	
+S2-Twi_40uM_rep1	S2-Twi_40uM_rep1			SRR23933497	PE	S2-Twi_40uM	
+S2-Twi_40uM_rep2	S2-Twi_40uM_rep2			SRR23933496	PE	S2-Twi_40uM	
+DBD_ATAC_S2-WT_20uM_rep1	DBD_ATAC_S2-WT_20uM_rep1			SRR23933495	PE	DBD_ATAC_S2-WT_20uM	
+DBD_ATAC_S2-WT_20uM_rep2	DBD_ATAC_S2-WT_20uM_rep2			SRR23933494	PE	DBD_ATAC_S2-WT_20uM	
+S2-Grh-DBD_20uM_rep1	S2-Grh-DBD_20uM_rep1			SRR23933493	PE	S2-Grh-DBD_20uM	
+S2-Grh-DBD_20uM_rep2	S2-Grh-DBD_20uM_rep2			SRR23933492	PE	S2-Grh-DBD_20uM	
+DBD_ATAC_S2-WT_100uM_rep1	DBD_ATAC_S2-WT_100uM_rep1			SRR23933479	PE	DBD_ATAC_S2-WT_100uM	
+DBD_ATAC_S2-WT_100uM_rep2	DBD_ATAC_S2-WT_100uM_rep2			SRR23933478	PE	DBD_ATAC_S2-WT_100uM	
+S2-Zld-DBD_100uM_rep1	S2-Zld-DBD_100uM_rep1			SRR23933477	PE	S2-Zld-DBD_100uM	
+S2-Zld-DBD_100uM_rep2	S2-Zld-DBD_100uM_rep2			SRR23933476	PE	S2-Zld-DBD_100uM	
+titration_S2-Zld_0uM_rep1	titration_S2-Zld_0uM_rep1			SRR23933475	PE	titration_S2-Zld_0uM	
+titration_S2-Zld_500uM_rep1	titration_S2-Zld_500uM_rep1			SRR23933474	PE	titration_S2-Zld_500uM	
+titration_S2-Zld_1000uM_rep1	titration_S2-Zld_1000uM_rep1			SRR23933473	PE	titration_S2-Zld_1000uM	
+titration_S2-Zld_1500uM_rep1	titration_S2-Zld_1500uM_rep1			SRR23933472	PE	titration_S2-Zld_1500uM	
+titration_S2-Grh_0uM_rep1	titration_S2-Grh_0uM_rep1			SRR23933471	PE	titration_S2-Grh_0uM	
+titration_S2-Grh_25uM_rep1	titration_S2-Grh_25uM_rep1			SRR23933470	PE	titration_S2-Grh_25uM	
+titration_S2-Grh_100uM_rep1	titration_S2-Grh_100uM_rep1			SRR23933469	PE	titration_S2-Grh_100uM	
+titration_S2-Grh_400uM_rep1	titration_S2-Grh_400uM_rep1			SRR23933468	PE	titration_S2-Grh_400uM	
+titration_S2-HA-Twi_0uM_rep1	titration_S2-HA-Twi_0uM_rep1			SRR23933467	PE	titration_S2-HA-Twi_0uM	
+titration_S2-HA-Twi_10uM_rep1	titration_S2-HA-Twi_10uM_rep1			SRR23933466	PE	titration_S2-HA-Twi_10uM	
+titration_S2-HA-Twi_40uM_rep1	titration_S2-HA-Twi_40uM_rep1			SRR23933465	PE	titration_S2-HA-Twi_40uM	
+titration_S2-HA-Twi_160uM_rep1	titration_S2-HA-Twi_160uM_rep1			SRR23933464	PE	titration_S2-HA-Twi_160uM	
+titration_S2-Zld_0uM_rep2	titration_S2-Zld_0uM_rep2			SRR23933491	PE	titration_S2-Zld_0uM	
+titration_S2-Zld_500uM_rep2	titration_S2-Zld_500uM_rep2			SRR23933490	PE	titration_S2-Zld_500uM	
+titration_S2-Zld_1000uM_rep2	titration_S2-Zld_1000uM_rep2			SRR23933489	PE	titration_S2-Zld_1000uM	
+titration_S2-Zld_1500uM_rep2	titration_S2-Zld_1500uM_rep2			SRR23933488	PE	titration_S2-Zld_1500uM	
+titration_S2-Grh_0uM_rep2	titration_S2-Grh_0uM_rep2			SRR23933487	PE	titration_S2-Grh_0uM	
+titration_S2-Grh_25uM_rep2	titration_S2-Grh_25uM_rep2			SRR23933486	PE	titration_S2-Grh_25uM	
+titration_S2-Grh_100uM_rep2	titration_S2-Grh_100uM_rep2			SRR23933485	PE	titration_S2-Grh_100uM	
+titration_S2-Grh_400uM_rep2	titration_S2-Grh_400uM_rep2			SRR23933484	PE	titration_S2-Grh_400uM	
+titration_S2-HA-Twi_0uM_rep2	titration_S2-HA-Twi_0uM_rep2			SRR23933483	PE	titration_S2-HA-Twi_0uM	
+titration_S2-HA-Twi_10uM_rep2	titration_S2-HA-Twi_10uM_rep2			SRR23933482	PE	titration_S2-HA-Twi_10uM	
+titration_S2-HA-Twi_40uM_rep2	titration_S2-HA-Twi_40uM_rep2			SRR23933481	PE	titration_S2-HA-Twi_40uM	
+titration_S2-HA-Twi_160uM_rep2	titration_S2-HA-Twi_160uM_rep2			SRR23933480	PE	titration_S2-HA-Twi_160uM	
+titration_S2-Zld-DBD_400_rep1	titration_S2-Zld-DBD_400_rep1	./../data/2023-08_ATAC/TGL248_S33_L002_R1_001.fastq.gz	./../data/2023-08_ATAC/TGL248_S33_L002_R2_001.fastq.gz		PE	titration_S2-Zld-DBD_400	
+titration_S2-Zld-DBD_400_rep2	titration_S2-Zld-DBD_400_rep2	./../data/2023-08_ATAC/TGL249_S34_L002_R1_001.fastq.gz	./../data/2023-08_ATAC/TGL249_S34_L002_R2_001.fastq.gz		PE	titration_S2-Zld-DBD_400	
+titration_S2-Grh-DBD_80_rep1	titration_S2-Grh-DBD_80_rep1	./../data/2023-08_ATAC/TGL250_S35_L002_R1_001.fastq.gz	./../data/2023-08_ATAC/TGL250_S35_L002_R2_001.fastq.gz		PE	titration_S2-Grh-DBD_80	
+titration_S2-Grh-DBD_80_rep2	titration_S2-Grh-DBD_80_rep2	./../data/2023-08_ATAC/TGL251_S36_L002_R1_001.fastq.gz	./../data/2023-08_ATAC/TGL251_S36_L002_R2_001.fastq.gz		PE	titration_S2-Grh-DBD_80	
+neuroblast_ATAC_rep1	neuroblast_ATAC_rep1			SRR11818939	PE	neuroblast_ATAC	GSE150931
+neuroblast_ATAC_rep2	neuroblast_ATAC_rep2			SRR11818940	PE	neuroblast_ATAC	GSE150931

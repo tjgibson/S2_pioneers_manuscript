@@ -105,7 +105,7 @@ grh_ChIP_classes <- grh_FL_ChIP_classes_fn |>
 # create blank layout for plot =================================================
 # define figure dimensions in cm
 fig_width <-  18
-fig_height <- 21
+fig_height <- 17
 
 # open pdf
 pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)

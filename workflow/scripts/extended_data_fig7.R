@@ -66,7 +66,7 @@ fig_height <- 18
 
 # open pdf
 pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
-# pdf("manuscript/figures/extended_data_fig7.pdf", useDingbats = FALSE)
+pdf("manuscript/figures/extended_data_fig7.pdf", useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
 
 # generate plotGardener page
 pageCreate(width = fig_width, height = fig_height, default.units = "cm", showGuides = FALSE)
@@ -91,7 +91,7 @@ H3K27me3_color <- "gray40"
   
   # reference points for positioning figure components
 x_offset_class_label <- 0.25
-x_offset_browser_label <- 1
+x_offset_browser_label <- 0.9
 x_offset_browser <- 1.5
 
 # set genome browser height
@@ -306,7 +306,7 @@ plotText(
 # panel D ==================================================================
 # panel label
 ref_x <- 0.5
-ref_y <- 4.5
+ref_y <- 5
 
 plotText(
   label = "d", params = panel_label_params, fontface = "bold",
@@ -321,7 +321,7 @@ plotText(
 
 # add broad H3K27me3 region
 plotText(
-  label = paste("H3K27me3"),
+  label = paste0("S2-WT","\n","anti-H3K27me3"),
   params = small_text_params,
   fontface = "bold",
   x = (ref_x + x_offset_browser_label),
@@ -331,11 +331,11 @@ plotText(
 )
 
 plotText(
-  label = paste("H3K9me3"),
+  label = paste0("S2-WT","\n","anti-H3K9me3"),
   params = small_text_params,
   fontface = "bold",
   x = (ref_x + x_offset_browser_label),
-  y = (ref_y + 0.75),
+  y = (ref_y + 1),
   just = c("right", "center"),
   default.units = "cm"
 )
@@ -371,7 +371,7 @@ annoYaxis(
 
 s2 <- plotSignal(
   data = `H3K9me3_ChIP`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 3.75, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 1), width = 3.75, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
   range = ChIP_range
@@ -392,7 +392,7 @@ zoomRegion <- pgParams(
 
 annoZoomLines(
   plot = s2, params = zoomRegion,
-  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1, 1.5),
+  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1.25, 1.25),
   default.units = "cm",
   lty = 2
 )
@@ -400,14 +400,14 @@ annoZoomLines(
 
 
 plotText(
-  label = "Zld embryo", params = small_text_params, fontface = "bold",
+  label = paste0("embryo", "\n", "anti-Zld"), params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
 )
 
 
 plotText(
-  label = "Zld S2", params = small_text_params, fontface = "bold",
-  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
+  label = paste0("S2-Zld", "\n", "anti-Zld"), params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.5), just = c("right","center"), default.units = "cm"
 )
 
 
@@ -441,7 +441,7 @@ annoYaxis(
 
 s3 <- plotSignal(
   data = `Zld_S2_ChIP`, params = zoomRegion,
-  x = (ref_x + x_offset_browser), y = (ref_y + 2.25), width = 3.75, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), width = 3.75, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = zld_color, fill = zld_color, baseline = FALSE, baseline.lwd = 0, baseline.color = zld_color,
   range = ChIP_range
@@ -456,7 +456,7 @@ annoYaxis(
 
 plotGenes(
   params = zoomRegion, assembly = "dm6",
-  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.75), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
   fill = c("gray50", "gray50"),
   fontcolor = c("gray50", "gray50"),
   just = c("left", "top"),
@@ -467,7 +467,7 @@ plotGenes(
 # panel E ==================================================================
 # panel label
 ref_x <- 0.5
-ref_y <- 8.5
+ref_y <- 9
 
 plotText(
   label = "e", params = panel_label_params, fontface = "bold",
@@ -482,7 +482,7 @@ plotText(
 
 # add broad H3K27me3 region
 plotText(
-  label = paste("H3K27me3"),
+  label = paste0("S2-WT","\n","anti-H3K27me3"),
   params = small_text_params,
   fontface = "bold",
   x = (ref_x + x_offset_browser_label),
@@ -492,11 +492,11 @@ plotText(
 )
 
 plotText(
-  label = paste("H3K9me3"),
+  label = paste0("S2-WT","\n","anti-H3K9me3"),
   params = small_text_params,
   fontface = "bold",
   x = (ref_x + x_offset_browser_label),
-  y = (ref_y + 0.75),
+  y = (ref_y + 1),
   just = c("right", "center"),
   default.units = "cm"
 )
@@ -532,7 +532,7 @@ annoYaxis(
 
 s2 <- plotSignal(
   data = `H3K9me3_ChIP`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 3.75, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 1), width = 3.75, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
   range = ChIP_range
@@ -553,20 +553,20 @@ zoomRegion <- pgParams(
 
 annoZoomLines(
   plot = s2, params = zoomRegion,
-  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1, 1),
+  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1.25, 1.25),
   default.units = "cm",
   lty = 2
 )
 
 plotText(
-  label = "Zld embryo", params = small_text_params, fontface = "bold",
+  label = paste0("embryo", "\n", "anti-Zld"), params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
 )
 
 
 plotText(
-  label = "Zld S2", params = small_text_params, fontface = "bold",
-  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
+  label = paste0("S2-Zld", "\n", "anti-Zld"), params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.5), just = c("right","center"), default.units = "cm"
 )
 
 
@@ -600,7 +600,7 @@ annoYaxis(
 
 s3 <- plotSignal(
   data = `Zld_S2_ChIP`, params = zoomRegion,
-  x = (ref_x + x_offset_browser), y = (ref_y + 2.25), width = 3.75, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), width = 3.75, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = zld_color, fill = zld_color, baseline = FALSE, baseline.lwd = 0, baseline.color = zld_color,
   range = ChIP_range
@@ -615,7 +615,7 @@ annoYaxis(
 
 plotGenes(
   params = zoomRegion, assembly = "dm6",
-  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.75), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
   fill = c("gray50", "gray50"),
   fontcolor = c("gray50", "gray50"),
   just = c("left", "top"),
@@ -625,7 +625,7 @@ plotGenes(
 # panel F ==================================================================
 # panel label
 ref_x <- 0.5
-ref_y <- 12.5
+ref_y <- 13.5
 
 plotText(
   label = "f", params = panel_label_params, fontface = "bold",
@@ -640,7 +640,7 @@ plotText(
 
 # add broad H3K27me3 region
 plotText(
-  label = paste("H3K27me3"),
+  label = paste0("S2-WT","\n","anti-H3K27me3"),
   params = small_text_params,
   fontface = "bold",
   x = (ref_x + x_offset_browser_label),
@@ -650,11 +650,11 @@ plotText(
 )
 
 plotText(
-  label = paste("H3K9me3"),
+  label = paste0("S2-WT","\n","anti-H3K9me3"),
   params = small_text_params,
   fontface = "bold",
   x = (ref_x + x_offset_browser_label),
-  y = (ref_y + 0.75),
+  y = (ref_y + 1),
   just = c("right", "center"),
   default.units = "cm"
 )
@@ -690,7 +690,7 @@ annoYaxis(
 
 s2 <- plotSignal(
   data = `H3K9me3_ChIP`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 3.75, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 1), width = 3.75, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
   range = ChIP_range
@@ -711,20 +711,20 @@ zoomRegion <- pgParams(
 
 annoZoomLines(
   plot = s2, params = zoomRegion,
-  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1, 1),
+  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1.25, 1.25),
   default.units = "cm",
   lty = 2
 )
 
 plotText(
-  label = "Zld embryo", params = small_text_params, fontface = "bold",
+  label = paste0("embryo", "\n", "anti-Zld"), params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
 )
 
 
 plotText(
-  label = "Zld S2", params = small_text_params, fontface = "bold",
-  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
+  label = paste0("S2-Zld", "\n", "anti-Zld"), params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.5), just = c("right","center"), default.units = "cm"
 )
 
 
@@ -758,7 +758,7 @@ annoYaxis(
 
 s3 <- plotSignal(
   data = `Zld_S2_ChIP`, params = zoomRegion,
-  x = (ref_x + x_offset_browser), y = (ref_y + 2.25), width = 3.75, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), width = 3.75, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = zld_color, fill = zld_color, baseline = FALSE, baseline.lwd = 0, baseline.color = zld_color,
   range = ChIP_range
@@ -773,7 +773,7 @@ annoYaxis(
 
 plotGenes(
   params = zoomRegion, assembly = "dm6",
-  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.75), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
   fill = c("gray50", "gray50"),
   fontcolor = c("gray50", "gray50"),
   just = c("left", "top"),
@@ -784,7 +784,7 @@ plotGenes(
 # panel G ==================================================================
 # panel label
 ref_x <- 6.5
-ref_y <- 4.5
+ref_y <- 5
 
 plotText(
   label = "g", params = panel_label_params, fontface = "bold",
@@ -799,7 +799,7 @@ plotText(
 
 # add broad H3K27me3 region
 plotText(
-  label = paste("H3K27me3"),
+  label = paste0("S2-WT","\n","anti-H3K27me3"),
   params = small_text_params,
   fontface = "bold",
   x = (ref_x + x_offset_browser_label),
@@ -809,11 +809,11 @@ plotText(
 )
 
 plotText(
-  label = paste("H3K9me3"),
+  label = paste0("S2-WT","\n","anti-H3K9me3"),
   params = small_text_params,
   fontface = "bold",
   x = (ref_x + x_offset_browser_label),
-  y = (ref_y + 0.75),
+  y = (ref_y + 1),
   just = c("right", "center"),
   default.units = "cm"
 )
@@ -849,7 +849,7 @@ annoYaxis(
 
 s2 <- plotSignal(
   data = `H3K9me3_ChIP`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 3.75, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 1), width = 3.75, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
   range = ChIP_range
@@ -870,20 +870,20 @@ zoomRegion <- pgParams(
 
 annoZoomLines(
   plot = s2, params = zoomRegion,
-  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1, 1),
+  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1.25, 1.25),
   default.units = "cm",
   lty = 2
 )
 
 plotText(
-  label = "Grh embryo", params = small_text_params, fontface = "bold",
+  label = paste0("embryo", "\n", "anti-Grh"), params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
 )
 
 
 plotText(
-  label = "Grh S2", params = small_text_params, fontface = "bold",
-  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
+  label = paste0("S2-Grh", "\n", "anti-Grh"), params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.5), just = c("right","center"), default.units = "cm"
 )
 
 
@@ -917,7 +917,7 @@ annoYaxis(
 
 s3 <- plotSignal(
   data = `Grh_S2_ChIP`, params = zoomRegion,
-  x = (ref_x + x_offset_browser), y = (ref_y + 2.25), width = 3.75, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), width = 3.75, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = grh_color, fill = grh_color, baseline = FALSE, baseline.lwd = 0, baseline.color = grh_color,
   range = ChIP_range
@@ -932,7 +932,7 @@ annoYaxis(
 
 plotGenes(
   params = zoomRegion, assembly = "dm6",
-  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.75), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
   fill = c("gray50", "gray50"),
   fontcolor = c("gray50", "gray50"),
   just = c("left", "top"),
@@ -942,7 +942,7 @@ plotGenes(
 # panel H ==================================================================
 # panel label
 ref_x <- 6.5
-ref_y <- 8.5
+ref_y <- 9
 
 plotText(
   label = "h", params = panel_label_params, fontface = "bold",
@@ -957,7 +957,7 @@ plotText(
 
 # add broad H3K27me3 region
 plotText(
-  label = paste("H3K27me3"),
+  label = paste0("S2-WT","\n","anti-H3K27me3"),
   params = small_text_params,
   fontface = "bold",
   x = (ref_x + x_offset_browser_label),
@@ -967,11 +967,11 @@ plotText(
 )
 
 plotText(
-  label = paste("H3K9me3"),
+  label = paste0("S2-WT","\n","anti-H3K9me3"),
   params = small_text_params,
   fontface = "bold",
   x = (ref_x + x_offset_browser_label),
-  y = (ref_y + 0.75),
+  y = (ref_y + 1),
   just = c("right", "center"),
   default.units = "cm"
 )
@@ -1007,7 +1007,7 @@ annoYaxis(
 
 s2 <- plotSignal(
   data = `H3K9me3_ChIP`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 3.75, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 1), width = 3.75, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
   range = ChIP_range
@@ -1028,20 +1028,20 @@ zoomRegion <- pgParams(
 
 annoZoomLines(
   plot = s2, params = zoomRegion,
-  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1, 1),
+  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1.25, 1.25),
   default.units = "cm",
   lty = 2
 )
 
 plotText(
-  label = "Grh embryo ChIP", params = small_text_params, fontface = "bold",
+  label = paste0("embryo", "\n", "anti-Grh"), params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
 )
 
 
 plotText(
-  label = "Grh S2 ChIP", params = small_text_params, fontface = "bold",
-  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
+  label = paste0("S2-Grh", "\n", "anti-Grh"), params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.5), just = c("right","center"), default.units = "cm"
 )
 
 
@@ -1075,7 +1075,7 @@ annoYaxis(
 
 s3 <- plotSignal(
   data = `Grh_S2_ChIP`, params = zoomRegion,
-  x = (ref_x + x_offset_browser), y = (ref_y + 2.25), width = 3.75, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), width = 3.75, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = grh_color, fill = grh_color, baseline = FALSE, baseline.lwd = 0, baseline.color = grh_color,
   range = ChIP_range
@@ -1090,7 +1090,7 @@ annoYaxis(
 
 plotGenes(
   params = zoomRegion, assembly = "dm6",
-  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.75), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
   fill = c("gray50", "gray50"),
   fontcolor = c("gray50", "gray50"),
   just = c("left", "top"),
@@ -1101,7 +1101,7 @@ plotGenes(
 # panel I ==================================================================
 # panel label
 ref_x <- 6.5
-ref_y <- 12.5
+ref_y <- 13.5
 
 plotText(
   label = "i", params = panel_label_params, fontface = "bold",
@@ -1116,7 +1116,7 @@ plotText(
 
 # add broad H3K27me3 region
 plotText(
-  label = paste("H3K27me3"),
+  label = paste0("S2-WT","\n","anti-H3K27me3"),
   params = small_text_params,
   fontface = "bold",
   x = (ref_x + x_offset_browser_label),
@@ -1126,11 +1126,11 @@ plotText(
 )
 
 plotText(
-  label = paste("H3K9me3"),
+  label = paste0("S2-WT","\n","anti-H3K9me3"),
   params = small_text_params,
   fontface = "bold",
   x = (ref_x + x_offset_browser_label),
-  y = (ref_y + 0.75),
+  y = (ref_y + 1),
   just = c("right", "center"),
   default.units = "cm"
 )
@@ -1170,7 +1170,7 @@ annoYaxis(
 
 s2 <- plotSignal(
   data = `H3K9me3_ChIP`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 3.75, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 1), width = 3.75, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
   range = ChIP_range
@@ -1191,20 +1191,20 @@ zoomRegion <- pgParams(
 
 annoZoomLines(
   plot = s2, params = zoomRegion,
-  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1, 1),
+  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1.25, 1.25),
   default.units = "cm",
   lty = 2
 )
 
 plotText(
-  label = "Grh embryo", params = small_text_params, fontface = "bold",
+  label = paste0("embryo", "\n", "anti-Grh"), params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
 )
 
 
 plotText(
-  label = "Grh S2", params = small_text_params, fontface = "bold",
-  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
+  label = paste0("S2-Grh", "\n", "anti-Grh"), params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.5), just = c("right","center"), default.units = "cm"
 )
 
 
@@ -1238,7 +1238,7 @@ annoYaxis(
 
 s3 <- plotSignal(
   data = `Grh_S2_ChIP`, params = zoomRegion,
-  x = (ref_x + x_offset_browser), y = (ref_y + 2.25), width = 3.75, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), width = 3.75, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = grh_color, fill = grh_color, baseline = FALSE, baseline.lwd = 0, baseline.color = grh_color,
   range = ChIP_range
@@ -1253,7 +1253,7 @@ annoYaxis(
 
 plotGenes(
   params = zoomRegion, assembly = "dm6",
-  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.75), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
   fill = c("gray50", "gray50"),
   fontcolor = c("gray50", "gray50"),
   just = c("left", "top"),
@@ -1263,7 +1263,7 @@ plotGenes(
 # panel J ==================================================================
 # panel label
 ref_x <- 12.5
-ref_y <- 4.5
+ref_y <- 5
 
 plotText(
   label = "j", params = panel_label_params, fontface = "bold",
@@ -1278,7 +1278,7 @@ plotText(
 
 # add broad H3K27me3 region
 plotText(
-  label = paste("H3K27me3"),
+  label = paste0("S2-WT","\n","anti-H3K27me3"),
   params = small_text_params,
   fontface = "bold",
   x = (ref_x + x_offset_browser_label),
@@ -1288,11 +1288,11 @@ plotText(
 )
 
 plotText(
-  label = paste("H3K9me3"),
+  label = paste0("S2-WT","\n","anti-H3K9me3"),
   params = small_text_params,
   fontface = "bold",
   x = (ref_x + x_offset_browser_label),
-  y = (ref_y + 0.75),
+  y = (ref_y + 1),
   just = c("right", "center"),
   default.units = "cm"
 )
@@ -1328,7 +1328,7 @@ annoYaxis(
 
 s2 <- plotSignal(
   data = `H3K9me3_ChIP`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 3.75, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 1), width = 3.75, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
   range = ChIP_range
@@ -1349,20 +1349,20 @@ zoomRegion <- pgParams(
 
 annoZoomLines(
   plot = s2, params = zoomRegion,
-  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1, 1),
+  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1.25, 1.25),
   default.units = "cm",
   lty = 2
 )
 
 plotText(
-  label = "Twi embryo", params = small_text_params, fontface = "bold",
+  label = paste0("embryo", "\n", "anti-Twi"), params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
 )
 
 
 plotText(
-  label = "Twi S2", params = small_text_params, fontface = "bold",
-  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
+  label = paste0("S2-Twi", "\n", "anti-Twi"), params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.5), just = c("right","center"), default.units = "cm"
 )
 
 
@@ -1396,7 +1396,7 @@ annoYaxis(
 
 s3 <- plotSignal(
   data = `Twi_S2_ChIP`, params = zoomRegion,
-  x = (ref_x + x_offset_browser), y = (ref_y + 2.25), width = 3.75, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), width = 3.75, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = twi_color, fill = twi_color, baseline = FALSE, baseline.lwd = 0, baseline.color = twi_color,
   range = ChIP_range
@@ -1411,7 +1411,7 @@ annoYaxis(
 
 plotGenes(
   params = zoomRegion, assembly = "dm6",
-  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.75), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
   fill = c("gray50", "gray50"),
   fontcolor = c("gray50", "gray50"),
   just = c("left", "top"),
@@ -1421,7 +1421,7 @@ plotGenes(
 # panel K ==================================================================
 # panel label
 ref_x <- 12.5
-ref_y <- 8.5
+ref_y <- 9
 
 plotText(
   label = "k", params = panel_label_params, fontface = "bold",
@@ -1436,7 +1436,7 @@ plotText(
 
 # add broad H3K27me3 region
 plotText(
-  label = paste("H3K27me3"),
+  label = paste0("S2-WT","\n","anti-H3K27me3"),
   params = small_text_params,
   fontface = "bold",
   x = (ref_x + x_offset_browser_label),
@@ -1446,11 +1446,11 @@ plotText(
 )
 
 plotText(
-  label = paste("H3K9me3"),
+  label = paste0("S2-WT","\n","anti-H3K9me3"),
   params = small_text_params,
   fontface = "bold",
   x = (ref_x + x_offset_browser_label),
-  y = (ref_y + 0.75),
+  y = (ref_y + 1),
   just = c("right", "center"),
   default.units = "cm"
 )
@@ -1491,7 +1491,7 @@ annoYaxis(
 
 s2 <- plotSignal(
   data = `H3K9me3_ChIP`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 3.75, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 1), width = 3.75, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
   range = ChIP_range
@@ -1512,20 +1512,20 @@ zoomRegion <- pgParams(
 
 annoZoomLines(
   plot = s2, params = zoomRegion,
-  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1, 1),
+  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1.25, 1.25),
   default.units = "cm",
   lty = 2
 )
 
 plotText(
-  label = "Twi embryo", params = small_text_params, fontface = "bold",
+  label = paste0("embryo", "\n", "anti-Twi"), params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
 )
 
 
 plotText(
-  label = "Twi S2", params = small_text_params, fontface = "bold",
-  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
+  label = paste0("S2-Twi", "\n", "anti-Twi"), params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.5), just = c("right","center"), default.units = "cm"
 )
 
 
@@ -1559,7 +1559,7 @@ annoYaxis(
 
 s3 <- plotSignal(
   data = `Twi_S2_ChIP`, params = zoomRegion,
-  x = (ref_x + x_offset_browser), y = (ref_y + 2.25), width = 3.75, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), width = 3.75, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = twi_color, fill = twi_color, baseline = FALSE, baseline.lwd = 0, baseline.color = twi_color,
   range = ChIP_range
@@ -1574,7 +1574,7 @@ annoYaxis(
 
 plotGenes(
   params = zoomRegion, assembly = "dm6",
-  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.75), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
   fill = c("gray50", "gray50"),
   fontcolor = c("gray50", "gray50"),
   just = c("left", "top"),
@@ -1585,7 +1585,7 @@ plotGenes(
 # panel L ==================================================================
 # panel label
 ref_x <- 12.5
-ref_y <- 12.5
+ref_y <- 13.5
 
 plotText(
   label = "l", params = panel_label_params, fontface = "bold",
@@ -1600,7 +1600,7 @@ plotText(
 
 # add broad H3K27me3 region
 plotText(
-  label = paste("H3K27me3"),
+  label = paste0("S2-WT","\n","anti-H3K27me3"),
   params = small_text_params,
   fontface = "bold",
   x = (ref_x + x_offset_browser_label),
@@ -1610,11 +1610,11 @@ plotText(
 )
 
 plotText(
-  label = paste("H3K9me3"),
+  label = paste0("S2-WT","\n","anti-H3K9me3"),
   params = small_text_params,
   fontface = "bold",
   x = (ref_x + x_offset_browser_label),
-  y = (ref_y + 0.75),
+  y = (ref_y + 1),
   just = c("right", "center"),
   default.units = "cm"
 )
@@ -1651,7 +1651,7 @@ annoYaxis(
 
 s2 <- plotSignal(
   data = `H3K9me3_ChIP`, params = region,
-  x = (ref_x + x_offset_browser), y = (ref_y + 0.75), width = 3.75, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 1), width = 3.75, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = H3K27me3_color, fill = H3K27me3_color, baseline = FALSE, baseline.lwd = 0, baseline.color = H3K27me3_color,
   range = ChIP_range
@@ -1672,20 +1672,20 @@ zoomRegion <- pgParams(
 
 annoZoomLines(
   plot = s2, params = zoomRegion,
-  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1, 1),
+  y0 = (s2$y + s2$height / 2), x1 = c(s2$x, s2$x + s2$width), y1 = (ref_y + 1.4), extend = c(1.25, 1.25),
   default.units = "cm",
   lty = 2
 )
 
 plotText(
-  label = "Twi embryo", params = small_text_params, fontface = "bold",
+  label = paste0("embryo", "\n", "anti-Twi"), params = small_text_params, fontface = "bold",
   x = (ref_x + x_offset_browser_label), y = (ref_y + 1.75), just = c("right","center"), default.units = "cm"
 )
 
 
 plotText(
-  label = "Twi S2", params = small_text_params, fontface = "bold",
-  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.25), just = c("right","center"), default.units = "cm"
+  label = paste0("S2-Twi", "\n", "anti-Twi"), params = small_text_params, fontface = "bold",
+  x = (ref_x + x_offset_browser_label), y = (ref_y + 2.5), just = c("right","center"), default.units = "cm"
 )
 
 
@@ -1719,7 +1719,7 @@ annoYaxis(
 
 s3 <- plotSignal(
   data = `Twi_S2_ChIP`, params = zoomRegion,
-  x = (ref_x + x_offset_browser), y = (ref_y + 2.25), width = 3.75, height = gb_height,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), width = 3.75, height = gb_height,
   just = c("left", "center"), default.units = "cm",
   linecolor = twi_color, fill = twi_color, baseline = FALSE, baseline.lwd = 0, baseline.color = twi_color,
   range = ChIP_range
@@ -1734,7 +1734,7 @@ annoYaxis(
 
 plotGenes(
   params = zoomRegion, assembly = "dm6",
-  x = (ref_x + x_offset_browser), y = (ref_y + 2.5), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
+  x = (ref_x + x_offset_browser), y = (ref_y + 2.75), height = 1, width = 3.75, fontsize = small_text_params$fontsize,
   fill = c("gray50", "gray50"),
   fontcolor = c("gray50", "gray50"),
   just = c("left", "top"),

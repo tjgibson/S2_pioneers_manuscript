@@ -1,19 +1,33 @@
-sample_name	unit_name	fq1	fq2	sra	read_format	sample_group
-S2-WT_1000uM_rep1	S2-WT_1000uM_rep1			SRR23932251	SE	S2-WT_1000uM
-S2-WT_1000uM_rep2	S2-WT_1000uM_rep2			SRR23932250	SE	S2-WT_1000uM
-S2-WT_100uM_rep1	S2-WT_100uM_rep1			SRR23932249	SE	S2-WT_100uM
-S2-WT_100uM_rep2	S2-WT_100uM_rep2			SRR23932248	SE	S2-WT_100uM
-S2-WT_noCuSO4_rep1	S2-WT_noCuSO4_rep1			SRR23932247	SE	S2-WT_noCuSO4
-S2-WT_noCuSO4_rep2	S2-WT_noCuSO4_rep2			SRR23932246	SE	S2-WT_noCuSO4
-S2-Zld_1000mM_rep1	S2-Zld_1000mM_rep1			SRR23932245	SE	S2-Zld_1000mM
-S2-Zld_1000mM_rep2	S2-Zld_1000mM_rep2			SRR23932244	SE	S2-Zld_1000mM
-S2-Zld_noCuSO4_rep1	S2-Zld_noCuSO4_rep1			SRR23932243	SE	S2-Zld_noCuSO4
-S2-Zld_noCuSO4_rep2	S2-Zld_noCuSO4_rep2			SRR23932242	SE	S2-Zld_noCuSO4
-S2-Grh_100mM_rep1	S2-Grh_100mM_rep1			SRR23932241	SE	S2-Grh_100mM
-S2-Grh_100mM_rep2	S2-Grh_100mM_rep2			SRR23932240	SE	S2-Grh_100mM
-S2-Grh_noCuSO4_rep1	S2-Grh_noCuSO4_rep1			SRR23932239	SE	S2-Grh_noCuSO4
-S2-Grh_noCuSO4_rep2	S2-Grh_noCuSO4_rep2			SRR23932238	SE	S2-Grh_noCuSO4
-S2-WT_40uM_rep1	S2-WT_40uM_rep1			SRR23932237	SE	S2-WT_40uM
-S2-WT_40uM_rep2	S2-WT_40uM_rep2			SRR23932236	SE	S2-WT_40uM
-S2-Twi_40uM_rep1	S2-Twi_40uM_rep1			SRR23932235	SE	S2-Twi_40uM
-S2-Twi_40uM_rep2	S2-Twi_40uM_rep2			SRR23932234	SE	S2-Twi_40uM
+sample_name	unit_name	fq1	fq2	sra	read_format	sample_group	GSE_accession
+S2-WT_1000uM_rep1	S2-WT_1000uM_rep1			SRR23932251	SE	S2-WT_1000uM	
+S2-WT_1000uM_rep2	S2-WT_1000uM_rep2			SRR23932250	SE	S2-WT_1000uM	
+S2-WT_100uM_rep1	S2-WT_100uM_rep1			SRR23932249	SE	S2-WT_100uM	
+S2-WT_100uM_rep2	S2-WT_100uM_rep2			SRR23932248	SE	S2-WT_100uM	
+S2-WT_noCuSO4_rep1	S2-WT_noCuSO4_rep1			SRR23932247	SE	S2-WT_noCuSO4	
+S2-WT_noCuSO4_rep2	S2-WT_noCuSO4_rep2			SRR23932246	SE	S2-WT_noCuSO4	
+S2-Zld_1000mM_rep1	S2-Zld_1000mM_rep1			SRR23932245	SE	S2-Zld_1000mM	
+S2-Zld_1000mM_rep2	S2-Zld_1000mM_rep2			SRR23932244	SE	S2-Zld_1000mM	
+S2-Zld_noCuSO4_rep1	S2-Zld_noCuSO4_rep1			SRR23932243	SE	S2-Zld_noCuSO4	
+S2-Zld_noCuSO4_rep2	S2-Zld_noCuSO4_rep2			SRR23932242	SE	S2-Zld_noCuSO4	
+S2-Grh_100mM_rep1	S2-Grh_100mM_rep1			SRR23932241	SE	S2-Grh_100mM	
+S2-Grh_100mM_rep2	S2-Grh_100mM_rep2			SRR23932240	SE	S2-Grh_100mM	
+S2-Grh_noCuSO4_rep1	S2-Grh_noCuSO4_rep1			SRR23932239	SE	S2-Grh_noCuSO4	
+S2-Grh_noCuSO4_rep2	S2-Grh_noCuSO4_rep2			SRR23932238	SE	S2-Grh_noCuSO4	
+S2-WT_40uM_rep1	S2-WT_40uM_rep1			SRR23932237	SE	S2-WT_40uM	
+S2-WT_40uM_rep2	S2-WT_40uM_rep2			SRR23932236	SE	S2-WT_40uM	
+S2-Twi_40uM_rep1	S2-Twi_40uM_rep1			SRR23932235	SE	S2-Twi_40uM	
+S2-Twi_40uM_rep2	S2-Twi_40uM_rep2			SRR23932234	SE	S2-Twi_40uM	
+embryo_cycle-14D_male_rep1				SRR072903	SE	embryo_cycle-14D_male	GSE25180
+embryo_cycle-14D_male_rep2				SRR072904	SE	embryo_cycle-14D_male	GSE25180
+embryo_cycle-14D_female_rep1				SRR072915	SE	embryo_cycle-14D_female	GSE25180
+embryo_cycle-14C_female_rep1				SRR072913	SE	embryo_cycle-14C_female	GSE25180
+embryo_cycle-14C_female_rep2				SRR072914	SE	embryo_cycle-14C_female	GSE25180
+embryo_cycle-14C_male_rep1				SRR072901	SE	embryo_cycle-14C_male	GSE25180
+embryo_cycle-14C_male_rep2				SRR072902	SE	embryo_cycle-14C_male	GSE25180
+embryo_15-16H_1	embryo_15-16H_1			SRR3661322	SE	embryo_15-16H	GSE83305
+embryo_15-16H_2	embryo_15-16H_2			SRR3661324	SE	embryo_15-16H	GSE83305
+wing-disc_L3_rep1	wing-disc_L3_rep1			SRR9162566	SE	wing-disc_L3	GSE131981
+wing-disc_L3_rep2	wing-disc_L3_rep2			SRR9162567	SE	wing-disc_L3	GSE131981
+neuroblast_rep1	neuroblast_rep1			SRR12030903	SE	neuroblast	GSE152636
+neuroblast_rep2	neuroblast_rep2			SRR12030904	SE	neuroblast	GSE152636
+neuroblast_rep3	neuroblast_rep3			SRR12030905	SE	neuroblast	GSE152636

@@ -20,6 +20,9 @@ source("workflow/scripts/plot_heatmap.R")
 # S2_Zld_aZld_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aZld_IP.bw"
 # S2_WT_aZld_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-WT_aZld_IP.bw"
 # S2_Zld_IgG_ChIP_bw <- "ChIPseq/results/bigwigs/zscore_normalized/merged/S2-Zld_aIgG_IP.bw"
+# Zld_WT_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/S2-WT_1000uM_small.bw"
+# Grh_WT_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/FL_ATAC_S2-WT_100uM_small.bw"
+# Twi_WT_ATAC_bw <- "ATACseq/results/bigwigs/zscore_normalized/merged/Twi_ATAC_S2-WT_40uM_small.bw"
 # 
 # zld_ChIP_classes_fn <- "results/ChIP_peak_classes/zld_ChIP_classes.tsv"
 # 
@@ -44,6 +47,9 @@ grh_blot_image <- snakemake@input[["grh_blot_image"]]
 S2_Zld_aZld_ChIP_bw <- snakemake@input[["S2_Zld_aZld_ChIP_bw"]]
 S2_WT_aZld_ChIP_bw <- snakemake@input[["S2_WT_aZld_ChIP_bw"]]
 S2_Zld_IgG_ChIP_bw <- snakemake@input[["S2_Zld_IgG_ChIP_bw"]]
+Zld_WT_ATAC_bw <- snakemake@input[["Zld_WT_ATAC_bw"]]
+Grh_WT_ATAC_bw <- snakemake@input[["Grh_WT_ATAC_bw"]]
+Twi_WT_ATAC_bw <- snakemake@input[["Twi_WT_ATAC_bw"]]
 
 zld_ChIP_classes_fn <- snakemake@input[["zld_ChIP_classes_fn"]]
 
@@ -61,13 +67,12 @@ twi_ChIP_classes_fn <- snakemake@input[["twi_ChIP_classes_fn"]]
 
 
 # # create blank layout for plot ===============================================
-# # create blank layout for plot ===============================================
 fig_width <-  18
 fig_height <- 18.5
 
 # open pdf
 pdf(snakemake@output[[1]], useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
-# pdf("manuscript/figures/extended_data_fig1.pdf", useDingbats = FALSE)
+# pdf("manuscript/figures/extended_data_fig1.pdf", useDingbats = FALSE, width = fig_width / 2.54,height = fig_height / 2.54)
 
 pageCreate(width = fig_width, height = fig_height, default.units = "cm", showGuides = FALSE)
 
@@ -368,6 +373,83 @@ plotPolygon(x = c(1, 1.25, 1), y = c(7.2,7.3,7.4), default.units = "cm", fill = 
 
 plotPolygon(x = c(1, 1.25, 1), y = c(8.35,8.45,8.55), default.units = "cm", fill = "grey")
 
+# # add band intensity values under blot
+# blot_quantification <- "data/immunoblot_raw_images/2018-10-17_Zld_induction/quantification.tsv" |> 
+#   read_tsv()
+# 
+# plotText(
+#   label = pull(blot_quantification[1,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 1.25, y = ref_y + 3.4, just = c("center"), default.units = "cm"
+# )
+# 
+# plotText(
+#   label = pull(blot_quantification[2,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 1.7, y = ref_y + 3.4, just = c("center"), default.units = "cm"
+# )
+# 
+# plotText(
+#   label = pull(blot_quantification[3,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 2.1, y = ref_y + 3.4, just = c("center"), default.units = "cm"
+# )
+# 
+# plotText(
+#   label = pull(blot_quantification[4,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 2.6, y = ref_y + 3.4, just = c("center"), default.units = "cm"
+# )
+# 
+# plotText(
+#   label = pull(blot_quantification[5,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 3.1, y = ref_y + 3.4, just = c("center"), default.units = "cm"
+# )
+# 
+# plotText(
+#   label = pull(blot_quantification[6,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 3.6, y = ref_y + 3.4, just = c("center"), default.units = "cm"
+# )
+# 
+# plotText(
+#   label = pull(blot_quantification[7,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 4.1, y = ref_y + 3.4, just = c("center"), default.units = "cm"
+# )
+# 
+# plotText(
+#   label = pull(blot_quantification[8,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 4.6, y = ref_y + 3.4, just = c("center"), default.units = "cm"
+# )
+# 
+# plotText(
+#   label = pull(blot_quantification[9,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 5.1, y = ref_y + 3.4, just = c("center"), default.units = "cm"
+# )
+# 
+# plotText(
+#   label = pull(blot_quantification[10,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 5.5, y = ref_y + 3.4, just = c("center"), default.units = "cm"
+# )
+# 
+# 
+# plotText(
+#   label = pull(blot_quantification[11,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 6, y = ref_y + 3.4, just = c("center"), default.units = "cm"
+# )
+# 
+# plotText(
+#   label = pull(blot_quantification[12,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 6.6, y = ref_y + 3.4, just = c("center"), default.units = "cm"
+# )
+# 
+# 
+# plotText(
+#   label = pull(blot_quantification[13,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 7.1, y = ref_y + 3.4, just = c("center"), default.units = "cm"
+# )
+# 
+# plotText(
+#   label = pull(blot_quantification[14,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 7.6, y = ref_y + 3.4, just = c("center"), default.units = "cm"
+# )
+
+
 # panel D ======================================================================
 # reference points for positioning figure components
 ref_x <- 9.5
@@ -528,6 +610,83 @@ plotPolygon(x = c(10, 10.25, 10), y = c(7.3,7.4,7.5), default.units = "cm", fill
 
 plotPolygon(x = c(10, 10.25, 10), y = c(8.9,9,9.1), default.units = "cm", fill = "grey")
 
+# # add band intensity values under blot
+# blot_quantification <- "data/immunoblot_raw_images/2018-11-08_Grh_induction/quantification.tsv" |> 
+#   read_tsv()
+# 
+# plotText(
+#   label = pull(blot_quantification[1,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 1.2, y = ref_y + 3.9, just = c("center"), default.units = "cm"
+# )
+# 
+# plotText(
+#   label = pull(blot_quantification[2,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 1.7, y = ref_y + 3.9, just = c("center"), default.units = "cm"
+# )
+# 
+# plotText(
+#   label = pull(blot_quantification[3,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 2.1, y = ref_y + 3.9, just = c("center"), default.units = "cm"
+# )
+# 
+# plotText(
+#   label = pull(blot_quantification[4,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 2.6, y = ref_y + 3.9, just = c("center"), default.units = "cm"
+# )
+# 
+# plotText(
+#   label = pull(blot_quantification[5,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 3.1, y = ref_y + 3.9, just = c("center"), default.units = "cm"
+# )
+# 
+# plotText(
+#   label = pull(blot_quantification[6,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 3.6, y = ref_y + 3.9, just = c("center"), default.units = "cm"
+# )
+# 
+# plotText(
+#   label = pull(blot_quantification[7,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 4.1, y = ref_y + 3.9, just = c("center"), default.units = "cm"
+# )
+# 
+# plotText(
+#   label = pull(blot_quantification[8,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 4.6, y = ref_y + 3.9, just = c("center"), default.units = "cm"
+# )
+# 
+# plotText(
+#   label = pull(blot_quantification[9,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 5.1, y = ref_y + 3.9, just = c("center"), default.units = "cm"
+# )
+# 
+# plotText(
+#   label = pull(blot_quantification[10,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 5.5, y = ref_y + 3.9, just = c("center"), default.units = "cm"
+# )
+# 
+# 
+# plotText(
+#   label = pull(blot_quantification[11,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 6, y = ref_y + 3.9, just = c("center"), default.units = "cm"
+# )
+# 
+# plotText(
+#   label = pull(blot_quantification[12,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 6.6, y = ref_y + 3.9, just = c("center"), default.units = "cm"
+# )
+# 
+# 
+# plotText(
+#   label = pull(blot_quantification[13,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 7.1, y = ref_y + 3.9, just = c("center"), default.units = "cm"
+# )
+# 
+# plotText(
+#   label = pull(blot_quantification[14,"Raw volume"]), params = large_text_params, rot = 45,
+#   x = ref_x + 7.6, y = ref_y + 3.9, just = c("center"), default.units = "cm"
+# )
+
+
 
 # panel E ======================================================================
 # reference points for positioning figure components
@@ -542,6 +701,7 @@ plotText(
 
 # define bigWig files to use for heatmap
 bw <- c(
+  S2_WT_ATAC = Zld_WT_ATAC_bw,
   S2_ZLD_ChIP =  S2_Zld_aZld_ChIP_bw,
   S2_WT_aZld_ChIP = S2_WT_aZld_ChIP_bw,
   S2_Zld_IgG_ChIP = S2_Zld_IgG_ChIP_bw
@@ -553,14 +713,73 @@ regions <- zld_ChIP_classes_fn |>
   mutate(class = str_to_upper(class)) |> 
   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
 
+# generate metaplots
+plot_range <- c(-0.5,5)
 
+metaplot_1 <- plot_average(bw[1], regions = regions, row_split = regions$class, line_width = 0.2) +
+  scale_color_brewer(palette = "Blues") +
+  theme(text = element_text(size = 5),
+        line = element_line(size = 0.1),
+        axis.title.y = element_blank(),
+        legend.key.size = unit(2, 'mm'),
+        legend.position = "none",
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        plot.margin=grid::unit(c(0,0,0,0), "mm")
+  ) +
+  ylim(plot_range)
+
+
+metaplot_2 <- plot_average(bw[2], regions = regions, row_split = regions$class, line_width = 0.2) +
+  scale_color_brewer(palette = "Blues") +
+  theme(text = element_text(size = 5),
+        line = element_line(size = 0.1),
+        axis.title.y = element_blank(),
+        legend.key.size = unit(2, 'mm'),
+        legend.position = "none",
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.ticks.length.y = unit(0, "cm"),
+        plot.margin=grid::unit(c(0,0,0,0), "mm")
+  ) +
+  ylim(plot_range)
+
+metaplot_3 <- plot_average(bw[3], regions = regions, row_split = regions$class, line_width = 0.2) +
+  scale_color_brewer(palette = "Blues") +
+  theme(text = element_text(size = 5),
+        line = element_line(size = 0.1),
+        axis.title.y = element_blank(),
+        legend.key.size = unit(2, 'mm'),
+        legend.position = "none",
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.ticks.length.y = unit(0, "cm"),
+        plot.margin=grid::unit(c(0,0,0,0), "mm")
+  ) +
+  ylim(plot_range)
+
+metaplot_4 <- plot_average(bw[4], regions = regions, row_split = regions$class, line_width = 0.2) +
+  scale_color_brewer(palette = "Blues") +
+  theme(text = element_text(size = 5),
+        line = element_line(size = 0.1),
+        axis.title.y = element_blank(),
+        legend.key.size = unit(2, 'mm'),
+        legend.position = "none",
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.ticks.length.y = unit(0, "cm"),
+        plot.margin=grid::unit(c(0,0,0,0), "mm")
+  ) +
+  ylim(plot_range)
+
+# generate heatmap
 hm <- plot_heatmap_minimal(
   bw, regions, 
   upstream = hm_upstream, downstream = hm_downstream, 
   colors  = zld_heatmap_colors, 
   row_split = regions$class, 
   # order_by_samples = 1, 
-  individual_scales = FALSE,
+  scale_group = c(1,2,2,2),
   use_raster = TRUE, raster_by_magick = TRUE, raster_magick_filter = "Triangle",
   border = "black",
   border_gp = gpar(lwd = 0.5),
@@ -570,10 +789,58 @@ hm <- plot_heatmap_minimal(
 
 e_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 0, 0, 0), "mm")))
 
-# place heatmap on page
+# place heatmap and metaplots on page
+plotGG(
+  plot = metaplot_1,
+  x = (ref_x + 0.0542), y = (ref_y + 0.25),
+  width = (1.1 + 0.1958), height = 1.1, just = c("left", "top"),
+  default.units = "cm"
+)
+
+plotGG(
+  plot = metaplot_2,
+  x = (ref_x + 1.55), y = (ref_y + 0.25),
+  width = (1.1), height = 1.1, just = c("left", "top"),
+  default.units = "cm"
+)
+
+plotGG(
+  plot = metaplot_3,
+  x = (ref_x + 2.85), y = (ref_y + 0.25),
+  width = (1.1), height = 1.1, just = c("left", "top"),
+  default.units = "cm"
+)
+
+plotGG(
+  plot = metaplot_4,
+  x = (ref_x + 4.15), y = (ref_y + 0.25),
+  width = (1.1), height = 1.1, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# add legend
+plot_colors <- c(
+  I = "#DEEBF7",
+  II = "#9ECAE1",
+  III = "#3182BD"
+)
+
+
+plotLegend(
+  legend = names(plot_colors),
+  fill = plot_colors,
+  border = FALSE,
+  x = (ref_x + 4.12), y = ref_y + 0.3, width = 0.5, height = 1,
+  just = c("center", "top"),
+  default.units = "cm",
+  fontsize = small_text_params$fontsize,
+  lty = 1,
+  orientation = "v"
+)
+
 plotGG(
   plot = e_hm,
-  x = (ref_x + 0.25), y = (ref_y + 0.25),
+  x = (ref_x + 0.25), y = (ref_y + 1.4),
   width = 5, height = 5, just = c("left", "top"),
   default.units = "cm"
 )
@@ -585,38 +852,43 @@ seekViewport(name = "page")
 
 # heatmap labels
 plotText(
+  label = paste0("S2-WT", "\n", "ATAC"), params = small_text_params, fontface = "bold", 
+  x = (ref_x + 0.8), y = (ref_y), just = c("center"), default.units = "cm"
+)
+
+plotText(
   label = paste0("S2-Zld", "\n", "anti-Zld"), params = small_text_params, fontface = "bold", 
-  x = (ref_x + 1), y = (ref_y), just = c("center"), default.units = "cm"
+  x = (ref_x + 2.1), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = paste0("S2-WT", "\n", "anti-Zld"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 2.75), y = (ref_y), just = c("center"), default.units = "cm"
+  x = (ref_x + 3.4), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "IgG", params = small_text_params, fontface = "bold",
-  x = (ref_x + 4.5), y = (ref_y), just = c("center"), default.units = "cm"
+  x = (ref_x + 4.7), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "class:", params = small_text_params, fontface = "bold",
-  x = (ref_x - 0.1), y = (ref_y + 0.2), just = c("center"), default.units = "cm"
+  x = (ref_x - 0.1), y = (ref_y + 1.55), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "I", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 2.5), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 3.65), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "II", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 4.75), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 5.9), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "III", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 5.2), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 6.35), just = c("center"), default.units = "cm"
 )
 
 # panel F ======================================================================
@@ -632,6 +904,7 @@ plotText(
 
 # define bigWig files to use for heatmap
 bw <- c(
+  S2_WT_ATAC = Grh_WT_ATAC_bw,
   S2_Grh_ChIP =  S2_Grh_aGrh_ChIP_bw,
   S2_WT_aGrh_ChIP = S2_WT_aGrh_ChIP_bw,
   S2_Grh_IgG_ChIP = S2_Grh_IgG_ChIP_bw
@@ -643,14 +916,71 @@ regions <- grh_ChIP_classes_fn |>
   mutate(class = str_to_upper(class)) |> 
   makeGRangesFromDataFrame(keep.extra.columns = TRUE)
 
+# generate metaplots
+plot_range <- c(-0.5,5)
 
+metaplot_1 <- plot_average(bw[1], regions = regions, row_split = regions$class, line_width = 0.2) +
+  scale_color_brewer(palette = "Oranges") +
+  theme(text = element_text(size = 5),
+        line = element_line(size = 0.1),
+        axis.title.y = element_blank(),
+        legend.key.size = unit(2, 'mm'),
+        legend.position = "none",
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        plot.margin=grid::unit(c(0,0,0,0), "mm")
+  ) +
+  ylim(plot_range)
+
+metaplot_2 <- plot_average(bw[2], regions = regions, row_split = regions$class, line_width = 0.2) +
+  scale_color_brewer(palette = "Oranges") +
+  theme(text = element_text(size = 5),
+        line = element_line(size = 0.1),
+        axis.title.y = element_blank(),
+        legend.key.size = unit(2, 'mm'),
+        legend.position = "none",
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        plot.margin=grid::unit(c(0,0,0,0), "mm")
+  ) +
+  ylim(plot_range)
+
+metaplot_3 <- plot_average(bw[3], regions = regions, row_split = regions$class, line_width = 0.2) +
+  scale_color_brewer(palette = "Oranges") +
+  theme(text = element_text(size = 5),
+        line = element_line(size = 0.1),
+        axis.title.y = element_blank(),
+        legend.key.size = unit(2, 'mm'),
+        legend.position = "none",
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.ticks.length.y = unit(0, "cm"),
+        plot.margin=grid::unit(c(0,0,0,0), "mm")
+  ) +
+  ylim(plot_range)
+
+metaplot_4 <- plot_average(bw[4], regions = regions, row_split = regions$class, line_width = 0.2) +
+  scale_color_brewer(palette = "Oranges") +
+  theme(text = element_text(size = 5),
+        line = element_line(size = 0.1),
+        axis.title.y = element_blank(),
+        legend.key.size = unit(2, 'mm'),
+        legend.position = "none",
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.ticks.length.y = unit(0, "cm"),
+        plot.margin=grid::unit(c(0,0,0,0), "mm")
+  ) +
+  ylim(plot_range)
+
+# generate heatmap
 hm <- plot_heatmap_minimal(
   bw, regions, 
   upstream = hm_upstream, downstream = hm_downstream, 
   colors  = grh_heatmap_colors, 
   row_split = regions$class, 
   # order_by_samples = 1, 
-  individual_scales = FALSE,
+  scale_group = c(1,2,2,2),
   use_raster = TRUE, raster_by_magick = TRUE, raster_magick_filter = "Triangle",
   border = "black",
   border_gp = gpar(lwd = 0.5),
@@ -660,53 +990,106 @@ hm <- plot_heatmap_minimal(
 
 f_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 0, 0, 0), "mm")))
 
-# place heatmap on page
+# place heatmap and metaplots on page
+plotGG(
+  plot = metaplot_1,
+  x = (ref_x + 0.0542), y = (ref_y + 0.25),
+  width = (1.1 + 0.1958), height = 1.1, just = c("left", "top"),
+  default.units = "cm"
+)
+
+plotGG(
+  plot = metaplot_2,
+  x = (ref_x + 1.55), y = (ref_y + 0.25),
+  width = (1.1), height = 1.1, just = c("left", "top"),
+  default.units = "cm"
+)
+
+plotGG(
+  plot = metaplot_3,
+  x = (ref_x + 2.85), y = (ref_y + 0.25),
+  width = (1.1), height = 1.1, just = c("left", "top"),
+  default.units = "cm"
+)
+
+plotGG(
+  plot = metaplot_4,
+  x = (ref_x + 4.15), y = (ref_y + 0.25),
+  width = (1.1), height = 1.1, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# add legend
+plot_colors <- c(
+  `I` = "#FDBE85",
+  `II` = "#FD8D3C",
+  `III` = "#D94701"
+)
+
+
+plotLegend(
+  legend = names(plot_colors),
+  fill = plot_colors,
+  border = FALSE,
+  x = (ref_x + 4.12), y = ref_y + 0.3, width = 0.5, height = 1,
+  just = c("center", "top"),
+  default.units = "cm",
+  fontsize = small_text_params$fontsize,
+  lty = 1,
+  orientation = "v"
+)
+
 plotGG(
   plot = f_hm,
-  x = (ref_x + 0.25), y = (ref_y + 0.25),
+  x = (ref_x + 0.25), y = (ref_y + 1.4),
   width = 5, height = 5, just = c("left", "top"),
   default.units = "cm"
 )
 
 # add axes to heatmaps
-seekViewport(name = "matrix_4_heatmap_body_3_1")
+seekViewport(name = "matrix_5_heatmap_body_3_1")
 grid.xaxis(at = c(0, 1), label = c(paste0("-", hm_upstream / 1000, "KB"), paste0("+",hm_downstream / 1000, "KB")), gp = gpar(lwd = 0.5, fontsize = small_text_params$fontsize))
 seekViewport(name = "page")
 
 # heatmap labels
 plotText(
-  label = paste0("S2-Grh", "\n", "anti-Grh"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 1), y = (ref_y), just = c("center"), default.units = "cm"
+  label = paste0("S2-WT", "\n", "ATAC"), params = small_text_params, fontface = "bold", 
+  x = (ref_x + 0.8), y = (ref_y), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = paste0("S2-Grh", "\n", "anti-Grh"), params = small_text_params, fontface = "bold", 
+  x = (ref_x + 2.1), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = paste0("S2-WT", "\n", "anti-Grh"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 2.75), y = (ref_y), just = c("center"), default.units = "cm"
+  x = (ref_x + 3.4), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "IgG", params = small_text_params, fontface = "bold",
-  x = (ref_x + 4.5), y = (ref_y), just = c("center"), default.units = "cm"
+  x = (ref_x + 4.7), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "class:", params = small_text_params, fontface = "bold",
-  x = (ref_x - 0.1), y = (ref_y + 0.2), just = c("center"), default.units = "cm"
+  x = (ref_x - 0.1), y = (ref_y + 1.55), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "I", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 2), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 3.15), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "II", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 4.35), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 5.5), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "III", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 5.1), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 6.25), just = c("center"), default.units = "cm"
 )
 
 # panel G ======================================================================
@@ -722,6 +1105,7 @@ plotText(
 
 # define bigWigs to use for heatmap
 bw <- c(
+  S2_WT_ATAC = Twi_WT_ATAC_bw,
   S2_Twi_ChIP =  S2_Twi_aTwi_ChIP_bw,
   S2_WT_aTwi_ChIP = S2_WT_aTwi_ChIP_bw,
   S2_Twi_IgG_ChIP = S2_Twi_IgG_ChIP_bw
@@ -735,14 +1119,75 @@ regions <- twi_ChIP_classes_fn |>
 
 
 
+# generate metaplots
+plot_range <- c(-0.5,8)
 
+
+metaplot_1 <- plot_average(bw[1], regions = regions, row_split = regions$class, line_width = 0.2) +
+  scale_color_brewer(palette = "GnBu") +
+  theme(text = element_text(size = 5),
+        line = element_line(size = 0.1),
+        axis.title.y = element_blank(),
+        legend.key.size = unit(2, 'mm'),
+        legend.position = "none",
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        plot.margin=grid::unit(c(0,0,0,0), "mm")
+  ) +
+  ylim(plot_range)
+
+
+
+metaplot_2 <- plot_average(bw[2], regions = regions, row_split = regions$class, line_width = 0.2) +
+  scale_color_brewer(palette = "GnBu") +
+  theme(text = element_text(size = 5),
+        line = element_line(size = 0.1),
+        axis.title.y = element_blank(),
+        legend.key.size = unit(2, 'mm'),
+        legend.position = "none",
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.ticks.length.y = unit(0, "cm"),
+        plot.margin=grid::unit(c(0,0,0,0), "mm")
+  ) +
+  ylim(plot_range)
+
+metaplot_3 <- plot_average(bw[3], regions = regions, row_split = regions$class, line_width = 0.2) +
+  scale_color_brewer(palette = "GnBu") +
+  theme(text = element_text(size = 5),
+        line = element_line(size = 0.1),
+        axis.title.y = element_blank(),
+        legend.key.size = unit(2, 'mm'),
+        legend.position = "none",
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.ticks.length.y = unit(0, "cm"),
+        plot.margin=grid::unit(c(0,0,0,0), "mm")
+  ) +
+  ylim(plot_range)
+
+metaplot_4 <- plot_average(bw[4], regions = regions, row_split = regions$class, line_width = 0.2) +
+  scale_color_brewer(palette = "GnBu") +
+  theme(text = element_text(size = 5),
+        line = element_line(size = 0.1),
+        axis.title.y = element_blank(),
+        legend.key.size = unit(2, 'mm'),
+        legend.position = "none",
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.ticks.length.y = unit(0, "cm"),
+        plot.margin=grid::unit(c(0,0,0,0), "mm")
+  ) +
+  ylim(plot_range)
+
+# generate heatmap
 hm <- plot_heatmap_minimal(
   bw, regions, 
   upstream = hm_upstream, downstream = hm_downstream, 
   colors  = twi_heatmap_colors, 
   row_split = regions$class, 
   # order_by_samples = 1, 
-  individual_scales = FALSE,
+  scale_group = c(1,2,2,2),
   use_raster = TRUE, raster_by_magick = TRUE, raster_magick_filter = "Triangle",
   border = "black",
   border_gp = gpar(lwd = 0.5),
@@ -750,61 +1195,111 @@ hm <- plot_heatmap_minimal(
   return_heatmap_list = TRUE
 )
 
-f_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 0, 0, 0), "mm")))
+g_hm <- grid.grabExpr(draw(hm, show_heatmap_legend = FALSE, padding = unit(c(0, 0, 0, 0), "mm")))
 
-# place heatmap on page
+# place heatmap and metaplots on page
 plotGG(
-  plot = f_hm,
-  x = (ref_x + 0.25), y = (ref_y + 0.25),
+  plot = metaplot_1,
+  x = (ref_x + 0.0542), y = (ref_y + 0.25),
+  width = (1.1 + 0.1958), height = 1.1, just = c("left", "top"),
+  default.units = "cm"
+)
+
+plotGG(
+  plot = metaplot_2,
+  x = (ref_x + 1.55), y = (ref_y + 0.25),
+  width = (1.1), height = 1.1, just = c("left", "top"),
+  default.units = "cm"
+)
+
+plotGG(
+  plot = metaplot_3,
+  x = (ref_x + 2.85), y = (ref_y + 0.25),
+  width = (1.1), height = 1.1, just = c("left", "top"),
+  default.units = "cm"
+)
+
+plotGG(
+  plot = metaplot_4,
+  x = (ref_x + 4.15), y = (ref_y + 0.25),
+  width = (1.1), height = 1.1, just = c("left", "top"),
+  default.units = "cm"
+)
+
+# add legend
+plot_colors <- c(
+  `I` = "#E0F3DB",
+  `II` = "#A8DDB5",
+  `III` = "#43A2CA"
+)
+
+
+plotLegend(
+  legend = names(plot_colors),
+  fill = plot_colors,
+  border = FALSE,
+  x = (ref_x + 4.12), y = ref_y + 0.3, width = 0.5, height = 1,
+  just = c("center", "top"),
+  default.units = "cm",
+  fontsize = small_text_params$fontsize,
+  lty = 1,
+  orientation = "v"
+)
+
+plotGG(
+  plot = g_hm,
+  x = (ref_x + 0.25), y = (ref_y + 1.4),
   width = 5, height = 5, just = c("left", "top"),
   default.units = "cm"
 )
 
 # add axes to heatmaps
-seekViewport(name = "matrix_7_heatmap_body_3_1")
+seekViewport(name = "matrix_9_heatmap_body_3_1")
 grid.xaxis(at = c(0, 1), label = c(paste0("-", hm_upstream / 1000, "KB"), paste0("+",hm_downstream / 1000, "KB")), gp = gpar(lwd = 0.5, fontsize = small_text_params$fontsize))
 seekViewport(name = "page")
 
 # heatmap labels
+# heatmap labels
 plotText(
-  label = paste0("S2-Twi", "\n", "anti-Twi"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 1), y = (ref_y), just = c("center"), default.units = "cm"
+  label = paste0("S2-WT", "\n", "ATAC"), params = small_text_params, fontface = "bold", 
+  x = (ref_x + 0.8), y = (ref_y), just = c("center"), default.units = "cm"
+)
+
+plotText(
+  label = paste0("S2-Twi", "\n", "anti-Twi"), params = small_text_params, fontface = "bold", 
+  x = (ref_x + 2.1), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = paste0("S2-WT", "\n", "anti-Twi"), params = small_text_params, fontface = "bold",
-  x = (ref_x + 2.75), y = (ref_y), just = c("center"), default.units = "cm"
+  x = (ref_x + 3.4), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "IgG", params = small_text_params, fontface = "bold",
-  x = (ref_x + 4.5), y = (ref_y), just = c("center"), default.units = "cm"
+  x = (ref_x + 4.7), y = (ref_y), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "class:", params = small_text_params, fontface = "bold",
-  x = (ref_x - 0.1), y = (ref_y + 0.2), just = c("center"), default.units = "cm"
+  x = (ref_x - 0.1), y = (ref_y + 1.55), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "I", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 2), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 3.15), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "II", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 4.5), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 5.65), just = c("center"), default.units = "cm"
 )
 
 plotText(
   label = "III", params = small_text_params, fontface = "bold",
-  x = (ref_x), y = (ref_y + 5.2), just = c("center"), default.units = "cm"
+  x = (ref_x), y = (ref_y + 6.35), just = c("center"), default.units = "cm"
 )
 
 
 # close graphics device ========================================================
 dev.off()
-
-
-
-

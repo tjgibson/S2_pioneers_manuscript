@@ -43,3 +43,11 @@ titration_S2-HA-Twi_0uM_rep2	titration_S2-HA-Twi_0uM	S2-HA-Twi-titration_ATACseq
 titration_S2-HA-Twi_10uM_rep2	titration_S2-HA-Twi_10uM	S2-HA-Twi-titration_ATACseq
 titration_S2-HA-Twi_40uM_rep2	titration_S2-HA-Twi_40uM	S2-HA-Twi-titration_ATACseq
 titration_S2-HA-Twi_160uM_rep2	titration_S2-HA-Twi_160uM	S2-HA-Twi-titration_ATACseq
+titration_S2-Zld-DBD_400_rep1	titration_S2-Zld-DBD_400	S2-Zld-DBD-titration_ATACseq
+titration_S2-Zld-DBD_400_rep2	titration_S2-Zld-DBD_400	S2-Zld-DBD-titration_ATACseq
+titration_S2-Grh-DBD_80_rep1	titration_S2-Grh-DBD_80	S2-Grh-DBD-titration_ATACseq
+titration_S2-Grh-DBD_80_rep2	titration_S2-Grh-DBD_80	S2-Grh-DBD-titration_ATACseq
+S2-Zld-DBD_100uM_rep1	S2-Zld-DBD_100uM	S2-Zld-DBD-titration_ATACseq
+S2-Zld-DBD_100uM_rep2	S2-Zld-DBD_100uM	S2-Zld-DBD-titration_ATACseq
+S2-Grh-DBD_20uM_rep1	S2-Grh-DBD_20uM	S2-Grh-DBD-titration_ATACseq
+S2-Grh-DBD_20uM_rep2	S2-Grh-DBD_20uM	S2-Grh-DBD-titration_ATACseq
