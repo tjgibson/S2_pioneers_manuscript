@@ -23,6 +23,8 @@ S2-Grh_aGrh_48H_rep1	S2-Grh_aGrh_48H_rep1			SRR23933071	PE	TRUE	S2-Grh_IgG_48H_r
 S2-Grh_aGrh_48H_rep2	S2-Grh_aGrh_48H_rep2			SRR23933070	PE	TRUE	S2-Grh_IgG_48H_rep2	narrow	S2-Grh_aGrh_48H
 S2-Grh_IgG_48H_rep1	S2-Grh_IgG_48H_rep1			SRR23933069	PE	FALSE			S2-Grh_IgG_48H
 S2-Grh_IgG_48H_rep2	S2-Grh_IgG_48H_rep2			SRR23933068	PE	FALSE			S2-Grh_IgG_48H
+brain_brat_IgG_rep1	brain_brat_IgG_rep1			SRR26453931	PE	FALSE			brain_brat_IgG
+brain_brat_IgG_rep2	brain_brat_IgG_rep2			SRR26453932	PE	FALSE			brain_brat_IgG
 brain_brat_aZld_rep1	brain_brat_aZld_rep1			SRR26445762	PE	TRUE	brain_brat_IgG_rep1	narrow	brain_brat_aZld
 brain_brat_aZld_rep2	brain_brat_aZld_rep2			SRR26445763	PE	TRUE	brain_brat_IgG_rep2	narrow	brain_brat_aZld
 brain_UAS-HA-Zld_aZld_rep1	brain_UAS-HA-Zld_aZld_rep1			SRR26445764	PE	TRUE	brain_brat_IgG_rep1	narrow	brain_UAS-HA-Zld_aZld
